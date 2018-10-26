@@ -22,6 +22,3 @@ La difficulté est noté de manière croissante suivant une suite de Fibonacci :
 | #17 | </br>**En tant que** développeur, </br>**je veux** pouvoir modifier une tâche d'un sprint </br>**afin de** la mettre à jour. | 3 | |
 | #18 | </br>**En tant que** développeur, </br>**je veux** lister les tâches d'un sprint </br>**afin d'** y accéder | 1 | |
 | #19 | </br>**En tant que** développeur, </br>**je veux** lister les sprints d'un projet </br>**afin d'** y accéder | 1 | |
-| #20 | </br>**En tant que** développeur, </br>**je veux** ajouter une release avec sa date et son changelog et l'éxécutable </br>**afin de** pouvoir la télécharger, l'installer et l'utiliser | 3 | |
-| #21 | </br>**En tant que** développeur ou visiteur, </br>**je veux** lister les releases </br>**afin d'** obtenir leur historique et pouvoir la télécharger | 2 | |
-| #22 | </br>**En tant que** développeur, </br>**je veux** modifier le changelog d'une release </br>**afin de** corriger d'éventuelles erreurs | 2 | | |
