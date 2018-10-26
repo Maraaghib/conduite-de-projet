@@ -4,7 +4,7 @@ La priorité est noté de la manière suivante: 1 = haute, 2 = moyenne et 3 = ba
 
 | Id  | Description | Difficulté | Priorité | Sprint |
 | --- | ----------- | -------- | ----------- | ----------- |
-| #1 | **En tant que** visiteur, </br>**je veux** pouvoir créer un compte en renseignant obligatoirement un pseudo et un mot de passe </br>**afin de** devenir développeur et pouvoir accéder à des projets existants ou en créer | 2 | 2 | 3 |
+| #1 | **En tant que** visiteur, </br>**je veux** pouvoir créer un compte en renseignant obligatoirement un e-mail et un mot de passe </br>**afin de** devenir développeur et pouvoir accéder à des projets existants ou en créer | 2 | 2 | 3 |
 | #2 | </br>**En tant que** développeur, </br>**je veux** pouvoir me connecter en renseignant mon pseudo et mon mot de passe </br>**afin d'** accéder à mon espace personnel | 2 | 2 | 3 |
 | #3 | </br>**En tant que** développeur, </br>**je veux** pouvoir me déconnecter </br>**afin de** terminer ma session | 1 | 2 | 3 |
 | #4 | </br>**En tant que** développeur, </br>**je veux** pouvoir créer un nouveau projet avec obligatoirement un nom et une durée pour les sprints ainsi que la génération d'un backlog vide </br>**afin de** démarrer l'organisation de mon projet | 2 | 1 | 1 |
