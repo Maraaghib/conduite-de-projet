@@ -19,7 +19,7 @@ La priorité est noté de la manière suivante: 1 = haute, 2 = moyenne et 3 = ba
 | #13 | </br>**En tant que** développeur, </br>**je veux** pouvoir créer un sprint dans un projet avec obligatoirement les issues à réaliser créant automatiquement les tâches de tests reliés aux issues </br>**afin de** planifier le projet | 5 | 3 | 2 |
 | #14 | </br>**En tant que** développeur, </br>**je veux** avoir un burndown chart automatisé dans chacun de mes sprints </br>**afin d'** observer facilement l'évolution du sprint | 5 | 3 | 3 |
 | #15 | </br>**En tant que** développeur, </br>**je veux** pouvoir ajouter une tâche dans un sprint avec obligatoirement un Identifiant, une description, le temps estimé, l'avancement de la tâche et la lier à une des issues et optionnellement sa (ses) dépendance(s) aux autres tâches </br>**afin d'** organiser le travail d'un sprint | 3 | 3 | 2 |
-| #16 | </br>**En tant que** développeur, </br>**je veux** pouvoir supprimer une tâche </br>**afin de** la retirer d'un sprint | 2 | 3 | 2 |
+| #16 | </br>**En tant que** développeur, </br>**je veux** pouvoir supprimer une tâche </br>**afin de** la retirer d'un sprint | 2 | 3 | 3 |
 | #17 | </br>**En tant que** développeur, </br>**je veux** pouvoir modifier une tâche d'un sprint </br>**afin de** la mettre à jour. | 3 | 3 | 3 |
-| #18 | </br>**En tant que** développeur, </br>**je veux** lister les tâches d'un sprint </br>**afin d'** y accéder | 1 | 3 | 3 |
+| #18 | </br>**En tant que** développeur, </br>**je veux** lister les tâches d'un sprint </br>**afin d'** y accéder | 1 | 3 | 2 |
 | #19 | </br>**En tant que** développeur, </br>**je veux** lister les sprints d'un projet </br>**afin d'** y accéder | 1 | 3 | 2 |
