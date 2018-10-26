@@ -1,5 +1,5 @@
 # Backlog:
-La difficulté est noté de manière croissante suivant une suite de Fibonacci (1,2,3,5...) : 1 étant facile et 5 étant difficile.
+La difficulté est noté de manière croissante suivant une suite de Fibonacci (1,2,3,5...) : 1 étant facile et 5 étant difficile. </br>
 La priorité est noté de la manière suivante: 1 = haute, 2 = moyenne et 3 = basse.
 
 | Id  | Description | Difficulté | Priorité |
