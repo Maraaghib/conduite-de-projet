@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+<head lang="fr">
     <meta charset="utf-8" />
     <title>Ajout d'issue</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
