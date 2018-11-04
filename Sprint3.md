@@ -1,2 +1,2 @@
-| Id  | Description | Composant | Issue lié | Dépendances | Temps estimé | Avancement |
-| --- | ----------- | --------- | --------- | ----------- | ------------ | ---------- |
+| Id  | Description | Issue lié | Dépendances | Temps estimé | Avancement |
+| --- | ----------- | --------- | ----------- | ------------ | ---------- |
