@@ -25,7 +25,7 @@
             <option value="13">13</option>
         </select></br>
         Priorité: <input type="number" name="prioIssue" min=1 /></br>
-        <input type="submit" value="Ok" />
+        <input type="submit" value="Valider" />
 
     </form>
 </body>
