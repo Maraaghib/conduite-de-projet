@@ -12,3 +12,5 @@
 | T5b | Exécution du test de suppression d'un user story et ajout des résultats dans l'historique des tests | #10 | T5a, T3b | 1/2 jh | To do |
 | T6a | Création d'un fichier nommé ``newProject.php`` dans le répertoire ``src/php/project`` pour implémenter la création d'un nouveau projet | #4 |  | 1/2 jh | To do |
 | T6b | Implémentation d'un formulaire sur la page ``newProject.php`` avec un champ de texte pour le nom du projet, un autre pour la durée des sprints et un menu déroulant (élément ``select`` de ``HTML``) pour le choix de l'unité de la durée (semaines, mois, ...). En bas du formulaire, ajout de deux boutons ``Créer`` et ``Annuler`` qui, respectivement, valide (si tous les champs ont bien été repmlis) et annule (au quel cas on demande une confirmation par un popup) la création d'un  nouveau projet.   | #4 | T6a | 1 jh | To do |
+| T7a | Ecriture d'un scénario de test pour la création d'un nouveau projet | #4 |  | 1/2 jh | To do |
+| T7b | Exécution du test de création d'un nouveau projet et ajout des résultats dans l'historique des tests  | #4 | T6b, T7a | 1/2 jh | To do |
