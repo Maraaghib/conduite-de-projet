@@ -9,7 +9,7 @@
 
 <body>
   <h1>Gestionnaire de projet</h1>
-  <p><a href="addIssue.php">Ajouter une issue</a></p>
+  <p><a href="addUserStory.php">Ajouter un user story</a></p>
 </body>
 
 </html>
