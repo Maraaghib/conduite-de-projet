@@ -7,7 +7,7 @@ La priorité est noté de la manière suivante: 1 = haute, 2 = moyenne et 3 = ba
 | #1 | **En tant que** visiteur, </br>**je veux** pouvoir créer un compte en renseignant obligatoirement un e-mail, mon nom et un mot de passe </br>**afin de** devenir développeur et pouvoir accéder à des projets existants ou en créer | 2 | 2 | 3 |
 | #2 | </br>**En tant que** développeur, </br>**je veux** pouvoir me connecter en renseignant mon e-mail et mon mot de passe </br>**afin d'** accéder à mon espace personnel | 2 | 2 | 3 |
 | #3 | </br>**En tant que** développeur, </br>**je veux** pouvoir me déconnecter </br>**afin de** terminer ma session | 1 | 2 | 3 |
-| #4 | </br>**En tant que** développeur, </br>**je veux** pouvoir créer un nouveau projet avec obligatoirement un nom et une durée pour les sprints ainsi que la génération d'un backlog vide </br>**afin de** démarrer l'organisation de mon projet | 2 | 1 | 1 |
+| #4 | </br>**En tant que** développeur, </br>**je veux** pouvoir créer un nouveau projet avec obligatoirement un nom (comme identifiant unique) et une durée pour les sprints et optionnellement une description avec la génération d'un backlog vide </br>**afin de** démarrer l'organisation de mon projet | 2 | 1 | 1 |
 | #5 | </br>**En tant que** développeur, </br>**je veux** pouvoir supprimer un projet en renseignant mon mot de passe pour confirmation </br>**afin d'** y mettre fin ou l'abandonner | 2 | 1 | 3 |
 | #6 | </br>**En tant que** développeur, </br>**je veux** pouvoir ajouter d'autres développeurs à un projet existant </br>**afin de** constituer une équipe pour ce projet | 2 | 2 | 2 |
 | #7 | </br>**En tant que** développeur, </br>**je veux** pouvoir retirer un développeur d'un projet </br>**afin qu'** il ne puisse plus y accéder | 2 | 2 | 2 |
