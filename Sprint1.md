@@ -16,3 +16,5 @@
 | T7b | Exécution du test de création d'un nouveau projet et ajout des résultats dans l'historique des tests  | #4 | T6b, T7a | 1/2 jh | To do |
 | T8a | Création d'un fichier nommé ``listProjects.php`` dans le répertoire ``src/php/project`` pour implémenter l'affichage de tous les projets auxquels appartient un utilisateur | #8 |  | 1/2 jh | To do |
 | T8b | Implémentation d'un ensemble de cards (carte utilisée sur Material Design) sur la page ``listProjects.php`` avec comme infomations sur chaque card: ``Nom du projet``, ``Description``, ``Propriétaire``, ``Modifié le`` et un bouton ``Ouvrir``. Les cards seront affichés les uns à la suite des autres (suivant la largeur de l'écran de l'utilisateur) et correspondent chacun à un projet. A chaque clique sur le bouton, une nouvelle page s'ouvre pour afficher tous les détails de ce projet  | #8 | T8a | 1,5 jh | To do |
+| T9a | Ecriture d'un scénario de test pour le listage de tous les projets | #8 |  | 1/2 jh | To do |
+| T9b | Exécution du test de listage de tous les projets et ajout des résultats dans l'historique des tests  | #8 | T8b, T9a | 1/2 jh | To do |
