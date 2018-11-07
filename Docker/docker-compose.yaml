@@ -2,30 +2,38 @@
 version: '3'
 
 services:
-  mysql:
-    image: mysql:5.7
-    container_name: mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: Cdp2018
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
-    ports:
-      - "9906:3306"
-    volumes:
-      - mysql:/var/lib/mysql
+    # Adminer (formerly phpMinAdmin) is a full-featured database management tool
+    adminer:
+        image: adminer
+        container_name: adminer
+        restart: always
+        ports:
+            - 8080:8080
 
-  web:
-    build:
-      context: .
-    container_name: phpPdo
-    depends_on:
-      - mysql
-    volumes:
-      - ../src/php/:/var/www/html/
-    ports:
-      - "8100:80"
-    links:
-      - mysql
+    database:
+        image: mysql:8.0.2
+        container_name: mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: pass
+            MYSQL_DATABASE: Cdp2018
+            MYSQL_USER: admin
+            MYSQL_PASSWORD: pass
+        ports:
+            - "9906:3306"
+        volumes:
+            - ./db:/var/lib/mysql:rw
+
+    web:
+        build:
+            context: .
+        container_name: phpPdo
+        depends_on:
+            - database
+        volumes:
+            - ../src/php/:/var/www/html/
+        ports:
+            - "8100:80"
+        links:
+            - database
 volumes:
   mysql:
