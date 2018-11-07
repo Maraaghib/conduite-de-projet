@@ -34,9 +34,11 @@ function isIdUnique($id, $db)
     $rep = $db->query('SELECT id FROM backlog');
     while ($dbId = $rep->fetch()["id"]) {
         if ($id === $dbId) {
+            $rep->closeCursor();
             return false;
         }
     }
+    $rep->closeCursor();
     return true;
 }
 ?>
@@ -69,7 +71,7 @@ function isIdUnique($id, $db)
             <option value="13">13</option>
             </select></br>
         Priorité: <input type="number" name="prioUserStory" min=1 /></br>
-        <input type="submit" value="Valider" />
+        <input type="submit" value="Valider" /><a href="index.php">annuler</a>
     </form>
 </body>
 </html>
