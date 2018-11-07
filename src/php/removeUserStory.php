@@ -1,9 +1,9 @@
-<?php 
+<?php
 try {
     $cdpDb = new PDO(
-        'mysql:host=mysql;port=3306;dbname=Cdp2018;charset=utf8',
+        'mysql:host=database;port=3306;dbname=Cdp2018;charset=utf8',
         'root',
-        'root'
+        'pass'
     );
     $cdpDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $ex) {

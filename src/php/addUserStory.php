@@ -1,9 +1,9 @@
 <?php
 try {
     $cdpDb = new PDO(
-        'mysql:host=mysql;port=3306;dbname=Cdp2018;charset=utf8',
+        'mysql:host=database;port=3306;dbname=Cdp2018;charset=utf8',
         'root',
-        'root'
+        'pass'
     );
     $cdpDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $ex) {
@@ -60,7 +60,7 @@ function isIdUnique($id, $db)
         <div><?php echo $idNotUnique; ?></div>
         Id: * <input type="number" name="idUserStory" min=0 placeholder="Id unique"
             required /></br>
-        Description: * <textarea name="descUserStory" cols="40" rows="5" 
+        Description: * <textarea name="descUserStory" cols="40" rows="5"
             required></textarea></br>
         Difficulté: * <select name="diffUserStory">
             <option value="1">1</option>
