@@ -41,8 +41,11 @@
                 <li class="logo">
                     <a id="logo-container" href="./" class="brand-logo"></a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="/project/newProject.php"><i class="material-icons left">add</i>Nouveau Projet</a>
+                </li>
+                <li>
+                    <a href="/project/listProjects.php"><i class="material-icons left">list</i>Liste des Projets</a>
                 </li>
                 <li>
                     <a href="/userStory/addUserStory.php"><i class="material-icons left">playlist_add</i>Ajouter user story</a>
