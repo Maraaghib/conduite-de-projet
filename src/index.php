@@ -6,8 +6,8 @@
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
-        <link rel="stylesheet" href="css/styles.css">
+        <link type="text/css" rel="stylesheet" href="/css/materialize.css"  media="screen,projection"/>
+        <link rel="stylesheet" href="/css/styles.css">
 
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -39,22 +39,21 @@
             </div>
             <ul class="sidenav sidenav-fixed" id="mobile-demo" style="overflow: auto; transform: translateX(0%);">
                 <li class="logo">
-                    <a id="logo-container" href="./" class="brand-logo"></a>
+                    <a id="logo-container" href="/" class="brand-logo"></a>
                 </li>
                 <li>
-                    <a href="./project/newProject.php"><i class="material-icons left">add</i>Nouveau Projet</a>
+                    <a href="/project/newProject.php"><i class="material-icons left">add</i>Nouveau Projet</a>
                 </li>
                 <li>
-                    <a href="./userStory/addUserStory.php"><i class="material-icons left">playlist_add</i>Ajouter user story</a>
+                    <a href="/userStory/addUserStory.php"><i class="material-icons left">playlist_add</i>Ajouter user story</a>
                 </li>
             </ul>
         </header>
         <main>
             <div class="row">
-
                 <div class="container">
                     <div class="row">
-                        <div class="col s12 m8 offset-m1 xl7 offset-xl1">
+                        <div class="col s12">
                             <div>
                                 <div id="grid-container" class="section scrollspy">
                                     <p class="caption">Nulla mollis ut mauris ut eleifend. Maecenas porttitor ullamcorper hendrerit.</p>
@@ -64,7 +63,7 @@
                                     </p>
                                     <h5>Medium Title</h5>
                                     <p>Try the button below to see thye page for creating a new project</p>
-                                    <a id="container-toggle-button" class="btn waves-effect waves-light"><i class="material-icons left">add</i>Nouveau Projet</a>
+                                    <a href="/project/newProject.php" id="container-toggle-button" class="btn waves-effect waves-light"><i class="material-icons left">add</i>Nouveau Projet</a>
                                     <p>
                                         Vivamus accumsan, ipsum et lacinia molestie, leo diam mollis nisi, ut accumsan tellus turpis quis purus. Phasellus sodales laoreet lorem vitae tincidunt. Phasellus sit amet lacinia metus.
                                     </p>
@@ -78,7 +77,7 @@
 
         <!--JavaScript at end of body for optimized loading-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript" src="/js/materialize.min.js"></script>
         <script type="text/javascript">
         $(document).ready(function(){
             $('.sidenav').sidenav();
