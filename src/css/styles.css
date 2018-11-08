@@ -1,0 +1,50 @@
+.navbar-fixed {
+    z-index: 1;
+}
+
+nav.top-nav {
+    height: 60px;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(0,0,0,0.14);
+    background-color: #0c8e8efa;
+}
+
+header {
+    padding-left: 300px;
+}
+
+a.sidenav-trigger.top-nav {
+    position: fixed;
+    height: 48px;
+    width: 48px;
+    top: 0px;
+    float: none;
+    margin-left: 0px;
+    color: #fff;
+    font-size: 36px;
+    z-index: 2;
+}
+
+ul.sidenav.sidenav-fixed li.logo {
+    text-align: center;
+    margin-top: 32px;
+    margin-bottom: 5px; /* Do I need to change it ? */
+}
+
+main {
+    padding-left: 300px;
+}
+
+@media only screen and (max-width: 992px) {
+    header {
+        padding-left: 0px;
+    }
+
+    nav .nav-wrapper {
+        text-align: center;
+    }
+
+    main {
+        padding-left: 0px;
+    }
+}
