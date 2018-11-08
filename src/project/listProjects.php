@@ -57,10 +57,138 @@
 
                 <div class="container">
                     <div class="row">
-                        <div class="col s12 m8 offset-m2">
+                        <div class="col s12">
                             <div>
                                 <div id="grid-container" class="section scrollspy">
-                                    <h1>Liste des projects</h1>
+                                    <h3>Liste de vos projects</h3>
+                                    <div class="row">
+                                        <div class="col s12 m6 l4">
+                                            <div class="card">
+                                                <div class="card-content">
+                                                    <span class="card-title">
+                                                        <a href="#">Programation WEB</a>
+                                                    </span>
+                                                    <p>Il s'agit de faire un projet Web en utilisant les technologies en cours. Le choix du sujet vous et libre</p>
+                                                    <a class="btn-floating halfway-fab waves-effect waves-light" style="bottom: 36px;"><i class="material-icons">edit</i></a>
+                                                </div>
+                                                <div class="card-action">
+                                                    <div class="row" style="margin-bottom: 0px;">
+                                                        <div class="col s6">
+                                                            <span>Hamza SEYE</span>
+                                                        </div>
+                                                        <div class="col s6">
+                                                            <span>Il y a 4 jours</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6 l4">
+                                            <div class="card">
+                                                <div class="card-content">
+                                                    <span class="card-title">
+                                                        <a href="#">Programation WEB</a>
+                                                    </span>
+                                                    <p>Il s'agit de faire un projet Web en utilisant les technologies en cours. Le choix du sujet vous et libre</p>
+                                                    <a class="btn-floating halfway-fab waves-effect waves-light" style="bottom: 36px;"><i class="material-icons">edit</i></a>
+                                                </div>
+                                                <div class="card-action">
+                                                    <div class="row" style="margin-bottom: 0px;">
+                                                        <div class="col s6">
+                                                            <span>Hamza SEYE</span>
+                                                        </div>
+                                                        <div class="col s6">
+                                                            <span>Il y a 4 jours</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6 l4">
+                                            <div class="card">
+                                                <div class="card-content">
+                                                    <span class="card-title">
+                                                        <a href="#">Programation WEB</a>
+                                                    </span>
+                                                    <p>Il s'agit de faire un projet Web en utilisant les technologies en cours. Le choix du sujet vous et libre</p>
+                                                    <a class="btn-floating halfway-fab waves-effect waves-light" style="bottom: 36px;"><i class="material-icons">edit</i></a>
+                                                </div>
+                                                <div class="card-action">
+                                                    <div class="row" style="margin-bottom: 0px;">
+                                                        <div class="col s6">
+                                                            <span>Hamza SEYE</span>
+                                                        </div>
+                                                        <div class="col s6">
+                                                            <span>Il y a 4 jours</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6 l4">
+                                            <div class="card">
+                                                <div class="card-content">
+                                                    <span class="card-title">
+                                                        <a href="#">Programation WEB</a>
+                                                    </span>
+                                                    <p>Il s'agit de faire un projet Web en utilisant les technologies en cours. Le choix du sujet vous et libre</p>
+                                                    <a class="btn-floating halfway-fab waves-effect waves-light" style="bottom: 36px;"><i class="material-icons">edit</i></a>
+                                                </div>
+                                                <div class="card-action">
+                                                    <div class="row" style="margin-bottom: 0px;">
+                                                        <div class="col s6">
+                                                            <span>Hamza SEYE</span>
+                                                        </div>
+                                                        <div class="col s6">
+                                                            <span>Il y a 4 jours</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6 l4">
+                                            <div class="card">
+                                                <div class="card-content">
+                                                    <span class="card-title">
+                                                        <a href="#">Programation WEB</a>
+                                                    </span>
+                                                    <p>Il s'agit de faire un projet Web en utilisant les technologies en cours. Le choix du sujet vous et libre</p>
+                                                    <a class="btn-floating halfway-fab waves-effect waves-light" style="bottom: 36px;"><i class="material-icons">edit</i></a>
+                                                </div>
+                                                <div class="card-action">
+                                                    <div class="row" style="margin-bottom: 0px;">
+                                                        <div class="col s6">
+                                                            <span>Hamza SEYE</span>
+                                                        </div>
+                                                        <div class="col s6">
+                                                            <span>Il y a 4 jours</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6 l4">
+                                            <div class="card">
+                                                <div class="card-content">
+                                                    <span class="card-title">
+                                                        <a href="#">Programation WEB</a>
+                                                    </span>
+                                                    <p>Il s'agit de faire un projet Web en utilisant les technologies en cours. Le choix du sujet vous et libre</p>
+                                                    <a class="btn-floating halfway-fab waves-effect waves-light" style="bottom: 36px;"><i class="material-icons">edit</i></a>
+                                                </div>
+                                                <div class="card-action">
+                                                    <div class="row" style="margin-bottom: 0px;">
+                                                        <div class="col s6">
+                                                            <span>Hamza SEYE</span>
+                                                        </div>
+                                                        <div class="col s6">
+                                                            <span>Il y a 4 jours</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
