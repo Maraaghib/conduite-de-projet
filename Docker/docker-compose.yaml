@@ -30,7 +30,7 @@ services:
         depends_on:
             - database
         volumes:
-            - ../src/php/:/var/www/html/
+            - ../src/:/var/www/html/
         ports:
             - "8100:80"
         links:
