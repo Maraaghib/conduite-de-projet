@@ -50,7 +50,7 @@
             $db = Database::getDBConnection();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             /* WHERE author = :author = ?? */
-            $stmt = $db->prepare("SELECT * FROM project ORDER BY iden DESC", array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+            $stmt = $db->prepare("SELECT * FROM project ORDER BY dateProject DESC", array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
             $stmt->execute();
             // $query->execute(['author' => $author]);
             // $result = $stmt->fetch(PDO::FETCH_ASSOC);
