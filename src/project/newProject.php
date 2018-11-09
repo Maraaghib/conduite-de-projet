@@ -20,7 +20,38 @@
 
     </head>
     <body>
-    <?php include($_SERVER['DOCUMENT_ROOT']."/header.htm") ?>
+        <header>
+            <div class="navbar-fixed">
+                <nav class="top-nav">
+                    <div class="container">
+                        <div class="nav-wrapper">
+                            <div class="row">
+                                <div class="col s12 m10 offset-m1">
+                                    <h5 class="header">Conduite de Projet</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="container">
+                <a href="#" data-target="mobile-demo" class="top-nav sidenav-trigger full hide-on-large-only"><i class="material-icons">menu</i></a>
+            </div>
+            <ul class="sidenav sidenav-fixed" id="mobile-demo" style="overflow: auto; transform: translateX(0%);">
+                <li class="logo">
+                    <a id="logo-container" href="./" class="brand-logo"></a>
+                </li>
+                <li class="active">
+                    <a href="/project/newProject.php"><i class="material-icons left">add</i>Nouveau Projet</a>
+                </li>
+                <li>
+                    <a href="/project/listProjects.php"><i class="material-icons left">list</i>Liste des Projets</a>
+                </li>
+                <li>
+                    <a href="/userStory/addUserStory.php"><i class="material-icons left">playlist_add</i>Ajouter user story</a>
+                </li>
+            </ul>
+        </header>
         <main>
             <div class="row">
 
@@ -30,24 +61,24 @@
                             <div>
                                 <div id="grid-container" class="section scrollspy">
                                     <div class="row">
-                                        <form class="col s12" action="p" method="post">
+                                        <form class="col s12" action="/data/Project.php" method="post">
                                             <h5 style="text-align: center;">Créer un nouveau projet</h5>
                                             <div class="row">
                                                 <div class="input-field col s12">
-                                                    <input id="projectName" type="text" class="validate" maxlength="50" data-length="50" required>
+                                                    <input id="projectName" name="projectName" type="text" class="validate" maxlength="50" data-length="50" required>
                                                     <label for="projectName">Nom</label>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="input-field col s12">
-                                                    <textarea id="projectDescription" class="materialize-textarea"></textarea>
+                                                    <textarea id="projectDescription" name="projectDescription" class="materialize-textarea"></textarea>
                                                     <label for="projectDescription">Description</label>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="input-field col s6">
-                                                    <input id="projectDuration" type="tel" class="validate" required>
-                                                    <label for="projectDuration">Durée</label>
+                                                    <input id="sprintDuration" name="sprintDuration" type="tel" class="validate" required>
+                                                    <label for="sprintDuration">Durée</label>
                                                 </div>
                                                 <div class="input-field col s6">
                                                     <select required>
@@ -61,7 +92,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col s6">
-                                                    <button type="submit" name="newProject" class="btn waves-effect waves-light">
+                                                    <button type="submit" name="createProject" class="btn waves-effect waves-light">
                                                         Créer
                                                         <i class="material-icons left">check_circle</i>
                                                     </button>
