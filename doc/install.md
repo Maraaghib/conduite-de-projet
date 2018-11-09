@@ -1,5 +1,5 @@
 # Télécharger la dernière release
-git clone -b v1.0.0 https://github.com/Maraaghib/conduite-de-projet.git</br>
+git clone -b v0.1.1 https://github.com/Maraaghib/conduite-de-projet.git</br>
 ou directement sur le site des [releases](https://github.com/Maraaghib/conduite-de-projet/releases)
 
 # Installation
