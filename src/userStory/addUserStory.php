@@ -9,12 +9,13 @@ try {
 } catch (Exception $ex) {
     die('Erreur : ' . $ex->getMessage());
 }
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testProjectName($_GET["projectName"])) {
+    $projectName = htmlspecialchars($_GET["projectname"]);
+} else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST["idUserStory"];
     if (!isIdUnique($id, $cdpDb)) {
         $idNotUnique = "L'id " . $id . " existe déjà";
     } else {
-        $projectName = "Projet";
         $id = $_POST["idUserStory"];
         $desc = htmlspecialchars($_POST["descUserStory"]);
         $prio = $_POST["prioUserStory"];
@@ -28,6 +29,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $cdpDb->exec($userStory);
         header('location: listBacklog.php');
     }
+} else {
+    header('location: /userStory/error.php');
+}
+function testProjectName($projectName)
+{
+    return is_string($projectName) && $projectName!=="";
 }
 function isIdUnique($id, $db)
 {
@@ -57,7 +64,8 @@ function isIdUnique($id, $db)
 </head>
 
 <body>
-    <?php include("../header.html")?>
+    <?php include($_SERVER['DOCUMENT_ROOT']."/header.htm") ?>
+    <main>
         <div class="container">
             <div class="row">
                 <div class="col s12 m8 offset-m2">
@@ -116,6 +124,7 @@ function isIdUnique($id, $db)
                 </div>
             </div>
         </div>
+    </main>
 </body>
 
 </html>
