@@ -11,12 +11,15 @@ try {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testProjectName($_GET["projectName"])) {
-    $projectName = htmlspecialchars($_GET["projectname"]);
-    $rep = $cdpDb->query('SELECT * FROM backlog WHERE projectName = \"$projectName\"');
+    $projectName = htmlspecialchars($_GET["projectName"]);
+    $rep = $cdpDb->query("SELECT * FROM backlog WHERE projectName = '$projectName'");
 } else {
-  header('location: /userStory/error.php');
+    header('location: /userStory/error.php');
 }
-
+function testProjectName($projectName)
+{
+    return is_string($projectName) && $projectName!=="";
+}
 ?>
 
 <!DOCTYPE html>

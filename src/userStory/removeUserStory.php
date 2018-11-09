@@ -1,16 +1,21 @@
 <?php
-try {
-    $cdpDb = new PDO(
-        'mysql:host=database;port=3306;dbname=Cdp2018;charset=utf8',
-        'root',
-        'pass'
-    );
-    $cdpDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $ex) {
-    die('Erreur : ' . $ex->getMessage());
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    try {
+        $cdpDb = new PDO(
+            'mysql:host=database;port=3306;dbname=Cdp2018;charset=utf8',
+            'root',
+            'pass'
+        );
+        $cdpDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (Exception $ex) {
+        die('Erreur : ' . $ex->getMessage());
+    }
+    $id = $_POST['idUserStory'];
+    $projectName = $_POST['projectName'];
+    $removeUserStory = "DELETE FROM backlog WHERE id=$id AND projectName=\"$projectName\"";
+    if ($cdpDb->exec($removeUserStory))
+        header('location: listBacklog.php?projectName=$projectName');
+} else{
+    header('location: /userStory/error.php');
 }
-$id = $_POST['idDeleteUserStory'];
-$removeUserStory = "DELETE FROM backlog WHERE id=$id";
-$cdpDb->exec($removeUserStory);
-header('location: listBacklog.php');
 ?>

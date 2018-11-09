@@ -10,10 +10,11 @@ try {
     die('Erreur : ' . $ex->getMessage());
 }
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testProjectName($_GET["projectName"])) {
-    $projectName = htmlspecialchars($_GET["projectname"]);
-} else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $projectName = htmlspecialchars($_GET["projectName"]);
+} else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET["projectName"]) && testProjectName($_GET["projectName"])) {
+    $projectName = htmlspecialchars($_GET["projectName"]);
     $id = $_POST["idUserStory"];
-    if (!isIdUnique($id, $cdpDb)) {
+    if (!isIdUnique($id, $cdpDb, $projectName)) {
         $idNotUnique = "L'id " . $id . " existe déjà";
     } else {
         $id = $_POST["idUserStory"];
@@ -27,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
         difficulty)
         VALUES (\"$projectName\", $id, \"$desc\", $prio, $diff)";
         $cdpDb->exec($userStory);
-        header('location: listBacklog.php');
+        header("location: listBacklog.php?projectName=$projectName");
     }
 } else {
     header('location: /userStory/error.php');
@@ -36,11 +37,12 @@ function testProjectName($projectName)
 {
     return is_string($projectName) && $projectName!=="";
 }
-function isIdUnique($id, $db)
+function isIdUnique($id, $db, $projectName)
 {
-    $rep = $db->query('SELECT id FROM backlog');
+    $rep = $db->query("SELECT id FROM backlog WHERE projectName='$projectName'");
     while ($dbId = $rep->fetch()["id"]) {
         if ($id === $dbId) {
+            echo $dbid;
             $rep->closeCursor();
             return false;
         }
@@ -70,7 +72,7 @@ function isIdUnique($id, $db)
             <div class="row">
                 <div class="col s12 m8 offset-m2">
                     <div id="grid-container" class="section scrollspy">
-                        <form class="col s12" method="post" action="addUserStory.php">
+                        <form class="col s12" method="post" action="addUserStory.php?projectName=<?php echo $_GET["projectName"] ?>">
                             <h5 style="text-align: center;">Créer une nouvelle User Story </h5>
                             <div class="row">
                                 <p>
