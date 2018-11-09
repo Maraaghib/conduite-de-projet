@@ -3,3 +3,4 @@ Docker/db/*
 
 # Exception to the previous rule in order to commit the db empty folder
 !Docker/db/.gitkeep
+!Docker/db/.create-tables.sql

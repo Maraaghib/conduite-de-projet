@@ -21,6 +21,7 @@ services:
         ports:
             - "9906:3306"
         volumes:
+            - ./create-tables.sql:/docker-entrypoint-initdb.d/10-create-tables.sql
             - ./db:/var/lib/mysql:rw
 
     web:
