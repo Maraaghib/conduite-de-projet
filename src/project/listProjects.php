@@ -51,7 +51,7 @@
                                                     </span>
                                                     <p class="ellipse-text"><?php echo $project['description']; ?></p>
                                                     <div class="read-more">
-                                                        
+
                                                     </div>
                                                     <a class="btn-floating halfway-fab waves-effect waves-light" style="bottom: 36px;"><i class="material-icons">edit</i></a>
                                                 </div>
@@ -85,30 +85,6 @@
         <!--JavaScript at end of body for optimized loading-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript" src="/js/materialize.min.js"></script>
-        <script type="text/javascript">
-        $(document).ready(function(){
-            /* Initializations */
-            $('.sidenav').sidenav();
-            $('input#projectName').characterCounter();
-            $('select').formSelect();
-
-            let showCharacters = 100;
-            let textEnd = " [...]";
-            let readMore = '<span class="activator">Lire plus...</span>';
-
-            $('.ellipse-text').each(function() {
-                let content = $(this).text(); // Retrieve the html content
-                if (content.length > showCharacters) {
-                    let extractedText = content.substr(0, showCharacters);
-
-                    let preview = extractedText + textEnd;
-
-                    $(this).html(preview);
-                    $(this).next().html(readMore);
-                }
-            });
-
-          });
-        </script>
+        <script type="text/javascript" src="/js/scripts.js"></script>
     </body>
 </html>
