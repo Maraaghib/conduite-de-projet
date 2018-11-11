@@ -31,6 +31,10 @@ ul.sidenav.sidenav-fixed li.logo {
     margin-bottom: 5px; /* Do I need to change it ? */
 }
 
+ul.sidenav.sidenav-fixed li.active {
+    background-color: #4accbf8a;
+}
+
 main {
     padding-left: 300px;
 }
