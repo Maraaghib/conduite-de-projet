@@ -66,7 +66,10 @@ function isIdUnique($id, $db, $projectName)
 </head>
 
 <body>
-    <?php include($_SERVER['DOCUMENT_ROOT']."/header.htm") ?>
+    <?php
+        $activeMenu3 = "class=\"active\"";
+        include_once($_SERVER['DOCUMENT_ROOT'].'/header.php');
+    ?>
     <main>
         <div class="container">
             <div class="row">
@@ -127,6 +130,11 @@ function isIdUnique($id, $db, $projectName)
             </div>
         </div>
     </main>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/js/scripts.js"></script>
 </body>
 
 </html>

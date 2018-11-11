@@ -1,23 +1,38 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Error</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="/css/materialize.css" media="screen,projection" />
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
-    <?php include($_SERVER['DOCUMENT_ROOT']."/header.htm") ?>
-    <main>
-        <div class="container">
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="/css/materialize.css"  media="screen,projection"/>
+        <link rel="stylesheet" href="/css/styles.css">
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Erreur</title>
+
+    </head>
+    <body>
+        <?php
+            include_once($_SERVER['DOCUMENT_ROOT'].'/header.php');
+        ?>
+        <main>
             <div class="row">
-                <div class="col s12 m8 offset-m2">
-                    <p>Un problème est survenu lors de la requête de cette page... Peut-être n'êtes vous pas censé vous trouvez ici ?</p>
+                <div class="container">
+                    <div class="row">
+                        <div class="col s12">
+                            <p>Un problème est survenu lors de la requête de cette page... Peut-être n'êtes vous pas censé vous trouvez ici ?</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-    </main> 
-</body>
+        </main>
+
+        <!--JavaScript at end of body for optimized loading-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/materialize.min.js"></script>
+        <script type="text/javascript" src="/js/scripts.js"></script>
+    </body>
 </html>

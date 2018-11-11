@@ -20,7 +20,9 @@
 
     </head>
     <body>
-        <?php include($_SERVER['DOCUMENT_ROOT']."/header.htm") ?>
+        <?php
+            include_once($_SERVER['DOCUMENT_ROOT'].'/header.php');
+        ?>
         <main>
             <div class="row">
                 <div class="container">

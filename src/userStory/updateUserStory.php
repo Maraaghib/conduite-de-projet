@@ -32,7 +32,9 @@ header('location: listBacklog.php');
 </head>
 
 <body>
-    <?php include($_SERVER['DOCUMENT_ROOT']."/header.htm") ?>
+    <?php
+        include_once($_SERVER['DOCUMENT_ROOT'].'/header.php');
+    ?>
     <main>
         <div class="container">
             <div class="row">
@@ -93,6 +95,11 @@ header('location: listBacklog.php');
             </div>
         </div>
     </main>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/js/scripts.js"></script>
 </body>
 
 </html>

@@ -37,23 +37,41 @@ function testProjectName($projectName)
 </head>
 
 <body>
-  <table>
-    <thead>
-        <tr>
-          <th>id</th>
-          <th>description</th>
-          <th>priorité</th>
-          <th>difficulté</th>
-        </tr>
-    </thead>
-    <tbody>
+    <?php
+        $activeMenu3 = "class=\"active\"";
+        include_once($_SERVER['DOCUMENT_ROOT'].'/header.php');
+    ?>
+    <main>
+        <div class="row">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <h3>Le backlog</h3>
+                        <table class="responsive-table striped">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>description</th>
+                                    <th>priorité</th>
+                                    <th>difficulté</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    foreach ($rep as list($pn, $id, $desc, $prio, $diff)) {
+                                        echo "<tr> <td>$id</td> <td>$desc</td> <td>$prio</td> <td>$diff</td> <tr>";
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-      <?php
-      foreach ($rep as list($pn, $id, $desc, $prio, $diff)) {
-      	echo "<tr> <td>$id</td> <td>$desc</td> <td>$prio</td> <td>$diff</td> <tr>";
-      }
-      ?>
-
-    </tbody>
-</table>
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/js/scripts.js"></script>
 </body>
