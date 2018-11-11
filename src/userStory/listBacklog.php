@@ -59,7 +59,7 @@ function testProjectName($projectName)
                             <tbody>
                                 <?php
                                     foreach ($rep as list($pn, $id, $desc, $prio, $diff)) {
-                                        echo "<tr> <td>$id</td> <td>$desc</td> <td>$prio</td> <td>$diff</td> <tr>";
+                                        echo "<tr> <td>$id</td> <td>$desc</td> <td>$prio</td> <td>$diff</td> </tr>";
                                     }
                                 ?>
                             </tbody>
