@@ -1,5 +1,5 @@
 <?php
-    include_once('../data/Project.php');
+    require_once('../data/Project.php');
     $project = new Project;
     $projects = $project->listProjects();
 

@@ -1,5 +1,5 @@
 <?php
-    include_once('Database.php');
+    require_once('Database.php');
 
     /**
      * Classe Project contenant les inormations d'un projet
