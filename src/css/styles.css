@@ -35,6 +35,15 @@ main {
     padding-left: 300px;
 }
 
+.read-more {
+    margin-top: 15px;
+}
+
+.read-more span {
+    cursor: pointer;
+    color: #26a69a;
+}
+
 @media only screen and (max-width: 992px) {
     header {
         padding-left: 0px;

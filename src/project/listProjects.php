@@ -43,14 +43,21 @@
                                         <?php
                                         foreach ($projects as $project) {
                                         ?>
-                                        <div class="col s12 m6 l4">
+                                        <div class="col s12 m6 l12 xl4">
                                             <div class="card">
                                                 <div class="card-content">
                                                     <span class="card-title">
                                                         <a href="#"><?php echo $project['name']; ?></a>
                                                     </span>
-                                                    <p><?php echo $project['description']; ?></p>
+                                                    <p class="ellipse-text"><?php echo $project['description']; ?></p>
+                                                    <div class="read-more">
+                                                        
+                                                    </div>
                                                     <a class="btn-floating halfway-fab waves-effect waves-light" style="bottom: 36px;"><i class="material-icons">edit</i></a>
+                                                </div>
+                                                <div class="card-reveal">
+                                                  <span class="card-title"><a href="#"><?php echo $project['name']; ?></a><i class="material-icons right">close</i></span>
+                                                  <p><?php echo $project['description']; ?></p>
                                                 </div>
                                                 <div class="card-action">
                                                     <div class="row" style="margin-bottom: 0px;">
@@ -84,6 +91,23 @@
             $('.sidenav').sidenav();
             $('input#projectName').characterCounter();
             $('select').formSelect();
+
+            let showCharacters = 100;
+            let textEnd = " [...]";
+            let readMore = '<span class="activator">Lire plus...</span>';
+
+            $('.ellipse-text').each(function() {
+                let content = $(this).text(); // Retrieve the html content
+                if (content.length > showCharacters) {
+                    let extractedText = content.substr(0, showCharacters);
+
+                    let preview = extractedText + textEnd;
+
+                    $(this).html(preview);
+                    $(this).next().html(readMore);
+                }
+            });
+
           });
         </script>
     </body>
