@@ -23,3 +23,5 @@ La priorité est noté de la manière suivante: 1 = haute, 2 = moyenne et 3 = ba
 | #17 | **En tant que** développeur, </br>**je veux** pouvoir glisser une tâche d'une cellule ``TASKS`` à ``TODO``, à ``DOING`` et à ``DONE`` </br>**afin d'** exprimer respectivement le fait qu'une tâche n'est pas encore faite, qu'elle est en train d'être faite et qu'elle est déjà faite. | 3 | 3 | 3 |
 | #18 | **En tant que** développeur, </br>**je veux** lister les tâches d'un sprint </br>**afin d'** y accéder | 1 | 3 | 2 |
 | #19 | **En tant que** développeur, </br>**je veux** lister les sprints d'un projet </br>**afin d'** y accéder | 1 | 3 | 2 |
+| #20 | **En tant que** développeur, </br>**je veux** pouvoir visualiser un projet afin d'accéder à ses différentes informations: Nom, Description, Auteur, développeurs participants, date de création, liens vers le backlog, les sprints </br>**afin d'** y accéder | 1 | 2 | 2 |
+| #21 | **En tant que** développeur, </br>**je veux** pouvoir modifier les informations d'un projet: Nom, Description, Durée des sprints </br>**afin d'** y accéder | 2 | 3 | 2 |
