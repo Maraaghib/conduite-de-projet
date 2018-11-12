@@ -1,6 +1,6 @@
 | Id  | Description | US lié | Dépendances | Temps estimé | Avancement | Affectée à |
 | --- | ----------- | --------- | ----------- | ------------ | ---------- | ---------- |
-| T3b | Ajout d'un bouton en forme de corbeille à côté de chaque user story dans le backlog. Lorsque l'on clique dessus un popup s'affiche avec l'id de l'user story associé et qui demande confirmation pour la suppression. Un bouton ``Valider`` permet de valider la suppression et un bouton  ``Annuler`` permet de l'annuler | #10 | T3a, T0 | 1 jh | Doing | Guillaume |
+| T3b | Ajout d'un bouton en forme de corbeille à côté de chaque user story dans le backlog. Lorsque l'on clique dessus un popup s'affiche avec l'id de l'user story associé et qui demande confirmation pour la suppression. Un bouton ``Valider`` permet de valider la suppression et un bouton  ``Annuler`` permet de l'annuler | #10 | T3a, T0 | 1 jh | Done | Guillaume |
 | T4a | Ecriture d'un scénario de test pour l'ajout d'un user story | #9 |  | 1/2 jh | Doing | Guillaume |
 | T4b | Exécution du test d'ajout d'un user story  et ajout des résultats dans l'historique des tests| #9 | T4a, T2b | 1/2 jh | To do | Guillaume |
 | T5a | Ecriture d'un scénario de test pour la suppression d'un user story. | #10 |  | 1/2 jh | To do | Guillaume |
