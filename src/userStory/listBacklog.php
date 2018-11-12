@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
 }
 function testProjectName($projectName)
 {
-    return is_string($projectName) && $projectName!=="";
+    return is_string($projectName) && $projectName !== "";
 }
 ?>
 
@@ -38,8 +38,8 @@ function testProjectName($projectName)
 
 <body>
     <?php
-        $activeMenu3 = "class=\"active\"";
-        include_once($_SERVER['DOCUMENT_ROOT'].'/header.php');
+    $activeMenu3 = "class=\"active\"";
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/header.php');
     ?>
     <main>
         <div class="row">
@@ -58,9 +58,20 @@ function testProjectName($projectName)
                             </thead>
                             <tbody>
                                 <?php
-                                    foreach ($rep as list($pn, $id, $desc, $prio, $diff)) {
-                                        echo "<tr> <td>$id</td> <td>$desc</td> <td>$prio</td> <td>$diff</td> </tr>";
-                                    }
+                                foreach ($rep as list($pn, $id, $desc, $prio, $diff)) {
+                                    echo "<tr> <td>$id</td> <td>$desc</td> <td>$prio</td> <td>$diff</td> <td>";
+                                    
+                                ?>
+                                <form action="removeUserStory.php" method="post">
+                                    <input type="hidden" name="projectName" value=<?php echo $_GET["projectName"] ?>>
+                                    <input type="hidden" name="idUserStory" value=<?php echo  $id?>>
+                                    <button class="btn waves-effect waves-light" type="submit">
+                                        <i class="material-icons">delete</i>
+                                    </button>
+                                </form>
+                                <?php 
+                                echo "</td> </tr>";
+                                }
                                 ?>
                             </tbody>
                         </table>
