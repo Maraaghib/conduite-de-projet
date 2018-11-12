@@ -1,2 +1,2 @@
-| Id  | Description | US lié | Dépendances | Temps estimé | Avancement |
-| --- | ----------- | --------- | ----------- | ------------ | ---------- |
+| Id  | Description | US lié | Dépendances | Temps estimé | Avancement | Affectée à |
+| --- | ----------- | --------- | ----------- | ------------ | ---------- | ---------- |
