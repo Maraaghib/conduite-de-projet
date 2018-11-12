@@ -13,6 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
     $projectName = htmlspecialchars($_GET["projectName"]);
 } else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET["projectName"]) && testProjectName($_GET["projectName"])) {
     $projectName = htmlspecialchars($_GET["projectName"]);
+    if (!isProjectExist($projectName, $cdpDb)) {
+        header('location: /userStory/error.php');
+    }
     $id = $_POST["idUserStory"];
     if (!isIdUnique($id, $cdpDb, $projectName)) {
         $idNotUnique = "L'id " . $id . " existe déjà";
@@ -35,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
 }
 function testProjectName($projectName)
 {
-    return is_string($projectName) && $projectName!=="";
+    return is_string($projectName) && $projectName !== "";
 }
 function isIdUnique($id, $db, $projectName)
 {
@@ -49,6 +52,12 @@ function isIdUnique($id, $db, $projectName)
     }
     $rep->closeCursor();
     return true;
+}
+
+function isProjectExist($projectName, $db)
+{
+    $rep = $db->query("SELECT count(*) AS numProjectName FROM project WHERE name='$projectName'");
+    return $rep->fetch()["numProjectName"];
 }
 ?>
 <!DOCTYPE html>
@@ -68,7 +77,7 @@ function isIdUnique($id, $db, $projectName)
 <body>
     <?php
         $activeMenu3 = "class=\"active\"";
-        include_once($_SERVER['DOCUMENT_ROOT'].'/header.php');
+        require_once $_SERVER['DOCUMENT_ROOT'].'/header.php';
     ?>
     <main>
         <div class="container">
