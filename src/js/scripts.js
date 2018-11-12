@@ -3,7 +3,12 @@ $(document).ready(function(){
     $('.sidenav').sidenav();
     $('input#projectName').characterCounter();
     $('select').formSelect();
-    $('.tabs').tabs();
+    // tabs
+    var elem = $('.tabs')
+    var options = {
+        swipeable: true
+    }
+    var instance = M.Tabs.init(elem, options);
 
 
     /**

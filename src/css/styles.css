@@ -48,6 +48,47 @@ main {
     color: #26a69a;
 }
 
+/* Tabs */
+.tabs .tab a:hover,
+.tabs .tab a.active,
+.tabs .tab a:focus,
+.tabs .tab a:focus.active {
+    background-color: #4accbf38;
+    color: #119090;
+}
+
+.tabs .tab a {
+    color: #000;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    font-size: 14px;
+}
+
+.tabs .indicator {
+    background-color: #1ad2d2;
+}
+
+.transp-blue {
+    background-color: #2196f33d;
+}
+.transp-red {
+    background-color: #f443362b;
+}
+.transp-green {
+    background-color: #4caf502e;
+}
+.transp-yellow {
+    background-color: #ffeb3b2b;
+}
+.transp-cyan {
+    background-color: #00bcd42e;
+}
+.transp-orange {
+    background-color: #ff980030;
+}
+
 @media only screen and (max-width: 992px) {
     header {
         padding-left: 0px;
