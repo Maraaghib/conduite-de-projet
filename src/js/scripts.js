@@ -3,6 +3,7 @@ $(document).ready(function(){
     $('.sidenav').sidenav();
     $('input#projectName').characterCounter();
     $('select').formSelect();
+    $('.tabs').tabs();
 
 
     /**
