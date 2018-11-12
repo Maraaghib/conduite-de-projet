@@ -50,7 +50,7 @@
                                             <div class="card">
                                                 <div class="card-content">
                                                     <span class="card-title">
-                                                        <a href="#"><?php echo $project['name']; ?></a>
+                                                        <a href="/project/viewProject.php?projectName=<?php echo $project['name']; ?>"><?php echo $project['name']; ?></a>
                                                     </span>
                                                     <p class="ellipse-text"><?php echo $project['description']; ?></p>
                                                     <div class="read-more">

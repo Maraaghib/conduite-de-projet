@@ -44,6 +44,21 @@
         }
 
         /**
+         * Permet de récupérer un projet (d'un user) via son identifiant
+         */
+        public function getProject(/*idUser*/ $name) {
+            $db = Database::getDBConnection();
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            /* WHERE author = :author = ?? */
+            $stmt = $db->prepare("SELECT * FROM project WHERE name='$name'");
+            $stmt->execute();
+
+            $project = $stmt->fetch();
+
+            return $project;
+        }
+
+        /**
          * Permet de récupérer tous les projets (d'un user)
          */
         public function listProjects(/*idUser*/) {

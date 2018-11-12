@@ -1,10 +1,14 @@
 <?php
     require_once('../data/Project.php');
-    $project = new Project;
-    $projects = $project->listProjects();
+    $instance = new Project;
+    // @TODO Test if the project with this name EXISTS
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"])) {
+        $name = htmlspecialchars($_GET["projectName"]);
 
-    if (empty($projects)) {
-        header('Location: /project/newProject.php');
+        $project = $instance->getProject($name);
+    }
+    else {
+        header("Location: /project/listProjects.php");
     }
 ?>
 
@@ -21,7 +25,7 @@
 
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>[Nom du projet]</title>
+        <title><?php echo $project['name']; ?></title>
 
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
@@ -41,7 +45,14 @@
                         <div class="col s12">
                             <div>
                                 <div id="grid-container" class="section scrollspy">
-                                    <h3>[Nom du projet]</h3>
+                                    <?php
+                                    if (empty($project)) {
+                                        echo "<h1>Ce projet n'existe pas !</h1>";
+                                    }
+                                    else {
+
+                                    ?>
+                                    <h3><?php echo $project['name']; ?></h3>
                                     <div class="row">
                                         <ul class="tabs">
                                             <li class="tab col s2"><a class="active" href="#tab-swipe-1">Description</a></li>
@@ -54,11 +65,16 @@
                                         <div id="tab-swipe-1" class="col s12 transp-blue">
                                             <h4>Description</h4>
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                                <?php echo $project['description']; ?>
                                             </p>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                            </p>
+                                            <div class="row">
+                                                <div class="col s6">
+                                                    <span class="new badge" data-badge-caption="Hamza SEYE">Propriétaire:</span>
+                                                </div>
+                                                <div class="col s6">
+                                                    <span class="new badge" data-badge-caption="'<?php echo $project['dateProject']; ?>'">Créé le:</span>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div id="tab-swipe-2" class="col s12 transp-red">
                                             <h4>Backlog</h4>
@@ -72,7 +88,7 @@
                                         <div id="tab-swipe-3" class="col s12 transp-green">
                                             <h4>Sprints</h4>
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                                <h4>La durée des sprint est de: <?php echo $project['sprintDuration']; ?></h4>
                                             </p>
                                             <p>
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -106,6 +122,7 @@
                                             </p>
                                         </div>
                                     </div>
+                                <?php } // End Else ?>
                                 </div>
                             </div>
                         </div>
