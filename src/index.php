@@ -21,7 +21,7 @@
     </head>
     <body>
         <?php
-            include_once($_SERVER['DOCUMENT_ROOT'].'/header.php');
+            require_once $_SERVER['DOCUMENT_ROOT'].'/header.php';
         ?>
         <main>
             <div class="row">

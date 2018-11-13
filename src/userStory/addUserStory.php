@@ -84,7 +84,7 @@ function isProjectExist($projectName, $db)
 <body>
     <?php
         $activeMenu3 = "class=\"active\"";
-        // require_once $_SERVER['DOCUMENT_ROOT'].'/header.php';
+        require_once $_SERVER['DOCUMENT_ROOT'].'/header.php';
     ?>
     <main>
         <div class="container">
