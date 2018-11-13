@@ -1,27 +1,23 @@
 <?php
-require_once 'userStory.php';
-try {
-    $cdpDb = new PDO(
-        'mysql:host=database;port=3306;dbname=Cdp2018;charset=utf8',
-        'root',
-        'pass'
-    );
-    $cdpDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $ex) {
-    die('Erreur : ' . $ex->getMessage());
-}
+require_once('../data/Project.php');
+require_once('userStory.php');
+$project = new Project;
+
+$db = Database::getDBConnection();
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testProjectName($_GET["projectName"])) {
     $projectName = htmlspecialchars($_GET["projectName"]);
-    if (!isProjectExist($projectName, $cdpDb)) {
+    if (!$project->isProjectExist($projectName)) {
         header('location: /userStory/error.php');
     }
 } else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET["projectName"]) && testProjectName($_GET["projectName"])) {
     $projectName = htmlspecialchars($_GET["projectName"]);
-    if (!isProjectExist($projectName, $cdpDb)) {
+    if (!$project->isProjectExist($projectName)) {
         header('location: /userStory/error.php');
     }
     $id = $_POST["idUserStory"];
-    if (!isIdUnique($id, $cdpDb, $projectName)) {
+    if (!isIdUnique($id, $db, $projectName)) {
         $idNotUnique = "L'id " . $id . " existe déjà";
     } else {
         $id = $_POST["idUserStory"];
@@ -29,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
         $prio = $_POST["prioUserStory"];
         $diff = $_POST["diffUserStory"];
         if ($prio == null) {
-            $sql = "INSERT INTO backlog SET 
+            $sql = "INSERT INTO backlog SET
                 projectName = :projectName,
                 id = :id,
                 description = :description,
@@ -41,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
                 'difficulty' => $diff
             ];
         } else {
-            $sql = "INSERT INTO backlog SET 
+            $sql = "INSERT INTO backlog SET
                 projectName = :projectName,
                 id = :id,
                 description = :description,
@@ -55,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
                 'difficulty' => $diff
             ];
         }
-        $addUserStory = $cdpDb->prepare($sql);
+        $addUserStory = $db->prepare($sql);
         $addUserStory->execute($data);
         header("location: listBacklog.php?projectName=$projectName");
     }

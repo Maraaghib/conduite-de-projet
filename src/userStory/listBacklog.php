@@ -1,22 +1,24 @@
 <?php
-require_once 'userStory.php';
-try {
-    $cdpDb = new PDO(
-        'mysql:host=database;port=3306;dbname=Cdp2018;charset=utf8',
-        'root',
-        'pass'
-    );
-    $cdpDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $ex) {
-    die('Erreur : ' . $ex->getMessage());
-}
+require_once('../data/Project.php');
+require_once('userStory.php');
+$project = new Project;
+// try {
+//     $db = new PDO(
+//         'mysql:host=database;port=3306;dbname=Cdp2018;charset=utf8',
+//         'root',
+//         'pass'
+//     );
+//     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// } catch (Exception $ex) {
+//     die('Erreur : ' . $ex->getMessage());
+// }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testProjectName($_GET["projectName"])) {
     $projectName = htmlspecialchars($_GET["projectName"]);
-    if (!isProjectExist($projectName, $cdpDb)) {
+    if (!$project->isProjectExist($projectName)) {
         header('location: /userStory/error.php');
     }
-    $rep = $cdpDb->query("SELECT * FROM backlog WHERE projectName = '$projectName'");
+    $backlog = getBackLog($projectName);
 } else {
     header('location: /userStory/error.php');
 }
@@ -58,9 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
                             </thead>
                             <tbody>
                                 <?php
-                                foreach ($rep as list($pn, $id, $desc, $prio, $diff)) {
+                                foreach ($backlog as list($pn, $id, $desc, $prio, $diff)) {
                                     echo "<tr> <td>$id</td> <td>$desc</td> <td>$prio</td> <td>$diff</td> <td>";
-                                    
+
                                 ?>
                                 <button class="btn waves-effect waves-light" onclick="openForm(<?php echo $id ?>)"><i class="material-icons">delete</i></button>
                                 <form id="askConfirm<?php echo $id?>" class="form-popup" action="removeUserStory.php" method="post">
@@ -82,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
                                         </button>
                                     </div>
                                 </form>
-                                <?php 
+                                <?php
                                 echo "</td> </tr>";
                                 }
                                 ?>

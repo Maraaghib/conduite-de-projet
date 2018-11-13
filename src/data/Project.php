@@ -77,7 +77,7 @@
         }
 
         /**
-        * Permet d sauvegarder un nouveau projet
+        * Permet de sauvegarder un nouveau projet
         */
         public function saveProject() {
             $db = Database::getDBConnection();
@@ -101,6 +101,22 @@
             $result = $query->execute($data);
             header('Location: /project/listProjects.php');
             return $result;
+        }
+
+        /**
+         * Permet de tester si un projet existe ou non
+         */
+         public function isProjectExist($projectName) {
+            $db = Database::getDBConnection();
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $query = $db->prepare("SELECT count(*) AS numProjectName FROM project WHERE name=:projectName");
+            $data = [
+                'projectName' => $projectName
+            ];
+            $query->execute($data);
+            $nbProjects = $query->fetch()["numProjectName"];
+
+            return $nbProjects;
         }
 
         /*************** Getters et setters ******************/
