@@ -11,6 +11,9 @@ try {
 }
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testProjectName($_GET["projectName"])) {
     $projectName = htmlspecialchars($_GET["projectName"]);
+    if (!isProjectExist($projectName, $cdpDb)) {
+        header('location: /userStory/error.php');
+    }
 } else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET["projectName"]) && testProjectName($_GET["projectName"])) {
     $projectName = htmlspecialchars($_GET["projectName"]);
     if (!isProjectExist($projectName, $cdpDb)) {
@@ -56,8 +59,12 @@ function isIdUnique($id, $db, $projectName)
 
 function isProjectExist($projectName, $db)
 {
-    $rep = $db->query("SELECT count(*) AS numProjectName FROM project WHERE name='$projectName'");
-    return $rep->fetch()["numProjectName"];
+    $getNbProject = $db->prepare("SELECT count(*) AS numProjectName FROM project WHERE name=:projectName");
+    $data = [
+        'projectName' => $projectName
+    ];
+    $getNbProject->execute($data);
+    return $getNbProject->fetch()["numProjectName"];
 }
 ?>
 <!DOCTYPE html>
@@ -77,7 +84,7 @@ function isProjectExist($projectName, $db)
 <body>
     <?php
         $activeMenu3 = "class=\"active\"";
-        require_once $_SERVER['DOCUMENT_ROOT'].'/header.php';
+        // require_once $_SERVER['DOCUMENT_ROOT'].'/header.php';
     ?>
     <main>
         <div class="container">
