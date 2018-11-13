@@ -9,7 +9,6 @@ function isIdUnique($id, $db, $projectName)
     $rep = $db->query("SELECT id FROM backlog WHERE projectName='$projectName'");
     while ($dbId = $rep->fetch()["id"]) {
         if ($id === $dbId) {
-            echo $dbid;
             $rep->closeCursor();
             return false;
         }
@@ -26,4 +25,4 @@ function isProjectExist($projectName, $db)
     ];
     $getNbProject->execute($data);
     return $getNbProject->fetch()["numProjectName"];
-}?>
+}
