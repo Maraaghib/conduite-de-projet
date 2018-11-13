@@ -1,6 +1,7 @@
-# Backlog sprint 2
+# Backlog sprint 3
 La difficulté est noté de manière croissante suivant une suite de Fibonacci (1,2,3,5...) : 1 étant facile et 5 étant difficile. </br>
 La priorité est noté de la manière suivante: 1 = haute, 2 = moyenne et 3 = basse.
+
 | Id  | Description | Difficulté | Priorité | Sprint |
 | --- | ----------- | ---------- | -------- | ------ |
 | #1 | **En tant que** visiteur, </br>**je veux** pouvoir créer un compte en renseignant obligatoirement un e-mail, mon nom et un mot de passe </br>**afin de** devenir développeur et pouvoir accéder à des projets existants ou en créer | 2 | 2 | 3 |
