@@ -6,7 +6,7 @@ $(document).ready(function(){
     // tabs
     var elem = $('.tabs')
     var options = {
-        swipeable: true
+        swipeable: false
     }
     var instance = M.Tabs.init(elem, options);
 
