@@ -1,5 +1,5 @@
 | Id  | Description | US lié | Dépendances | Temps estimé | Avancement | Affectée à |
-| --- | ----------- | --------- | ----------- | ------------ | ------------ | ---------- |
+| --- | ----------- | ------ | ----------- | ------------ | ---------- | ---------- |
 | T0 | Création de la base de données ``Cdp2018`` avec deux tables: ``project(ident,  name, description, sprintDuration, dateProject)`` et ``backlog(projectName, id, description, priority, difficulty)`` | * |  | 1/2 jh | Done | Serigne |
 | T1 |  Création du fichier ``docker-compose.yaml`` contenant un container ``apache``, un container ``mysql`` et un container ``adminer`` | * |  |  1/2 jh | Done | Guillaume |
 | T2a | Interface du fichier ``addUserStory.php``, qui s'occupera de l'ajout d'un user story au backlog | #9 | | 1/2 jh | Done | Guillaume |

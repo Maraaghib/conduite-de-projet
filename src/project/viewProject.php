@@ -3,9 +3,9 @@
     $instance = new Project;
     // @TODO Test if the project with this name EXISTS
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"])) {
-        $name = htmlspecialchars($_GET["projectName"]);
+        $projectName = htmlspecialchars($_GET["projectName"]);
 
-        $project = $instance->getProject($name);
+        $project = $instance->getProject($projectName);
     }
     else {
         header("Location: /project/listProjects.php");
@@ -36,7 +36,7 @@
     <body>
         <?php
             $activeMenu2 = "class=\"active\"";
-            require_once $_SERVER['DOCUMENT_ROOT'].'/header.php';
+            require_once $_SERVER['DOCUMENT_ROOT'].'/headerUserStory.php';
         ?>
         <main>
             <div class="row">
