@@ -1,4 +1,5 @@
 <?php
+require_once 'userStory.php';
 try {
     $cdpDb = new PDO(
         'mysql:host=database;port=3306;dbname=Cdp2018;charset=utf8',
@@ -9,9 +10,33 @@ try {
 } catch (Exception $ex) {
     die('Erreur : ' . $ex->getMessage());
 }
-$updateUserStory = "UPDATE backlog FROM backlog WHERE id=$id";
-$cdpDb->exec($removeUserStory);
-header('location: listBacklog.php');
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && isset($_GET["idUserStory"]) && testProjectName($_GET["projectName"])) {
+    $projectName = htmlspecialchars($_GET["projectName"]);
+    $id = htmlspecialchars($_GET["idUserStory"]);
+    $selectUserStory = "SELECT description, difficulty, priority FROM backlog WHERE projectName=\"$projectName\" AND id=$id";
+    $toFetch = $cdpDb->prepare($selectUserStory);
+    $toFetch->execute();
+    $gres = $toFetch->fetch(PDO::FETCH_ASSOC);
+    $gdesc = $gres["description"];
+    $gdiff = $gres["difficulty"];
+    $gprio = $gres["priority"];
+
+} else if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $projectName = htmlspecialchars($_POST["projectName"]);
+    $id = htmlspecialchars($_POST["idUserStory"]);
+    $desc = htmlspecialchars($_POST["descUserStory"]);
+    $prio = $_POST["prioUserStory"];
+    if ($prio == null) {
+        $prio = 'NULL';
+    }
+    $diff = $_POST["diffUserStory"];
+    $updateUserStory = "UPDATE backlog SET description=\"$desc\", priority=$prio, difficulty=$diff  WHERE projectName=\"$projectName\" AND id=$id";
+    $cdpDb->exec($updateUserStory);
+    header('location: listBacklog.php?projectName='.$projectName);
+} else {
+    header('location: /userStory/error.php');
+}
+
 ?>
 
 
@@ -32,16 +57,16 @@ header('location: listBacklog.php');
 </head>
 
 <body>
-    <?php
-        require_once $_SERVER['DOCUMENT_ROOT'].'/header.php';
-    ?>
+    <?php include($_SERVER['DOCUMENT_ROOT']."/header.php") ?>
     <main>
         <div class="container">
             <div class="row">
                 <div class="col s12 m8 offset-m2">
                     <div id="grid-container" class="section scrollspy">
-                        <form class="col s12" method="post" action="addUserStory.php">
-                            <h5 style="text-align: center;">Créer une nouvelle User Story </h5>
+                        <form class="col s12" method="post" action="updateUserStory.php">
+                          <input type="hidden" name="projectName" value=<?php echo $_GET["projectName"] ?>>
+                          <input type="hidden" name="idUserStory" value=<?php echo  $id; ?>>
+                            <h5 style="text-align: center;">Modifier une User Story </h5>
                             <div class="row">
                                 <p>
                                     Veuillez entrer les informations de votre user story</br>
@@ -52,33 +77,33 @@ header('location: listBacklog.php');
                                 <?php echo $idNotUnique; ?>
                                 <div class="input-field col s12">
                                     <label for="idUserStory">Id *</label>
-                                    <input class="validate" type="number" name="idUserStory" min=0 required />
+                                    <input class="validate" type="number" name="idUserStory" min=0 required value="<?php echo $id; ?>" readonly/>
                                     <span class="helper-text" data-error="Entrez un nombre" data-success="right">Id unique</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
                                     <label for="descUserStory">Description *</label>
-                                    <textarea class="materialize-textarea" name="descUserStory" maxlength="500" data-length="500" required></textarea>
+                                    <textarea class="materialize-textarea" name="descUserStory" maxlength="500" data-length="500" required><?php echo $gdesc; ?></textarea>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s6">
                                     <label for="diffUserStory">Difficulté *</label>
-                                    <input class="validate" type="number" name="diffUserStory" min=1 required />
+                                    <input class="validate" type="number" name="diffUserStory" min=1 required value="<?php echo $gdiff; ?>"/>
                                     <span class="helper-text" data-error="Entrez un nombre" data-success="right"></span>
                                 </div>
                                 <div class="input-field col s6">
                                     <label for="prioUserStory">Priorité *</label>
-                                    <input class="validate" type="number" name="prioUserStory" min=1 max=3 />
+                                    <input class="validate" type="number" name="prioUserStory" min=1 max=3 value="<?php echo $gprio; ?>"/>
                                     <span class="helper-text" data-error="Entrez un nombre entre 1 et 3" data-success="right">1=Haut,
                                         2=Moyen et 3=Bas</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s6">
-                                    <button type="submit" name="newUserStory" class="btn waves-effect waves-light">
-                                        Créer
+                                    <button type="submit" name="updateUserStory" class="btn waves-effect waves-light">
+                                        Modifier
                                         <i class="material-icons left">check_circle</i>
                                     </button>
                                 </div>
@@ -95,11 +120,6 @@ header('location: listBacklog.php');
             </div>
         </div>
     </main>
-
-    <!--JavaScript at end of body for optimized loading-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/materialize.min.js"></script>
-    <script type="text/javascript" src="/js/scripts.js"></script>
 </body>
 
 </html>
