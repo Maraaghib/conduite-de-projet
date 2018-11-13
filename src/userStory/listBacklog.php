@@ -1,4 +1,5 @@
 <?php
+require_once 'userStory.php';
 try {
     $cdpDb = new PDO(
         'mysql:host=database;port=3306;dbname=Cdp2018;charset=utf8',
@@ -12,13 +13,12 @@ try {
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testProjectName($_GET["projectName"])) {
     $projectName = htmlspecialchars($_GET["projectName"]);
+    if (!isProjectExist($projectName, $cdpDb)) {
+        header('location: /userStory/error.php');
+    }
     $rep = $cdpDb->query("SELECT * FROM backlog WHERE projectName = '$projectName'");
 } else {
     header('location: /userStory/error.php');
-}
-function testProjectName($projectName)
-{
-    return is_string($projectName) && $projectName !== "";
 }
 ?>
 
@@ -86,6 +86,7 @@ function testProjectName($projectName)
                                 echo "</td> </tr>";
                                 }
                                 ?>
+                                <a class="btn waves-effect waves-light" href="addUserStory.php?projectName=<?php echo $projectName ?>">Ajouter une User Story</a>
                             </tbody>
                         </table>
                     </div>
