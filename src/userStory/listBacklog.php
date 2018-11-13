@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
 <body>
     <?php
     $activeMenu4 = "class=\"active\"";
-    require_once "headerUserStory.php";
+    require_once $_SERVER['DOCUMENT_ROOT'].'/headerUserStory.php';
     ?>
     <main>
         <div class="row">
