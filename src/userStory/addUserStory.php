@@ -31,10 +31,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
             $prio = 'NULL';
         }
         $diff = $_POST["diffUserStory"];
-        $userStory = "INSERT INTO backlog(projectName, id, description, priority,
-        difficulty)
-        VALUES (\"$projectName\", $id, \"$desc\", $prio, $diff)";
-        $cdpDb->exec($userStory);
+        $addUserStory = $cdpDb->prepare("INSERT INTO backlog SET 
+            projectName = :projectName,
+            id = :id,
+            description = :description,
+            priority = :priority,
+            difficulty = :difficulty 
+        ");
+        $data = [
+            'projectName' => $projectName,
+            'id' => $id,
+            'description' => $desc,
+            'priority' => $prio,
+            'difficulty' => $diff
+        ];
+        $addUserStory->execute($data);
         header("location: listBacklog.php?projectName=$projectName");
     }
 } else {
