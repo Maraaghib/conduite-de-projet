@@ -27,24 +27,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
         $id = $_POST["idUserStory"];
         $desc = htmlspecialchars($_POST["descUserStory"]);
         $prio = $_POST["prioUserStory"];
-        if ($prio == null) {
-            $prio = 'NULL';
-        }
         $diff = $_POST["diffUserStory"];
-        $addUserStory = $cdpDb->prepare("INSERT INTO backlog SET 
-            projectName = :projectName,
-            id = :id,
-            description = :description,
-            priority = :priority,
-            difficulty = :difficulty 
-        ");
-        $data = [
-            'projectName' => $projectName,
-            'id' => $id,
-            'description' => $desc,
-            'priority' => $prio,
-            'difficulty' => $diff
-        ];
+        if ($prio == null) {
+            $sql = "INSERT INTO backlog SET 
+                projectName = :projectName,
+                id = :id,
+                description = :description,
+                difficulty = :difficulty";
+            $data = [
+                'projectName' => $projectName,
+                'id' => $id,
+                'description' => $desc,
+                'difficulty' => $diff
+            ];
+        } else {
+            $sql = "INSERT INTO backlog SET 
+                projectName = :projectName,
+                id = :id,
+                description = :description,
+                priority = :priority,
+                difficulty = :difficulty";
+            $data = [
+                'projectName' => $projectName,
+                'id' => $id,
+                'description' => $desc,
+                'priority' => $prio,
+                'difficulty' => $diff
+            ];
+        }
+        $addUserStory = $cdpDb->prepare($sql);
         $addUserStory->execute($data);
         header("location: listBacklog.php?projectName=$projectName");
     }
