@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && isset
     $diff = $_POST["diffUserStory"];
     $updateUserStory = "UPDATE backlog SET description=\"$desc\", priority=$prio, difficulty=$diff  WHERE projectName=\"$projectName\" AND id=$id";
     $cdpDb->exec($updateUserStory);
-    header('location: listBacklog.php?projectName='.$projectName);
+    header("location: listBacklog.php?projectName=$projectName");
 } else {
     header('location: /userStory/error.php');
 }
