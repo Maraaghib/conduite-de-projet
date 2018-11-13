@@ -88,6 +88,13 @@ main {
 .transp-orange {
     background-color: #ff980030;
 }
+.form-popup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+  }
+
 
 @media only screen and (max-width: 992px) {
     header {

@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
 }
 function testProjectName($projectName)
 {
-    return is_string($projectName) && $projectName!=="";
+    return is_string($projectName) && $projectName !== "";
 }
 ?>
 
@@ -38,8 +38,8 @@ function testProjectName($projectName)
 
 <body>
     <?php
-        $activeMenu3 = "class=\"active\"";
-        include_once($_SERVER['DOCUMENT_ROOT'].'/header.php');
+    $activeMenu3 = "class=\"active\"";
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/header.php');
     ?>
     <main>
         <div class="row">
@@ -58,9 +58,33 @@ function testProjectName($projectName)
                             </thead>
                             <tbody>
                                 <?php
-                                    foreach ($rep as list($pn, $id, $desc, $prio, $diff)) {
-                                        echo "<tr> <td>$id</td> <td>$desc</td> <td>$prio</td> <td>$diff</td> </tr>";
-                                    }
+                                foreach ($rep as list($pn, $id, $desc, $prio, $diff)) {
+                                    echo "<tr> <td>$id</td> <td>$desc</td> <td>$prio</td> <td>$diff</td> <td>";
+                                    
+                                ?>
+                                <button class="btn waves-effect waves-light" onclick="openForm(<?php echo $id ?>)"><i class="material-icons">delete</i></button>
+                                <form id="askConfirm<?php echo $id?>" class="form-popup" action="removeUserStory.php" method="post">
+                                    <input type="hidden" name="projectName" value=<?php echo $_GET["projectName"] ?>>
+                                    <input type="hidden" name="idUserStory" value=<?php echo  $id?>>
+                                    <div class="card">
+                                        <div class="card-content row">
+                                            <span class="card-title">
+                                                Suppression
+                                            </span>
+                                        <div class="row">Est-tu sur de vouloir supprimer l'User Story <?php echo $id ?></div>
+                                        <button class="btn waves-effect waves-light" type="submit">
+                                        Valider
+                                        <i class="material-icons left">check_circle</i>
+                                        </button>
+                                        <button type="button" name="cancel" class="btn waves-effect waves-light" onclick="closeForm(<?php echo $id ?>)">
+                                        Annuler
+                                        <i class="material-icons left">cancel</i>
+                                        </button>
+                                    </div>
+                                </form>
+                                <?php 
+                                echo "</td> </tr>";
+                                }
                                 ?>
                             </tbody>
                         </table>
@@ -74,4 +98,13 @@ function testProjectName($projectName)
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="/js/materialize.min.js"></script>
     <script type="text/javascript" src="/js/scripts.js"></script>
+    <script>
+    function openForm(id) {
+        document.getElementById("askConfirm" + id).style.display = "block";
+    }
+
+    function closeForm(id) {
+        document.getElementById("askConfirm" + id).style.display = "none";
+    }
+    </script>
 </body>

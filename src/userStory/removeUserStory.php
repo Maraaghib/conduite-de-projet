@@ -10,12 +10,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } catch (Exception $ex) {
         die('Erreur : ' . $ex->getMessage());
     }
-    $id = $_POST['idUserStory'];
-    $projectName = $_POST['projectName'];
-    $removeUserStory = "DELETE FROM backlog WHERE id=$id AND projectName=\"$projectName\"";
-    if ($cdpDb->exec($removeUserStory))
-        header('location: listBacklog.php?projectName=$projectName');
-} else{
+    $id = htmlspecialchars($_POST['idUserStory']);
+    $projectName = htmlspecialchars($_POST['projectName']);
+    try {
+        $removeUserStory = $cdpDb->prepare("DELETE FROM backlog WHERE id=:id AND projectName=:projectName");
+        $data = [
+            'id' => $id,
+            'projectName' => $projectName
+        ];
+    } catch (Exception $ex) {
+        die('Erreur : ' . $ex->getMessage());
+        header('location: /userStory/error.php');
+    }
+    if ($removeUserStory->execute($data)) {
+        header("location: listBacklog.php?projectName=$projectName");
+    }
+} else {
     header('location: /userStory/error.php');
 }
 ?>
