@@ -38,8 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
 
 <body>
     <?php
-    $activeMenu3 = "class=\"active\"";
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/header.php');
+    $activeMenu4 = "class=\"active\"";
+    require_once "headerUserStory.php";
     ?>
     <main>
         <div class="row">
@@ -86,7 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
                                 echo "</td> </tr>";
                                 }
                                 ?>
-                                <a class="btn waves-effect waves-light" href="addUserStory.php?projectName=<?php echo $projectName ?>">Ajouter une User Story</a>
                             </tbody>
                         </table>
                     </div>

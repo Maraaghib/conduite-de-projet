@@ -25,5 +25,11 @@
         <li <?php echo $activeMenu2; ?>>
             <a href="/project/listProjects.php"><i class="material-icons left">list</i>Liste des Projets</a>
         </li>
+        <li <?php echo $activeMenu3; ?>>
+            <a href="/userStory/addUserStory.php?projectName=<?php echo $projectName ?>"><i class="material-icons left">add</i>Ajouter une user Story</a>
+        </li>
+        <li <?php echo $activeMenu4; ?>>
+            <a href="/userStory/listBacklog.php?projectName=<?php echo $projectName ?>"><i class="material-icons left">list</i>Backlog</a>
+        </li>
     </ul>
 </header>
