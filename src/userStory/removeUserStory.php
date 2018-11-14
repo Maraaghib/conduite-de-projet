@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header('location: /userStory/error.php');
     }
     if ($removeUserStory->execute($data)) {
-        header("location: listBacklog.php?projectName=$projectName");
+        header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-2");
     }
 } else {
     header('location: /userStory/error.php');

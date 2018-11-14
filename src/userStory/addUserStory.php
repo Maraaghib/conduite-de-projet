@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
         }
         $addUserStory = $db->prepare($sql);
         $addUserStory->execute($data);
-        header("location: listBacklog.php?projectName=$projectName");
+        header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-2");
     }
 } else {
     header('location: /userStory/error.php');
