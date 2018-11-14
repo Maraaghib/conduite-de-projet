@@ -23,7 +23,7 @@
     function getBackLog($projectName) {
         $db = Database::getDBConnection();
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $db->prepare("SELECT * FROM backlog WHERE projectName = '$projectName'");
+        $stmt = $db->prepare("SELECT * FROM backlog WHERE projectName = '$projectName' ORDER BY id");
         $stmt->execute();
 
         $backlog = $stmt->fetchAll();
