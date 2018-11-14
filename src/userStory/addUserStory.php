@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
                             <div class="row">
                                 <div class="input-field col s12">
                                     <label for="descUserStory">Description *</label>
-                                    <textarea class="materialize-textarea" name="descUserStory" maxlength="500" data-length="500" required></textarea>
+                                    <textarea class="materialize-textarea" name="descUserStory" maxlength="10000" required></textarea>
                                 </div>
                             </div>
                             <div class="row">

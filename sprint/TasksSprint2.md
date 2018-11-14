@@ -11,3 +11,17 @@
 | T9b | Exécution du test de listage de tous les projets et ajout des résultats dans l'historique des tests  | #8 | T8b, T9a | 1/2 jh | To do | Serigne |
 | T10a | Création d'un fichier nommé ``viewProject.php`` dans le répertoire ``src/project`` pour implémenter la visualisation de tous les détails d'un projet | #20 |  | 1/2 jh | Done | Serigne |
 | T10b | Implémentation d'une page ``viewProject.php`` avec six (6) ``tabs`` (onglets): ``Description``, ``Backlog``, ``Sprints``, ``Burndown chart``, ``Contributeurs`` et ``Paramètres``. Le tab ``Description`` est selectionné par défaut et affiche le nom du projet, sa description, son propriétaire (ou la personne qui l'a créé) et sa date de création. Ces deux dernières informations seront sous-forme d'un ``chips``; Le tab ``Backlog`` permet d'afficher le tableau des user stories; Le tab ``Sprints`` permet d'afficher le tableau des tâches; Le tab ``Burndown chart`` permet de visualiser le graphique d'avancement; Le tab ``Contributeurs``, si l'on clique dessus, affiche les différents développeurs du projets y compris le propriétaire et le tab ``Paramètres`` permet d'avoir le formulaire pour modifier les détails du projet et un bouton pour le supprimer  | #20 | T10a | 2 jh | Done | Serigne |
+| | Ecriture d'un scénario de test pour la modification d'user story | #12 | | 1/2 jh | To do |  |
+| | Exécution du test de modification d'un user story et ajout des résultats dans l'historique des tests | #12 | | 1/2 jh | To do |
+| | Ecriture d'un scénario de test pour la création de sprint | #13| | 1/2 jh | To do |  |
+| | Exécution du test de création de sprint et ajout des résultats dans l'historique des tests | #13 | | 1/2 jh | To do |
+| | Ecriture d'un scénario de test pour l'ajout de taches dans un sprint | #15| | 1/2 jh | To do |  | 
+| | Exécution du test d'ajout de taches dans un sprint et ajout des résultats dans l'historique des tests | #15 | | 1/2 jh | To do |
+| | Ecriture d'un scénario de test pour le listage des taches d'un sprint | #18| | 1/2 jh | To do |  | 
+| | Exécution du test de listage des taches d'un sprint et ajout des résultats dans l'historique des tests | #18 | | 1/2 jh | To do |
+| | Ecriture d'un scénario de test pour le listage des sprints | #19 | | 1/2 jh | To do |  | 
+| | Exécution du test de listage des sprints et ajout des résultats dans l'historique des tests | #19 | | 1/2 jh | To do |
+| | Ecriture d'un scénario de test pour la visualisation d'un projet | #20 | | 1/2 jh | To do |  | 
+| | Exécution du test de visualisation d'un projet et ajout des résultats dans l'historique des tests | #20 | | 1/2 jh | To do |
+| | Ecriture d'un scénario de test pour la modification d'un projet | #21 | | 1/2 jh | To do |  |
+| | Exécution du test de modification d'un projet et ajout des résultats dans l'historique des tests | #21 | | 1/2 jh | To do |
