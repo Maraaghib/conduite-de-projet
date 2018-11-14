@@ -35,6 +35,14 @@ ul.sidenav.sidenav-fixed li.active {
     background-color: #4accbf8a;
 }
 
+ul.sidenav.sidenav-fixed ul.collapsible li a.collapsible-header {
+    padding: 0 32px;
+}
+
+ul.sidenav.sidenav-fixed ul.collapsible li div.collapsible-body li a {
+    padding: 0 50px;
+}
+
 main {
     padding-left: 300px;
 }

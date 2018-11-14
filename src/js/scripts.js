@@ -10,6 +10,7 @@ $(document).ready(function(){
     }
     var instance = M.Tabs.init(elem, options);
     $('.modal').modal();
+    $('.collapsible').collapsible();
 
 
     /**

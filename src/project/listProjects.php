@@ -34,6 +34,11 @@
             $activeMenu2 = "class=\"active\"";
             require_once $_SERVER['DOCUMENT_ROOT'].'/header.php';
         ?>
+        <script type="text/javascript">
+            console.log(document.querySelector('.collapsible-header'));
+            document.querySelector('.collapsible-header').removeAttribute('href');
+            document.querySelector('.collapsible li').removeAttribute('class');
+        </script>
         <main>
             <div class="row">
                 <div class="container">

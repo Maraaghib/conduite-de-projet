@@ -1,3 +1,9 @@
+<?php
+    require_once($_SERVER['DOCUMENT_ROOT'].'/data/Project.php');
+    $instance = new Project;
+    $projects = $instance->listProjects();
+?>
+
 <header>
     <div class="navbar-fixed">
         <nav class="top-nav">
@@ -20,10 +26,29 @@
             <a id="logo-container" href="/" class="brand-logo"></a>
         </li>
         <li <?php echo $activeMenu1; ?>>
-            <a href="/project/newProject.php"><i class="material-icons left">add</i>Nouveau Projet</a>
+            <a href="/project/newProject.php" class="waves-effect waves-teal"><i class="material-icons left">add</i>Nouveau Projet</a>
         </li>
         <li <?php echo $activeMenu2; ?>>
-            <a href="/project/listProjects.php"><i class="material-icons left">list</i>Liste des Projets</a>
+            <ul class="collapsible">
+                <li <?php echo $activeMenu2; ?>>
+                    <a href="/project/listProjects.php" class="waves-effect waves-teal collapsible-header"><i class="material-icons left">list</i>Liste des Projets</a>
+                    <?php
+                    if (!empty($projects)) {
+                    ?>
+                    <div class="collapsible-body">
+                        <ul>
+                            <?php
+                            foreach ($projects as $singleProject) {
+                            ?>
+                            <li>
+                                <a href="/project/viewProject.php?projectName=<?php echo $singleProject['name']; ?>"><i class="material-icons left">chevron_right</i><?php echo $singleProject['name']; ?></a>
+                            </li>
+                            <?php } ?>
+                        </ul>
+
+                    </div>
+                    <?php } ?>
+                </li>
+            </ul>
         </li>
-    </ul>
 </header>
