@@ -28,4 +28,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     header('location: /userStory/error.php');
 }
-?>
