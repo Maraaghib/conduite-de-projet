@@ -21,6 +21,7 @@
     </head>
     <body>
         <?php
+            $activeMenu1 = "class=\"active\"";
             require_once $_SERVER['DOCUMENT_ROOT'].'/header.php';
         ?>
         <main>

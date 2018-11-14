@@ -31,7 +31,7 @@
     </head>
     <body>
         <?php
-            $activeMenu2 = "class=\"active\"";
+            $activeMenu3 = "class=\"active\"";
             require_once $_SERVER['DOCUMENT_ROOT'].'/header.php';
         ?>
         <script type="text/javascript">

@@ -75,7 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
 
 <body>
     <?php
-        $activeMenu3 = "class=\"active\"";
         require_once $_SERVER['DOCUMENT_ROOT'].'/header.php';
     ?>
     <main>

@@ -33,11 +33,14 @@
             </div>
         </li>
         <li <?php echo $activeMenu1; ?>>
-            <a href="/project/newProject.php" class="waves-effect waves-teal"><i class="material-icons left">add</i>Nouveau Projet</a>
+            <a href="/" class="waves-effect waves-teal"><i class="material-icons left">home</i>Accueil</a>
         </li>
         <li <?php echo $activeMenu2; ?>>
+            <a href="/project/newProject.php" class="waves-effect waves-teal"><i class="material-icons left">add</i>Nouveau Projet</a>
+        </li>
+        <li <?php echo $activeMenu3; ?>>
             <ul class="collapsible">
-                <li <?php echo $activeMenu2; ?>>
+                <li <?php echo $activeMenu3; ?>>
                     <a href="/project/listProjects.php" class="waves-effect waves-teal collapsible-header"><i class="material-icons left">list</i>Liste des Projets</a>
                     <?php
                     if (!empty($projects)) {
