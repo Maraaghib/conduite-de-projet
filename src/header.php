@@ -22,8 +22,15 @@
         <a href="#" data-target="mobile-demo" class="top-nav sidenav-trigger full hide-on-large-only"><i class="material-icons">menu</i></a>
     </div>
     <ul class="sidenav sidenav-fixed" id="mobile-demo" style="overflow: auto; transform: translateX(0%);">
-        <li class="logo">
-            <a id="logo-container" href="/" class="brand-logo"></a>
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="/img/backgound.jpg">
+                </div>
+                <a href="#user"><img class="circle" src="/img/avatar.png"></a>
+                <a href="#name"><span class="white-text name">Hamza SEYE</span></a>
+                <a href="#email"><span class="white-text email">hamza.seye@gmail.com</span></a>
+            </div>
         </li>
         <li <?php echo $activeMenu1; ?>>
             <a href="/project/newProject.php" class="waves-effect waves-teal"><i class="material-icons left">add</i>Nouveau Projet</a>
