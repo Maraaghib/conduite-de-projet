@@ -25,12 +25,6 @@ a.sidenav-trigger.top-nav {
     z-index: 2;
 }
 
-ul.sidenav.sidenav-fixed li.logo {
-    text-align: center;
-    margin-top: 32px;
-    margin-bottom: 5px; /* Do I need to change it ? */
-}
-
 ul.sidenav.sidenav-fixed li.active {
     background-color: #4accbf8a;
 }
