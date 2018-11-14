@@ -157,14 +157,5 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript" src="/js/materialize.min.js"></script>
         <script type="text/javascript" src="/js/scripts.js"></script>
-        <script>
-            function openForm(id) {
-                document.getElementById("askConfirm" + id).style.display = "block";
-            }
-
-            function closeForm(id) {
-                document.getElementById("askConfirm" + id).style.display = "none";
-            }
-        </script>
     </body>
 </html>

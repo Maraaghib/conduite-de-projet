@@ -5,33 +5,31 @@
             <th>Description</th>
             <th>Priorité</th>
             <th>Difficulté</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
         <?php
         foreach ($backlog as list($pn, $id, $desc, $prio, $diff)) {
-            echo "<tr> <td>$id</td> <td>$desc</td> <td>$prio</td> <td>$diff</td> <td>";
+            echo "<tr> <td>#$id</td> <td>$desc</td> <td>$prio</td> <td>$diff</td> <td>";
         ?>
-        <button class="btn waves-effect waves-light" onclick="openForm(<?php echo $id ?>)"><i class="material-icons">delete</i></button>
-        <form id="askConfirm<?php echo $id?>" class="form-popup" action="/userStory/removeUserStory.php" method="post">
-            <input type="hidden" name="projectName" value=<?php echo $_GET["projectName"] ?>>
-            <input type="hidden" name="idUserStory" value=<?php echo  $id?>>
-            <div class="card">
-                <div class="card-content row">
-                    <span class="card-title">
-                        Suppression
-                    </span>
-                <div class="row">Est-tu sur de vouloir supprimer l'User Story <?php echo $id ?></div>
-                <button class="btn waves-effect waves-light" type="submit">
-                Valider
-                <i class="material-icons left">check_circle</i>
-                </button>
-                <button type="button" name="cancel" class="btn waves-effect waves-light" onclick="closeForm(<?php echo $id ?>)">
-                Annuler
-                <i class="material-icons left">cancel</i>
-                </button>
+        <!-- Modal Trigger -->
+        <a href="#delete-modal-<?php echo $id ?>" class="btn-floating waves-effect waves-light modal-trigger red"><i class="material-icons">delete</i></a>
+        <!-- Modal Structure -->
+        <div id="delete-modal-<?php echo $id ?>" class="modal">
+            <div class="modal-content">
+                <h4>Suppression</h4>
+                <p>Êtes-vous sûr de vouloir supprimer le <strong>User Story #<?php echo $id; ?> ?</strong> </p>
             </div>
-        </form>
+            <div class="modal-footer">
+                <form action="/userStory/removeUserStory.php" method="post">
+                    <input type="hidden" name="projectName" value=<?php echo $project['name'] ?>>
+                    <input type="hidden" name="idUserStory" value=<?php echo  $id?>>
+                    <button type="submit" class="modal-close waves-effect waves-red btn-flat">Supprimer<i class="material-icons left">check_circle</i></button>
+                    <button type="button" class="modal-close waves-effect waves-green btn-flat">Annuler<i class="material-icons left">cancel</i></button>
+                </form>
+            </div>
+        </div>
         <?php
         echo "</td> </tr>";
         }

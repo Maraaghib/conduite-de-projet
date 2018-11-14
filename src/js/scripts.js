@@ -9,6 +9,7 @@ $(document).ready(function(){
         swipeable: false
     }
     var instance = M.Tabs.init(elem, options);
+    $('.modal').modal();
 
 
     /**
