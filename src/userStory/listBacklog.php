@@ -36,3 +36,6 @@
         ?>
     </tbody>
 </table>
+<div class="center-align" style="margin-top: 35px;">
+    <a href="/userStory/addUserStory.php?projectName=<?php echo $project['name'] ?>" class="btn waves-effect waves-light"><i class="material-icons left">add</i>Ajouter un User Story</a>
+</div>

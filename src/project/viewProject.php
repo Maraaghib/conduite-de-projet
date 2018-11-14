@@ -39,7 +39,7 @@
     <body>
         <?php
             $activeMenu2 = "class=\"active\"";
-            require_once $_SERVER['DOCUMENT_ROOT'].'/headerUserStory.php';
+            require_once $_SERVER['DOCUMENT_ROOT'].'/header.php';
         ?>
         <main>
             <div class="row" style="margin: 20px;">
