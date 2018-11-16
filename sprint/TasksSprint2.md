@@ -40,5 +40,5 @@
 | T24a | Ecriture d'un scénario de test pour la modification d'un projet | #21 | | 1/2 jh | To do |  |
 | T24b | Exécution du test de modification d'un projet et ajout des résultats dans l'historique des tests | #21 | T24a | 1/2 jh | To do |  |
 | T25a | Interface du fichier ``addTask.php`` qui ajoutera une tâche à un sprint | #15 | | 1/2 jh | To do | |
-| T25b | Implémentation d'un formulaire sur la page ``addTask.php`` contenant un champ pour l'identifiant, un pour la description, un pour le temps estimé, un pour l'avancement de la tâche et enfin un pour la lier à un des user stories et optionnellement un pour sa (ses) dépendance(s) aux autres tâches  | #15 | | 1/2 jh | To do | |
+| T25b | Implémentation d'un formulaire sur la page ``addTask.php`` contenant un champ pour l'identifiant, un pour la description, un pour le temps estimé, un pour l'avancement de la tâche et enfin un pour la lier à un des user stories et optionnellement un pour sa (ses) dépendance(s) aux autres tâches  | #15 | T25a | 1/2 jh | To do | |
 
