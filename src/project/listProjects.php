@@ -55,7 +55,7 @@
                                             <div class="card">
                                                 <div class="card-content">
                                                     <span class="card-title">
-                                                        <a href="/project/viewProject.php?projectName=<?php echo $project['name']; ?>"><?php echo $project['name']; ?></a>
+                                                        <a href="/project/viewProject.php?projectName=<?php echo $project['projectName']; ?>"><?php echo $project['projectName']; ?></a>
                                                     </span>
                                                     <p class="ellipse-text"><?php echo $project['description']; ?></p>
                                                     <div class="read-more">
@@ -64,7 +64,7 @@
                                                     <a class="btn-floating halfway-fab waves-effect waves-light" style="bottom: 36px;"><i class="material-icons">edit</i></a>
                                                 </div>
                                                 <div class="card-reveal">
-                                                  <span class="card-title"><a href="#"><?php echo $project['name']; ?></a><i class="material-icons right">close</i></span>
+                                                  <span class="card-title"><a href="#"><?php echo $project['projectName']; ?></a><i class="material-icons right">close</i></span>
                                                   <p><?php echo $project['description']; ?></p>
                                                 </div>
                                                 <div class="card-action">

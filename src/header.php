@@ -51,7 +51,7 @@
                             foreach ($projects as $singleProject) {
                             ?>
                             <li>
-                                <a href="/project/viewProject.php?projectName=<?php echo $singleProject['name']; ?>"><i class="material-icons left">chevron_right</i><?php echo $singleProject['name']; ?></a>
+                                <a href="/project/viewProject.php?projectName=<?php echo $singleProject['projectName']; ?>"><i class="material-icons left">chevron_right</i><?php echo $singleProject['projectName']; ?></a>
                             </li>
                             <?php } ?>
                         </ul>

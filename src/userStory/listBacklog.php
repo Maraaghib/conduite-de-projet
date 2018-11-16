@@ -23,7 +23,7 @@
             </div>
             <div class="modal-footer">
                 <form action="/userStory/removeUserStory.php" method="post">
-                    <input type="hidden" name="projectName" value=<?php echo $project['name'] ?>>
+                    <input type="hidden" name="projectName" value=<?php echo $project['projectName'] ?>>
                     <input type="hidden" name="idUserStory" value=<?php echo  $id?>>
                     <button type="submit" class="modal-close waves-effect waves-red btn-flat">Supprimer<i class="material-icons left">check_circle</i></button>
                     <button type="button" class="modal-close waves-effect waves-green btn-flat">Annuler<i class="material-icons left">cancel</i></button>
@@ -37,5 +37,5 @@
     </tbody>
 </table>
 <div class="center-align" style="margin-top: 35px;">
-    <a href="/userStory/addUserStory.php?projectName=<?php echo $project['name'] ?>" class="btn waves-effect waves-light"><i class="material-icons left">add</i>Ajouter un User Story</a>
+    <a href="/userStory/addUserStory.php?projectName=<?php echo $project['projectName'] ?>" class="btn waves-effect waves-light"><i class="material-icons left">add</i>Ajouter un User Story</a>
 </div>

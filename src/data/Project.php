@@ -6,21 +6,21 @@
      */
     class Project {
 
-        private $name;
+        private $projectName;
         private $description;
         private $sprintDuration;
         private $dateProject;
 
         public function __construct() {
-            $this->name         = "";
+            $this->projectName         = "";
             $this->description  = "";
             $this->sprintDuration     = "";
             $this->dateProject  = "";
         }
 
-        public static function newProject($name, $description, $sprintDuration, $dateProject) {
+        public static function newProject($projectName, $description, $sprintDuration, $dateProject) {
             $instance = new self();
-            $instance->setName($name);
+            $instance->setProjectName($projectName);
             $instance->setDescription($description);
             $instance->setSprintDuration($sprintDuration);
             $instance->setDateProject($dateProject);
@@ -29,8 +29,8 @@
         }
 
         public function hydrate($data) {
-            if(isset($data['name'])) {
-                $this->name = $data['name'];
+            if(isset($data['projectName'])) {
+                $this->projectName = $data['projectName'];
             }
             if(isset($data['description'])) {
                 $this->description = $data['description'];
@@ -46,11 +46,11 @@
         /**
          * Permet de récupérer un projet (d'un user) via son identifiant
          */
-        public function getProject(/*idUser*/ $name) {
+        public function getProject(/*idUser*/ $projectName) {
             $db = Database::getDBConnection();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             /* WHERE author = :author = ?? */
-            $stmt = $db->prepare("SELECT * FROM project WHERE name='$name'");
+            $stmt = $db->prepare("SELECT * FROM project WHERE projectName='$projectName'");
             $stmt->execute();
 
             $project = $stmt->fetch();
@@ -85,14 +85,14 @@
             $errors = [];
 
             $query = $db->prepare("INSERT INTO project SET
-                name            = :name,
+                projectName            = :projectName,
                 description     = :description,
                 sprintDuration  = :sprintDuration,
                 dateProject     = :dateProject
             ");
 
             $data = [
-                'name'          => $this->getName(),
+                'projectName'          => $this->getProjectName(),
                 'description'   => $this->getDescription(),
                 'sprintDuration'=> $this->getSprintDuration(),
                 'dateProject'   => $this->getDateProject()
@@ -109,7 +109,7 @@
          public function isProjectExist($projectName) {
             $db = Database::getDBConnection();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = $db->prepare("SELECT count(*) AS numProjectName FROM project WHERE name=:projectName");
+            $query = $db->prepare("SELECT count(*) AS numProjectName FROM project WHERE projectName=:projectName");
             $data = [
                 'projectName' => $projectName
             ];
@@ -120,12 +120,12 @@
         }
 
         /*************** Getters et setters ******************/
-        public function setName($name){
-            $this->name = $name;
+        public function setProjectName($projectName){
+            $this->projectName = $projectName;
         }
 
-        public function getName(){
-            return $this->name;
+        public function getProjectName(){
+            return $this->projectName;
         }
 
         public function setDescription($description){
@@ -154,12 +154,12 @@
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createProject'])) {
-        $name = $_POST['projectName'];
+        $projectName = $_POST['projectName'];
         $description = $_POST['projectDescription'];
         $sprintDuration = (int) $_POST['sprintDuration'];
         $dateProject = date('Y,m,d');
 
-        $project = Project::newProject($name, $description, $sprintDuration, $dateProject); // Crée une nouvelle instance de Project avec des paramètres
+        $project = Project::newProject($projectName, $description, $sprintDuration, $dateProject); // Crée une nouvelle instance de Project avec des paramètres
 
         // if ($project->alreadyExists()) {
         //     $projectExists = true;

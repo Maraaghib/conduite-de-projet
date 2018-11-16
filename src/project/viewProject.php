@@ -28,7 +28,7 @@
 
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title><?php echo $project['name']; ?></title>
+        <title><?php echo $project['projectName']; ?></title>
 
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
@@ -52,7 +52,7 @@
                         else {
 
                         ?>
-                        <h3><?php echo $project['name']; ?></h3>
+                        <h3><?php echo $project['projectName']; ?></h3>
                         <div class="row">
                             <ul class="tabs">
                                 <li class="tab col s2"><a class="active" href="#tab-swipe-1">Description</a></li>
