@@ -21,8 +21,7 @@
 | T15b | Implémentation d'un formulaire sur la page ``editProject.php`` avec un champ de texte pour le nom du projet, un autre (élément ``textarea`` de ``HTML``) pour la description, un autre pour la durée des sprints et un menu déroulant (élément ``select`` de ``HTML``) pour le choix de l'unité de la durée (semaines, mois, ...). Ces champs seront déjà remplis par les informations courantes du projet. À côté de chaque champ, un bouton est placé pour valider sa modification (si le champ a bien-sûr été bien repmli). Cette parties sera accessible dans l'app dans la page de visualisation du projet sous l'onglet ``Paramètres`` | #21 | T15a | 1 jh | To do | Serigne |
 | T16a | Création d'un fichier nommé ``listSprint.php`` dans le répertoire ``src/sprint`` pour le listage des sprints | #19 | T11, T12 | 1/2 jh | To do |  |
 |T16b |  Implémentation de la page ``listSprint.php``:</br> Afficher la liste des sprints dans l'onglet ``Sprints`` d'un projet, trier par date début. Pour chaque sprint sera renseigné la date de début et de fin, les identifiants des user stories à réaliser, le nombre de taches en état ``Done`` par rapport au nombre total de tache et un lien renvoyant sur la page pour gérer les taches du sprint.| #19 | T16a | 1 jh | To do |  |
-| T17a |
-| T17b | 
+| T17b | Implémentation de la page ``updateUserStory.php`` où l'on accédera à un formulaire d'ajout d'UserStory pré-rempli avec les données de la UserStory à modifier | #12 | T17a | 1jh | Done | Amelozara |
 | T18a | Ecriture d'un scénario de test pour la modification d'user story | #12 | | 1/2 jh | To do |  |
 | T18b | Exécution du test de modification d'un user story et ajout des résultats dans l'historique des tests | #12 | T18a | 1/2 jh | To do |  |
 | T19a | Ecriture d'un scénario de test pour la création de sprint | #13| | 1/2 jh | To do |  |
@@ -37,3 +36,4 @@
 | T23b | Exécution du test de visualisation d'un projet et ajout des résultats dans l'historique des tests | #20 | T23a | 1/2 jh | To do |  |
 | T24a | Ecriture d'un scénario de test pour la modification d'un projet | #21 | | 1/2 jh | To do |  |
 | T24b | Exécution du test de modification d'un projet et ajout des résultats dans l'historique des tests | #21 | T24a | 1/2 jh | To do |  |
+
