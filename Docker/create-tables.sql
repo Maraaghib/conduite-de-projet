@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 16 Novembre 2018 à 01:30
+-- Généré le :  Sam 17 Novembre 2018 à 02:53
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -31,8 +31,22 @@ CREATE TABLE IF NOT EXISTS `backlog` (
   `id` int(11) NOT NULL,
   `description` text NOT NULL,
   `priority` int(11) DEFAULT NULL,
-  `difficulty` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `difficulty` int(11) NOT NULL,
+  `idAI` int(11) NOT NULL COMMENT 'Id. Auto-Increment pour lier US aux Tâches'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `dependence`
+--
+
+CREATE TABLE IF NOT EXISTS `dependence` (
+  `id` int(11) NOT NULL,
+  `idTask` varchar(30) NOT NULL,
+  `idSprint` int(11) NOT NULL,
+  `idUS` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -46,7 +60,35 @@ CREATE TABLE IF NOT EXISTS `project` (
   `description` text,
   `sprintDuration` int(11) NOT NULL,
   `dateProject` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `sprint`
+--
+
+CREATE TABLE IF NOT EXISTS `sprint` (
+  `id` int(11) NOT NULL,
+  `projectName` varchar(50) NOT NULL,
+  `startDate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `task`
+--
+
+CREATE TABLE IF NOT EXISTS `task` (
+  `idSprint` int(11) NOT NULL,
+  `idTask` varchar(30) NOT NULL,
+  `idAI` int(11) NOT NULL COMMENT 'Auto-Iincrement ID',
+  `description` text NOT NULL,
+  `estimatedTime` decimal(10,0) NOT NULL,
+  `progress` varchar(30) NOT NULL,
+  `affectedTo` int(11) NOT NULL COMMENT 'ça doit être un clé étrangère de la table "user"'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Index pour les tables exportées
@@ -56,7 +98,18 @@ CREATE TABLE IF NOT EXISTS `project` (
 -- Index pour la table `backlog`
 --
 ALTER TABLE `backlog`
-  ADD PRIMARY KEY (`projectName`,`id`);
+  ADD PRIMARY KEY (`projectName`,`id`),
+  ADD UNIQUE KEY `idAI` (`idAI`);
+
+--
+-- Index pour la table `dependence`
+--
+ALTER TABLE `dependence`
+  ADD PRIMARY KEY (`id`,`idTask`,`idUS`),
+  ADD KEY `idTask` (`idTask`,`idSprint`,`idUS`),
+  ADD KEY `FK_Dependance_US` (`idUS`),
+  ADD KEY `FK_Dependance_Task_Sprint` (`idSprint`,`idTask`),
+  ADD KEY `id` (`id`);
 
 --
 -- Index pour la table `project`
@@ -66,14 +119,45 @@ ALTER TABLE `project`
   ADD UNIQUE KEY `idAI` (`idAI`);
 
 --
+-- Index pour la table `sprint`
+--
+ALTER TABLE `sprint`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `projectName_2` (`projectName`),
+  ADD KEY `projectName` (`projectName`);
+
+--
+-- Index pour la table `task`
+--
+ALTER TABLE `task`
+  ADD PRIMARY KEY (`idSprint`,`idTask`),
+  ADD UNIQUE KEY `idAI` (`idAI`),
+  ADD KEY `idSprint` (`idSprint`);
+
+--
 -- AUTO_INCREMENT pour les tables exportées
 --
 
+--
+-- AUTO_INCREMENT pour la table `backlog`
+--
+ALTER TABLE `backlog`
+  MODIFY `idAI` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id. Auto-Increment pour lier US aux Tâches';
 --
 -- AUTO_INCREMENT pour la table `project`
 --
 ALTER TABLE `project`
   MODIFY `idAI` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `sprint`
+--
+ALTER TABLE `sprint`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `task`
+--
+ALTER TABLE `task`
+  MODIFY `idAI` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Auto-Iincrement ID';
 --
 -- Contraintes pour les tables exportées
 --
@@ -83,6 +167,26 @@ ALTER TABLE `project`
 --
 ALTER TABLE `backlog`
   ADD CONSTRAINT `FK_Project_Backlog` FOREIGN KEY (`projectName`) REFERENCES `project` (`projectName`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `dependence`
+--
+ALTER TABLE `dependence`
+  ADD CONSTRAINT `FK_Dependance_Task` FOREIGN KEY (`id`) REFERENCES `task` (`idAI`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Dependance_Task_Sprint` FOREIGN KEY (`idSprint`,`idTask`) REFERENCES `task` (`idSprint`, `idTask`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Dependance_US` FOREIGN KEY (`idUS`) REFERENCES `backlog` (`idAI`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `sprint`
+--
+ALTER TABLE `sprint`
+  ADD CONSTRAINT `FK_Project_Project_Sprint` FOREIGN KEY (`projectName`) REFERENCES `project` (`projectName`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `task`
+--
+ALTER TABLE `task`
+  ADD CONSTRAINT `FK_Task_Sprint` FOREIGN KEY (`idSprint`) REFERENCES `sprint` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
