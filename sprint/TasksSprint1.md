@@ -1,6 +1,6 @@
 | Id  | Description | US lié | Dépendances | Temps estimé | Avancement | Affectée à |
 | --- | ----------- | ------ | ----------- | ------------ | ---------- | ---------- |
-| T0 | Création de la base de données ``Cdp2018`` avec deux tables: ``project(ident,  projectName, description, sprintDuration, dateProject)`` et ``backlog(projectName, id, description, priority, difficulty)`` | * |  | 1/2 jh | Done | Serigne |
+| T0 | Création de la base de données ``Cdp2018`` avec deux tables: ``project(idAI,  projectName, description, sprintDuration, dateProject)`` et ``backlog(projectName, id, description, priority, difficulty)`` | * |  | 1/2 jh | Done | Serigne |
 | T1 |  Création du fichier ``docker-compose.yaml`` contenant un container ``apache``, un container ``mysql`` et un container ``adminer`` | * |  |  1/2 jh | Done | Guillaume |
 | T2a | Interface du fichier ``addUserStory.php``, qui s'occupera de l'ajout d'un user story au backlog | #9 | | 1/2 jh | Done | Guillaume |
 | T2b | Ajout d'un bouton ``Créer une user story`` sur la page du backlog. Une fois que l'on clique dessus on est renvoyé sur la page du formulaire pour la création d'un user story avec les champs à remplir et un bouton ``Annuler`` pour annuler et un bouton ``Valider`` pour terminer la création. L'utilisateur ne doit pouvoir valider que si tous les champs obligatoires (marqué avec une astérisque) sont remplis et que l'identifiant est bien unique.| #9 | T2a, T0 | 1,5 jh | Done| Guillaume |

@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `backlog` (
 --
 
 CREATE TABLE IF NOT EXISTS `project` (
-  `ident` int(11) NOT NULL,
+  `idAI` int(11) NOT NULL,
   `projectName` varchar(50) NOT NULL,
   `description` text,
   `sprintDuration` int(11) NOT NULL,
@@ -63,7 +63,7 @@ ALTER TABLE `backlog`
 --
 ALTER TABLE `project`
   ADD PRIMARY KEY (`projectName`),
-  ADD UNIQUE KEY `ident` (`ident`);
+  ADD UNIQUE KEY `idAI` (`idAI`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -73,7 +73,7 @@ ALTER TABLE `project`
 -- AUTO_INCREMENT pour la table `project`
 --
 ALTER TABLE `project`
-  MODIFY `ident` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idAI` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Contraintes pour les tables exportées
 --
