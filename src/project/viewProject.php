@@ -111,9 +111,9 @@
                                     <div class="row" style="margin: 10px;">
                                         <div class="col s12">
                                             <h4>Description</h4>
-                                            <p style="margin-bottom: 50px;">
+                                            <blockquote style="margin-bottom: 50px;">
                                                 <?php echo $project['description']; ?>
-                                            </p>
+                                            </blockquote>
                                         </div>
                                         <div class="col s12">
                                             <div class="chip">
