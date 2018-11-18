@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
                                 <div class="input-field col s12">
                                     <label for="idUserStory">Id *</label>
                                     <input class="validate" type="number" name="idUserStory" min=0 required />
-                                    <span class="helper-text" data-error="Entrez un nombre" data-success="right">Id unique</span>
+                                    <span class="helper-text" data-error="Entrez un nombre" data-success="Saisie correcte">Id unique</span>
                                 </div>
                             </div>
                             <div class="row">
@@ -108,12 +108,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
                                 <div class="input-field col s6">
                                     <label for="diffUserStory">Difficulté *</label>
                                     <input class="validate" type="number" name="diffUserStory" min=1 required />
-                                    <span class="helper-text" data-error="Entrez un nombre" data-success="right"></span>
+                                    <span class="helper-text" data-error="Entrez un nombre" data-success="Saisie correcte"></span>
                                 </div>
                                 <div class="input-field col s6">
                                     <label for="prioUserStory">Priorité *</label>
                                     <input class="validate" type="number" name="prioUserStory" min=1 max=3 />
-                                    <span class="helper-text" data-error="Entrez un nombre entre 1 et 3" data-success="right">1=Haut,
+                                    <span class="helper-text" data-error="Entrez un nombre entre 1 et 3" data-success="Saisie correcte">1=Haut,
                                         2=Moyen et 3=Bas</span>
                                 </div>
                             </div>

@@ -11,7 +11,7 @@
     <tbody>
         <?php
         foreach ($backlog as list($pn, $id, $desc, $prio, $diff)) {
-            echo "<tr> <td>#$id</td> <td>$desc</td> <td>$prio</td> <td>$diff</td> <td>";
+            echo "<tr> <td id='id$id'>#$id</td> <td>$desc</td> <td>$prio</td> <td>$diff</td> <td>";
         ?>
         <!-- Modal Trigger -->
         <a href="#delete-modal-<?php echo $id ?>" class="btn-floating waves-effect waves-light modal-trigger red"><i class="material-icons">delete</i></a>
@@ -37,5 +37,5 @@
     </tbody>
 </table>
 <div class="center-align" style="margin-top: 35px;">
-    <a href="/userStory/addUserStory.php?projectName=<?php echo $project['projectName'] ?>" class="btn waves-effect waves-light"><i class="material-icons left">add</i>Ajouter un User Story</a>
+    <a id="addUserStory" href="/userStory/addUserStory.php?projectName=<?php echo $project['projectName'] ?>" class="btn waves-effect waves-light"><i class="material-icons left">add</i>Ajouter un User Story</a>
 </div>

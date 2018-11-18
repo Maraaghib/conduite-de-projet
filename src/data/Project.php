@@ -12,10 +12,10 @@
         private $dateProject;
 
         public function __construct() {
-            $this->projectName         = "";
-            $this->description  = "";
-            $this->sprintDuration     = "";
-            $this->dateProject  = "";
+            $this->projectName = "";
+            $this->description = "";
+            $this->sprintDuration = "";
+            $this->dateProject = "";
         }
 
         public static function newProject($projectName, $description, $sprintDuration, $dateProject) {
