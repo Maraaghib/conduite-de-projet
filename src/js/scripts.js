@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function () {
     /* Initializations for Materalize framework*/
     $('.sidenav').sidenav();
     $('input#projectName').characterCounter();
@@ -16,7 +16,7 @@ $(document).ready(function(){
     /**
      * The "Lire plus" functionality for the projects preview
      **/
-    $('.ellipse-text').each(function() {
+    $('.ellipse-text').each(function () {
         let showCharacters = 100;
         let textEnd = " [...]";
         let readMore = '<span class="activator">Lire plus...</span>';
@@ -31,9 +31,20 @@ $(document).ready(function(){
             $(this).next().html(readMore);
         }
     });
-
-  });
-
+        $('.datepicker').datepicker({ 
+            firstDay: true, 
+            format: 'dd/mm/yyyy',
+            i18n: {
+                months: [ "janvier", "février", "mars", "avril", "mai", "juin",
+                "juillet", "août", "septembre", "octobre", "novembre", "décembre" ],
+                monthsShort: [ "janv.", "févr.", "mars", "avr.", "mai", "juin",
+                "juil.", "août", "sept.", "oct.", "nov.", "déc." ],
+                weekdays: [ "dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi" ],
+                weekdaysShort: [ "dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam." ],
+                weekdaysAbbrev: [ "D","L","M","M","J","V","S" ]
+            }
+        });
+});
 
 function removeHelperText() {
     document.querySelector('#helper-text').innerHTML = '';
