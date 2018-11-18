@@ -79,20 +79,20 @@
         /**
         * Permet de sauvegarder un nouveau projet
         */
-        public function saveProject() {
+        public function createProject() {
             $db = Database::getDBConnection();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $errors = [];
 
             $query = $db->prepare("INSERT INTO project SET
-                projectName            = :projectName,
+                projectName     = :projectName,
                 description     = :description,
                 sprintDuration  = :sprintDuration,
                 dateProject     = :dateProject
             ");
 
             $data = [
-                'projectName'          => $this->getProjectName(),
+                'projectName'   => $this->getProjectName(),
                 'description'   => $this->getDescription(),
                 'sprintDuration'=> $this->getSprintDuration(),
                 'dateProject'   => $this->getDateProject()
@@ -151,24 +151,6 @@
         public function getDateProject(){
             return $this->dateProject;
         }
-    }
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createProject'])) {
-        $projectName = $_POST['projectName'];
-        $description = $_POST['projectDescription'];
-        $sprintDuration = (int) $_POST['sprintDuration'];
-        $dateProject = date('Y,m,d');
-
-        $project = Project::newProject($projectName, $description, $sprintDuration, $dateProject); // Crée une nouvelle instance de Project avec des paramètres
-
-        // if ($project->alreadyExists()) {
-        //     $projectExists = true;
-        // }
-        // else {
-        //     $projectExists = false;
-            $project->saveProject();
-        // }
-
     }
 
 ?>

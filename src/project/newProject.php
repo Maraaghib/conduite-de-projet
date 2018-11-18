@@ -1,3 +1,39 @@
+<?php
+    require_once('../data/Project.php');
+
+    $project = new Project;
+    $errorMessage = '';
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createProject'])) {
+        $projectName = $_POST['projectName'];
+        $description = $_POST['projectDescription'];
+        $sprintDuration = (int) $_POST['sprintDuration'];
+        $dateProject = date('Y,m,d');
+
+        if ($project->isProjectExist($projectName)) {
+            $errorMessage = 'Le projet <strong>'.$projectName.'</strong> existe déjà pour ce compte !';
+?>
+            <style>
+                /* label focus color */
+                .input-field #projectName:focus + label, #helper-text {
+                    color: red !important;
+                }
+
+                /* label underline focus color */
+                .row .input-field #projectName:focus {
+                    border-bottom: 1px solid red !important;
+                    box-shadow: 0 1px 0 0 red !important
+                }
+            </style>
+<?php
+        }
+        else {
+            $project = Project::newProject($projectName, $description, $sprintDuration, $dateProject); // Crée une nouvelle instance de Project avec des paramètres
+
+            $project->createProject();
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -33,33 +69,37 @@
                             <div>
                                 <div id="grid-container" class="section scrollspy">
                                     <div class="row">
-                                        <form class="col s12" action="/data/Project.php" method="post">
+                                        <form class="col s12" action="" method="post">
                                             <h5 style="text-align: center;">Créer un nouveau projet</h5>
                                             <div class="row">
                                                 <div class="input-field col s12">
-                                                    <input id="projectName" name="projectName" type="text" class="validate" maxlength="50" data-length="50" required>
+                                                    <input id="projectName" name="projectName" type="text" value="<?php echo $projectName; ?>" class="validate" data-length="50" required autofocus onfocusout="removeHelperText()">
                                                     <label for="projectName">Nom</label>
+                                                    <span id="helper-text" class="helper-text" data-error="Le nom de votre projet est obligatoire et ne peut pas excéder 50 caractères" data-success="Saisie correcte">
+                                                        <?php echo $errorMessage; ?>
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="input-field col s12">
-                                                    <textarea id="projectDescription" name="projectDescription" class="materialize-textarea"></textarea>
+                                                    <textarea id="projectDescription" name="projectDescription" class="materialize-textarea"><?php echo $description; ?></textarea>
                                                     <label for="projectDescription">Description</label>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="input-field col s6">
-                                                    <input id="sprintDuration" name="sprintDuration" type="tel" class="validate" required>
-                                                    <label for="sprintDuration">Durée</label>
+                                                    <input id="sprintDuration" name="sprintDuration" type="number" value="<?php echo $sprintDuration; ?>" min=1 class="validate" required>
+                                                    <label for="sprintDuration">Durée des sprints</label>
+                                                    <span class="helper-text" data-error="La durée des sprints est obligatoire et doit être supérieure ou égale à 1" data-success="Saisie correcte"></span>
                                                 </div>
                                                 <div class="input-field col s6">
                                                     <select required>
-                                                        <option value="" disabled selected>Choisissez l'unité</option>
                                                         <option value="1">Jours</option>
-                                                        <option value="2">Semaines</option>
+                                                        <option value="2" selected>Semaines</option>
                                                         <option value="3">Mois</option>
                                                     </select>
                                                     <label>Unité de temps</label>
+                                                    <span class="helper-text" data-error="Vous devez choisir une unité" data-success="Saisie correcte"></span>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -90,5 +130,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript" src="/js/materialize.min.js"></script>
         <script type="text/javascript" src="/js/scripts.js"></script>
+        <script type="text/javascript">
+            function removeHelperText() {
+                    document.querySelector('#helper-text').innerHTML = '';
+            }
+        </script>
     </body>
 </html>
