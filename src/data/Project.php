@@ -132,6 +132,20 @@
         }
 
         /**
+        * Permet de mettre à jour la durée des sprints d'un projet
+        */
+        public function updateSprintDuration($projectName, $sprintDuration) {
+            $db = Database::getDBConnection();
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $errors = [];
+
+            $query = $db->prepare("UPDATE project SET sprintDuration = \"$sprintDuration\" WHERE projectName = \"$projectName\"");
+            $result = $query->execute();
+
+            return $result;
+        }
+
+        /**
          * Permet de tester si un projet existe ou non
          */
          public function isProjectExist($projectName) {

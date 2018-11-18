@@ -41,12 +41,20 @@
             header('Location: /project/viewProject.php?projectName='.$newProjectName);
         }
     }
-    
+
     /* UPDATE OF THE PROJECT'S DESCRIPTION */
     elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['updateProjectDescription'])) {
         $projectName = $_POST['projectName'];
         $description = $_POST['projectDescription'];
         $instance->updateProjectDescription($projectName, $description);
+        header('Location: /project/viewProject.php?projectName='.$projectName);
+    }
+
+    /* UPDATE OF THE PROJECT'S SPRINTS DURATION */
+    elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['updateSprintDuration'])) {
+        $projectName = $_POST['projectName'];
+        $sprintDuration = (int) $_POST['sprintDuration'];
+        $instance->updateSprintDuration($projectName, $sprintDuration);
         header('Location: /project/viewProject.php?projectName='.$projectName);
     }
 ?>

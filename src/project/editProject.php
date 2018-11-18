@@ -42,10 +42,11 @@
             <form action="" method="post">
                 <div class="row">
                     <div class="input-field col s12 m4">
-                        <input id="sprintDuration" name="sprintDuration" type="tel" value="<?php echo $project['sprintDuration']; ?>" class="validate" required>
+                        <input id="sprintDuration" name="sprintDuration" type="number" min=1 value="<?php echo $project['sprintDuration']; ?>" class="validate" required>
                         <label for="sprintDuration">Durée</label>
                         <span class="helper-text" data-error="La durée des sprints est obligatoire et doit être supérieure ou égale à 1" data-success="&#10004;"></span>
                     </div>
+                    <input type="hidden" name="projectName" value="<?php echo $project['projectName']; ?>">
                     <div class="input-field col s12 m4">
                         <select required>
                             <option value="1">Jours</option>
@@ -55,7 +56,7 @@
                         <label>Unité de temps</label>
                     </div>
                     <div class="col s12 m4">
-                        <button type="submit" name="updateProjectDuration" class="btn waves-effect waves-light">
+                        <button type="submit" name="updateSprintDuration" class="btn waves-effect waves-light">
                             Valider
                         </button>
                     </div>
