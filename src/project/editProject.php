@@ -28,6 +28,7 @@
                         <textarea id="projectDescription" name="projectDescription" class="materialize-textarea"><?php echo $project['description']; ?></textarea>
                         <label for="projectDescription">Description</label>
                     </div>
+                    <input type="hidden" name="projectName" value="<?php echo $project['projectName']; ?>">
                     <div class="col s12 m4">
                         <button type="submit" name="updateProjectDescription" class="btn waves-effect waves-light">
                             Valider

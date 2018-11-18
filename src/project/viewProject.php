@@ -4,12 +4,16 @@
 
     $instance = new Project;
     $errorMessage = '';
+
     // @TODO Test if the project with this name EXISTS
+    /* RETRIEVAL OF PROJECT'S INFOS AND ITS BACKLOG */
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"])) {
         $projectName = htmlspecialchars($_GET["projectName"]);
         $project = $instance->getProject($projectName);
         $backlog = getBackLog($projectName);
     }
+
+    /* UPDATE OF THE PROJECT'S NAME */
     elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['updateProjectName'])) {
         $oldProjectName = $_POST['oldProjectName'];
         $newProjectName = $_POST['newProjectName'];
@@ -36,6 +40,14 @@
             $instance->updateProjectName($oldProjectName, $newProjectName);
             header('Location: /project/viewProject.php?projectName='.$newProjectName);
         }
+    }
+    
+    /* UPDATE OF THE PROJECT'S DESCRIPTION */
+    elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['updateProjectDescription'])) {
+        $projectName = $_POST['projectName'];
+        $description = $_POST['projectDescription'];
+        $instance->updateProjectDescription($projectName, $description);
+        header('Location: /project/viewProject.php?projectName='.$projectName);
     }
 ?>
 

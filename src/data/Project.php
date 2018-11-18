@@ -118,6 +118,20 @@
         }
 
         /**
+        * Permet de mettre à jour la description d'un projet
+        */
+        public function updateProjectDescription($projectName, $description) {
+            $db = Database::getDBConnection();
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $errors = [];
+
+            $query = $db->prepare("UPDATE project SET description = \"$description\" WHERE projectName = \"$projectName\"");
+            $result = $query->execute();
+
+            return $result;
+        }
+
+        /**
          * Permet de tester si un projet existe ou non
          */
          public function isProjectExist($projectName) {
