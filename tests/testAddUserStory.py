@@ -1,12 +1,7 @@
 import unittest
-import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.events import AbstractEventListener
 
 ADD_USER_STORY_URL = "http://localhost:8100/userStory/addUserStory.php?projectName=testAddUserStory"
 PROJECT_URL = "http://localhost:8100/project/viewProject.php?projectName=testAddUserStory#tab-swipe-2"

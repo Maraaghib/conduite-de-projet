@@ -4,7 +4,6 @@
 
 - L'utilisateur clique sur le bouton *AJOUTER UN SPRINT*
 
-
 ## Sur la page du formulaire d'ajout d'un sprint
 
 - L'utilisateur renseigne chaque champs correctement et clique sur *CRÉER*
