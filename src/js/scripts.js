@@ -33,3 +33,8 @@ $(document).ready(function(){
     });
 
   });
+
+
+function removeHelperText() {
+    document.querySelector('#helper-text').innerHTML = '';
+}
