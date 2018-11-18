@@ -104,6 +104,20 @@
         }
 
         /**
+        * Permet de mettre à jour le nom d'un projet
+        */
+        public function updateProjectName($oldProjectName, $newProjectName) {
+            $db = Database::getDBConnection();
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $errors = [];
+
+            $query = $db->prepare("UPDATE project SET projectName = \"$newProjectName\" WHERE projectName = \"$oldProjectName\"");
+            $result = $query->execute();
+
+            return $result;
+        }
+
+        /**
          * Permet de tester si un projet existe ou non
          */
          public function isProjectExist($projectName) {

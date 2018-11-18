@@ -3,15 +3,39 @@
     require_once('../userStory/userStory.php');
 
     $instance = new Project;
+    $errorMessage = '';
     // @TODO Test if the project with this name EXISTS
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"])) {
         $projectName = htmlspecialchars($_GET["projectName"]);
-
         $project = $instance->getProject($projectName);
         $backlog = getBackLog($projectName);
     }
-    else {
-        header("Location: /project/listProjects.php");
+    elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['updateProjectName'])) {
+        $oldProjectName = $_POST['oldProjectName'];
+        $newProjectName = $_POST['newProjectName'];
+
+        if ($instance->isProjectExist($newProjectName)) {
+            // $errorMessage = 'Le projet <strong>'.$newProjectName.'</strong> existe déjà pour ce compte !';
+            header('Location: /project/viewProject.php?projectName='.$oldProjectName.'#tab-swipe-6');
+?>
+            <!-- <style>
+                /* label focus color */
+                .input-field #projectName:focus + label, #helper-text {
+                    color: red !important;
+                }
+
+                /* label underline focus color */
+                .row .input-field #projectName:focus {
+                    border-bottom: 1px solid red !important;
+                    box-shadow: 0 1px 0 0 red !important
+                }
+            </style> -->
+<?php
+        }
+        else {
+            $instance->updateProjectName($oldProjectName, $newProjectName);
+            header('Location: /project/viewProject.php?projectName='.$newProjectName);
+        }
     }
 ?>
 
@@ -47,7 +71,7 @@
                     <div>
                         <?php
                         if (empty($project)) {
-                            echo "<h1>Ce projet n'existe pas !</h1>";
+                            echo "Ce projet n'existe pas !</h1>";
                         }
                         else {
 
@@ -134,16 +158,9 @@
                                 </div>
                             </div>
                             <div id="tab-swipe-6" class="col s12 transp-orange">
-                                <div class="row" style="margin: 10px;">
-                                    <div class="s12">
-                                        <h4>Paramètres</h4>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                        </p>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                        </p>
-                                    </div>
+                                <div class="container">
+                                    <h4>Paramètres</h4>
+                                    <?php include_once $_SERVER['DOCUMENT_ROOT'].'/project/editProject.php'; ?>
                                 </div>
                             </div>
                         </div>
