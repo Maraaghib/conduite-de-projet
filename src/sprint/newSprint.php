@@ -1,12 +1,29 @@
 <?php 
 require_once('../data/Project.php');
 require_once('../userStory/userStory.php');
-$instance = new Project;
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"])) {
+$project = new Project;
+$db = Database::getDBConnection();
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+if (!isset($_GET["projectName"])) {
+    header('location: /userStory/error.php');
+} elseif (isset($_GET["projectName"])) {
     $projectName = htmlspecialchars($_GET["projectName"]);
-    $project = $instance->getProject($projectName);
+    if (!$project->isProjectExist($projectName)) {
+        header('location: /userStory/error.php');
+    }
+}
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $project = $project->getProject($projectName);
     $backlog = getBackLog($projectName);
 } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $beginDate = htmlspecialchars($_POST["beginDate"]);
+    $listUserStory = $_POST["listUserStory"];
+    $numberUserStory = count($listUserStory);
+    for ($i = 0; $i < $numberUserStory; $i++) {
+        if (!isUserStoryExist($listUserStory[$i], $projectName)) {
+            header('location: /userStory/error.php');
+        }
+    }
 } else {
     header('location: /userStory/error.php');
 } 
@@ -50,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"])) {
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <select class="mdb-select md-form" name="userStories" multiple required>
+                                    <select class="mdb-select md-form" name="listUserStory[]" multiple required>
                                         <?php
                                         foreach ($backlog as list($pn, $id, $desc, $prio, $diff)) {
                                         ?>
@@ -59,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"])) {
                                         }
                                         ?>
                                     </select>
-                                    <label for="userStories">User Stories</label>     
+                                    <label for="listUserStory[]">User Stories</label>     
                                     <span class="helper-text" data-error="Vous devez choisir un ou des User Stories" data-success="Saisie correcte"></span>
                                 </div>
                             </div>

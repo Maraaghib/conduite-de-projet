@@ -23,6 +23,20 @@
         return true;
     }
 
+    function isUserStoryExist ($id, $projectName)
+    {
+        $db = Database::getDBConnection();
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $req = $db->prepare("SELECT count(*) FROM backlog WHERE projectName=:projectName AND id=:id");
+        $data = [
+            "projectName" => $projectName,
+            "id" => $id
+        ];
+        $req->execute($data);
+        $test = $req->fetch();
+        return $test !=0;
+    }
+
     function getBackLog($projectName) {
         $db = Database::getDBConnection();
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
