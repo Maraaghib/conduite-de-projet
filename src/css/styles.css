@@ -131,11 +131,15 @@ main {
  }
 
  /* BEGIN: STYLES FOR POST-IT */
- @import url(http://fonts.googleapis.com/css?family=Satisfy);
  .quote-container {
      margin-top: 50px;
      position: relative;
      min-width: 300px;
+     -webkit-transform: rotate(2deg);
+     -moz-transform: rotate(2deg);
+     -o-transform: rotate(2deg);
+     -ms-transform: rotate(2deg);
+     transform: rotate(2deg);
  }
 
  blockquote.note {
@@ -144,8 +148,8 @@ main {
      /* width: 300px; */
      margin: 0 auto;
      padding: 20px;
-     font-family: Satisfy;
-     font-size: 30px;
+     /* font-family: Satisfy; */
+     font-size: 20px;
      box-shadow: 0 10px 10px 2px rgba(0,0,0,0.3);
  }
 
@@ -157,11 +161,6 @@ main {
 
  blockquote.note.yellow {
      background: #eae672 !important;
-     -webkit-transform: rotate(2deg);
-     -moz-transform: rotate(2deg);
-     -o-transform: rotate(2deg);
-     -ms-transform: rotate(2deg);
-     transform: rotate(2deg);
  }
 
  .pin {
@@ -213,6 +212,24 @@ main {
      -webkit-transform-origin: 50% 100%;
      -ms-transform-origin: 50% 100%;
      -o-transform-origin: 50% 100%;
+ }
+
+ .note .chip {
+     color: #000;
+ }
+
+ .note .chip-img {
+     color: #fff;
+     background-color: #0c8e8efa;
+ }
+
+ .note-header {
+    /* color: #ff0c00; */
+    background-color: #0c8e8ea1;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-radius: 7px;
+    font-weight: bold;
  }
   /* END: STYLES FOR POST-IT */
 

@@ -69,6 +69,7 @@
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="/css/materialize.css"  media="screen,projection"/>
         <link rel="stylesheet" href="/css/styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
 
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
