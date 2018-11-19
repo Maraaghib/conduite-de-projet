@@ -24,7 +24,7 @@
               try {
                  self::$db = new PDO('mysql:host=' . self::$config['db_hostname'] . '; dbname=' . self::$config['db_name'], self::$config['db_user'], self::$config['db_password']);
               } catch (PDOException $e) {
-                 print "Connection failed : " . $e->getMsg() . "<br/>";
+                 print "Connection failed : " . $e->getMessage() . "<br/>";
               }
           }
 
