@@ -138,16 +138,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="tab-swipe-3" class="col s12 transp-green">
+                            <div id="tab-swipe-3" class="col s12 transp-green" style="min-width: 1085px;">
                                 <div class="row" style="margin: 10px;">
                                     <div class="s12">
                                         <h4>Sprints</h4>
-                                        <p>
+                                        <div class="row">
+                                            <p>
                                             <h4>La durée des sprint est de: <?php echo $project['sprintDuration']; ?></h4>
-                                        </p>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                        </p>
+                                            </p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            </p>
+                                            <?php include_once $_SERVER['DOCUMENT_ROOT'].'/task/listTasks.php'; ?>
+                                        </div>
+                                        <div class="center-align" style="margin-top: 35px;">
+                                            <a id="newSprint" href="/sprint/newSprint.php?projectName=<?php echo $project['projectName'] ?>" class="btn waves-effect waves-light"><i class="material-icons left">add</i>Ajouter un sprint</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
