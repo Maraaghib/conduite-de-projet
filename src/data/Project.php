@@ -50,8 +50,11 @@
             $db = Database::getDBConnection();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             /* WHERE author = :author = ?? */
-            $stmt = $db->prepare("SELECT * FROM project WHERE projectName='$projectName'");
-            $stmt->execute();
+            $stmt = $db->prepare("SELECT * FROM project WHERE projectName=:projectName");
+            $data = [
+                "projectName" => $projectName
+            ];
+            $stmt->execute($data);
 
             $project = $stmt->fetch();
 
@@ -111,10 +114,12 @@
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $errors = [];
 
-            $query = $db->prepare("UPDATE project SET projectName = \"$newProjectName\" WHERE projectName = \"$oldProjectName\"");
-            $result = $query->execute();
-
-            return $result;
+            $query = $db->prepare("UPDATE project SET projectName=:newProjectName WHERE projectName=:oldProjectName");
+            $data = [
+                "newProjectName" => $newProjectName,
+                "oldProjectName" => $oldProjectName
+            ];
+            $result = $query->execute($data);
         }
 
         /**
