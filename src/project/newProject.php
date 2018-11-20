@@ -1,12 +1,20 @@
 <?php
     require_once('../data/Project.php');
-
+    $week = 2;
+    $month = 3;
+    $nbDayInAWeek = 7;
+    $nbDayInAMonth = 30;
     $project = new Project;
     $errorMessage = '';
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createProject'])) {
         $projectName = $_POST['projectName'];
         $description = $_POST['projectDescription'];
         $sprintDuration = (int) $_POST['sprintDuration'];
+        $timeUnit = (int) $_POST['timeUnit'];
+        if ($timeUnit == $week)
+            $sprintDuration *= $nbDayInAWeek;
+        if ($timeUnit == $month)
+            $sprintDuration *= $nbDayInAMonth;
         $dateProject = date('Y,m,d');
 
         if ($project->isProjectExist($projectName)) {
@@ -93,7 +101,7 @@
                                                     <span class="helper-text" data-error="La durée des sprints est obligatoire et doit être supérieure ou égale à 1" data-success="Saisie correcte"></span>
                                                 </div>
                                                 <div class="input-field col s6">
-                                                    <select required>
+                                                    <select id="timeUnit" name="timeUnit" required>
                                                         <option value="1">Jours</option>
                                                         <option value="2" selected>Semaines</option>
                                                         <option value="3">Mois</option>
