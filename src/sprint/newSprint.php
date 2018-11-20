@@ -12,11 +12,9 @@ if (!isset($_GET["projectName"])) {
         header('location: /userStory/error.php');
     }
 }
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $project = $project->getProject($projectName);
-    $backlog = getBackLog($projectName);
-} else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $beginDate = htmlspecialchars($_POST["beginDate"]);
+$projectInfo = $project->getProject($projectName);
+$backlog = getBackLog($projectName);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $listUserStory = $_POST["listUserStory"];
     $numberUserStory = count($listUserStory);
     for ($i = 0; $i < $numberUserStory; $i++) {
@@ -24,9 +22,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             header('location: /userStory/error.php');
         }
     }
-} else {
+    $startDate = htmlspecialchars($_POST["startDate"]);
+
+    $parts = explode('/', $startDate);
+    $sqlDate  = "$parts[2]-$parts[1]-$parts[0]";
+    if (!isValidDate($sqlDate, $projectName, $projectInfo)) {
+        $invalidDate = "La date chevauche celle d'un autre sprint";
+    } else {
+        $newSprint = $db->prepare(
+            "INSERT INTO sprint SET projectName=:projectName, startDate=:startDate"
+        );
+        $data = [
+            "projectName" => $projectName,
+            "startDate" => $sqlDate
+        ];
+        $newSprint->execute($data);
+        header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-3");
+    }
+    
+} elseif ($_SERVER["REQUEST_METHOD"] != "GET") {
     header('location: /userStory/error.php');
 } 
+
+function isValidDate($date, $projectName, $project) {
+    $db = Database::getDBConnection();
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sprintDuration = $project["sprintDuration"];
+    $listSprintStartDate = $db->prepare("SELECT count(*) FROM sprint WHERE ABS(DATEDIFF(startDate, :date))<=:sprintDuration");
+    $data = [
+        "date" => $date,
+        "sprintDuration" => $sprintDuration
+    ];
+    $listSprintStartDate->execute($data);
+    $nb = $listSprintStartDate->fetchColumn();
+    return $nb == 0;  
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,8 +90,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 </p>
                             </div>
                             <div class="row">
+                                <?php echo $invalidDate ?>
                                 <div class="input-field col s12">
-                                    <input id="pickadate" class="datepicker" type="text" name="beginDate" required />
+                                    <input id="pickadate" class="datepicker" type="text" name="startDate" required />
                                     <label>Date de début *</label>
                                 </div>
                             </div>
