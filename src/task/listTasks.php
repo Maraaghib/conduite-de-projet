@@ -6,7 +6,7 @@
             <div class="quote-container card">
                 <i class="pin"></i>
                 <blockquote class="card-content note yellow">
-                    <h5 class="center-align note-header"><span style="color: #ff0c00;">T18a</span>: <span style="color: #0316f9;">4</span> jh</h5>
+                    <h5 class="center-align note-header"><span style="color: #ff0c00;" title="ID de la tâche">T18a</span>: <span style="color: #0316f9;" title="Temps estimé (Jour-Homme)">4</span> jh</h5>
                     <p class="ellipse-text">
                         Projet 2: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </p>
@@ -22,23 +22,23 @@
                 <blockquote class="card-action note yellow">
                     <div class="row" style="margin-bottom: 0px;">
                         <div class="col s12">
-                            <div class="chip chip-img">
+                            <div class="chip chip-img" title="Personne à laquelle cette tâche est affectée">
                                 <!-- style="margin-top: 10px;" -->
                                 <img src="/img/avatar.png" alt="Contact Person" style="float: left; margin: 0 8px 0 -12px; height: 32px; width: 32px;  border-radius: 50%;">
                                 Hamza SEYE
                             </div>
                         </div>
                         <div class="col s12">
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
                         </div>
@@ -50,7 +50,7 @@
             <div class="quote-container card">
                 <i class="pin"></i>
                 <blockquote class="card-content note yellow">
-                    <h5 class="center-align note-header"><span style="color: #ff0c00;">T18a</span>: <span style="color: #0316f9;">4</span> jh</h5>
+                    <h5 class="center-align note-header"><span style="color: #ff0c00;" title="ID de la tâche">T18a</span>: <span style="color: #0316f9;" title="Temps estimé (Jour-Homme)">4</span> jh</h5>
                     <p class="ellipse-text">
                         Projet 2: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </p>
@@ -66,23 +66,23 @@
                 <blockquote class="card-action note yellow">
                     <div class="row" style="margin-bottom: 0px;">
                         <div class="col s12">
-                            <div class="chip chip-img">
+                            <div class="chip chip-img" title="Personne à laquelle cette tâche est affectée">
                                 <!-- style="margin-top: 10px;" -->
                                 <img src="/img/avatar.png" alt="Contact Person" style="float: left; margin: 0 8px 0 -12px; height: 32px; width: 32px;  border-radius: 50%;">
                                 Hamza SEYE
                             </div>
                         </div>
                         <div class="col s12">
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
                         </div>
@@ -101,7 +101,7 @@
             <div class="quote-container card">
                 <i class="pin"></i>
                 <blockquote class="card-content note yellow">
-                    <h5 class="center-align note-header"><span style="color: #ff0c00;">T18a</span>: <span style="color: #0316f9;">4</span> jh</h5>
+                    <h5 class="center-align note-header"><span style="color: #ff0c00;" title="ID de la tâche">T18a</span>: <span style="color: #0316f9;" title="Temps estimé (Jour-Homme)">4</span> jh</h5>
                     <p class="ellipse-text">
                         Projet 2: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </p>
@@ -117,23 +117,23 @@
                 <blockquote class="card-action note yellow">
                     <div class="row" style="margin-bottom: 0px;">
                         <div class="col s12">
-                            <div class="chip chip-img">
+                            <div class="chip chip-img" title="Personne à laquelle cette tâche est affectée">
                                 <!-- style="margin-top: 10px;" -->
                                 <img src="/img/avatar.png" alt="Contact Person" style="float: left; margin: 0 8px 0 -12px; height: 32px; width: 32px;  border-radius: 50%;">
                                 Hamza SEYE
                             </div>
                         </div>
                         <div class="col s12">
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
                         </div>
@@ -145,7 +145,7 @@
             <div class="quote-container card">
                 <i class="pin"></i>
                 <blockquote class="card-content note yellow">
-                    <h5 class="center-align note-header"><span style="color: #ff0c00;">T18a</span>: <span style="color: #0316f9;">4</span> jh</h5>
+                    <h5 class="center-align note-header"><span style="color: #ff0c00;" title="ID de la tâche">T18a</span>: <span style="color: #0316f9;" title="Temps estimé (Jour-Homme)">4</span> jh</h5>
                     <p class="ellipse-text">
                         Projet 2: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </p>
@@ -161,23 +161,23 @@
                 <blockquote class="card-action note yellow">
                     <div class="row" style="margin-bottom: 0px;">
                         <div class="col s12">
-                            <div class="chip chip-img">
+                            <div class="chip chip-img" title="Personne à laquelle cette tâche est affectée">
                                 <!-- style="margin-top: 10px;" -->
                                 <img src="/img/avatar.png" alt="Contact Person" style="float: left; margin: 0 8px 0 -12px; height: 32px; width: 32px;  border-radius: 50%;">
                                 Hamza SEYE
                             </div>
                         </div>
                         <div class="col s12">
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
                         </div>
@@ -196,7 +196,7 @@
             <div class="quote-container card">
                 <i class="pin"></i>
                 <blockquote class="card-content note yellow">
-                    <h5 class="center-align note-header"><span style="color: #ff0c00;">T18a</span>: <span style="color: #0316f9;">4</span> jh</h5>
+                    <h5 class="center-align note-header"><span style="color: #ff0c00;" title="ID de la tâche">T18a</span>: <span style="color: #0316f9;" title="Temps estimé (Jour-Homme)">4</span> jh</h5>
                     <p class="ellipse-text">
                         Projet 2: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </p>
@@ -212,23 +212,23 @@
                 <blockquote class="card-action note yellow">
                     <div class="row" style="margin-bottom: 0px;">
                         <div class="col s12">
-                            <div class="chip chip-img">
+                            <div class="chip chip-img" title="Personne à laquelle cette tâche est affectée">
                                 <!-- style="margin-top: 10px;" -->
                                 <img src="/img/avatar.png" alt="Contact Person" style="float: left; margin: 0 8px 0 -12px; height: 32px; width: 32px;  border-radius: 50%;">
                                 Hamza SEYE
                             </div>
                         </div>
                         <div class="col s12">
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
                         </div>
@@ -240,7 +240,7 @@
             <div class="quote-container card">
                 <i class="pin"></i>
                 <blockquote class="card-content note yellow">
-                    <h5 class="center-align note-header"><span style="color: #ff0c00;">T18a</span>: <span style="color: #0316f9;">4</span> jh</h5>
+                    <h5 class="center-align note-header"><span style="color: #ff0c00;" title="ID de la tâche">T18a</span>: <span style="color: #0316f9;" title="Temps estimé (Jour-Homme)">4</span> jh</h5>
                     <p class="ellipse-text">
                         Projet 2: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </p>
@@ -256,23 +256,23 @@
                 <blockquote class="card-action note yellow">
                     <div class="row" style="margin-bottom: 0px;">
                         <div class="col s12">
-                            <div class="chip chip-img">
+                            <div class="chip chip-img" title="Personne à laquelle cette tâche est affectée">
                                 <!-- style="margin-top: 10px;" -->
                                 <img src="/img/avatar.png" alt="Contact Person" style="float: left; margin: 0 8px 0 -12px; height: 32px; width: 32px;  border-radius: 50%;">
                                 Hamza SEYE
                             </div>
                         </div>
                         <div class="col s12">
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
-                            <div class="chip">
+                            <div class="chip" title="User Story #28">
                                 #28
                             </div>
                         </div>
