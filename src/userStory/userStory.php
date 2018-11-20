@@ -50,4 +50,18 @@
 
         return $backlog;
     }
+
+    function getNonPlanUserStories($projectName) {
+        $db = Database::getDBConnection();
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $db->prepare("SELECT * FROM backlog WHERE projectName=:projectName AND idSprint IS NULL  ORDER BY id");
+        $data = [
+            "projectName" => $projectName
+        ];
+        $stmt->execute($data);
+
+        $backlog = $stmt->fetchAll();
+
+        return $backlog;
+    }
 ?>

@@ -13,17 +13,9 @@ if (!isset($_GET["projectName"])) {
     }
 }
 $projectInfo = $project->getProject($projectName);
-$backlog = getBackLog($projectName);
+$backlog = getNonPlanUserStories($projectName);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $listUserStory = $_POST["listUserStory"];
-    $numberUserStory = count($listUserStory);
-    for ($i = 0; $i < $numberUserStory; $i++) {
-        if (!isUserStoryExist($listUserStory[$i], $projectName)) {
-            header('location: /userStory/error.php');
-        }
-    }
     $startDate = htmlspecialchars($_POST["startDate"]);
-
     $parts = explode('/', $startDate);
     $sqlDate  = "$parts[2]-$parts[1]-$parts[0]";
     if (isPastDate($sqlDate)) {
@@ -39,6 +31,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "startDate" => $sqlDate
         ];
         $newSprint->execute($data);
+        // Get the id of the last inserted sprint
+        $req = $db->prepare("SELECT max(id) FROM sprint");
+        $req->execute();
+        $idSprint = $req->fetchColumn();
+        // Update idSprint in backlog
+        $listUserStory = $_POST["listUserStory"];
+        $numberUserStory = count($listUserStory);
+        for ($i = 0; $i < $numberUserStory; $i++) {
+            $idUserStory = $listUserStory[$i];
+            if (!isUserStoryExist($idUserStory, $projectName)) {
+                header('location: /userStory/error.php');
+            }
+            $updateBacklog = $db->prepare("UPDATE backlog SET idSprint=:idSprint WHERE id=:idUserStory");
+            $data = [
+                "idSprint" => $idSprint,
+                "idUserStory" => $idUserStory
+            ];
+            $updateBacklog->execute($data);
+        }
         header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-3");
     }
     
