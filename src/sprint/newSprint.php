@@ -1,15 +1,82 @@
 <?php 
 require_once('../data/Project.php');
 require_once('../userStory/userStory.php');
-$instance = new Project;
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"])) {
+$project = new Project;
+$db = Database::getDBConnection();
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+if (!isset($_GET["projectName"])) {
+    header('location: /userStory/error.php');
+} elseif (isset($_GET["projectName"])) {
     $projectName = htmlspecialchars($_GET["projectName"]);
-    $project = $instance->getProject($projectName);
-    $backlog = getBackLog($projectName);
-} else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-} else {
+    if (!$project->isProjectExist($projectName)) {
+        header('location: /userStory/error.php');
+    }
+}
+$projectInfo = $project->getProject($projectName);
+$backlog = getNonPlanUserStories($projectName);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $startDate = htmlspecialchars($_POST["startDate"]);
+    $parts = explode('/', $startDate);
+    $sqlDate  = "$parts[2]-$parts[1]-$parts[0]";
+    if (isPastDate($sqlDate)) {
+        $invalidDate = "Vous ne pouvez pas choisir une date passée";
+    } elseif (!isValidDate($sqlDate, $projectName, $projectInfo)) {
+        $invalidDate = "La date chevauche celle d'un autre sprint";
+    } else {
+        $newSprint = $db->prepare(
+            "INSERT INTO sprint SET projectName=:projectName, startDate=:startDate"
+        );
+        $data = [
+            "projectName" => $projectName,
+            "startDate" => $sqlDate
+        ];
+        $newSprint->execute($data);
+        // Get the id of the last inserted sprint
+        $req = $db->prepare("SELECT max(id) FROM sprint");
+        $req->execute();
+        $idSprint = $req->fetchColumn();
+        // Update idSprint in backlog
+        $listUserStory = $_POST["listUserStory"];
+        $numberUserStory = count($listUserStory);
+        for ($i = 0; $i < $numberUserStory; $i++) {
+            $idUserStory = $listUserStory[$i];
+            if (!isUserStoryExist($idUserStory, $projectName)) {
+                header('location: /userStory/error.php');
+            }
+            $updateBacklog = $db->prepare("UPDATE backlog SET idSprint=:idSprint WHERE id=:idUserStory");
+            $data = [
+                "idSprint" => $idSprint,
+                "idUserStory" => $idUserStory
+            ];
+            $updateBacklog->execute($data);
+        }
+        header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-3");
+    }
+    
+} elseif ($_SERVER["REQUEST_METHOD"] != "GET") {
     header('location: /userStory/error.php');
 } 
+
+function isPastDate($date) {
+    $now = new DateTime("now");
+    $datetime = new DateTime($date);
+    $now = new DateTime($now->format('Y-m-d'));
+    return $datetime < $now;
+}
+
+function isValidDate($date, $projectName, $project) {
+    $db = Database::getDBConnection();
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sprintDuration = $project["sprintDuration"];
+    $listSprintStartDate = $db->prepare("SELECT count(*) FROM sprint WHERE ABS(DATEDIFF(startDate, :date))<=:sprintDuration");
+    $data = [
+        "date" => $date,
+        "sprintDuration" => $sprintDuration
+    ];
+    $listSprintStartDate->execute($data);
+    $nb = $listSprintStartDate->fetchColumn();
+    return $nb == 0;  
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,14 +110,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"])) {
                                 </p>
                             </div>
                             <div class="row">
+                                <?php echo $invalidDate ?>
                                 <div class="input-field col s12">
-                                    <input id="pickadate" class="datepicker" type="text" name="beginDate" required />
+                                    <input id="pickadate" class="datepicker" type="text" name="startDate" required />
                                     <label>Date de début *</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <select class="mdb-select md-form" name="userStories" multiple required>
+                                    <select class="mdb-select md-form" name="listUserStory[]" multiple required>
                                         <?php
                                         foreach ($backlog as list($pn, $id, $desc, $prio, $diff)) {
                                         ?>
@@ -59,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"])) {
                                         }
                                         ?>
                                     </select>
-                                    <label for="userStories">User Stories</label>     
+                                    <label for="listUserStory[]">User Stories</label>     
                                     <span class="helper-text" data-error="Vous devez choisir un ou des User Stories" data-success="Saisie correcte"></span>
                                 </div>
                             </div>

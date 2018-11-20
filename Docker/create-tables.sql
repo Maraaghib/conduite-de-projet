@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `backlog` (
   `description` text NOT NULL,
   `priority` int(11) DEFAULT NULL,
   `difficulty` int(11) NOT NULL,
+  `idSprint` int(11) DEFAULT NULL,
   `idAI` int(11) NOT NULL COMMENT 'Id. Auto-Increment pour lier US aux Tâches'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -123,7 +124,6 @@ ALTER TABLE `project`
 --
 ALTER TABLE `sprint`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `projectName_2` (`projectName`),
   ADD KEY `projectName` (`projectName`);
 
 --
@@ -166,7 +166,8 @@ ALTER TABLE `task`
 -- Contraintes pour la table `backlog`
 --
 ALTER TABLE `backlog`
-  ADD CONSTRAINT `FK_Project_Backlog` FOREIGN KEY (`projectName`) REFERENCES `project` (`projectName`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_Project_Backlog` FOREIGN KEY (`projectName`) REFERENCES `project` (`projectName`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Sprint_Backlog` FOREIGN KEY (`idSprint`) REFERENCES `sprint` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `dependence`
