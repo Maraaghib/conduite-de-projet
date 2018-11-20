@@ -26,7 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $parts = explode('/', $startDate);
     $sqlDate  = "$parts[2]-$parts[1]-$parts[0]";
-    if (!isValidDate($sqlDate, $projectName, $projectInfo)) {
+    if (isPastDate($sqlDate)) {
+        $invalidDate = "Vous ne pouvez pas choisir une date passée";
+    } elseif (!isValidDate($sqlDate, $projectName, $projectInfo)) {
         $invalidDate = "La date chevauche celle d'un autre sprint";
     } else {
         $newSprint = $db->prepare(
@@ -43,6 +45,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } elseif ($_SERVER["REQUEST_METHOD"] != "GET") {
     header('location: /userStory/error.php');
 } 
+
+function isPastDate($date) {
+    $now = new DateTime("now");
+    $datetime = new DateTime($date);
+    $now = new DateTime($now->format('Y-m-d'));
+    return $datetime < $now;
+}
 
 function isValidDate($date, $projectName, $project) {
     $db = Database::getDBConnection();
