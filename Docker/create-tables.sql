@@ -124,7 +124,6 @@ ALTER TABLE `project`
 --
 ALTER TABLE `sprint`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `projectName_2` (`projectName`),
   ADD KEY `projectName` (`projectName`);
 
 --
