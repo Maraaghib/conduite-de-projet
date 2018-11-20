@@ -64,4 +64,18 @@
 
         return $backlog;
     }
+
+    function getListSprint($projectName) {
+        $db = Database::getDBConnection();
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $db->prepare("SELECT * FROM sprint WHERE projectName=:projectName ORDER BY id");
+        $data = [
+            "projectName" => $projectName
+        ];
+        $stmt->execute($data);
+
+        $listSprint = $stmt->fetchAll();
+
+        return $listSprint;
+    }
 ?>
