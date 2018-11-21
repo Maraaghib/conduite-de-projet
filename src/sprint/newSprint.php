@@ -1,15 +1,16 @@
 <?php 
 require_once('../data/Project.php');
 require_once('../userStory/userStory.php');
+
 $project = new Project;
 $db = Database::getDBConnection();
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 if (!isset($_GET["projectName"])) {
-    header('location: /userStory/error.php');
+    header(ERROR_URL);
 } elseif (isset($_GET["projectName"])) {
     $projectName = htmlspecialchars($_GET["projectName"]);
     if (!$project->isProjectExist($projectName)) {
-        header('location: /userStory/error.php');
+        header(ERROR_URL);
     }
 }
 $projectInfo = $project->getProject($projectName);
@@ -20,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sqlDate  = "$parts[2]-$parts[1]-$parts[0]";
     if (isPastDate($sqlDate)) {
         $invalidDate = "Vous ne pouvez pas choisir une date passée";
-    } elseif (!isValidDate($sqlDate, $projectName, $projectInfo)) {
+    } elseif (!isValidDate($sqlDate, $projectInfo)) {
         $invalidDate = "La date chevauche celle d'un autre sprint";
     } else {
         $newSprint = $db->prepare(
@@ -41,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         for ($i = 0; $i < $numberUserStory; $i++) {
             $idUserStory = $listUserStory[$i];
             if (!isUserStoryExist($idUserStory, $projectName)) {
-                header('location: /userStory/error.php');
+                header(ERROR_URL);
             }
             $updateBacklog = $db->prepare("UPDATE backlog SET idSprint=:idSprint WHERE id=:idUserStory");
             $data = [
@@ -54,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
 } elseif ($_SERVER["REQUEST_METHOD"] != "GET") {
-    header('location: /userStory/error.php');
+    header(ERROR_URL);
 } 
 
 function isPastDate($date) {
@@ -64,7 +65,7 @@ function isPastDate($date) {
     return $datetime < $now;
 }
 
-function isValidDate($date, $projectName, $project) {
+function isValidDate($date, $project) {
     $db = Database::getDBConnection();
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sprintDuration = $project["sprintDuration"];

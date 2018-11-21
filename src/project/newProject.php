@@ -12,9 +12,13 @@
         $sprintDuration = (int) $_POST['sprintDuration'];
         $timeUnit = (int) $_POST['timeUnit'];
         if ($timeUnit == $week)
+        {
             $sprintDuration *= $nbDayInAWeek;
+        }
         if ($timeUnit == $month)
+        {
             $sprintDuration *= $nbDayInAMonth;
+        }
         $dateProject = date('Y,m,d');
 
         if ($project->isProjectExist($projectName)) {

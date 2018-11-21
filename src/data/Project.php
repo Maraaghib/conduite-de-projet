@@ -1,6 +1,9 @@
 <?php
     require_once('Database.php');
 
+    const BASE_URL_VIEW_PROJECT = 'Location: /project/viewProject.php?projectName=';
+    const ERROR_URL = 'location: /userStory/error.php';
+
     /**
      * Classe Project contenant les inormations d'un projet
      */
@@ -56,9 +59,7 @@
             ];
             $stmt->execute($data);
 
-            $project = $stmt->fetch();
-
-            return $project;
+            return $stmt->fetch();
         }
 
         /**
@@ -131,9 +132,7 @@
             $errors = [];
 
             $query = $db->prepare("UPDATE project SET description = \"$description\" WHERE projectName = \"$projectName\"");
-            $result = $query->execute();
-
-            return $result;
+            return $query->execute();
         }
 
         /**
@@ -145,9 +144,7 @@
             $errors = [];
 
             $query = $db->prepare("UPDATE project SET sprintDuration = \"$sprintDuration\" WHERE projectName = \"$projectName\"");
-            $result = $query->execute();
-
-            return $result;
+            return $query->execute();
         }
 
         /**
@@ -161,9 +158,7 @@
                 'projectName' => $projectName
             ];
             $query->execute($data);
-            $nbProjects = $query->fetch()["numProjectName"];
-
-            return $nbProjects;
+            return $query->fetch()["numProjectName"];
         }
 
         /*************** Getters et setters ******************/

@@ -40,42 +40,36 @@
     function getBackLog($projectName) {
         $db = Database::getDBConnection();
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $db->prepare("SELECT * FROM backlog WHERE projectName=:projectName   ORDER BY id");
+        $backlog = $db->prepare("SELECT * FROM backlog WHERE projectName=:projectName   ORDER BY id");
         $data = [
             "projectName" => $projectName
         ];
-        $stmt->execute($data);
+        $backlog->execute($data);
 
-        $backlog = $stmt->fetchAll();
-
-        return $backlog;
+        return $backlog->fetchAll();
     }
 
     function getNonPlanUserStories($projectName) {
         $db = Database::getDBConnection();
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $db->prepare("SELECT * FROM backlog WHERE projectName=:projectName AND idSprint IS NULL  ORDER BY id");
+        $backlog = $db->prepare("SELECT * FROM backlog WHERE projectName=:projectName AND idSprint IS NULL  ORDER BY id");
         $data = [
             "projectName" => $projectName
         ];
-        $stmt->execute($data);
+        $backlog->execute($data);
 
-        $backlog = $stmt->fetchAll();
-
-        return $backlog;
+        return $backlog->fetchAll();
     }
 
     function getListSprint($projectName) {
         $db = Database::getDBConnection();
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $db->prepare("SELECT * FROM sprint WHERE projectName=:projectName ORDER BY id");
+        $listSprint = $db->prepare("SELECT * FROM sprint WHERE projectName=:projectName ORDER BY id");
         $data = [
             "projectName" => $projectName
         ];
-        $stmt->execute($data);
+        $listSprint->execute($data);
 
-        $listSprint = $stmt->fetchAll();
-
-        return $listSprint;
+        return $listSprint->fetchAll();
     }
 ?>

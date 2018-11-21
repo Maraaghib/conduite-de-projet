@@ -9,12 +9,12 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testProjectName($_GET["projectName"])) {
     $projectName = htmlspecialchars($_GET["projectName"]);
     if (!$project->isProjectExist($projectName)) {
-        header('location: /userStory/error.php');
+        header(ERROR_URL);
     }
 } else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET["projectName"]) && testProjectName($_GET["projectName"])) {
     $projectName = htmlspecialchars($_GET["projectName"]);
     if (!$project->isProjectExist($projectName)) {
-        header('location: /userStory/error.php');
+        header(ERROR_URL);
     }
     $id = $_POST["idUserStory"];
     if (!isIdUnique($id, $db, $projectName)) {
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
         header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-2");
     }
 } else {
-    header('location: /userStory/error.php');
+    header(ERROR_URL);
 }
 ?>
 <!DOCTYPE html>

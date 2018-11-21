@@ -22,7 +22,7 @@
 
         if ($instance->isProjectExist($newProjectName)) {
             // $errorMessage = 'Le projet <strong>'.$newProjectName.'</strong> existe déjà pour ce compte !';
-            header('Location: /project/viewProject.php?projectName='.$oldProjectName.'#tab-swipe-6');
+            header(BASE_URL_VIEW_PROJECT.$oldProjectName.'#tab-swipe-6');
 ?>
             <!-- <style>
                 /* label focus color */
@@ -40,7 +40,7 @@
         }
         else {
             $instance->updateProjectName($oldProjectName, $newProjectName);
-            header('Location: /project/viewProject.php?projectName='.$newProjectName);
+            header(BASE_URL_VIEW_PROJECT.$newProjectName);
         }
     }
 
@@ -49,7 +49,7 @@
         $projectName = $_POST['projectName'];
         $description = $_POST['projectDescription'];
         $instance->updateProjectDescription($projectName, $description);
-        header('Location: /project/viewProject.php?projectName='.$projectName);
+        header(BASE_URL_VIEW_PROJECT.$projectName);
     }
 
     /* UPDATE OF THE PROJECT'S SPRINTS DURATION */
@@ -57,7 +57,7 @@
         $projectName = $_POST['projectName'];
         $sprintDuration = (int) $_POST['sprintDuration'];
         $instance->updateSprintDuration($projectName, $sprintDuration);
-        header('Location: /project/viewProject.php?projectName='.$projectName);
+        header(BASE_URL_VIEW_PROJECT.$projectName);
     }
 ?>
 
