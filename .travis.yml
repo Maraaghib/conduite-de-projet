@@ -1,0 +1,28 @@
+sudo: required
+addons:
+  apt:
+    packages:
+- docker-ce
+
+language: python
+python:
+  - "3.5"
+
+services:
+  - docker
+
+install:
+  - wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
+  - mkdir bin
+  - tar -xzf geckodriver-v0.23.0-linux64.tar.gz -C bin
+  - export PATH=$PATH:$PWD/bin
+  - cd Docker
+  - sudo docker-compose up -d --build
+  - pip3 install selenium
+
+script:
+  - curl localhost:8100
+  - python3 tests/*.py
+
+after_script:
+  - docker-compose down -v --rmi all
