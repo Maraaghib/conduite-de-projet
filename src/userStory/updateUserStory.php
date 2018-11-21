@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && isset
         header(ERROR_URL);
     }
     $id = htmlspecialchars($_GET["idUserStory"]);
-    if (!isUserStoryExist($id)) {
+    if (!isUserStoryExist($id, $projectName)) {
         header(ERROR_URL);
     }
     $selectUserStory = "SELECT description, difficulty, priority FROM backlog WHERE projectName=\"$projectName\" AND id=$id";
