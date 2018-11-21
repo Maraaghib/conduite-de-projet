@@ -2,7 +2,7 @@
     require_once('Database.php');
 
     const BASE_URL_VIEW_PROJECT = 'Location: /project/viewProject.php?projectName=';
-    const ERROR_URL = 'location: /userStory/error.php';
+    const ERROR_URL = 'location: /error.php';
 
     /**
      * Classe Project contenant les inormations d'un projet
