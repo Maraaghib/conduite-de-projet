@@ -1,30 +1,22 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    try {
-        $cdpDb = new PDO(
-            'mysql:host=database;port=3306;dbname=Cdp2018;charset=utf8',
-            'root',
-            'pass'
-        );
-        $cdpDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (Exception $ex) {
-        die('Erreur : ' . $ex->getMessage());
-    }
+    require_once('../data/Project.php');
+    require_once('userStory.php');
+    $project = new Project;
+
+    $cdpDb = Database::getDBConnection();
+    $cdpDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
     $id = htmlspecialchars($_POST['idUserStory']);
     $projectName = htmlspecialchars($_POST['projectName']);
-    try {
-        $removeUserStory = $cdpDb->prepare("DELETE FROM backlog WHERE id=:id AND projectName=:projectName");
-        $data = [
-            'id' => $id,
-            'projectName' => $projectName
-        ];
-    } catch (Exception $ex) {
-        die('Erreur : ' . $ex->getMessage());
-        header('location: /userStory/error.php');
-    }
+    $removeUserStory = $cdpDb->prepare("DELETE FROM backlog WHERE id=:id AND projectName=:projectName");
+    $data = [
+        'id' => $id,
+        'projectName' => $projectName
+    ];
     if ($removeUserStory->execute($data)) {
         header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-2");
     }
 } else {
-    header('location: /userStory/error.php');
+    header(ERROR_URL);
 }

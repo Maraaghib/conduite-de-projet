@@ -1,18 +1,22 @@
 <?php
 require_once 'userStory.php';
-try {
-    $cdpDb = new PDO(
-        'mysql:host=database;port=3306;dbname=Cdp2018;charset=utf8',
-        'root',
-        'pass'
-    );
-    $cdpDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $ex) {
-    die('Erreur : ' . $ex->getMessage());
-}
+require_once('../data/Project.php');
+require_once('userStory.php');
+
+$project = new Project;
+
+$cdpDb = Database::getDBConnection();
+$cdpDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && isset($_GET["idUserStory"]) && testProjectName($_GET["projectName"])) {
     $projectName = htmlspecialchars($_GET["projectName"]);
+    if (!$project->isProjectExist($projectName)) {
+        header(ERROR_URL);
+    }
     $id = htmlspecialchars($_GET["idUserStory"]);
+    if (!isUserStoryExist($id)) {
+        header(ERROR_URL);
+    }
     $selectUserStory = "SELECT description, difficulty, priority FROM backlog WHERE projectName=\"$projectName\" AND id=$id";
     $toFetch = $cdpDb->prepare($selectUserStory);
     $toFetch->execute();
@@ -34,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && isset
     $cdpDb->exec($updateUserStory);
     header("location: listBacklog.php?projectName=$projectName");
 } else {
-    header('location: /userStory/error.php');
+    header(ERROR_URL);
 }
 
 ?>
