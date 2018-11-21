@@ -22,4 +22,4 @@ script:
   - sonar-scanner
 
 after_script:
-  - docker-compose down -v --rmi all
+  - cd Docker; docker-compose down -v --rmi all
