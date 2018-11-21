@@ -2,7 +2,9 @@ sudo: required
 addons:
   apt:
     packages:
-- docker-ce
+    - docker-ce
+  sonarcloud:
+    organization: "gchupin-github" # the key of the org you chose at step #3
 
 language: python
 python:
@@ -12,17 +14,12 @@ services:
   - docker
 
 install:
-  - wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
-  - mkdir bin
-  - tar -xzf geckodriver-v0.23.0-linux64.tar.gz -C bin
-  - export PATH=$PATH:$PWD/bin
-  - cd Docker
-  - sudo docker-compose up -d --build
-  - pip3 install selenium
+  - cd Docker; docker-compose up -d --build; cd ..
 
 script:
   - curl localhost:8100
-  - python3 tests/*.py
+  - pwd
+  - sonar-scanner
 
 after_script:
   - docker-compose down -v --rmi all
