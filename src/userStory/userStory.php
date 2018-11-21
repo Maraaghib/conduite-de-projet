@@ -64,7 +64,7 @@
     function getListSprint($projectName) {
         $db = Database::getDBConnection();
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $listSprint = $db->prepare("SELECT * FROM sprint WHERE projectName=:projectName ORDER BY id");
+        $listSprint = $db->prepare("SELECT * FROM sprint WHERE projectName=:projectName ORDER BY startDate");
         $data = [
             "projectName" => $projectName
         ];
