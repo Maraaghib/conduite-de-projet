@@ -35,36 +35,30 @@
                 <blockquote class="card-action note yellow">
                     <div class="row" style="margin-bottom: 0px;">
                         <div class="col s12">
-                            <div class="chip purple lighten-2" title="Tâche T18a">
-                                T18a
+                            <?php
+                                $idTask = $task['idAI'];
+                                $dependences = getDependenceByID($idTask);
+                                foreach ($dependences as $dependence) {
+                            ?>
+                            <div class="chip purple lighten-2" title="Tâche <?php echo $dependence['idTask']; ?>">
+                                <?php echo $dependence['idTask']; ?>
                             </div>
-                            <div class="chip purple lighten-2" title="Tâche T10b">
-                                T10b
-                            </div>
-                            <div class="chip purple lighten-2" title="Tâche T09a">
-                                T09a
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </blockquote>
                 <blockquote class="card-action note yellow">
                     <div class="row" style="margin-bottom: 0px;">
                         <div class="col s12">
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
+                            <?php
+                                $idTask = $task['idAI'];
+                                $userStories = getLinkedUSByID($idTask);
+                                foreach ($userStories as $userStory) {
+                            ?>
+                            <div class="chip blue lighten-2" title="User Story #<?php echo $userStory['idUS']; ?>">
+                                #<?php echo $userStory['idUS']; ?>
                             </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </blockquote>
@@ -111,33 +105,30 @@
                 <blockquote class="card-action note yellow">
                     <div class="row" style="margin-bottom: 0px;">
                         <div class="col s12">
-                            <div class="chip purple lighten-2" title="Tâche T18a">
-                                T18a
+                            <?php
+                                $idTask = $task['idAI'];
+                                $dependences = getDependenceByID($idTask);
+                                foreach ($dependences as $dependence) {
+                            ?>
+                            <div class="chip purple lighten-2" title="Tâche <?php echo $dependence['idTask']; ?>">
+                                <?php echo $dependence['idTask']; ?>
                             </div>
-                            <div class="chip purple lighten-2" title="Tâche T10b">
-                                T10b
-                            </div>
-                            <div class="chip purple lighten-2" title="Tâche T09a">
-                                T09a
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </blockquote>
                 <blockquote class="card-action note yellow">
                     <div class="row" style="margin-bottom: 0px;">
                         <div class="col s12">
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
+                            <?php
+                                $idTask = $task['idAI'];
+                                $userStories = getLinkedUSByID($idTask);
+                                foreach ($userStories as $userStory) {
+                            ?>
+                            <div class="chip blue lighten-2" title="User Story #<?php echo $userStory['idUS']; ?>">
+                                #<?php echo $userStory['idUS']; ?>
                             </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </blockquote>
@@ -185,33 +176,30 @@
                 <blockquote class="card-action note yellow">
                     <div class="row" style="margin-bottom: 0px;">
                         <div class="col s12">
-                            <div class="chip purple lighten-2" title="Tâche T18a">
-                                T18a
+                            <?php
+                                $idTask = $task['idAI'];
+                                $dependences = getDependenceByID($idTask);
+                                foreach ($dependences as $dependence) {
+                            ?>
+                            <div class="chip purple lighten-2" title="Tâche <?php echo $dependence['idTask']; ?>">
+                                <?php echo $dependence['idTask']; ?>
                             </div>
-                            <div class="chip purple lighten-2" title="Tâche T10b">
-                                T10b
-                            </div>
-                            <div class="chip purple lighten-2" title="Tâche T09a">
-                                T09a
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </blockquote>
                 <blockquote class="card-action note yellow">
                     <div class="row" style="margin-bottom: 0px;">
                         <div class="col s12">
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
+                            <?php
+                                $idTask = $task['idAI'];
+                                $userStories = getLinkedUSByID($idTask);
+                                foreach ($userStories as $userStory) {
+                            ?>
+                            <div class="chip blue lighten-2" title="User Story #<?php echo $userStory['idUS']; ?>">
+                                #<?php echo $userStory['idUS']; ?>
                             </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </blockquote>
