@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sqlDate  = "$parts[2]-$parts[1]-$parts[0]";
     if (isPastDate($sqlDate)) {
         $invalidDate = "Vous ne pouvez pas choisir une date passée";
-    } elseif (!isValidDate($sqlDate, $projectInfo)) {
+    } elseif (!isValidDate($sqlDate, $projectName, $projectInfo)) {
         $invalidDate = "La date chevauche celle d'un autre sprint";
     } else {
         $newSprint = $db->prepare(
@@ -66,7 +66,7 @@ function isPastDate($date) {
     return $datetime < $now;
 }
 
-function isValidDate($date, $project) {
+function isValidDate($date, $projectName, $project) {
     $db = Database::getDBConnection();
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sprintDuration = $project["sprintDuration"];
