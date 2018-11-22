@@ -21,7 +21,7 @@ function isValidDate($date, $projectName, $project) {
     return $nb == 0;
 }
 
-function converDate($date) {
+function convertDate($date) {
     $parts = explode('-', $date);
     return "$parts[2]-$parts[1]-$parts[0]";
 }

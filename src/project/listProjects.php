@@ -1,5 +1,6 @@
 <?php
     require_once('../data/Project.php');
+    require_once('../date.php');
     $project = new Project;
     $projects = $project->listProjects();
 
@@ -77,7 +78,7 @@
                                                         </div>
                                                         <div class="col s6">
                                                             <!-- Faire une fonction JavaScript qui cnvertit la date en XX mmm YYYY -->
-                                                            <span><?php echo $project['dateProject']; ?></span>
+                                                            <span><?php echo convertDate($project['dateProject']); ?></span>
                                                         </div>
                                                     </div>
                                                 </div>

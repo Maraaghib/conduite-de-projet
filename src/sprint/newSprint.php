@@ -17,7 +17,7 @@ if (!isset($_GET["projectName"])) {
 $projectInfo = $project->getProject($projectName);
 $backlog = getNonPlanUserStories($projectName);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $sqlDate  = converDate(htmlspecialchars($_POST["startDate"]));
+    $sqlDate  = convertDate(htmlspecialchars($_POST["startDate"]));
     if (isPastDate($sqlDate)) {
         $invalidDate = "Vous ne pouvez pas choisir une date passée";
     } elseif (!isValidDate($sqlDate, $projectName, $projectInfo)) {
