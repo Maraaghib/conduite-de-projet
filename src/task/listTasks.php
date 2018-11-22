@@ -50,21 +50,15 @@
                 <blockquote class="card-action note yellow">
                     <div class="row" style="margin-bottom: 0px;">
                         <div class="col s12">
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
+                            <?php
+                                $idTask = $task['idAI'];
+                                $userStories = getLinkedUSByID($idTask);
+                                foreach ($userStories as $userStory) {
+                            ?>
+                            <div class="chip blue lighten-2" title="User Story #<?php echo $userStory['idUS']; ?>">
+                                #<?php echo $userStory['idUS']; ?>
                             </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </blockquote>
@@ -126,18 +120,15 @@
                 <blockquote class="card-action note yellow">
                     <div class="row" style="margin-bottom: 0px;">
                         <div class="col s12">
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
+                            <?php
+                                $idTask = $task['idAI'];
+                                $userStories = getLinkedUSByID($idTask);
+                                foreach ($userStories as $userStory) {
+                            ?>
+                            <div class="chip blue lighten-2" title="User Story #<?php echo $userStory['idUS']; ?>">
+                                #<?php echo $userStory['idUS']; ?>
                             </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </blockquote>
@@ -200,18 +191,15 @@
                 <blockquote class="card-action note yellow">
                     <div class="row" style="margin-bottom: 0px;">
                         <div class="col s12">
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
+                            <?php
+                                $idTask = $task['idAI'];
+                                $userStories = getLinkedUSByID($idTask);
+                                foreach ($userStories as $userStory) {
+                            ?>
+                            <div class="chip blue lighten-2" title="User Story #<?php echo $userStory['idUS']; ?>">
+                                #<?php echo $userStory['idUS']; ?>
                             </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
-                            <div class="chip blue lighten-2" title="User Story #28">
-                                #28
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </blockquote>

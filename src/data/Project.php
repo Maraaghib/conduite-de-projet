@@ -233,4 +233,22 @@
         return $tasks;
     }
 
+    /**
+     * Permet de récupérer tous les user stories liés à une tâche grâce à son ID auto-increment
+     */
+    function getLinkedUSByID($idTask) {
+        $db = Database::getDBConnection();
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $db->prepare("SELECT * FROM linkedus WHERE idTask=:idTask ORDER BY idUS ASC", array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+        $data = [
+            'idTask' => $idTask
+        ];
+        $stmt->execute($data);
+        $userStories = [];
+        while ($result = $stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
+            $userStories[] = $result;
+        }
+        return $userStories;
+    }
+
 ?>
