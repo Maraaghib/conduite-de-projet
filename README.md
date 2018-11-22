@@ -4,6 +4,10 @@
 [![code smells](https://sonarcloud.io/api/project_badges/measure?project=gchupin-github&metric=code_smells)](https://sonarcloud.io/dashboard?id=gchupin-github)
 [![bugs](https://sonarcloud.io/api/project_badges/measure?project=gchupin-github&metric=bugs)](https://sonarcloud.io/dashboard?id=gchupin-github)
 
+Build travis:
+
+[![Build Travis Status](https://travis-ci.com/gchupin/trytravis.svg?branch=master)](https://travis-ci.com/gchupin/trytravis)
+
 # Backlog:
 La difficulté est noté de manière croissante suivant une suite de Fibonacci (1,2,3,5...) : 1 étant facile et 5 étant difficile. </br>
 La priorité est noté de la manière suivante: 1 = haute, 2 = moyenne et 3 = basse.
