@@ -147,7 +147,7 @@
                                         <h4>Sprints</h4>
                                         <div class="row">
                                         <p>
-                                            <h4>La durée des sprints est de <?php echo $sprintDuration; ?> jours</h4>
+                                            <h4>La durée de chaque sprint pour ce projet est de <?php echo $sprintDuration; ?> jours</h4>
                                         </p>
                                             <?php include_once $_SERVER['DOCUMENT_ROOT'].'/sprint/listSprints.php'; ?>
                                         </div>
