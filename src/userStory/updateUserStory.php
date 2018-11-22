@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && isset
 </head>
 
 <body>
-    <!-- <?php include($_SERVER['DOCUMENT_ROOT']."/header.php") ?> -->
+    <?php include($_SERVER['DOCUMENT_ROOT']."/header.php") ?>
     <main>
         <div class="container">
             <div class="row">

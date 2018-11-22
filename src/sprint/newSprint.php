@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <?php
-        // require_once $_SERVER['DOCUMENT_ROOT'].'/header.php';
+        require_once $_SERVER['DOCUMENT_ROOT'].'/header.php';
     ?>
     <main>
         <div class="container">
@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         }
                                         ?>
                                     </select>
-                                    <label for="listUserStory[]">User Stories</label>
+                                    <label for="listUserStory[]">User Stories *</label>
                                     <span class="helper-text" data-error="Vous devez choisir un ou des User Stories" data-success="Saisie correcte"></span>
                                 </div>
                             </div>
