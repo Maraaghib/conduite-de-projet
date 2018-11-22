@@ -1,6 +1,7 @@
 <?php
 require_once('../data/Project.php');
 require_once('../userStory/userStory.php');
+require_once('../date.php');
 
 $project = new Project;
 $db = Database::getDBConnection();
@@ -16,9 +17,7 @@ if (!isset($_GET["projectName"])) {
 $projectInfo = $project->getProject($projectName);
 $backlog = getNonPlanUserStories($projectName);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $startDate = htmlspecialchars($_POST["startDate"]);
-    $parts = explode('/', $startDate);
-    $sqlDate  = "$parts[2]-$parts[1]-$parts[0]";
+    $sqlDate  = converDate(htmlspecialchars($_POST["startDate"]));
     if (isPastDate($sqlDate)) {
         $invalidDate = "Vous ne pouvez pas choisir une date passée";
     } elseif (!isValidDate($sqlDate, $projectName, $projectInfo)) {
@@ -58,28 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } elseif ($_SERVER["REQUEST_METHOD"] != "GET") {
     header(ERROR_URL);
 }
-
-function isPastDate($date) {
-    $now = new DateTime("now");
-    $datetime = new DateTime($date);
-    $now = new DateTime($now->format('Y-m-d'));
-    return $datetime < $now;
-}
-
-function isValidDate($date, $projectName, $project) {
-    $db = Database::getDBConnection();
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sprintDuration = $project["sprintDuration"];
-    $listSprintStartDate = $db->prepare("SELECT count(*) FROM sprint WHERE ABS(DATEDIFF(startDate, :date))<=:sprintDuration AND projectName=:projectName");
-    $data = [
-        "date" => $date,
-        "sprintDuration" => $sprintDuration,
-        "projectName" => $projectName
-    ];
-    $listSprintStartDate->execute($data);
-    $nb = $listSprintStartDate->fetchColumn();
-    return $nb == 0;
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -98,7 +75,7 @@ function isValidDate($date, $projectName, $project) {
 
 <body>
     <?php
-        require_once $_SERVER['DOCUMENT_ROOT'].'/header.php';
+        // require_once $_SERVER['DOCUMENT_ROOT'].'/header.php';
     ?>
     <main>
         <div class="container">

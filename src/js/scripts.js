@@ -33,7 +33,7 @@ $(document).ready(function () {
     });
         $('.datepicker').datepicker({ 
             firstDay: true, 
-            format: 'dd/mm/yyyy',
+            format: 'dd-mm-yyyy',
             i18n: {
                 months: [ "janvier", "février", "mars", "avril", "mai", "juin",
                 "juillet", "août", "septembre", "octobre", "novembre", "décembre" ],

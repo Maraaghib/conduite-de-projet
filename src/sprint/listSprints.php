@@ -1,3 +1,6 @@
+<?php
+require_once("../date.php") 
+?>
 <ul class="collapsible">
     <?php
     $i = 1;
