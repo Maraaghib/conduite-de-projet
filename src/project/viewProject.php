@@ -11,7 +11,7 @@
         $projectName = htmlspecialchars($_GET["projectName"]);
         $project = $instance->getProject($projectName);
         $backlog = getBackLog($projectName);
-        $listSprint = getListSprint($projectName);
+        $listSprints = getListSprints($projectName);
         $sprintDuration = $project['sprintDuration'];
     }
 
@@ -149,7 +149,7 @@
                                         <p>
                                             <h4>La durée des sprints est de <?php echo $sprintDuration; ?> jours</h4>
                                         </p>
-                                            <?php include_once $_SERVER['DOCUMENT_ROOT'].'/sprint/listSprint.php'; ?>
+                                            <?php include_once $_SERVER['DOCUMENT_ROOT'].'/sprint/listSprints.php'; ?>
                                         </div>
                                     </div>
                                 </div>

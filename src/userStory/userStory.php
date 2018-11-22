@@ -61,15 +61,15 @@
         return $backlog->fetchAll();
     }
 
-    function getListSprint($projectName) {
+    function getListSprints($projectName) {
         $db = Database::getDBConnection();
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $listSprint = $db->prepare("SELECT * FROM sprint WHERE projectName=:projectName ORDER BY startDate");
+        $listSprints = $db->prepare("SELECT * FROM sprint WHERE projectName=:projectName ORDER BY startDate");
         $data = [
             "projectName" => $projectName
         ];
-        $listSprint->execute($data);
+        $listSprints->execute($data);
 
-        return $listSprint->fetchAll();
+        return $listSprints->fetchAll();
     }
 ?>

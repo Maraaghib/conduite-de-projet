@@ -8,7 +8,7 @@
     </thead>
     <tbody>
         <?php
-        foreach ($listSprint as list($id, $projectName, $startDate)) {
+        foreach ($listSprints as list($id, $projectName, $startDate)) {
             $parts = explode('-', $startDate);
             $startDateFr  = "$parts[2]-$parts[1]-$parts[0]";
             $endDate = date_create($startDate)->add(date_interval_create_from_date_string("$sprintDuration days"));
