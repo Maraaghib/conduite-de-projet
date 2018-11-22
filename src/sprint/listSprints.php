@@ -8,15 +8,11 @@
         $endDateFr = $endDate->format("d-m-Y");
     ?>
     <li>
-        <div class="collapsible-header"><h5><strong style="color: green;"><i class="material-icons">loop</i>Sprint<?php echo ($i++)."</strong>: ".$startDateFr." &rArr; ".$endDateFr; ?></h5></div>
+        <div class="collapsible-header"><h5><strong style="color: green;"><i class="material-icons">loop</i>Sprint <?php echo ($i++)."</strong>: ".$startDateFr." &rArr; ".$endDateFr; ?></h5></div>
         <div class="collapsible-body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-            ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-            ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            <div class="row">
+                <?php include_once $_SERVER['DOCUMENT_ROOT'].'/task/listTasks.php'; ?>
+            </div>
         </div>
     </li>
     <?php } ?>
