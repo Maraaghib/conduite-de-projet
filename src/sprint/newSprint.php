@@ -92,6 +92,8 @@ function isValidDate($date, $project) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" media="screen,projection"/>
     <link rel="stylesheet" href="/css/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+    <script type="text/javascript" src="/js/scripts.js" defer></script>
 </head>
 
 <body>
@@ -153,11 +155,6 @@ function isValidDate($date, $project) {
             </div>
         </div>
     </main>
-
-    <!--JavaScript at end of body for optimized loading-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
-    <script type="text/javascript" src="/js/scripts.js"></script>
 </body>
 
 </html>

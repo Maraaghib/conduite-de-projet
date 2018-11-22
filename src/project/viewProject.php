@@ -72,6 +72,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" media="screen,projection"/>
         <link rel="stylesheet" href="/css/styles.css">
         <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+        <script type="text/javascript" src="/js/scripts.js" defer></script>
 
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -192,10 +195,5 @@
                 </div>
             </div>
         </main>
-
-        <!--JavaScript at end of body for optimized loading-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
-        <script type="text/javascript" src="/js/scripts.js"></script>
     </body>
 </html>

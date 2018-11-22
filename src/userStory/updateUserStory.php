@@ -8,13 +8,13 @@ $project = new Project;
 $cdpDb = Database::getDBConnection();
 $cdpDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && isset($_GET["idUserStory"]) && testProjectName($_GET["projectName"])) {
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && isset($_GET["idUserStory"]) && testProjectName($_GET["projectName"]) && !empty($_GET["idUserStory"])) {
     $projectName = htmlspecialchars($_GET["projectName"]);
     if (!$project->isProjectExist($projectName)) {
         header(ERROR_URL);
     }
     $id = htmlspecialchars($_GET["idUserStory"]);
-    if (!isUserStoryExist($id, $projectName)) {
+    if (!is_numeric($id) && !isUserStoryExist($id, $projectName)) {
         header(ERROR_URL);
     }
     $selectUserStory = "SELECT description, difficulty, priority FROM backlog WHERE projectName=\"$projectName\" AND id=$id";
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && isset
     $diff = $_POST["diffUserStory"];
     $updateUserStory = "UPDATE backlog SET description=\"$desc\", priority=$prio, difficulty=$diff  WHERE projectName=\"$projectName\" AND id=$id";
     $cdpDb->exec($updateUserStory);
-    header("location: listBacklog.php?projectName=$projectName");
+    header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-2");
 } else {
     header(ERROR_URL);
 }
@@ -52,14 +52,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && isset
     <title>Ajout de user story</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection" />
     <link rel="stylesheet" href="/css/styles.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" media="screen,projection"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+    <script type="text/javascript" src="/js/scripts.js" defer></script>
 </head>
 
 <body>
-    <?php include($_SERVER['DOCUMENT_ROOT']."/header.php") ?>
+    <!-- <?php include($_SERVER['DOCUMENT_ROOT']."/header.php") ?> -->
     <main>
         <div class="container">
             <div class="row">
@@ -76,11 +77,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && isset
                                 </p>
                             </div>
                             <div class="row">
-                                <?php echo $idNotUnique; ?>
                                 <div class="input-field col s12">
                                     <label for="idUserStory">Id *</label>
-                                    <input class="validate" type="number" name="idUserStory" min=0 required value="<?php echo $id; ?>" readonly/>
-                                    <span class="helper-text" data-error="Entrez un nombre" data-success="right">Id unique</span>
+                                    <input class="validate" type="number" name="idUserStory" min=0 value="<?php echo $id; ?>" disabled />
                                 </div>
                             </div>
                             <div class="row">
