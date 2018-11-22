@@ -49,6 +49,9 @@
         return $backlog->fetchAll();
     }
 
+    /**
+     * Retrieves user stories that are not set in a sprint
+     */
     function getNonPlanUserStories($projectName) {
         $db = Database::getDBConnection();
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

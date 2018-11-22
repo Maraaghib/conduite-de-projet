@@ -24,7 +24,7 @@ class TestAddUserStory(unittest.TestCase):
         createButton.click()
 
     def tearDown(self):
-        self.firefoxDriver.close()
+        self.firefoxDriver.quit()
 
     def testAddUserStory(self):
         self.firefoxDriver.get(PROJECT_URL)

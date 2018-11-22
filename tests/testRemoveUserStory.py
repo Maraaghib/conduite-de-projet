@@ -11,7 +11,7 @@ class TestRemoveUserStory(unittest.TestCase):
         )
     
     def tearDown(self):
-        self.firefoxDriver.close()
+        self.firefoxDriver.quit()
     
     def testRemoveUserStory(self):
         self.firefoxDriver.get(PROJECT_URL)
