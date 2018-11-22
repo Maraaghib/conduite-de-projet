@@ -14,3 +14,4 @@
 - L'utilisateur modifie l'agument URI par celui d'un projet qui n'existe pas et raffraichit la page
 - L'utilisateur rentre une information incorrecte dans le champs *User Stories*
 - L'utilisateur clique sur le bouton *ANNULER*
+- L'utilisateur essaye de rentrer des user story incorrecte (qui n'éxiste ou qui sont affecté à d'autre sprints)

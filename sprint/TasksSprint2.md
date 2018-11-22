@@ -5,7 +5,7 @@
 | T4b | Exécution du test d'ajout d'un user story  et ajout des résultats dans l'historique des tests| #9 | T4a, T2b | 1/2 jh | Doing | Guillaume |
 | T5a | Ecriture d'un scénario de test pour la suppression d'un user story. | #10 |  | 1/2 jh | Done | Guillaume |
 | T5b | Exécution du test de suppression d'un user story et ajout des résultats dans l'historique des tests | #10 | T5a, T3b | 1/2 jh | To do | Guillaume |
-| T7a | Ecriture d'un scénario de test pour la création d'un nouveau projet | #4 |  | 1/2 jh | To do | Serigne |
+| T7a | Ecriture d'un scénario de test pour la création d'un nouveau projet | #4 |  | 1/2 jh | Doing | Serigne |
 | T7b | Exécution du test de création d'un nouveau projet et ajout des résultats dans l'historique des tests  | #4 | T6b, T7a | 1/2 jh | To do | Serigne |
 | T9a | Ecriture d'un scénario de test pour le listage de tous les projets | #8 |  | 1/2 jh | To do | Serigne |
 | T9b | Exécution du test de listage de tous les projets et ajout des résultats dans l'historique des tests  | #8 | T8b, T9a | 1/2 jh | To do | Serigne |
