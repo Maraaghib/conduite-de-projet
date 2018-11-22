@@ -3,7 +3,7 @@
 | T3b | Ajout d'un bouton en forme de corbeille à côté de chaque user story dans le fichier ``listBacklog.php``. Lorsque l'on clique dessus un popup s'affiche avec l'id de l'user story associé et qui demande confirmation pour la suppression. Un bouton ``Supprimer`` permet de valider la suppression en envoyant une requête post, contenant le nom du projet et l'id de l'user story à supprimer, au fichier ``removeUserStory.php`` qui s'occupe de supprimer l'user story de la base de donnée et un bouton  ``Annuler`` permet de l'annuler en fermant le popup | #10 | T3a, T0 | 1 jh | Done | Guillaume |
 | T4a | Ecriture d'un scénario de test pour l'ajout d'un user story | #9 |  | 1/2 jh | Done | Guillaume |
 | T4b | Exécution du test d'ajout d'un user story  et ajout des résultats dans l'historique des tests| #9 | T4a, T2b | 1/2 jh | Doing | Guillaume |
-| T5a | Ecriture d'un scénario de test pour la suppression d'un user story. | #10 |  | 1/2 jh | To do | Guillaume |
+| T5a | Ecriture d'un scénario de test pour la suppression d'un user story. | #10 |  | 1/2 jh | Done | Guillaume |
 | T5b | Exécution du test de suppression d'un user story et ajout des résultats dans l'historique des tests | #10 | T5a, T3b | 1/2 jh | To do | Guillaume |
 | T7a | Ecriture d'un scénario de test pour la création d'un nouveau projet | #4 |  | 1/2 jh | To do | Serigne |
 | T7b | Exécution du test de création d'un nouveau projet et ajout des résultats dans l'historique des tests  | #4 | T6b, T7a | 1/2 jh | To do | Serigne |
@@ -23,13 +23,13 @@
 | T16b | Implémentation de la page ``updateUserStory.php`` où l'on accédera à un formulaire d'ajout d'UserStory pré-rempli avec les données de la UserStory à modifier | #12 | | 1jh | Done | Amelozara |
 | T17a | Ecriture d'un scénario de test pour la modification d'user story | #12 | | 1/2 jh | To do | Amelozara |
 | T17b | Exécution du test de modification d'un user story et ajout des résultats dans l'historique des tests | #12 | T16b, T17a | 1/2 jh | To do | Amelozara |
-| T18a | Ecriture d'un scénario de test pour la création de sprint | #13| | 1/2 jh | To do | Guillaume |
+| T18a | Ecriture d'un scénario de test pour la création de sprint | #13| | 1/2 jh | Done | Guillaume |
 | T18b | Exécution du test de création de sprint et ajout des résultats dans l'historique des tests | #13 | T12b, T18a | 1/2 jh | To do | Guillaume |
 | T19a | Ecriture d'un scénario de test pour l'ajout de taches dans un sprint | #15| | 1/2 jh | To do | Amelozara | 
 | T19b | Exécution du test d'ajout de taches dans un sprint et ajout des résultats dans l'historique des tests | #15 | T19a, T24b | 1/2 jh | To do | Amelozara |
 | T20a | Ecriture d'un scénario de test pour le listage des taches d'un sprint | #18| | 1/2 jh | To do | Serigne | 
 | T20b | Exécution du test de listage des taches d'un sprint et ajout des résultats dans l'historique des tests | #18 | T13b, T20a | 1/2 jh | To do | Serigne |
-| T21a | Ecriture d'un scénario de test pour le listage des sprints | #19 | | 1/2 jh | To do | Guillaume | 
+| T21a | Ecriture d'un scénario de test pour le listage des sprints | #19 | | 1/2 jh | Done | Guillaume | 
 | T21b | Exécution du test de listage des sprints et ajout des résultats dans l'historique des tests | #19 | T15b, T21a | 1/2 jh | To do | Guillaume |
 | T22a | Ecriture d'un scénario de test pour la visualisation d'un projet | #20 | | 1/2 jh | To do | Serigne | 
 | T22b | Exécution du test de visualisation d'un projet et ajout des résultats dans l'historique des tests | #20 | T10b, T22a | 1/2 jh | To do | Serigne |
