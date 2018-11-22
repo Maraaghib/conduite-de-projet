@@ -70,10 +70,11 @@ function isValidDate($date, $project) {
     $db = Database::getDBConnection();
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sprintDuration = $project["sprintDuration"];
-    $listSprintStartDate = $db->prepare("SELECT count(*) FROM sprint WHERE ABS(DATEDIFF(startDate, :date))<=:sprintDuration");
+    $listSprintStartDate = $db->prepare("SELECT count(*) FROM sprint WHERE ABS(DATEDIFF(startDate, :date))<=:sprintDuration AND projectName=:projectName");
     $data = [
         "date" => $date,
-        "sprintDuration" => $sprintDuration
+        "sprintDuration" => $sprintDuration,
+        "projectName" => $projectName
     ];
     $listSprintStartDate->execute($data);
     $nb = $listSprintStartDate->fetchColumn();
