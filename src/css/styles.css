@@ -13,6 +13,41 @@ header {
     padding-left: 300px;
 }
 
+main {
+    padding-left: 300px;
+}
+
+.read-more {
+    margin-top: 15px;
+}
+
+.read-more span {
+    cursor: pointer;
+    color: #26a69a;
+}
+
+/* Tabs */
+.tabs .tab a {
+    color: #000;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    font-size: 14px;
+}
+
+.tabs .tab a:hover,
+.tabs .tab a.active,
+.tabs .tab a:focus,
+.tabs .tab a:focus.active {
+    background-color: #4accbf38;
+    color: #119090;
+}
+
+.tabs .indicator {
+    background-color: #1ad2d2;
+}
+
 a.sidenav-trigger.top-nav {
     position: fixed;
     height: 48px;
@@ -35,41 +70,6 @@ ul.sidenav.sidenav-fixed ul.collapsible li a.collapsible-header {
 
 ul.sidenav.sidenav-fixed ul.collapsible li div.collapsible-body li a {
     padding: 0 50px;
-}
-
-main {
-    padding-left: 300px;
-}
-
-.read-more {
-    margin-top: 15px;
-}
-
-.read-more span {
-    cursor: pointer;
-    color: #26a69a;
-}
-
-/* Tabs */
-.tabs .tab a:hover,
-.tabs .tab a.active,
-.tabs .tab a:focus,
-.tabs .tab a:focus.active {
-    background-color: #4accbf38;
-    color: #119090;
-}
-
-.tabs .tab a {
-    color: #000;
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 0px;
-    font-size: 14px;
-}
-
-.tabs .indicator {
-    background-color: #1ad2d2;
 }
 
 .transp-blue {

@@ -12,7 +12,7 @@ class TestAddUserStory(unittest.TestCase):
         )
         self.firefoxDriver.get("http://web")
         # Create a new project to make our test
-        btn = self.firefoxDriver.find_element_by_name("newProject")
+        btn = self.firefoxDriver.find_element_by_id("newProject")
         btn.click()
         projectNameField = self.firefoxDriver.find_element_by_id("projectName")
         projectNameField.send_keys("testAddUserStory")
