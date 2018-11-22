@@ -21,6 +21,9 @@ function isValidDate($date, $projectName, $project) {
     return $nb == 0;
 }
 
+/** 
+ * Convert a date from (d-m-Y) to (Y-m-d) and inversely
+*/
 function convertDate($date) {
     $parts = explode('-', $date);
     return "$parts[2]-$parts[1]-$parts[0]";

@@ -77,7 +77,6 @@
                                                             <span>Hamza SEYE</span>
                                                         </div>
                                                         <div class="col s6">
-                                                            <!-- Faire une fonction JavaScript qui cnvertit la date en XX mmm YYYY -->
                                                             <span><?php echo convertDate($project['dateProject']); ?></span>
                                                         </div>
                                                     </div>

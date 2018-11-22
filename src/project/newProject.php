@@ -19,7 +19,7 @@
         {
             $sprintDuration *= $nbDayInAMonth;
         }
-        $dateProject = date('Y,m,d');
+        $dateProject = date('Y-m-d');
 
         if ($project->isProjectExist($projectName)) {
             $errorMessage = 'Le projet <strong>'.$projectName.'</strong> existe déjà pour ce compte !';

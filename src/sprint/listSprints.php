@@ -5,8 +5,7 @@ require_once("../date.php")
     <?php
     $i = 1;
     foreach ($listSprints as list($id, $projectName, $startDate)) {
-        $parts = explode('-', $startDate);
-        $startDateFr  = "$parts[2]-$parts[1]-$parts[0]";
+        $startDateFr  = convertDate($startDate);
         $endDate = date_create($startDate)->add(date_interval_create_from_date_string("$sprintDuration days"));
         $endDateFr = $endDate->format("d-m-Y");
     ?>
