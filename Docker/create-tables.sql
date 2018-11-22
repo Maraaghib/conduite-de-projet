@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 17 Novembre 2018 à 02:53
+-- Généré le :  Jeu 22 Novembre 2018 à 00:35
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -45,7 +45,17 @@ CREATE TABLE IF NOT EXISTS `backlog` (
 CREATE TABLE IF NOT EXISTS `dependence` (
   `id` int(11) NOT NULL,
   `idTask` varchar(30) NOT NULL,
-  `idSprint` int(11) NOT NULL,
+  `idSprint` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `linkedus`
+--
+
+CREATE TABLE IF NOT EXISTS `linkedus` (
+  `idTask` int(11) NOT NULL,
   `idUS` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -100,17 +110,25 @@ CREATE TABLE IF NOT EXISTS `task` (
 --
 ALTER TABLE `backlog`
   ADD PRIMARY KEY (`projectName`,`id`),
-  ADD UNIQUE KEY `idAI` (`idAI`);
+  ADD UNIQUE KEY `idAI` (`idAI`),
+  ADD KEY `FK_Sprint_Backlog` (`idSprint`);
 
 --
 -- Index pour la table `dependence`
 --
 ALTER TABLE `dependence`
-  ADD PRIMARY KEY (`id`,`idTask`,`idUS`),
-  ADD KEY `idTask` (`idTask`,`idSprint`,`idUS`),
-  ADD KEY `FK_Dependance_US` (`idUS`),
+  ADD PRIMARY KEY (`id`,`idTask`),
+  ADD KEY `idTask` (`idTask`,`idSprint`),
   ADD KEY `FK_Dependance_Task_Sprint` (`idSprint`,`idTask`),
   ADD KEY `id` (`id`);
+
+--
+-- Index pour la table `linkedus`
+--
+ALTER TABLE `linkedus`
+  ADD PRIMARY KEY (`idTask`,`idUS`),
+  ADD UNIQUE KEY `idTask` (`idTask`,`idUS`),
+  ADD KEY `FK_LinkedUS_BackLog` (`idUS`);
 
 --
 -- Index pour la table `project`
@@ -174,8 +192,14 @@ ALTER TABLE `backlog`
 --
 ALTER TABLE `dependence`
   ADD CONSTRAINT `FK_Dependance_Task` FOREIGN KEY (`id`) REFERENCES `task` (`idAI`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_Dependance_Task_Sprint` FOREIGN KEY (`idSprint`,`idTask`) REFERENCES `task` (`idSprint`, `idTask`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_Dependance_US` FOREIGN KEY (`idUS`) REFERENCES `backlog` (`idAI`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_Dependance_Task_Sprint` FOREIGN KEY (`idSprint`,`idTask`) REFERENCES `task` (`idSprint`, `idTask`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `linkedus`
+--
+ALTER TABLE `linkedus`
+  ADD CONSTRAINT `FK_LinkedUS_BackLog` FOREIGN KEY (`idUS`) REFERENCES `backlog` (`idAI`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_LinkedUS_Task` FOREIGN KEY (`idTask`) REFERENCES `task` (`idAI`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `sprint`
