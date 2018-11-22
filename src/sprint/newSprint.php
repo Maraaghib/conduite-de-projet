@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once('../data/Project.php');
 require_once('../userStory/userStory.php');
 
@@ -44,19 +44,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (!isUserStoryExist($idUserStory, $projectName)) {
                 header(ERROR_URL);
             }
-            $updateBacklog = $db->prepare("UPDATE backlog SET idSprint=:idSprint WHERE id=:idUserStory");
+            $updateBacklog = $db->prepare("UPDATE backlog SET idSprint=:idSprint WHERE id=:idUserStory AND projectName=:projectName");
             $data = [
                 "idSprint" => $idSprint,
-                "idUserStory" => $idUserStory
+                "idUserStory" => $idUserStory,
+                "projectName" => $projectName
             ];
             $updateBacklog->execute($data);
         }
         header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-3");
     }
-    
+
 } elseif ($_SERVER["REQUEST_METHOD"] != "GET") {
     header(ERROR_URL);
-} 
+}
 
 function isPastDate($date) {
     $now = new DateTime("now");
@@ -76,7 +77,7 @@ function isValidDate($date, $project) {
     ];
     $listSprintStartDate->execute($data);
     $nb = $listSprintStartDate->fetchColumn();
-    return $nb == 0;  
+    return $nb == 0;
 }
 ?>
 <!DOCTYPE html>
@@ -127,7 +128,7 @@ function isValidDate($date, $project) {
                                         }
                                         ?>
                                     </select>
-                                    <label for="listUserStory[]">User Stories</label>     
+                                    <label for="listUserStory[]">User Stories</label>
                                     <span class="helper-text" data-error="Vous devez choisir un ou des User Stories" data-success="Saisie correcte"></span>
                                 </div>
                             </div>
