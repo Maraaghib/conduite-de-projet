@@ -13,7 +13,7 @@ require_once("../date.php")
         <div class="collapsible-header"><h5><strong style="color: green;"><i class="material-icons" aria-hidden="true">loop</i>Sprint <?php echo ($i++)."</strong>: ".$startDateFr." &rArr; ".$endDateFr; ?></h5></div>
         <div class="collapsible-body">
             <div class="row">
-                <?php include_once $_SERVER['DOCUMENT_ROOT'].'/task/listTasks.php'; ?>
+                <?php include $_SERVER['DOCUMENT_ROOT'].'/task/listTasks.php'; ?>
             </div>
         </div>
     </li>
