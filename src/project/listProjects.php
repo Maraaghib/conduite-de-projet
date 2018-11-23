@@ -3,10 +3,6 @@
     require_once('../date.php');
     $project = new Project;
     $projects = $project->listProjects();
-
-    if (empty($projects)) {
-        header('Location: /project/newProject.php');
-    }
 ?>
 
 <!DOCTYPE html>
@@ -53,37 +49,46 @@
                                     <h3>Liste de vos projects</h3>
                                     <div class="row">
                                         <?php
-                                        foreach ($projects as $project) {
+                                        if (empty($projects)) {
                                         ?>
-                                        <div class="col s12 m6 l12 xl4">
-                                            <div class="card">
-                                                <div class="card-content">
-                                                    <span class="card-title">
-                                                        <a href="/project/viewProject.php?projectName=<?php echo $project['projectName']; ?>"><?php echo $project['projectName']; ?></a>
-                                                    </span>
-                                                    <p class="ellipse-text"><?php echo $project['description']; ?></p>
-                                                    <div class="read-more">
+                                            <h1>Aucun projet pour l'instant !</h1>
+                                            <a href="/project/newProject.php" class="btn waves-effect waves-light"><i class="material-icons left">add</i>Créer un nouveau Projet</a>
+                                        <?php
+                                        }
+                                        else {
+                                            foreach ($projects as $project) {
+                                            ?>
+                                                <div class="col s12 m6 l12 xl4">
+                                                <div class="card">
+                                                    <div class="card-content">
+                                                        <span class="card-title">
+                                                            <a href="/project/viewProject.php?projectName=<?php echo $project['projectName']; ?>"><?php echo $project['projectName']; ?></a>
+                                                        </span>
+                                                        <p class="ellipse-text"><?php echo $project['description']; ?></p>
+                                                        <div class="read-more">
 
-                                                    </div>
-                                                    <a href="/project/viewProject.php?projectName=<?php echo $project['projectName']; ?>#tab-swipe-6" class="btn-floating halfway-fab waves-effect waves-light" title="Modifier" style="bottom: 36px;"><i class="material-icons" aria-hidden="true">edit</i></a>
-                                                </div>
-                                                <div class="card-reveal">
-                                                  <span class="card-title"><a href="#"><?php echo $project['projectName']; ?></a><i class="material-icons right" aria-hidden="true">close</i></span>
-                                                  <p><?php echo $project['description']; ?></p>
-                                                </div>
-                                                <div class="card-action">
-                                                    <div class="row" style="margin-bottom: 0px;">
-                                                        <div class="col s6">
-                                                            <span>Hamza SEYE</span>
                                                         </div>
-                                                        <div class="col s6">
-                                                            <span><?php echo convertDate($project['dateProject']); ?></span>
+                                                        <a href="/project/viewProject.php?projectName=<?php echo $project['projectName']; ?>#tab-swipe-6" class="btn-floating halfway-fab waves-effect waves-light" title="Modifier" style="bottom: 36px;"><i class="material-icons" aria-hidden="true">edit</i></a>
+                                                    </div>
+                                                    <div class="card-reveal">
+                                                      <span class="card-title"><a href="#"><?php echo $project['projectName']; ?></a><i class="material-icons right" aria-hidden="true">close</i></span>
+                                                      <p><?php echo $project['description']; ?></p>
+                                                    </div>
+                                                    <div class="card-action">
+                                                        <div class="row" style="margin-bottom: 0px;">
+                                                            <div class="col s6">
+                                                                <span>Hamza SEYE</span>
+                                                            </div>
+                                                            <div class="col s6">
+                                                                <span><?php echo convertDate($project['dateProject']); ?></span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <?php } ?>
+                                            <?php
+                                            }
+                                        } ?>
                                     </div>
                                 </div>
                             </div>
