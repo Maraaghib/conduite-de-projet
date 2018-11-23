@@ -8,7 +8,7 @@
         ?>
         <div class="col s12" style="padding: 20px;">
             <div class="quote-container card">
-                <i class="pin"></i>
+                <i class="pin" aria-hidden="true"></i>
                 <blockquote class="card-content note yellow">
                     <h5 class="center-align note-header"><span style="color: #ff0c00;" title="ID de la tâche"><?php echo $task['idTask']; ?></span>: <span style="color: #0316f9;" title="Temps estimé (Jour-Homme)"><?php echo $task['estimatedTime']; ?></span> jh</h5>
                     <p class="ellipse-text">
@@ -17,7 +17,7 @@
                     <div class="read-more" style="margin-top: 0"></div>
                 </blockquote>
                 <blockquote class="card-reveal note yellow">
-                    <span class="card-title"><h6 class="center-align" style="font-weight: bold;">Description</h6><i class="material-icons right">close</i></span>
+                    <span class="card-title"><h6 class="center-align" style="font-weight: bold;">Description</h6><i class="material-icons right" aria-hidden="true">close</i></span>
                     <p>
                         <?php echo $task['description']; ?>
                     </p>
@@ -78,7 +78,7 @@
         ?>
         <div class="col s12" style="padding: 20px;">
             <div class="quote-container card">
-                <i class="pin"></i>
+                <i class="pin" aria-hidden="true"></i>
                 <blockquote class="card-content note yellow">
                     <h5 class="center-align note-header"><span style="color: #ff0c00;" title="ID de la tâche"><?php echo $task['idTask']; ?></span>: <span style="color: #0316f9;" title="Temps estimé (Jour-Homme)"><?php echo $task['estimatedTime']; ?></span> jh</h5>
                     <p class="ellipse-text">
@@ -87,7 +87,7 @@
                     <div class="read-more" style="margin-top: 0"></div>
                 </blockquote>
                 <blockquote class="card-reveal note yellow">
-                    <span class="card-title"><h6 class="center-align" style="font-weight: bold;">Description</h6><i class="material-icons right">close</i></span>
+                    <span class="card-title"><h6 class="center-align" style="font-weight: bold;">Description</h6><i class="material-icons right" aria-hidden="true">close</i></span>
                     <p>
                         <?php echo $task['description']; ?>
                     </p>
@@ -149,7 +149,7 @@
         ?>
         <div class="col s12" style="padding: 20px;">
             <div class="quote-container card">
-                <i class="pin"></i>
+                <i class="pin" aria-hidden="true"></i>
                 <blockquote class="card-content note yellow">
                     <h5 class="center-align note-header"><span style="color: #ff0c00;" title="ID de la tâche"><?php echo $task['idTask']; ?></span>: <span style="color: #0316f9;" title="Temps estimé (Jour-Homme)"><?php echo $task['estimatedTime']; ?></span> jh</h5>
                     <p class="ellipse-text">
@@ -158,7 +158,7 @@
                     <div class="read-more" style="margin-top: 0"></div>
                 </blockquote>
                 <blockquote class="card-reveal note yellow">
-                    <span class="card-title"><h6 class="center-align" style="font-weight: bold;">Description</h6><i class="material-icons right">close</i></span>
+                    <span class="card-title"><h6 class="center-align" style="font-weight: bold;">Description</h6><i class="material-icons right" aria-hidden="true">close</i></span>
                     <p>
                         <?php echo $task['description']; ?>
                     </p>

@@ -16,11 +16,11 @@
             echo "<tr> <td id='id$id'>#$id</td> <td>$desc</td> <td>$diff</td> <td>$prio</td> <td>$sprint</td>";
         ?>
             <td>
-                <a href="/userStory/updateUserStory.php?projectName=<?php echo $project['projectName']; ?>&idUserStory=<?php echo $id; ?>" class="btn-floating waves-effect waves-light modal-trigger amber accent-4"><i class="material-icons">edit</i></a>
+                <a href="/userStory/updateUserStory.php?projectName=<?php echo $project['projectName']; ?>&idUserStory=<?php echo $id; ?>" class="btn-floating waves-effect waves-light modal-trigger amber accent-4"><i class="material-icons" aria-hidden="true">edit</i></a>
             </td>
             <td>
             <!-- Modal Trigger -->
-            <a href="#delete-modal-<?php echo $id ?>" class="btn-floating waves-effect waves-light modal-trigger red"><i class="material-icons">delete</i></a>
+            <a href="#delete-modal-<?php echo $id ?>" class="btn-floating waves-effect waves-light modal-trigger red"><i class="material-icons" aria-hidden="true">delete</i></a>
             <!-- Modal Structure -->
             <div id="delete-modal-<?php echo $id ?>" class="modal">
                 <div class="modal-content">
@@ -31,8 +31,8 @@
                     <form action="/userStory/removeUserStory.php" method="post">
                         <input type="hidden" name="projectName" value="<?php echo htmlspecialchars($pn)?>">
                         <input type="hidden" name="idUserStory" value=<?php echo $id?>>
-                        <button name="confirmDelete" type="submit" class="modal-close waves-effect waves-red btn-flat">Supprimer<i class="material-icons left">check_circle</i></button>
-                        <button type="button" class="modal-close waves-effect waves-green btn-flat">Annuler<i class="material-icons left">cancel</i></button>
+                        <button name="confirmDelete" type="submit" class="modal-close waves-effect waves-red btn-flat">Supprimer<i class="material-icons left" aria-hidden="true">check_circle</i></button>
+                        <button type="button" class="modal-close waves-effect waves-green btn-flat">Annuler<i class="material-icons left" aria-hidden="true">cancel</i></button>
                     </form>
                 </div>
             </div>
@@ -42,5 +42,5 @@
     </tbody>
 </table>
 <div class="center-align" style="margin-top: 35px;">
-    <a id="addUserStory" href="/userStory/addUserStory.php?projectName=<?php echo $project['projectName'] ?>" class="btn waves-effect waves-light"><i class="material-icons left">add</i>Ajouter un User Story</a>
+    <a id="addUserStory" href="/userStory/addUserStory.php?projectName=<?php echo $project['projectName'] ?>" class="btn waves-effect waves-light"><i class="material-icons left" aria-hidden="true">add</i>Ajouter un User Story</a>
 </div>

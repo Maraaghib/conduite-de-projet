@@ -65,10 +65,10 @@
                                                     <div class="read-more">
 
                                                     </div>
-                                                    <a href="/project/viewProject.php?projectName=<?php echo $project['projectName']; ?>#tab-swipe-6" class="btn-floating halfway-fab waves-effect waves-light" title="Modifier" style="bottom: 36px;"><i class="material-icons">edit</i></a>
+                                                    <a href="/project/viewProject.php?projectName=<?php echo $project['projectName']; ?>#tab-swipe-6" class="btn-floating halfway-fab waves-effect waves-light" title="Modifier" style="bottom: 36px;"><i class="material-icons" aria-hidden="true">edit</i></a>
                                                 </div>
                                                 <div class="card-reveal">
-                                                  <span class="card-title"><a href="#"><?php echo $project['projectName']; ?></a><i class="material-icons right">close</i></span>
+                                                  <span class="card-title"><a href="#"><?php echo $project['projectName']; ?></a><i class="material-icons right" aria-hidden="true">close</i></span>
                                                   <p><?php echo $project['description']; ?></p>
                                                 </div>
                                                 <div class="card-action">

@@ -78,7 +78,7 @@
                     </div>
                     <div class="col s12 m4">
                         <button type="submit" name="updateProjectName" class="btn waves-effect waves-light red">
-                        <i class="material-icons left">delete</i>
+                        <i class="material-icons left" aria-hidden="true">delete</i>
                             Supprimer ce projet
                         </button>
                     </div>
