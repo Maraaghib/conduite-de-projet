@@ -144,7 +144,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="tab-swipe-3" class="col s12 transp-green">
+                            <div id="tab-swipe-3" class="col s12 transp-green" style="min-width: 1195px;">
                                 <div class="row" style="margin: 10px;">
                                     <div class="s12">
                                         <h4>Sprints</h4>
