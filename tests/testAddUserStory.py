@@ -39,9 +39,15 @@ class TestAddUserStory(unittest.TestCase):
         self.assertEqual(pageUrl, Url.USER_STORY_TAB_URL)
         text = self.firefoxDriver.find_element_by_id("id" + id).text
         self.assertEqual(text, "#" + id)
-        # Test adding an user story with the an id already used
+        # Test adding an user story with an id already used
         self.firefoxDriver.get(Url.ADD_USER_STORY_URL)
         id = '1'
+        self.AddUserStory(id, desc, diff, prio)
+        pageUrl = self.firefoxDriver.current_url
+        self.assertEqual(pageUrl, Url.ADD_USER_STORY_URL)
+        # Test adding an user story with no id
+        self.firefoxDriver.get(Url.ADD_USER_STORY_URL)
+        id = ''
         self.AddUserStory(id, desc, diff, prio)
         pageUrl = self.firefoxDriver.current_url
         self.assertEqual(pageUrl, Url.ADD_USER_STORY_URL)
