@@ -20,7 +20,7 @@ install:
 script:
   - sleep 10
   - curl localhost:8100
-  - python3 -m unittest tests/*.py
+  - cd tests; ./test.sh; cd ..
   - sonar-scanner
 
 after_script:

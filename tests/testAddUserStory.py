@@ -2,8 +2,8 @@ import unittest
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
-ADD_USER_STORY_URL = "http://web/userStory/addUserStory.php?projectName=testAddUserStory"
-PROJECT_URL = "http://web/project/viewProject.php?projectName=testAddUserStory#tab-swipe-2"
+ADD_USER_STORY_URL = "http://web/userStory/addUserStory.php?projectName=projectTest"
+PROJECT_URL = "http://web/project/viewProject.php?projectName=projectTest#tab-swipe-2"
 MISSING_URI = "http://web/userStory/addUserStory.php"
 INCORRECT_ARG_URI = "http://web/userStory/addUserStory.php?projectName=FalseProject"
 ERROR_URL =  "http://web/error.php"
@@ -15,17 +15,6 @@ class TestAddUserStory(unittest.TestCase):
             desired_capabilities=DesiredCapabilities.FIREFOX
         )
         self.firefoxDriver.get("http://web")
-        # Create a new project to make our test
-        btn = self.firefoxDriver.find_element_by_id("newProject")
-        btn.click()
-        projectNameField = self.firefoxDriver.find_element_by_id("projectName")
-        projectNameField.send_keys("testAddUserStory")
-        descriptionField = self.firefoxDriver.find_element_by_id("projectDescription")
-        descriptionField.send_keys("testAddUserStory")
-        sprintDurationField = self.firefoxDriver.find_element_by_id("sprintDuration")
-        sprintDurationField.send_keys("2")
-        createButton = self.firefoxDriver.find_element_by_name("createProject")
-        createButton.click()
 
     def tearDown(self):
         self.firefoxDriver.quit()

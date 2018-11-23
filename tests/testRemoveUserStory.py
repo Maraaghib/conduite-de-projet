@@ -2,7 +2,7 @@ import unittest
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
-PROJECT_URL = "http://web/project/viewProject.php?projectName=testAddUserStory#tab-swipe-2"
+PROJECT_URL = "http://web/project/viewProject.php?projectName=projectTest#tab-swipe-2"
 class TestRemoveUserStory(unittest.TestCase):
     def setUp(self):
         self.firefoxDriver = webdriver.Remote(
