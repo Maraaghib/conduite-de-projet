@@ -1,5 +1,5 @@
 <?php
-require_once("../date.php") 
+require_once("../date.php")
 ?>
 <ul class="collapsible">
     <?php
@@ -15,6 +15,7 @@ require_once("../date.php")
             <div class="row">
                 <?php include $_SERVER['DOCUMENT_ROOT'].'/task/listTasks.php'; ?>
             </div>
+            <a href="/task/addTask.php?projectName=<?php echo $projectName ?>&idSprint=<?php echo $id ?>" class="btn waves-effect waves-light"><i class="material-icons left" aria-hidden="true">add</i>Ajouter une tâche</a>
         </div>
     </li>
     <?php } ?>
