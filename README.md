@@ -1,12 +1,12 @@
 ﻿Résultats de sonar:
 
-[![quality gate](https://sonarcloud.io/api/project_badges/measure?project=gchupin-github&metric=alert_status)](https://sonarcloud.io/dashboard?id=gchupin-github)
-[![code smells](https://sonarcloud.io/api/project_badges/measure?project=gchupin-github&metric=code_smells)](https://sonarcloud.io/dashboard?id=gchupin-github)
-[![bugs](https://sonarcloud.io/api/project_badges/measure?project=gchupin-github&metric=bugs)](https://sonarcloud.io/dashboard?id=gchupin-github)
+[![quality gate](https://sonarcloud.io/api/project_badges/measure?project=Maraaghib_conduite-de-projet&metric=alert_status)](https://sonarcloud.io/dashboard?id=Maraaghib_conduite-de-projet)
+[![code smells](https://sonarcloud.io/api/project_badges/measure?project=Maraaghib_conduite-de-projet&metric=code_smells)](https://sonarcloud.io/dashboard?id=Maraaghib_conduite-de-projet)
+[![bugs](https://sonarcloud.io/api/project_badges/measure?project=Maraaghib_conduite-de-projet&metric=bugs)](https://sonarcloud.io/dashboard?id=Maraaghib_conduite-de-projet)
 
 Build travis:
 
-[![Build Travis Status](https://travis-ci.com/gchupin/trytravis.svg?branch=master)](https://travis-ci.com/gchupin/trytravis)
+[![Build Travis Status](https://travis-ci.com/Maraaghib/conduite-de-projet.svg?branch=master)](https://travis-ci.com/Maraaghib/conduite-de-projet)
 
 # Backlog:
 La difficulté est noté de manière croissante suivant une suite de Fibonacci (1,2,3,5...) : 1 étant facile et 5 étant difficile. </br>
