@@ -1,13 +1,12 @@
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from constants import Url
 
-NEW_PROJECT_URL   = "http://web/project/newProject.php"
-LIST_PROJECTS_URL = "http://web/project/listProjects.php"
 class TestNewProject(unittest.TestCase):
     def setUp(self):
         self.firefoxDriver = webdriver.Remote(
-            command_executor='http://127.0.0.1:4444/wd/hub',
+            command_executor=Url.SELENIUM_HUB,
             desired_capabilities=DesiredCapabilities.FIREFOX
         )
 
@@ -17,13 +16,13 @@ class TestNewProject(unittest.TestCase):
     def testNewProject(self):
         projectName = "projectTest"
         # Open the page for creating a new project
-        self.firefoxDriver.get("http://web")
+        self.firefoxDriver.get(Url.HOME_PAGE_URL)
         newProjectLink = self.firefoxDriver.find_element_by_id("newProject")
         newProjectLink.click()
         currentPageUrl = self.firefoxDriver.current_url
-        self.assertEqual(currentPageUrl, NEW_PROJECT_URL)
+        self.assertEqual(currentPageUrl, Url.NEW_PROJECT_URL)
         # Testing the creation of a project
-        self.firefoxDriver.get(NEW_PROJECT_URL)
+        self.firefoxDriver.get(Url.NEW_PROJECT_URL)
         projectNameField = self.firefoxDriver.find_element_by_id("projectName")
         projectNameField.send_keys(projectName)
         descriptionField = self.firefoxDriver.find_element_by_id("projectDescription")
@@ -34,7 +33,7 @@ class TestNewProject(unittest.TestCase):
         createProjectButton.click()
         currentPageUrl = self.firefoxDriver.current_url
         # Test if I'm redirected in the listProject.php page
-        self.assertEqual(currentPageUrl, LIST_PROJECTS_URL)
+        self.assertEqual(currentPageUrl, Url.LIST_PROJECTS_URL)
         # Test if the project created appears in the list of projects
         self.firefoxDriver.find_element_by_link_text(projectName)
 
