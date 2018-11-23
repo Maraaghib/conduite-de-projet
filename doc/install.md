@@ -1,6 +1,6 @@
 # Télécharger la dernière release
 ```bash
-git clone -b V0.1.1 https://github.com/Maraaghib/conduite-de-projet.git
+git clone -b v0.2.0 https://github.com/Maraaghib/conduite-de-projet.git
 ```
 ou télécharger le .zip directement sur le site des [releases](https://github.com/Maraaghib/conduite-de-projet/releases)
 

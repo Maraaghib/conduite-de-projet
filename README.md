@@ -35,3 +35,6 @@ La priorité est noté de la manière suivante: 1 = haute, 2 = moyenne et 3 = ba
 | #19 | **En tant que** développeur, </br>**je veux** lister les sprints d'un projet </br>**afin d'** y accéder | 1 | 3 | 2 |
 | #20 | **En tant que** développeur, </br>**je veux** pouvoir visualiser un projet afin d'accéder à ses différentes informations: Nom, Description, Auteur, développeurs colloborateurs, date de création, liens vers le backlog, les sprints, le burndown chart et paramètres (pour la modification et la suppression) </br>**afin d'** y accéder | 1 | 2 | 2 |
 | #21 | **En tant que** développeur, </br>**je veux** pouvoir modifier les informations d'un projet: Nom, Description, Durée des sprints </br>**afin d'** y accéder | 2 | 3 | 2 |
+
+
+### Difficulté totale: 47
