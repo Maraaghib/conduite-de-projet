@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
             ];
         $addTask = $db->prepare($sql);
         $addTask->execute($data);
-        header("location: /task/listTasks.php");
+        header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-3");
     }
 } else {
     header(ERROR_URL);
