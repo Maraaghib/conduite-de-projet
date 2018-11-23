@@ -41,7 +41,7 @@
                                     </p>
                                     <h5>Medium Title</h5>
                                     <p>Try the button below to see thye page for creating a new project</p>
-                                    <a href="/project/newProject.php" id="container-toggle-button" class="btn waves-effect waves-light"><i class="material-icons left">add</i>Nouveau Projet</a>
+                                    <a href="/project/newProject.php" id="container-toggle-button" class="btn waves-effect waves-light"><i class="material-icons left" aria-hidden="true">add</i>Nouveau Projet</a>
                                     <p>
                                         Vivamus accumsan, ipsum et lacinia molestie, leo diam mollis nisi, ut accumsan tellus turpis quis purus. Phasellus sodales laoreet lorem vitae tincidunt. Phasellus sit amet lacinia metus.
                                     </p>

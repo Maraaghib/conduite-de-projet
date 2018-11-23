@@ -19,29 +19,29 @@
         </nav>
     </div>
     <div class="container">
-        <a href="#" data-target="mobile-demo" class="top-nav sidenav-trigger full hide-on-large-only"><i class="material-icons">menu</i></a>
+        <a href="#" data-target="mobile-demo" class="top-nav sidenav-trigger full hide-on-large-only"><i class="material-icons" aria-hidden="true">menu</i></a>
     </div>
     <ul class="sidenav sidenav-fixed" id="mobile-demo" style="overflow: auto; transform: translateX(0%);">
         <li>
             <div class="user-view">
                 <div class="background">
-                    <img src="/img/backgound.jpg">
+                    <img src="/img/backgound.jpg" alt="SCRUM">
                 </div>
-                <a href="#user"><img class="circle" src="/img/avatar.png"></a>
+                <a href="#user"><img class="circle" src="/img/avatar.png" alt="avatar"></a>
                 <a href="#name"><span class="white-text name">Hamza SEYE</span></a>
                 <a href="#email"><span class="white-text email">hamza.seye@gmail.com</span></a>
             </div>
         </li>
         <li <?php echo $activeMenu1; ?>>
-            <a href="/" class="waves-effect waves-teal"><i class="material-icons left">home</i>Accueil</a>
+            <a href="/" class="waves-effect waves-teal"><i class="material-icons left" aria-hidden="true">home</i>Accueil</a>
         </li>
         <li <?php echo $activeMenu2; ?>>
-            <a name="newProject" href="/project/newProject.php" class="waves-effect waves-teal"><i class="material-icons left">add</i>Nouveau Projet</a>
+            <a id="newProject" href="/project/newProject.php" class="waves-effect waves-teal"><i class="material-icons left" aria-hidden="true">add</i>Nouveau Projet</a>
         </li>
         <li <?php echo $activeMenu3; ?>>
             <ul class="collapsible">
                 <li <?php echo $activeMenu3; ?>>
-                    <a name="listProject" href="/project/listProjects.php" class="waves-effect waves-teal collapsible-header"><i class="material-icons left">list</i>Liste des Projets</a>
+                    <a id="listProject" href="/project/listProjects.php" class="waves-effect waves-teal collapsible-header"><i class="material-icons left" aria-hidden="true">list</i>Liste des Projets</a>
                     <?php
                     if (!empty($projects)) {
                     ?>
@@ -51,7 +51,7 @@
                             foreach ($projects as $singleProject) {
                             ?>
                             <li>
-                                <a href="/project/viewProject.php?projectName=<?php echo $singleProject['projectName']; ?>"><i class="material-icons left">chevron_right</i><?php echo $singleProject['projectName']; ?></a>
+                                <a href="/project/viewProject.php?projectName=<?php echo $singleProject['projectName']; ?>"><i class="material-icons left" aria-hidden="true">chevron_right </i><?php echo $singleProject['projectName']; ?> </a>
                             </li>
                             <?php } ?>
                         </ul>

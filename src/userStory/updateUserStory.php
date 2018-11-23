@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && isset
 </head>
 
 <body>
-    <!-- <?php include($_SERVER['DOCUMENT_ROOT']."/header.php") ?> -->
+    <?php include($_SERVER['DOCUMENT_ROOT']."/header.php") ?>
     <main>
         <div class="container">
             <div class="row">
@@ -105,13 +105,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && isset
                                 <div class="col s6">
                                     <button type="submit" name="updateUserStory" class="btn waves-effect waves-light">
                                         Modifier
-                                        <i class="material-icons left">check_circle</i>
+                                        <i class="material-icons left" aria-hidden="true">check_circle</i>
                                     </button>
                                 </div>
                                 <div class="col s6">
                                     <button type="button" name="cancel" class="btn waves-effect waves-light" onclick="window.history.back()">
                                         Annuler
-                                        <i class="material-icons left">cancel</i>
+                                        <i class="material-icons left" aria-hidden="true">cancel</i>
                                     </button>
                                 </div>
                             </div>

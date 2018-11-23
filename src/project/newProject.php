@@ -121,13 +121,13 @@
                                                 <div class="col s6">
                                                     <button type="submit" name="createProject" class="btn waves-effect waves-light">
                                                         Créer
-                                                        <i class="material-icons left">check_circle</i>
+                                                        <i class="material-icons left" aria-hidden="true">check_circle</i>
                                                     </button>
                                                 </div>
                                                 <div class="col s6">
                                                     <button type="button" name="cancel" class="btn waves-effect waves-light" onclick="window.history.back()">
                                                         Annuler
-                                                        <i class="material-icons left">cancel</i>
+                                                        <i class="material-icons left" aria-hidden="true">cancel</i>
                                                     </button>
                                                 </div>
                                             </div>

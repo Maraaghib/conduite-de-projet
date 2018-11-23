@@ -8,7 +8,7 @@ $(document).ready(function () {
     var options = {
         swipeable: false
     }
-    var instance = M.Tabs.init(elem, options);
+    M.Tabs.init(elem, options);
     $('.modal').modal();
     $('.collapsible').collapsible();
 

@@ -86,7 +86,6 @@
         public function createProject() {
             $db = Database::getDBConnection();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $errors = [];
 
             $query = $db->prepare("INSERT INTO project SET
                 projectName     = :projectName,
@@ -113,14 +112,13 @@
         public function updateProjectName($oldProjectName, $newProjectName) {
             $db = Database::getDBConnection();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $errors = [];
 
             $query = $db->prepare("UPDATE project SET projectName=:newProjectName WHERE projectName=:oldProjectName");
             $data = [
                 "newProjectName" => $newProjectName,
                 "oldProjectName" => $oldProjectName
             ];
-            $result = $query->execute($data);
+            $query->execute($data);
         }
 
         /**
@@ -129,7 +127,6 @@
         public function updateProjectDescription($projectName, $description) {
             $db = Database::getDBConnection();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $errors = [];
 
             $query = $db->prepare("UPDATE project SET description = \"$description\" WHERE projectName = \"$projectName\"");
             return $query->execute();
@@ -141,7 +138,6 @@
         public function updateSprintDuration($projectName, $sprintDuration) {
             $db = Database::getDBConnection();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $errors = [];
 
             $query = $db->prepare("UPDATE project SET sprintDuration = \"$sprintDuration\" WHERE projectName = \"$projectName\"");
             return $query->execute();

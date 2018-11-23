@@ -4,7 +4,7 @@ addons:
     packages:
     - docker-ce
   sonarcloud:
-    organization: "gchupin-github" # the key of the org you chose at step #3
+    organization: "gchupin-github"
 
 language: python
 python:
@@ -15,10 +15,12 @@ services:
 
 install:
   - cd Docker; docker-compose up -d --build; cd ..
+  - pip3 install -r requirements.txt
 
 script:
+  - sleep 10
   - curl localhost:8100
-  - pwd
+  - python3 -m unittest tests/*.py
   - sonar-scanner
 
 after_script:

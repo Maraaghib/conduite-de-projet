@@ -2,4 +2,4 @@
 
 ## Sur la page du viewProject.php
 
-- L'utilisateur clique sur l'onglet Backlog, puis clique sur le titre d'un des sprints proposé
+- L'utilisateur clique sur l'onglet sprint

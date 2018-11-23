@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
                                     <span class="helper-text" data-error="Entrez un nombre" data-success="Saisie correcte"></span>
                                 </div>
                                 <div class="input-field col s6">
-                                    <label for="prioUserStory">Priorité *</label>
+                                    <label for="prioUserStory">Priorité</label>
                                     <input class="validate" type="number" name="prioUserStory" min=1 max=3 />
                                     <span class="helper-text" data-error="Entrez un nombre entre 1 et 3" data-success="Saisie correcte">1=Haut,
                                         2=Moyen et 3=Bas</span>
@@ -122,13 +122,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
                                 <div class="col s6">
                                     <button type="submit" name="newUserStory" class="btn waves-effect waves-light">
                                         Créer
-                                        <i class="material-icons left">check_circle</i>
+                                        <i class="material-icons left" aria-hidden="true">check_circle</i>
                                     </button>
                                 </div>
                                 <div class="col s6">
                                     <button type="button" name="cancel" class="btn waves-effect waves-light" onclick="window.history.back()">
                                         Annuler
-                                        <i class="material-icons left">cancel</i>
+                                        <i class="material-icons left" aria-hidden="true">cancel</i>
                                     </button>
                                 </div>
                             </div>

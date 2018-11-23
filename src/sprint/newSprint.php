@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <?php
-        // require_once $_SERVER['DOCUMENT_ROOT'].'/header.php';
+        require_once $_SERVER['DOCUMENT_ROOT'].'/header.php';
     ?>
     <main>
         <div class="container">
@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         }
                                         ?>
                                     </select>
-                                    <label for="listUserStory[]">User Stories</label>
+                                    <label for="listUserStory[]">User Stories *</label>
                                     <span class="helper-text" data-error="Vous devez choisir un ou des User Stories" data-success="Saisie correcte"></span>
                                 </div>
                             </div>
@@ -116,13 +116,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="col s6">
                                     <button type="submit" name="newUserStory" class="btn waves-effect waves-light">
                                         Créer
-                                        <i class="material-icons left">check_circle</i>
+                                        <i class="material-icons left" aria-hidden="true">check_circle</i>
                                     </button>
                                 </div>
                                 <div class="col s6">
                                     <button type="button" name="cancel" class="btn waves-effect waves-light" onclick="window.history.back()">
                                         Annuler
-                                        <i class="material-icons left">cancel</i>
+                                        <i class="material-icons left" aria-hidden="true">cancel</i>
                                     </button>
                                 </div>
                             </div>
