@@ -41,7 +41,7 @@
         <li <?php echo $activeMenu3; ?>>
             <ul class="collapsible">
                 <li <?php echo $activeMenu3; ?>>
-                    <a id="listProject" href="/project/listProjects.php" class="waves-effect waves-teal collapsible-header"><i class="material-icons left" aria-hidden="true">list</i>Liste des Projets</a>
+                    <a id="listProjects" href="/project/listProjects.php" class="waves-effect waves-teal collapsible-header"><i class="material-icons left" aria-hidden="true">list</i>Liste des Projets</a>
                     <?php
                     if (!empty($projects)) {
                     ?>
