@@ -4,11 +4,11 @@
 | T4a | Ecriture d'un scénario de test pour l'ajout d'un user story | #9 |  | 1/2 jh | Done | Guillaume |
 | T4b | Exécution du test d'ajout d'un user story  et ajout des résultats dans l'historique des tests| #9 | T4a, T2b | 1/2 jh | Doing | Guillaume |
 | T5a | Ecriture d'un scénario de test pour la suppression d'un user story. | #10 |  | 1/2 jh | Done | Guillaume |
-| T5b | Exécution du test de suppression d'un user story et ajout des résultats dans l'historique des tests | #10 | T5a, T3b | 1/2 jh | To do | Guillaume |
+| T5b | Exécution du test de suppression d'un user story et ajout des résultats dans l'historique des tests | #10 | T5a, T3b | 1/2 jh | Done | Guillaume |
 | T7a | Ecriture d'un scénario de test pour la création d'un nouveau projet | #4 |  | 1/2 jh | Done | Serigne |
 | T7b | Exécution du test de création d'un nouveau projet et ajout des résultats dans l'historique des tests  | #4 | T6b, T7a | 1/2 jh | Done | Serigne |
 | T9a | Ecriture d'un scénario de test pour le listage de tous les projets | #8 |  | 1/2 jh | Done | Serigne |
-| T9b | Exécution du test de listage de tous les projets et ajout des résultats dans l'historique des tests  | #8 | T8b, T9a | 1/2 jh | To do | Serigne |
+| T9b | Exécution du test de listage de tous les projets et ajout des résultats dans l'historique des tests  | #8 | T8b, T9a | 1/2 jh | Done | Serigne |
 | T10a | Création d'un fichier nommé ``viewProject.php`` dans le répertoire ``src/project`` pour implémenter la visualisation de tous les détails d'un projet | #20 |  | 1/2 jh | Done | Serigne |
 | T10b | Implémentation d'une page ``viewProject.php`` avec six (6) ``tabs`` (onglets): ``Description``, ``Backlog``, ``Sprints``, ``Burndown chart``, ``Contributeurs`` et ``Paramètres``. Le tab ``Description`` est selectionné par défaut et affiche le nom du projet, sa description, son propriétaire (ou la personne qui l'a créé) et sa date de création. Ces deux dernières informations seront sous-forme d'un ``chips``; Le tab ``Backlog`` permet d'afficher le tableau des user stories; Le tab ``Sprints`` permet d'afficher le tableau des tâches; Le tab ``Burndown chart`` permet de visualiser le graphique d'avancement; Le tab ``Contributeurs``, si l'on clique dessus, affiche les différents développeurs du projets y compris le propriétaire et le tab ``Paramètres`` permet d'avoir le formulaire pour modifier les détails du projet et un bouton pour le supprimer  | #20 | T10a | 2 jh | Done | Serigne |
 | T11 | Création de la table ``sprint`` dans ``/Docker/createTable.sql`` contenant les champs ``id``,``projectName`` et ``startDate``. Le champ ``id`` (AUTO_INCREMENT) est la clé primaire, le champs ``projectName`` est une clé étrangère vers le champs ``projectName`` de la table ``project``. | #13 | T0 | 1/16 jh | Done | Serigne |
@@ -19,16 +19,16 @@
 | T14a | Création d'un fichier nommé ``editProject.php`` dans le répertoire ``src/project`` pour implémenter la modification des informations d'un projet | #21 |  | 1/2 jh | Done | Serigne |
 | T14b | Implémentation d'un formulaire sur la page ``editProject.php`` avec un champ de texte pour le nom du projet, un autre (élément ``textarea`` de ``HTML``) pour la description, un autre pour la durée des sprints et un menu déroulant (élément ``select`` de ``HTML``) pour le choix de l'unité de la durée (semaines, mois, ...). Ces champs seront pré-remplis par les informations courantes du projet. À côté de chaque champ, un bouton est placé pour valider sa modification (si le champ a bien-sûr été bien repmli). Cette partie sera accessible dans l'app dans la page de visualisation du projet sous l'onglet ``Paramètres`` | #21 | T14a | 1 jh | Done | Serigne |
 | T15a | Création d'un fichier nommé ``listSprints.php`` dans le répertoire ``src/sprint`` pour le listage des sprints | #19 | T11 | 1/2 jh | Done | Guillaume |
-|T15b |  Implémentation de la page ``listSprints.php``:</br> Afficher la liste des sprints dans l'onglet ``Sprints`` d'un projet, trier par date début. Pour chaque sprint sera renseigné la date de début et de fin, les identifiants des user stories à réaliser et un bouton ``Ajouter un sprint`` qui renvoit sur la page pour gérer les taches du sprint.| #19 | T15a | 1 jh | Doing | Guillaume |
+|T15b |  Implémentation de la page ``listSprints.php``:</br> Afficher la liste des sprints dans l'onglet ``Sprints`` d'un projet, trier par date début. Pour chaque sprint sera renseigné la date de début et de fin, les identifiants des user stories à réaliser et un bouton ``Ajouter un sprint`` qui renvoit sur la page pour gérer les tâches du sprint.| #19 | T15a | 1 jh | Done | Guillaume |
 | T16b | Implémentation de la page ``updateUserStory.php`` où l'on accédera à un formulaire d'ajout d'UserStory pré-rempli avec les données de la UserStory à modifier | #12 | | 1jh | Done | Amelozara |
 | T17a | Ecriture d'un scénario de test pour la modification d'user story | #12 | | 1/2 jh | To do | Amelozara |
 | T17b | Exécution du test de modification d'un user story et ajout des résultats dans l'historique des tests | #12 | T16b, T17a | 1/2 jh | To do | Amelozara |
 | T18a | Ecriture d'un scénario de test pour la création de sprint | #13| | 1/2 jh | Done | Guillaume |
 | T18b | Exécution du test de création de sprint et ajout des résultats dans l'historique des tests | #13 | T12b, T18a | 1/2 jh | To do | Guillaume |
-| T19a | Ecriture d'un scénario de test pour l'ajout de taches dans un sprint | #15| | 1/2 jh | To do | Amelozara | 
-| T19b | Exécution du test d'ajout de taches dans un sprint et ajout des résultats dans l'historique des tests | #15 | T19a, T24b | 1/2 jh | To do | Amelozara |
-| T20a | Ecriture d'un scénario de test pour le listage des taches d'un sprint | #18| | 1/2 jh | To do | Serigne | 
-| T20b | Exécution du test de listage des taches d'un sprint et ajout des résultats dans l'historique des tests | #18 | T13b, T20a | 1/2 jh | To do | Serigne |
+| T19a | Ecriture d'un scénario de test pour l'ajout de tâches dans un sprint | #15| | 1/2 jh | To do | Amelozara | 
+| T19b | Exécution du test d'ajout de tâches dans un sprint et ajout des résultats dans l'historique des tests | #15 | T19a, T24b | 1/2 jh | To do | Amelozara |
+| T20a | Ecriture d'un scénario de test pour le listage des tâches d'un sprint | #18| | 1/2 jh | Done | Serigne | 
+| T20b | Exécution du test de listage des tâches d'un sprint et ajout des résultats dans l'historique des tests | #18 | T13b, T20a | 1/2 jh | Done | Serigne |
 | T21a | Ecriture d'un scénario de test pour le listage des sprints | #19 | | 1/2 jh | Done | Guillaume | 
 | T21b | Exécution du test de listage des sprints et ajout des résultats dans l'historique des tests | #19 | T15b, T21a | 1/2 jh | To do | Guillaume |
 | T22a | Ecriture d'un scénario de test pour la visualisation d'un projet | #20 | | 1/2 jh | To do | Serigne | 

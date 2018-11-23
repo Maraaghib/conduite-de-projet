@@ -15,7 +15,7 @@ if (!isset($_GET["projectName"])) {
     }
 }
 $projectInfo = $project->getProject($projectName);
-$backlog = getNonPlanUserStories($projectName);
+$backlog = getBacklog($projectName);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sqlDate  = convertDate(htmlspecialchars($_POST["startDate"]));
     if (isPastDate($sqlDate)) {

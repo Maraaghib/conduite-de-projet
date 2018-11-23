@@ -15,3 +15,4 @@ class Url:
     # Project url
     NEW_PROJECT_URL   = "http://web/project/newProject.php"
     LIST_PROJECTS_URL = "http://web/project/listProjects.php"
+    VIEW_PROJECT_URL = "http://web/project/viewProject.php?projectName=projectTest"
