@@ -4,7 +4,7 @@
 | T4a | Ecriture d'un scénario de test pour l'ajout d'un user story | #9 |  | 1/2 jh | Done | Guillaume |
 | T4b | Exécution du test d'ajout d'un user story  et ajout des résultats dans l'historique des tests| #9 | T4a, T2b | 1/2 jh | Doing | Guillaume |
 | T5a | Ecriture d'un scénario de test pour la suppression d'un user story. | #10 |  | 1/2 jh | Done | Guillaume |
-| T5b | Exécution du test de suppression d'un user story et ajout des résultats dans l'historique des tests | #10 | T5a, T3b | 1/2 jh | To do | Guillaume |
+| T5b | Exécution du test de suppression d'un user story et ajout des résultats dans l'historique des tests | #10 | T5a, T3b | 1/2 jh | Done | Guillaume |
 | T7a | Ecriture d'un scénario de test pour la création d'un nouveau projet | #4 |  | 1/2 jh | Done | Serigne |
 | T7b | Exécution du test de création d'un nouveau projet et ajout des résultats dans l'historique des tests  | #4 | T6b, T7a | 1/2 jh | Done | Serigne |
 | T9a | Ecriture d'un scénario de test pour le listage de tous les projets | #8 |  | 1/2 jh | Done | Serigne |
@@ -19,7 +19,7 @@
 | T14a | Création d'un fichier nommé ``editProject.php`` dans le répertoire ``src/project`` pour implémenter la modification des informations d'un projet | #21 |  | 1/2 jh | Done | Serigne |
 | T14b | Implémentation d'un formulaire sur la page ``editProject.php`` avec un champ de texte pour le nom du projet, un autre (élément ``textarea`` de ``HTML``) pour la description, un autre pour la durée des sprints et un menu déroulant (élément ``select`` de ``HTML``) pour le choix de l'unité de la durée (semaines, mois, ...). Ces champs seront pré-remplis par les informations courantes du projet. À côté de chaque champ, un bouton est placé pour valider sa modification (si le champ a bien-sûr été bien repmli). Cette partie sera accessible dans l'app dans la page de visualisation du projet sous l'onglet ``Paramètres`` | #21 | T14a | 1 jh | Done | Serigne |
 | T15a | Création d'un fichier nommé ``listSprints.php`` dans le répertoire ``src/sprint`` pour le listage des sprints | #19 | T11 | 1/2 jh | Done | Guillaume |
-|T15b |  Implémentation de la page ``listSprints.php``:</br> Afficher la liste des sprints dans l'onglet ``Sprints`` d'un projet, trier par date début. Pour chaque sprint sera renseigné la date de début et de fin, les identifiants des user stories à réaliser et un bouton ``Ajouter un sprint`` qui renvoit sur la page pour gérer les tâches du sprint.| #19 | T15a | 1 jh | Doing | Guillaume |
+|T15b |  Implémentation de la page ``listSprints.php``:</br> Afficher la liste des sprints dans l'onglet ``Sprints`` d'un projet, trier par date début. Pour chaque sprint sera renseigné la date de début et de fin, les identifiants des user stories à réaliser et un bouton ``Ajouter un sprint`` qui renvoit sur la page pour gérer les tâches du sprint.| #19 | T15a | 1 jh | Done | Guillaume |
 | T16b | Implémentation de la page ``updateUserStory.php`` où l'on accédera à un formulaire d'ajout d'UserStory pré-rempli avec les données de la UserStory à modifier | #12 | | 1jh | Done | Amelozara |
 | T17a | Ecriture d'un scénario de test pour la modification d'user story | #12 | | 1/2 jh | To do | Amelozara |
 | T17b | Exécution du test de modification d'un user story et ajout des résultats dans l'historique des tests | #12 | T16b, T17a | 1/2 jh | To do | Amelozara |
