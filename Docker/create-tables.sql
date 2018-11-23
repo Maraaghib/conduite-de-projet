@@ -96,9 +96,9 @@ CREATE TABLE IF NOT EXISTS `task` (
   `idTask` varchar(30) NOT NULL,
   `idAI` int(11) NOT NULL COMMENT 'Auto-Iincrement ID',
   `description` text NOT NULL,
-  `estimatedTime` decimal(10,0) NOT NULL,
-  `progress` varchar(30) NOT NULL,
-  `affectedTo` int(11) NOT NULL COMMENT 'ça doit être un clé étrangère de la table "user"'
+  `estimatedTime` decimal(10,3) NOT NULL,
+  `progress` varchar(30) NOT NULL DEFAULT 'todo',
+  `affectedTo` int(11) DEFAULT '1' COMMENT 'ça doit être un clé étrangère de la table "user"'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
