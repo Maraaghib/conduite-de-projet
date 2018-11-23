@@ -12,6 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
     if (!isSprintExist($projectName, $idSprint) || !$project->isProjectExist($projectName) ) {
         header(ERROR_URL);
     }
+    $task = getNonPlanTask($idSprint);
+
+
 } else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET["projectName"]) && testProjectName($_GET["projectName"]) && isset($_GET["idSprint"])) {
     $projectName = htmlspecialchars($_GET["projectName"]);
     $idSprint = htmlspecialchars($_GET["idSprint"]);
@@ -27,14 +30,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
         $ett = $_POST["estimatedTimeTask"];
         $prog = $_POST["progressTask"];
         $affto = $_POST["affectedToTask"];
-            $sql = "INSERT INTO task SET
+        $sql = "INSERT INTO task SET
                 idSprint = :idSprint,
                 idTask = :idTask,
                 description = :description,
                 estimatedTime = :estimatedTime,
                 progress = :progress,
                 affectedTo = :affectedTo";
-            $data = [
+        $data = [
                 'idSprint' => $idSprint,
                 'idTask' => $idTask,
                 'description' => $desc,
@@ -44,6 +47,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
             ];
         $addTask = $db->prepare($sql);
         $addTask->execute($data);
+
+
+        if($_POST["listDepTasks[]"]!=null){
+            $sqlDep = "SELECT idAI FROM task WHERE idTask=$idTask AND idSprint=$idSprint"
+        }
+
         header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-3");
     }
 } else {
@@ -99,17 +108,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
                                 <div class="input-field col s6">
                                     <label for="estimatedTimeTask">Temps estimé *</label>
                                     <input class="validate" type="number" name="estimatedTimeTask" step=0.01 required />
-                                    <span class="helper-text" data-error="Entrez un nombre" data-success="Saisie correcte"></span>
-                                </div>
-                                <div class="input-field col s12">
-                                    <label for="progressTask">Progrès </label>
-                                    <textarea class="materialize-textarea" name="progressTask" maxlength="30">todo</textarea>
                                 </div>
                             </div>
+                            <!--
+                            <div class="row">
+                                <div class="input-field col s6">
+                                <input type="hidden" name="progressTask" value="todo"></input>
+                                <select class="mdb-select md-form" name="progressTaskView" disabled>
+                                    <option value="todo">to do</option>
+                                    <option value="doing">doing</option>
+                                    <option value="done">done</option>
+                                </select>
+                                <label for="progressTaskView">Progrès *</label>
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <div class="input-field col s12">
                                     <label for="affectedToTask">Utilisateur affectée</label>
                                     <input type="hidden" name="affectedToTask" value="0"></input>
+                                </div>
+                            </div>
+                            -->
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <select class="mdb-select md-form" name="listDepTasks[]" multiple>
+                                        <?php
+                                        foreach ($task as list($taskIdSprint, $taskIdTask, $taskIdAI, $taskDesc, $taskEt, $taskProg, $taskAffTo)) {
+                                        ?>
+                                        <option value="<?php echo $taskIdTask ?>"><?php echo $taskIdTask ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <label for="listDepTasks[]">Liste de dépendances </label>
+                                    <span class="helper-text" data-error="Vous pouvez choisir un ou des tâches de dépendances" data-success="Saisie correcte"></span>
                                 </div>
                             </div>
                             <div class="row">

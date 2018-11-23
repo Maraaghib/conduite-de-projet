@@ -43,4 +43,16 @@
         $test = $req->fetch();
         return $test !=0;
     }
+
+    function getNonPlanTask($idSprint) {
+        $db = Database::getDBConnection();
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $task = $db->prepare("SELECT * FROM task WHERE idSprint=:idSprint ORDER BY idTask");
+        $data = [
+            "idSprint" => $idSprint
+        ];
+        $task->execute($data);
+
+        return $task->fetchAll();
+    }
 ?>
