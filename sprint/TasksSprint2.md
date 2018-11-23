@@ -28,7 +28,7 @@
 | T19a | Ecriture d'un scénario de test pour l'ajout de taches dans un sprint | #15| | 1/2 jh | To do | Amelozara | 
 | T19b | Exécution du test d'ajout de taches dans un sprint et ajout des résultats dans l'historique des tests | #15 | T19a, T24b | 1/2 jh | To do | Amelozara |
 | T20a | Ecriture d'un scénario de test pour le listage des taches d'un sprint | #18| | 1/2 jh | Done | Serigne | 
-| T20b | Exécution du test de listage des taches d'un sprint et ajout des résultats dans l'historique des tests | #18 | T13b, T20a | 1/2 jh | To do | Serigne |
+| T20b | Exécution du test de listage des taches d'un sprint et ajout des résultats dans l'historique des tests | #18 | T13b, T20a | 1/2 jh | Done | Serigne |
 | T21a | Ecriture d'un scénario de test pour le listage des sprints | #19 | | 1/2 jh | Done | Guillaume | 
 | T21b | Exécution du test de listage des sprints et ajout des résultats dans l'historique des tests | #19 | T15b, T21a | 1/2 jh | To do | Guillaume |
 | T22a | Ecriture d'un scénario de test pour la visualisation d'un projet | #20 | | 1/2 jh | To do | Serigne | 
