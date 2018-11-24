@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
 
 
         if($_POST["listDepTasks[]"]!=null){
-            $sqlDep = "SELECT idAI FROM task WHERE idTask=$idTask AND idSprint=$idSprint"
+            $sqlDep = "SELECT idAI FROM task WHERE idTask=$idTask AND idSprint=$idSprint";
         }
 
         header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-3");
