@@ -13,3 +13,40 @@
 | T23b | Exécution du test de modification d'un projet et ajout des résultats dans l'historique des tests | #21 | T14b, T23a | 1/2 jh | To do | Serigne |
 | T24a | Interface du fichier ``addTask.php`` qui ajoutera une tâche à un sprint | #15 | T25, T26, T27 | 1/2 jh | To do | Amelozara |
 | T24b | Implémentation d'un formulaire sur la page ``addTask.php`` contenant un champ pour l'identifiant, un pour la description, un pour le temps estimé, un pour l'avancement de la tâche et enfin un pour la lier à un ou des user stories et optionnellement un pour sa (ses) dépendance(s) aux autres tâches. Dans ce formulaire un bouton ``créer`` valide la création et renvois dans l'onglet ``Sprints`` de ``viewProject.php``, si tous les champs sont correct. Un bouton ``Annuler``, quant à lui, permet d'annuler la création de sprint et renvois à la page précédente. Ce formulaire sera accessible grâce à un bouton ``Ajouter un nouveau sprint`` diponible dans l'onglet ``Sprints``(au niveau du titre ``Sprints``) de la page ``viewProject.php``.  | #15 | T24a | 1/2 jh | Doing | Amelozara |
+| T27| Création de la table ``User`` | #1, #2 | | XX jh | To do | Serigne |
+| T28a | Tâche de Conception | #1 | TXX | XX jh | To do | Non défini |
+| T28b | Tâche d'Implémentation | #1 | TXX | XX jh | To do | Non défini |
+| T28c | Tâche de Scénario de Test | #1 | TXX | XX jh | To do | Non défini |
+| T28d | Tâche d'Exécution de Test | #1 | TXX | XX jh | To do | Non défini |
+| T29a | Tâche de Conception | #2 | TXX | XX jh | To do | Non défini |
+| T29b | Tâche d'Implémentation | #2 | TXX | XX jh | To do | Non défini |
+| T29c | Tâche de Scénario de Test | #2 | TXX | XX jh | To do | Non défini |
+| T29d | Tâche d'Exécution de Test | #2 | TXX | XX jh | To do | Non défini |
+| T30a | Tâche de Conception | #3 | TXX | XX jh | To do | Non défini |
+| T30b | Tâche d'Implémentation | #3 | TXX | XX jh | To do | Non défini |
+| T30c | Tâche de Scénario de Test | #3 | TXX | XX jh | To do | Non défini |
+| T30d | Tâche d'Exécution de Test | #3 | TXX | XX jh | To do | Non défini |
+| T31a | Tâche de Conception | #5 | TXX | XX jh | To do | Non défini |
+| T31b | Tâche d'Implémentation | #5 | TXX | XX jh | To do | Non défini |
+| T31c | Tâche de Scénario de Test | #5 | TXX | XX jh | To do | Non défini |
+| T31d | Tâche d'Exécution de Test | #5 | TXX | XX jh | To do | Non défini |
+| T32a | Tâche de Conception | #6 | TXX | XX jh | To do | Non défini |
+| T32b | Tâche d'Implémentation | #6 | TXX | XX jh | To do | Non défini |
+| T32c | Tâche de Scénario de Test | #6 | TXX | XX jh | To do | Non défini |
+| T32d | Tâche d'Exécution de Test | #6 | TXX | XX jh | To do | Non défini |
+| T33a | Tâche de Conception | #7 | TXX | XX jh | To do | Non défini |
+| T33b | Tâche d'Implémentation | #7 | TXX | XX jh | To do | Non défini |
+| T33c | Tâche de Scénario de Test | #7 | TXX | XX jh | To do | Non défini |
+| T33d | Tâche d'Exécution de Test | #7 | TXX | XX jh | To do | Non défini |
+| T34a | Tâche de Conception | #14 | TXX | XX jh | To do | Non défini |
+| T34b | Tâche d'Implémentation | #14 | TXX | XX jh | To do | Non défini |
+| T34c | Tâche de Scénario de Test | #14 | TXX | XX jh | To do | Non défini |
+| T34d | Tâche d'Exécution de Test | #14 | TXX | XX jh | To do | Non défini |
+| T35a | Tâche de Conception | #16 | TXX | XX jh | To do | Non défini |
+| T35b | Tâche d'Implémentation | #16 | TXX | XX jh | To do | Non défini |
+| T35c | Tâche de Scénario de Test | #16 | TXX | XX jh | To do | Non défini |
+| T35d | Tâche d'Exécution de Test | #16 | TXX | XX jh | To do | Non défini |
+| T36a | Tâche de Conception | #17 | TXX | XX jh | To do | Non défini |
+| T36b | Tâche d'Implémentation | #17 | TXX | XX jh | To do | Non défini |
+| T36c | Tâche de Scénario de Test | #17 | TXX | XX jh | To do | Non défini |
+| T36d | Tâche d'Exécution de Test | #17 | TXX | XX jh | To do | Non défini |
