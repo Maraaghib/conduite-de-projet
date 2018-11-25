@@ -26,8 +26,8 @@
 | T30b | Tâche d'Implémentation | #3 | TXX | XX jh | To do | Non défini |
 | T30c | Tâche de Scénario de Test | #3 | TXX | XX jh | To do | Non défini |
 | T30d | Tâche d'Exécution de Test | #3 | TXX | XX jh | To do | Non défini |
-| T31a | Tâche de Conception | #5 | TXX | XX jh | To do | Non défini |
-| T31b | Tâche d'Implémentation | #5 | TXX | XX jh | To do | Non défini |
+| T31a | Création d'un fichier nommé ``deleteProject.php`` dans le répertoire ``src/project`` pour implémenter la suppression d'un projet | #5 |  | XX jh | To do | Serigne |
+| T31b | Sur la page de visualisation d'un projet, sous l'onglet ``PARAMETRES``, nous implémentons une section nommé ``SUPPRESSION`` dans laquelle il n'y a qu'un seul bouton ``SUPPRIMER CE PROJET``. Lorsque l'on clique sur ce dernier, un popup (modal) est ouvert avec deux champs de texte obligatoires: l'un pour confirmer le nom du projet à supprimer et l'autre  (de type ``password``) pour confirmer le mot de passe de l'utilisateur courant. En-dessous de ces deux champs, il y a deux boutons: l'un de type ``submit`` (appelé ``SUPPRIMER``) qui, reste désactivé tant que le nom saisi dans le premier champ est différent du nom du projet, permet de valider la suppression et l'autre de type ``reset`` (appelé ``ANNULER``) permet de réinitialiser tous les champs du formulaire, de fermer le popup et par conséquent, d'annuler la suppression du projet. | #5 | T0, T31a | 1/2 jh | To do | Serigne |
 | T31c | Tâche de Scénario de Test | #5 | TXX | XX jh | To do | Non défini |
 | T31d | Tâche d'Exécution de Test | #5 | TXX | XX jh | To do | Non défini |
 | T32a | Tâche de Conception | #6 | TXX | XX jh | To do | Non défini |
