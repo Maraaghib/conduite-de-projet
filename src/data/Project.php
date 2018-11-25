@@ -144,6 +144,21 @@
         }
 
         /**
+        * Permet de supprimer un projet
+        */
+        public function deleteProject($projectName /*idUser*/) {
+            $db = Database::getDBConnection();
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $query = $db->prepare("DELETE FROM project WHERE projectName = :projectName");
+            $data = [
+                'projectName' => $projectName
+            ];
+
+            return $query->execute($data);
+        }
+
+        /**
          * Permet de tester si un projet existe ou non
          */
          public function isProjectExist($projectName) {

@@ -4,6 +4,7 @@
 
     $instance = new Project;
     $errorMessage = '';
+    $deleteProjectMessage = "<strong style=\"color: #c37a0d\"><i class=\"material-icons left\">warning</i> La supression est définitive ! Une fois que vous supprimez un projet, vous ne pouvez plus revenir en arrière. S'il vous plaît soyez certain.</strong>";
 
     // @TODO Test if the project with this name EXISTS
     /* RETRIEVAL OF PROJECT'S INFOS AND ITS BACKLOG */
@@ -13,6 +14,12 @@
         $backlog = getBackLog($projectName);
         $listSprints = getListSprints($projectName);
         $sprintDuration = $project['sprintDuration'];
+
+        if (isset($_GET["error"])) {
+            if ($_GET["error"] === "delete") {
+                $deleteProjectMessage = "<strong style=\"color: red\"><i class=\"material-icons left\">warning</i>Le nom de projet que vous avez saisi est incorrect ! Veuillez réessayer avec le on nom de ce projet.</strong>";
+            }
+        }
     }
 
     /* UPDATE OF THE PROJECT'S NAME */
@@ -24,18 +31,6 @@
             // $errorMessage = 'Le projet <strong>'.$newProjectName.'</strong> existe déjà pour ce compte !';
             header(BASE_URL_VIEW_PROJECT.$oldProjectName.'#tab-swipe-6');
 ?>
-            <!-- <style>
-                /* label focus color */
-                .input-field #projectName:focus + label, #helper-text {
-                    color: red !important;
-                }
-
-                /* label underline focus color */
-                .row .input-field #projectName:focus {
-                    border-bottom: 1px solid red !important;
-                    box-shadow: 0 1px 0 0 red !important
-                }
-            </style> -->
 <?php
         }
         else {
@@ -59,6 +54,19 @@
         $instance->updateSprintDuration($projectName, $sprintDuration);
         header(BASE_URL_VIEW_PROJECT.$projectName);
     }
+
+    /* DELETE A PROJECT */
+    elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['deleteProjectBtn'])) {
+        $projectName = $_POST['projectName'];
+        $confirmProjectName = $_POST['confirmProjectName'];
+        if (strtolower($projectName) === strtolower($confirmProjectName)) {
+            $instance->deleteProject($projectName);
+            header('Location: /project/listProjects.php');
+        } else {
+            header(BASE_URL_VIEW_PROJECT.$projectName.'&error=delete#tab-swipe-6');
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -187,6 +195,7 @@
                                 <div class="container">
                                     <h4>Paramètres</h4>
                                     <?php include_once $_SERVER['DOCUMENT_ROOT'].'/project/editProject.php'; ?>
+                                    <?php include_once $_SERVER['DOCUMENT_ROOT'].'/project/deleteProject.php'; ?>
                                 </div>
                             </div>
                         </div>
