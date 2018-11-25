@@ -31,8 +31,8 @@ $(document).ready(function () {
             $(this).next().html(readMore);
         }
     });
-        $('.datepicker').datepicker({ 
-            firstDay: true, 
+        $('.datepicker').datepicker({
+            firstDay: true,
             format: 'dd-mm-yyyy',
             i18n: {
                 months: [ "janvier", "février", "mars", "avril", "mai", "juin",
@@ -48,4 +48,16 @@ $(document).ready(function () {
 
 function removeHelperText() {
     document.querySelector('#helper-text').innerHTML = '';
+}
+
+function verifyProjectName() {
+    let confirmProjectName = document.querySelector('#confirmProjectName').value;
+    let hiddenProjectName  = document.querySelector('#hiddenProjectName').value;
+    let deleteProjectBtn = document.querySelector('#deleteProjectBtn');
+    if (confirmProjectName.toLowerCase().localeCompare(hiddenProjectName.toLowerCase()) === 0) {
+        deleteProjectBtn.disabled = false;
+    }
+    else {
+        deleteProjectBtn.disabled = true;
+    }
 }
