@@ -17,7 +17,7 @@
 
         if (isset($_GET["error"])) {
             if ($_GET["error"] === "delete") {
-                $deleteProjectMessage = "<strong style=\"color: red\"><i class=\"material-icons left\">warning</i>Le nom de projet que vous avez saisi est incorrect ! Veuillez réessayer avec le on nom de ce projet.</strong>";
+                $deleteProjectMessage = "<strong style=\"color: red\"><i class=\"material-icons left\">warning</i>Le nom de projet que vous avez saisi est incorrect ! Veuillez réessayer avec le bon nom de ce projet.</strong>";
             }
         }
     }
