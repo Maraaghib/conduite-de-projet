@@ -65,25 +65,3 @@
         </div>
     </div>
 </div>
-<div class="row box box-danger">
-    <h5 class="center-align box-header box-header-danger">Suppression</h5>
-    <div class="s12" style="padding: 20px;">
-        <div class="section">
-            <form action="" method="post">
-                <div class="row">
-                    <div class="col s12 m8">
-                        <strong>
-                            Une fois que vous supprimez un projet, vous ne pouvez plus revenir en arrière. S'il vous plaît soyez certain.
-                        </strong>
-                    </div>
-                    <div class="col s12 m4">
-                        <button type="submit" name="updateProjectName" class="btn waves-effect waves-light red">
-                        <i class="material-icons left" aria-hidden="true">delete</i>
-                            Supprimer ce projet
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
