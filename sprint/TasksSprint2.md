@@ -2,7 +2,6 @@
 | --- | ----------- | ------ | ----------- | ------------ | ---------- | ---------- |
 | T3b | Ajout d'un bouton en forme de corbeille à côté de chaque user story dans le fichier ``listBacklog.php``. Lorsque l'on clique dessus un popup s'affiche avec l'id de l'user story associé et qui demande confirmation pour la suppression. Un bouton ``Supprimer`` permet de valider la suppression en envoyant une requête post, contenant le nom du projet et l'id de l'user story à supprimer, au fichier ``removeUserStory.php`` qui s'occupe de supprimer l'user story de la base de donnée et un bouton  ``Annuler`` permet de l'annuler en fermant le popup | #10 | T3a, T0 | 1 jh | Done | Guillaume |
 | T4a | Ecriture d'un scénario de test pour l'ajout d'un user story | #9 |  | 1/2 jh | Done | Guillaume |
-| T4b | Exécution du test d'ajout d'un user story  et ajout des résultats dans l'historique des tests| #9 | T4a, T2b | 1/2 jh | Doing | Guillaume |
 | T5a | Ecriture d'un scénario de test pour la suppression d'un user story. | #10 |  | 1/2 jh | Done | Guillaume |
 | T5b | Exécution du test de suppression d'un user story et ajout des résultats dans l'historique des tests | #10 | T5a, T3b | 1/2 jh | Done | Guillaume |
 | T7a | Ecriture d'un scénario de test pour la création d'un nouveau projet | #4 |  | 1/2 jh | Done | Serigne |
@@ -21,21 +20,9 @@
 | T15a | Création d'un fichier nommé ``listSprints.php`` dans le répertoire ``src/sprint`` pour le listage des sprints | #19 | T11 | 1/2 jh | Done | Guillaume |
 |T15b |  Implémentation de la page ``listSprints.php``:</br> Afficher la liste des sprints dans l'onglet ``Sprints`` d'un projet, trier par date début. Pour chaque sprint sera renseigné la date de début et de fin, les identifiants des user stories à réaliser et un bouton ``Ajouter un sprint`` qui renvoit sur la page pour gérer les tâches du sprint.| #19 | T15a | 1 jh | Done | Guillaume |
 | T16b | Implémentation de la page ``updateUserStory.php`` où l'on accédera à un formulaire d'ajout d'UserStory pré-rempli avec les données de la UserStory à modifier | #12 | | 1jh | Done | Amelozara |
-| T17a | Ecriture d'un scénario de test pour la modification d'user story | #12 | | 1/2 jh | To do | Amelozara |
-| T17b | Exécution du test de modification d'un user story et ajout des résultats dans l'historique des tests | #12 | T16b, T17a | 1/2 jh | To do | Amelozara |
-| T18a | Ecriture d'un scénario de test pour la création de sprint | #13| | 1/2 jh | Done | Guillaume |
-| T18b | Exécution du test de création de sprint et ajout des résultats dans l'historique des tests | #13 | T12b, T18a | 1/2 jh | To do | Guillaume |
-| T19a | Ecriture d'un scénario de test pour l'ajout de tâches dans un sprint | #15| | 1/2 jh | To do | Amelozara | 
-| T19b | Exécution du test d'ajout de tâches dans un sprint et ajout des résultats dans l'historique des tests | #15 | T19a, T24b | 1/2 jh | To do | Amelozara |
+| T18a | Ecriture d'un scénario de test pour la création de sprint | #13| | 1/2 jh | Done | Guillaume | 
 | T20a | Ecriture d'un scénario de test pour le listage des tâches d'un sprint | #18| | 1/2 jh | Done | Serigne | 
 | T20b | Exécution du test de listage des tâches d'un sprint et ajout des résultats dans l'historique des tests | #18 | T13b, T20a | 1/2 jh | Done | Serigne |
 | T21a | Ecriture d'un scénario de test pour le listage des sprints | #19 | | 1/2 jh | Done | Guillaume | 
-| T21b | Exécution du test de listage des sprints et ajout des résultats dans l'historique des tests | #19 | T15b, T21a | 1/2 jh | To do | Guillaume |
-| T22a | Ecriture d'un scénario de test pour la visualisation d'un projet | #20 | | 1/2 jh | To do | Serigne | 
-| T22b | Exécution du test de visualisation d'un projet et ajout des résultats dans l'historique des tests | #20 | T10b, T22a | 1/2 jh | To do | Serigne |
-| T23a | Ecriture d'un scénario de test pour la modification d'un projet | #21 | | 1/2 jh | To do | Serigne |
-| T23b | Exécution du test de modification d'un projet et ajout des résultats dans l'historique des tests | #21 | T14b, T23a | 1/2 jh | To do | Serigne |
-| T24a | Interface du fichier ``addTask.php`` qui ajoutera une tâche à un sprint | #15 | T25, T26, T27 | 1/2 jh | To do | Amelozara |
-| T24b | Implémentation d'un formulaire sur la page ``addTask.php`` contenant un champ pour l'identifiant, un pour la description, un pour le temps estimé, un pour l'avancement de la tâche et enfin un pour la lier à un ou des user stories et optionnellement un pour sa (ses) dépendance(s) aux autres tâches. Dans ce formulaire un bouton ``créer`` valide la création et renvois dans l'onglet ``Sprints`` de ``viewProject.php``, si tous les champs sont correct. Un bouton ``Annuler``, quant à lui, permet d'annuler la création de sprint et renvois à la page précédente. Ce formulaire sera accessible grâce à un bouton ``Ajouter un nouveau sprint`` diponible dans l'onglet ``Sprints``(au niveau du titre ``Sprints``) de la page ``viewProject.php``.  | #15 | T24a | 1/2 jh | To do | Amelozara |
 | T25 | Création de la table ``task`` dans ``/Docker/createTable.sql`` contenant les champs ``idSprint`` (clé étrangère vers le champ ``id`` de la table ``sprint``) et ``idTask`` comme clé primaire et les champs ``idAI`` (identifiant unique de cette table), ``description``, ``estimatedTime``, ``progress`` et ``affectedTo``.| #15 | T11 | 1/16 jh | Done | Serigne |
 | T26 | Création de la table ``dependence`` dans ``/Docker/createTable.sql`` contenant les champs ``id`` (clé étrangère vers le champ ``idAI`` de la table ``task``), ``idTask`` (clé étrangère vers le champ ``idTask`` de la table ``task``), ``idSprint`` (clé étrangère vers le champ ``idSprint`` de la table ``task``) et , ``idUS`` (clé étrangère vers le champ ``idUS`` de la table ``backlog``). Les champs ``id``, ``idTask`` et ``idSprint`` forment la clé primaire de cette table | #15 | T0, T25 | 1/16 jh | Done | Serigne |
