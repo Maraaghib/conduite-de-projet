@@ -50,4 +50,4 @@
 | T36b | Tâche d'Implémentation | #17 | TXX | XX jh | To do | Non défini |
 | T36c | Tâche de Scénario de Test | #17 | TXX | XX jh | To do | Non défini |
 | T36d | Tâche d'Exécution de Test | #17 | TXX | XX jh | To do | Non défini |
-| T37 | Création de la table ``colaboration`` dans ``/Docker/createTable.sql`` contenant le champ ``userEmail``, une clé étrangère vers le champ ``email`` de la table ``user`` mais contenant également le champ ``idProject``, une clé étrangère vers le champ ``idAI`` de la table ``project``
+| T37 | Création de la table ``collaboration`` dans ``/Docker/createTable.sql`` contenant le champ ``userEmail``, une clé étrangère vers le champ ``email`` de la table ``user`` mais contenant également le champ ``idProject``, une clé étrangère vers le champ ``idAI`` de la table ``project`` | #6, #7 | | 1/2 jh | To do | Non défini |
