@@ -66,6 +66,7 @@ CREATE TABLE IF NOT EXISTS `linkedus` (
 --
 
 CREATE TABLE IF NOT EXISTS `project` (
+  `author` varchar(50) NOT NULL,
   `idAI` int(11) NOT NULL,
   `projectName` varchar(50) NOT NULL,
   `description` text,
@@ -99,6 +100,20 @@ CREATE TABLE IF NOT EXISTS `task` (
   `estimatedTime` decimal(10,3) NOT NULL,
   `progress` varchar(30) NOT NULL DEFAULT 'todo',
   `affectedTo` int(11) DEFAULT '1' COMMENT 'ça doit être un clé étrangère de la table "user"'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `email` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `key` varchar(32) NOT NULL,
+  `active` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -153,6 +168,12 @@ ALTER TABLE `task`
   ADD KEY `idSprint` (`idSprint`);
 
 --
+-- Index pour la table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`email`);
+
+--
 -- AUTO_INCREMENT pour les tables exportées
 --
 
@@ -186,6 +207,12 @@ ALTER TABLE `task`
 ALTER TABLE `backlog`
   ADD CONSTRAINT `FK_Project_Backlog` FOREIGN KEY (`projectName`) REFERENCES `project` (`projectName`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_Sprint_Backlog` FOREIGN KEY (`idSprint`) REFERENCES `sprint` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `project`
+--
+ALTER TABLE `project`
+  ADD CONSTRAINT `FK_User_Project` FOREIGN KEY (`author`) REFERENCES `user` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `dependence`
