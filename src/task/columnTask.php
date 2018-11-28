@@ -1,7 +1,7 @@
 <?php
 foreach ($tasks as $task) {
         ?>
-        <div class="col s12" style="padding: 20px;">
+        <div id="task-<?php echo $count++; ?>-sprint-<?php echo $id; ?>" class="col s12" style="padding: 20px; cursor: move;" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)" title="Vous pouvez la glisser et la déposer dans une autre colonne">
             <div class="quote-container card">
                 <i class="pin" aria-hidden="true"></i>
                 <blockquote class="card-content note yellow">
@@ -59,4 +59,4 @@ foreach ($tasks as $task) {
                 </blockquote>
             </div>
         </div>
-        <?php } ?>
+<?php } ?>

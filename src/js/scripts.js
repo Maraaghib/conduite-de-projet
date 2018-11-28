@@ -34,19 +34,20 @@ $(document).ready(function () {
             $(this).next().html(readMore);
         }
     });
-        $('.datepicker').datepicker({
-            firstDay: true,
-            format: 'dd-mm-yyyy',
-            i18n: {
-                months: [ "janvier", "février", "mars", "avril", "mai", "juin",
-                "juillet", "août", "septembre", "octobre", "novembre", "décembre" ],
-                monthsShort: [ "janv.", "févr.", "mars", "avr.", "mai", "juin",
-                "juil.", "août", "sept.", "oct.", "nov.", "déc." ],
-                weekdays: [ "dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi" ],
-                weekdaysShort: [ "dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam." ],
-                weekdaysAbbrev: [ "D","L","M","M","J","V","S" ]
-            }
-        });
+
+    $('.datepicker').datepicker({
+        firstDay: true,
+        format: 'dd-mm-yyyy',
+        i18n: {
+            months: [ "janvier", "février", "mars", "avril", "mai", "juin",
+            "juillet", "août", "septembre", "octobre", "novembre", "décembre" ],
+            monthsShort: [ "janv.", "févr.", "mars", "avr.", "mai", "juin",
+            "juil.", "août", "sept.", "oct.", "nov.", "déc." ],
+            weekdays: [ "dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi" ],
+            weekdaysShort: [ "dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam." ],
+            weekdaysAbbrev: [ "D","L","M","M","J","V","S" ]
+        }
+    });
 });
 
 function removeHelperText() {
@@ -62,5 +63,39 @@ function verifyProjectName() {
     }
     else {
         deleteProjectBtn.disabled = true;
+    }
+}
+
+function allowDrop(ev) {
+    ev.preventDefault();
+    console.log(event.target);
+    console.log(event.target.className);
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = event.dataTransfer.getData("text");
+    var dropTarget = event.target;
+
+    // If the drop target is the progress column, create the task will be a child node
+    if (dropTarget.className.localeCompare('row box box-danger') == 0  ) {
+        dropTarget.appendChild(document.getElementById(data));
+    }
+    else {
+        // If the drop target is a task itself
+        if (event.target.hasAttribute('id') && event.target.getAttribute('id').startsWith('task-')) {
+            // Do nothing
+        }
+        // If the drop target is child node of the task
+        else {
+            while (!dropTarget.parentNode.hasAttribute('id') || (dropTarget.parentNode.hasAttribute('id') && !dropTarget.parentNode.getAttribute('id').startsWith('task-'))) {
+                dropTarget = dropTarget.parentNode;
+            }
+        }
+        dropTarget.parentNode.insertBefore(document.getElementById(data), dropTarget.nextSibling);
     }
 }
