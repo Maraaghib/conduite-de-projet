@@ -21,6 +21,6 @@ require_once("../date.php")
     <?php } ?>
 </ul>
 
-<div class="center-align" style="margin-top: 35px;">
+<div id="sprintButtonAction" class="center-align" style="margin-top: 35px;">
     <a id="newSprint" href="/sprint/newSprint.php?projectName=<?php echo $project['projectName'] ?>" class="btn waves-effect waves-light"><i class="material-icons left" aria-hidden="true">add</i>Ajouter un sprint</a>
 </div>

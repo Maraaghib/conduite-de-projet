@@ -98,4 +98,6 @@ function drop(ev) {
         }
         dropTarget.parentNode.insertBefore(document.getElementById(data), dropTarget.nextSibling);
     }
+
+    document.querySelector('#sprintButtonAction').innerHTML = '<button type="submit" name="updateTaskSprintAndProgress" class="btn waves-effect waves-light yellow accent-4" style="color: black;">Enregistrer les modifications<i class="material-icons left" aria-hidden="true">save</i></button>';
 }
