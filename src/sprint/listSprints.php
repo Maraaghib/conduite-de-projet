@@ -15,12 +15,14 @@ require_once("../date.php")
             <div class="row">
                 <?php include $_SERVER['DOCUMENT_ROOT'].'/task/listTasks.php'; ?>
             </div>
-            <a href="/task/addTask.php?projectName=<?php echo $projectName ?>&idSprint=<?php echo $id ?>" class="btn waves-effect waves-light"><i class="material-icons left" aria-hidden="true">add</i>Ajouter une tâche</a>
+            <div class="center-align" style="margin-top: 35px;">
+                <a href="/task/addTask.php?projectName=<?php echo $projectName ?>&idSprint=<?php echo $id ?>" class="btn waves-effect waves-light"><i class="material-icons left" aria-hidden="true">note_add</i>Ajouter une tâche</a>
+            </div>
         </div>
     </li>
     <?php } ?>
 </ul>
 
 <div id="sprintButtonAction" class="center-align" style="margin-top: 35px;">
-    <a id="newSprint" href="/sprint/newSprint.php?projectName=<?php echo $project['projectName'] ?>" class="btn waves-effect waves-light"><i class="material-icons left" aria-hidden="true">add</i>Ajouter un sprint</a>
+    <a id="newSprint" href="/sprint/newSprint.php?projectName=<?php echo $project['projectName'] ?>" class="btn waves-effect waves-light"><i class="material-icons left" aria-hidden="true">playlist_add</i>Ajouter un sprint</a>
 </div>
