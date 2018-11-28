@@ -1,7 +1,7 @@
 <?php
 require_once("../date.php")
 ?>
-<ul class="collapsible">
+<ul class="collapsible expandable">
     <?php
     $i = 1;
     foreach ($listSprints as list($id, $projectName, $startDate)) {
