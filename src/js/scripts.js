@@ -68,8 +68,6 @@ function verifyProjectName() {
 
 function allowDrop(ev) {
     ev.preventDefault();
-    console.log(event.target);
-    console.log(event.target.className);
 }
 
 function drag(ev) {
