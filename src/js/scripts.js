@@ -79,23 +79,16 @@ function drop(ev) {
     var data = event.dataTransfer.getData("text");
     var dropTarget = event.target;
 
-    // If the drop target is the progress column, create the task will be a child node
-    if (dropTarget.className.localeCompare('row box box-danger') == 0  ) {
-        dropTarget.appendChild(document.getElementById(data));
+    // If the drop target is a child node of the progress column
+    if (dropTarget.className.localeCompare('row box box-danger') != 0  ) {
+        dropTarget = findAncestor(dropTarget);
     }
-    else {
-        // If the drop target is a task itself
-        if (event.target.hasAttribute('id') && event.target.getAttribute('id').startsWith('task-')) {
-            // Do nothing
-        }
-        // If the drop target is child node of the task
-        else {
-            while (!dropTarget.parentNode.hasAttribute('id') || (dropTarget.parentNode.hasAttribute('id') && !dropTarget.parentNode.getAttribute('id').startsWith('task-'))) {
-                dropTarget = dropTarget.parentNode;
-            }
-        }
-        dropTarget.parentNode.insertBefore(document.getElementById(data), dropTarget.nextSibling);
-    }
+    dropTarget.appendChild(document.getElementById(data));
 
     document.querySelector('#sprintButtonAction').innerHTML = '<button type="submit" name="updateTaskSprintAndProgress" class="btn waves-effect waves-light yellow accent-4" style="color: black;">Enregistrer les modifications<i class="material-icons left" aria-hidden="true">save</i></button>';
+}
+
+function findAncestor (elem) {
+    while ((elem = elem.parentElement) && elem.className.localeCompare('row box box-danger') != 0);
+    return elem;
 }
