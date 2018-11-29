@@ -28,7 +28,7 @@
                         <textarea id="projectDescription" name="projectDescription" class="materialize-textarea"><?php echo $project['description']; ?></textarea>
                         <label for="projectDescription">Description</label>
                     </div>
-                    <input type="hidden" name="projectName" value="<?php echo $project['projectName']; ?>">
+                    <input type="hidden" name="projectName" value="<?php echo $project[PROJECT_NAME_ARG]; ?>">
                     <div class="col s12 m4">
                         <button type="submit" name="updateProjectDescription" class="btn waves-effect waves-light">
                             Valider
@@ -46,7 +46,7 @@
                         <label for="sprintDuration">Durée</label>
                         <span class="helper-text" data-error="La durée des sprints est obligatoire et doit être supérieure ou égale à 1" data-success="&#10004;"></span>
                     </div>
-                    <input type="hidden" name="projectName" value="<?php echo $project['projectName']; ?>">
+                    <input type="hidden" name="projectName" value="<?php echo $project[PROJECT_NAME_ARG]; ?>">
                     <div class="input-field col s12 m4">
                         <select required>
                             <option value="1">Jours</option>

@@ -8,8 +8,8 @@
 
     // @TODO Test if the project with this name EXISTS
     /* RETRIEVAL OF PROJECT'S INFOS AND ITS BACKLOG */
-    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"])) {
-        $projectName = htmlspecialchars($_GET["projectName"]);
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG])) {
+        $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
         $project = $instance->getProject($projectName);
         $backlog = getBackLog($projectName);
         $listSprints = getListSprints($projectName);

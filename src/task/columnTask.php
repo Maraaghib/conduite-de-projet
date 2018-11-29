@@ -1,11 +1,12 @@
 <?php
+define ("ID_TASK_ARG", "idTask");
 foreach ($tasks as $task) {
         ?>
         <div class="col s12" style="padding: 20px;">
             <div class="quote-container card">
                 <i class="pin" aria-hidden="true"></i>
                 <blockquote class="card-content note yellow">
-                    <h5 class="center-align note-header"><span style="color: #ff0c00;" title="ID de la tâche"><?php echo $task['idTask']; ?></span>: <span style="color: #0316f9;" title="Temps estimé (Jour-Homme)"><?php echo $task['estimatedTime']; ?></span> jh</h5>
+                    <h5 class="center-align note-header"><span style="color: #ff0c00;" title="ID de la tâche"><?php echo $task[ID_TASK_ARG]; ?></span>: <span style="color: #0316f9;" title="Temps estimé (Jour-Homme)"><?php echo $task['estimatedTime']; ?></span> jh</h5>
                     <p class="ellipse-text">
                         <?php echo $task['description']; ?>
                     </p>
@@ -35,8 +36,8 @@ foreach ($tasks as $task) {
                                 $dependences = getDependenceByID($idTask);
                                 foreach ($dependences as $dependence) {
                             ?>
-                            <div class="chip purple lighten-2" title="Tâche <?php echo $dependence['idTask']; ?>">
-                                <?php echo $dependence['idTask']; ?>
+                            <div class="chip purple lighten-2" title="Tâche <?php echo $dependence[ID_TASK_ARG]; ?>">
+                                <?php echo $dependence[ID_TASK_ARG]; ?>
                             </div>
                             <?php } ?>
                         </div>

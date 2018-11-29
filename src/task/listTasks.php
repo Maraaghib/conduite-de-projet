@@ -2,9 +2,10 @@
     <div class="row box box-danger">
         <h5 class="center-align box-header box-header-danger">TO DO</h5>
         <?php
+            define("COLUMN_TASK_FILE", "columnTask.php");
             $progress = 'todo';
             $tasks = getTasksBySprintAndProgress($id, $progress);
-            require "columnTask.php"
+            require COLUMN_TASK_FILE
         ?>
 
     </div>
@@ -16,7 +17,7 @@
         <?php
             $progress = 'doing';
             $tasks = getTasksBySprintAndProgress($id, $progress);
-            require "columnTask.php"
+            require COLUMN_TASK_FILE
         ?>
     </div>
 </div>
@@ -28,7 +29,7 @@
         <?php
             $progress = 'done';
             $tasks = getTasksBySprintAndProgress($id, $progress);
-            require "columnTask.php"
+            require COLUMN_TASK_FILE
         ?>
     </div>
 </div>

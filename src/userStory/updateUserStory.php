@@ -3,39 +3,72 @@ require_once 'userStory.php';
 require_once('../data/Project.php');
 require_once('userStory.php');
 
+define("ID_US_ARG_URI", "idUserStory");
+
 $project = new Project;
 
 $cdpDb = Database::getDBConnection();
 $cdpDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && isset($_GET["idUserStory"]) && testProjectName($_GET["projectName"]) && !empty($_GET["idUserStory"])) {
-    $projectName = htmlspecialchars($_GET["projectName"]);
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && isset($_GET[ID_US_ARG_URI]) && testProjectName($_GET[PROJECT_NAME_ARG]) && !empty($_GET[ID_US_ARG_URI])) {
+    $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
     if (!$project->isProjectExist($projectName)) {
         header(ERROR_URL);
     }
-    $id = htmlspecialchars($_GET["idUserStory"]);
+    $id = htmlspecialchars($_GET[ID_US_ARG_URI]);
     if (!is_numeric($id) && !isUserStoryExist($id, $projectName)) {
         header(ERROR_URL);
     }
-    $selectUserStory = "SELECT description, difficulty, priority FROM backlog WHERE projectName=\"$projectName\" AND id=$id";
+    $selectUserStory = "SELECT description, difficulty, priority FROM backlog WHERE projectName=:projectName AND id=:id";
     $toFetch = $cdpDb->prepare($selectUserStory);
-    $toFetch->execute();
+    $data = [
+        "projectName" => $projectName,
+        "id" => $id
+    ];
+    $toFetch->execute($data);
     $gres = $toFetch->fetch(PDO::FETCH_ASSOC);
     $gdesc = $gres["description"];
     $gdiff = $gres["difficulty"];
     $gprio = $gres["priority"];
 
 } else if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $projectName = htmlspecialchars($_POST["projectName"]);
-    $id = htmlspecialchars($_POST["idUserStory"]);
+    $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
+    if (!$project->isProjectExist($projectName)) {
+        header(ERROR_URL);
+    }
+    $id = htmlspecialchars($_POST[ID_US_ARG_URI]);
     $desc = htmlspecialchars($_POST["descUserStory"]);
+    $diff = $_POST["diffUserStory"];
     $prio = $_POST["prioUserStory"];
     if ($prio == null) {
-        $prio = 'NULL';
+        $sql = "UPDATE backlog SET
+            projectName = :projectName,
+            id = :id,
+            description = :description,
+            difficulty = :difficulty";
+        $data = [
+            'projectName' => $projectName,
+            'id' => $id,
+            'description' => $desc,
+            'difficulty' => $diff
+        ];
+    } else {
+        $sql = "UPDATE backlog SET
+            projectName = :projectName,
+            id = :id,
+            description = :description,
+            priority = :priority,
+            difficulty = :difficulty";
+        $data = [
+            'projectName' => $projectName,
+            'id' => $id,
+            'description' => $desc,
+            'priority' => $prio,
+            'difficulty' => $diff
+        ];
     }
-    $diff = $_POST["diffUserStory"];
-    $updateUserStory = "UPDATE backlog SET description=\"$desc\", priority=$prio, difficulty=$diff  WHERE projectName=\"$projectName\" AND id=$id";
-    $cdpDb->exec($updateUserStory);
+    $updateUserStory = $cdpDb->prepare($sql);
+    $updateUserStory->execute($data);
     header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-2");
 } else {
     header(ERROR_URL);
@@ -66,8 +99,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && isset
             <div class="row">
                 <div class="col s12 m8 offset-m2">
                     <div id="grid-container" class="section scrollspy">
-                        <form class="col s12" method="post" action="updateUserStory.php">
-                          <input type="hidden" name="projectName" value=<?php echo $_GET["projectName"] ?>>
+                        <form class="col s12" method="post" action="updateUserStory.php?projectName=<?php echo $_GET[PROJECT_NAME_ARG] ?>">
+                          <input type="hidden" name="projectName" value=<?php echo $_GET[PROJECT_NAME_ARG] ?>>
                           <input type="hidden" name="idUserStory" value=<?php echo  $id; ?>>
                             <h5 style="text-align: center;">Modifier une User Story </h5>
                             <div class="row">
