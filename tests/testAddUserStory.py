@@ -52,9 +52,9 @@ class TestAddUserStory(unittest.TestCase):
         page_url = self.firefox_driver.current_url
         self.assertEqual(page_url, Url.ADD_USER_STORY_URL)
 
-    def AddUserStory(self, idUserStory, desc, diff, prio):
+    def AddUserStory(self, id_user_story, desc, diff, prio):
         id_user_story_field = self.firefox_driver.find_element_by_name("idUserStory")
-        id_user_story_field.send_keys(idUserStory)
+        id_user_story_field.send_keys(id_user_story)
         desc_user_story_field = self.firefox_driver.find_element_by_name("descUserStory")
         desc_user_story_field.send_keys(desc)
         diff_user_story_field = self.firefox_driver.find_element_by_name("diffUserStory")

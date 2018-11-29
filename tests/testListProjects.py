@@ -15,8 +15,8 @@ class TestListProjects(unittest.TestCase):
 
     def testListProjects(self):
         self.firefox_driver.get(Url.HOME_PAGE_URL)
-        listProjectsLink = self.firefox_driver.find_element_by_id("listProjects")
-        listProjectsLink.click()
+        list_projects_link = self.firefox_driver.find_element_by_id("listProjects")
+        list_projects_link.click()
         current_page_url = self.firefox_driver.current_url
         self.assertEqual(current_page_url, Url.LIST_PROJECTS_URL)
 
