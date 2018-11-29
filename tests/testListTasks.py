@@ -5,30 +5,30 @@ from constants import Url
 
 class TestListTasks(unittest.TestCase):
     def setUp(self):
-        self.firefoxDriver = webdriver.Remote(
+        self.firefox_driver = webdriver.Remote(
             command_executor=Url.SELENIUM_HUB,
             desired_capabilities=DesiredCapabilities.FIREFOX
         )
 
     def tearDown(self):
-        self.firefoxDriver.quit()
+        self.firefox_driver.quit()
 
     def testListTasks(self):
-        projectName = "projectTest"
+        project_name = "projectTest"
 
-        self.firefoxDriver.get(Url.HOME_PAGE_URL)
-        listProjectsLink = self.firefoxDriver.find_element_by_id("listProjects")
-        listProjectsLink.click()
-        currentPageUrl = self.firefoxDriver.current_url
-        self.assertEqual(currentPageUrl, Url.LIST_PROJECTS_URL)
+        self.firefox_driver.get(Url.HOME_PAGE_URL)
+        list_projects_link = self.firefox_driver.find_element_by_id("listProjects")
+        list_projects_link.click()
+        current_page_url = self.firefox_driver.current_url
+        self.assertEqual(current_page_url, Url.LIST_PROJECTS_URL)
 
-        projectLink = self.firefoxDriver.find_element_by_link_text(projectName)
-        projectLink.click()
-        currentPageUrl = self.firefoxDriver.current_url
-        self.assertEqual(currentPageUrl, Url.VIEW_PROJECT_URL)
+        project_link = self.firefox_driver.find_element_by_link_text(project_name)
+        project_link.click()
+        current_page_url = self.firefox_driver.current_url
+        self.assertEqual(current_page_url, Url.VIEW_PROJECT_URL)
 
-        sprintTab = self.firefoxDriver.find_element_by_link_text(Sprints)
-        sprintTab.click()
+        sprint_tab = self.firefox_driver.find_element_by_link_text(Sprints)
+        sprint_tab.click()
 
 
 
