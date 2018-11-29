@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `linkedus` (
 --
 
 CREATE TABLE IF NOT EXISTS `project` (
-  `author` varchar(50) NOT NULL,
+  `author` varchar(50),/* Temporary set to null since there isn't a way to add an user*/
   `idAI` int(11) NOT NULL,
   `projectName` varchar(50) NOT NULL,
   `description` text,
