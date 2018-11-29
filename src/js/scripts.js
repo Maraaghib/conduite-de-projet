@@ -81,14 +81,15 @@ function drop(ev) {
 
     // If the drop target is a child node of the progress column
     if (dropTarget.className.localeCompare('row box box-danger') != 0  ) {
-        dropTarget = findAncestor(dropTarget);
+        var dataType = 'progressColumn';
+        dropTarget = findAncestorByDataType(dropTarget, dataType);
     }
     dropTarget.appendChild(document.getElementById(data));
 
     document.querySelector('#sprintButtonAction').innerHTML = '<button type="submit" name="updateTaskSprintAndProgress" class="btn waves-effect waves-light yellow accent-4" style="color: black;">Enregistrer les modifications<i class="material-icons left" aria-hidden="true">save</i></button>';
 }
 
-function findAncestor (elem) {
-    while ((elem = elem.parentElement) && elem.className.localeCompare('row box box-danger') != 0);
+function findAncestorByDataType (elem, dataType) {
+    while ((elem = elem.parentElement) && !(elem.hasAttribute('data-type') && elem.getAttribute('data-type').localeCompare(dataType) == 0));
     return elem;
 }
