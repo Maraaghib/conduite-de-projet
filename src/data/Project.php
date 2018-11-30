@@ -147,12 +147,21 @@
         /**
         * Permet de mettre à jour la durée des sprints d'un projet
         */
-        public function updateSprintDuration($projectName, $sprintDuration) {
+        public function updateSprintDuration($projectName, $sprintDuration, $timeUnitSprint) {
             $db = Database::getDBConnection();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $query = $db->prepare("UPDATE project SET sprintDuration = \"$sprintDuration\" WHERE projectName = \"$projectName\"");
-            return $query->execute();
+            $query = $db->prepare("UPDATE project SET 
+                sprintDuration = :sprintDuration, 
+                timeUnitSprint = :timeUnitSprint
+                WHERE projectName = :projectName
+            ");
+            $data = [
+                "sprintDuration" => $sprintDuration,
+                "timeUnitSprint" => $timeUnitSprint,
+                "projectName"    => $projectName
+            ];
+            return $query->execute($data);
         }
 
         /**

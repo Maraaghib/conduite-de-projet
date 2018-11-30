@@ -51,7 +51,8 @@
     elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['updateSprintDuration'])) {
         $projectName = $_POST['projectName'];
         $sprintDuration = (int) $_POST['sprintDuration'];
-        $instance->updateSprintDuration($projectName, $sprintDuration);
+        $timeUnitSprint = $_POST['timeUnitSprint'];
+        $instance->updateSprintDuration($projectName, $sprintDuration, $timeUnitSprint);
         header(BASE_URL_VIEW_PROJECT.$projectName);
     }
 

@@ -48,7 +48,7 @@
                     </div>
                     <input type="hidden" name="projectName" value="<?php echo $project[PROJECT_NAME_ARG]; ?>">
                     <div class="input-field col s12 m4">
-                        <select required>
+                        <select name="timeUnitSprint" required>
                             <option value="1" 
                             <?php if ($project['timeUnitSprint'] == DAY)
                             { 
