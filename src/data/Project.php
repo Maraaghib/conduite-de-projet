@@ -5,6 +5,9 @@
     define("DESCRIPTION_ARG", "description");
     define("SPRINT_DURATION_ARG", "sprintDuration");
     define("DATE_PROJECT_ARG", "dateProject");
+    define("DAY", 1);
+    define("WEEK", 2);
+    define("MONTH", 3);
 
     const BASE_URL_VIEW_PROJECT = 'Location: /project/viewProject.php?projectName=';
     const ERROR_URL = 'location: /error.php';
@@ -23,15 +26,17 @@
             $this->projectName = "";
             $this->description = "";
             $this->sprintDuration = "";
+            $this->timeUnitSprint = "";
             $this->dateProject = "";
         }
 
-        public static function newProject($projectName, $description, $sprintDuration, $dateProject) {
+        public static function newProject($projectName, $description, $sprintDuration, $dateProject, $timeUnitSprint) {
             $instance = new self();
             $instance->setProjectName($projectName);
             $instance->setDescription($description);
             $instance->setSprintDuration($sprintDuration);
             $instance->setDateProject($dateProject);
+            $instance->setTimeUnitSprint($timeUnitSprint);
 
             return $instance;
         }
@@ -96,14 +101,16 @@
                 projectName     = :projectName,
                 description     = :description,
                 sprintDuration  = :sprintDuration,
-                dateProject     = :dateProject
+                dateProject     = :dateProject,
+                timeUnitSprint  = :timeUnitSprint
             ");
 
             $data = [
                 'projectName'   => $this->getProjectName(),
                 'description'   => $this->getDescription(),
                 'sprintDuration'=> $this->getSprintDuration(),
-                'dateProject'   => $this->getDateProject()
+                'dateProject'   => $this->getDateProject(),
+                'timeUnitSprint'=> $this->getTimeUnitSprint()
             ];
 
             $result = $query->execute($data);
@@ -209,6 +216,14 @@
         public function getDateProject(){
             return $this->dateProject;
         }
+
+        public function setTimeUnitSprint($timeUnit){
+            $this->timeUnitSprint = $timeUnit;
+        }
+
+        public function getTimeUnitSprint(){
+            return $this->timeUnitSprint;
+        }
     }
 
     /**
@@ -229,6 +244,21 @@
             $tasks[] = $result;
         }
         return $tasks;
+    }
+
+    /**
+     * Permet de récupérer l'unité de temps d'un sprint en chaine de charactère
+     * (exemple: "semaine", "jour" ou "mois")
+     */
+    function timeUnitSprintToStr($timeUnitSprint){
+        $strTimeUnit = "jours";
+        if ($timeUnitSprint == WEEK){
+            $strTimeUnit = "semaines";
+        }
+        if ($timeUnitSprint == MONTH){
+            $strTimeUnit = "mois";
+        }
+        return $strTimeUnit;
     }
 
     /**

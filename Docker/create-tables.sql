@@ -71,7 +71,8 @@ CREATE TABLE IF NOT EXISTS `project` (
   `projectName` varchar(50) NOT NULL,
   `description` text,
   `sprintDuration` int(11) NOT NULL,
-  `dateProject` varchar(30) NOT NULL
+  `dateProject` varchar(30) NOT NULL,
+  `timeUnitSprint` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

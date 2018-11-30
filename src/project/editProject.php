@@ -49,9 +49,21 @@
                     <input type="hidden" name="projectName" value="<?php echo $project[PROJECT_NAME_ARG]; ?>">
                     <div class="input-field col s12 m4">
                         <select required>
-                            <option value="1">Jours</option>
-                            <option value="2" selected>Semaines</option>
-                            <option value="3">Mois</option>
+                            <option value="1" 
+                            <?php if ($project['timeUnitSprint'] == DAY)
+                            { 
+                                echo "selected";
+                            }?>>Jours</option>
+                            <option value="2"
+                            <?php if ($project['timeUnitSprint'] == WEEK)
+                            { 
+                                echo "selected";
+                            }?>>Semaines</option>
+                            <option value="3"                            
+                            <?php if ($project['timeUnitSprint'] == MONTH)
+                            { 
+                                echo "selected";
+                            }?>>Mois</option>
                         </select>
                         <label>Unité de temps</label>
                     </div>
