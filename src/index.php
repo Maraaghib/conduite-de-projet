@@ -37,8 +37,7 @@ session_start();
                         <div class="col s12">
                             <div>
                                 <div id="grid-container" class="section scrollspy">
-                                    <p class="caption">Nulla mollis ut mauris ut eleifend. Maecenas porttitor ullamcorper hendrerit.</p>
-                                    <h3 class="header">Large Title</h3>
+                                    <h3 class="header">Bienvenue <?php echo $_SESSION['username']?></h3>
                                     <p>
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi arcu arcu, elementum non mi in, tristique placerat est. Donec tempus tellus vitae libero semper, sit amet semper mi efficitur. Suspendisse in pulvinar purus. Sed dolor mauris, malesuada id leo sit amet, luctus ornare lectus. Vivamus dictum imperdiet magna, ac lacinia urna cursus a. Nulla tincidunt leo quis convallis dictum. Morbi finibus turpis tortor, vitae porta elit venenatis quis. Fusce rhoncus vulputate convallis. Vestibulum vel blandit metus. Etiam malesuada faucibus tellus id elementum. Maecenas facilisis consequat maximus. In ullamcorper, sapien ut convallis convallis, lorem ligula posuere nunc, a dictum mauris velit eu purus. Mauris at aliquam quam, porttitor lobortis massa. Phasellus sed libero placerat, dignissim lectus at, molestie eros. Maecenas justo mi, tempor eget ultricies auctor, egestas vitae massa. Fusce egestas leo dolor, eu porta mauris tincidunt sit amet.
                                     </p>

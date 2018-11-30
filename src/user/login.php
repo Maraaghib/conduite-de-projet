@@ -3,9 +3,6 @@ session_start();
 require_once('../data/Database.php');
 require_once('user.php');
 
-$db = Database::getDBConnection();
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = htmlspecialchars($_POST["email"]);
     $user = getUser($email);
@@ -14,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("location: register.php?email=$email");
     }
     $password = htmlspecialchars($_POST["password"]);
-    if (!checkPassword($password, $user["password"]))
+    if (!password_verify($password, $user["password"]))
     {
         $incorrectPassword = "Le mot de passe est incorrect";
     }
@@ -65,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <form class="col s12" method="post">
                     <div class="input-field col s12">
                         <label for="email">Email *</label>
-                            <input class="validate" type="email" name="email" required />
+                            <input class="validate" type="email" name="email" value="<?php echo $_GET["email"] ?>" required />
                             <span class="helper-text" data-error="Entrez une addresse mail valide" data-success="Saisie correcte"></span>
                     </div>
                     <div class="input-field col s12">
