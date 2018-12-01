@@ -2,6 +2,7 @@ import unittest
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from constants import Url
+from login import login
 
 class TestAddUserStory(unittest.TestCase):
     def setUp(self):
@@ -9,6 +10,7 @@ class TestAddUserStory(unittest.TestCase):
             command_executor=Url.SELENIUM_HUB,
             desired_capabilities=DesiredCapabilities.FIREFOX
         )
+        login(self.firefox_driver)
 
     def tearDown(self):
         self.firefox_driver.quit()

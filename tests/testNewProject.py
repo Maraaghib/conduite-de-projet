@@ -2,6 +2,7 @@ import unittest
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from constants import Url
+from login import login
 
 class TestNewProject(unittest.TestCase):
     def setUp(self):
@@ -9,6 +10,7 @@ class TestNewProject(unittest.TestCase):
             command_executor=Url.SELENIUM_HUB,
             desired_capabilities=DesiredCapabilities.FIREFOX
         )
+        login(self.firefox_driver)
 
     def tearDown(self):
         self.firefox_driver.quit()
@@ -17,6 +19,7 @@ class TestNewProject(unittest.TestCase):
         project_name = "projectTest"
         # Open the page for creating a new project
         self.firefox_driver.get(Url.HOME_PAGE_URL)
+        current_page_url = self.firefox_driver.current_url
         new_project_link = self.firefox_driver.find_element_by_id("newProject")
         new_project_link.click()
         current_page_url = self.firefox_driver.current_url
