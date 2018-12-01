@@ -16,3 +16,11 @@ class Url:
     NEW_PROJECT_URL   = "http://web/project/newProject.php"
     LIST_PROJECTS_URL = "http://web/project/listProjects.php"
     VIEW_PROJECT_URL = "http://web/project/viewProject.php?projectName=projectTest"
+    # Connection url
+    LOGIN_URL = "http://web/user/login.php"
+    REGISTER_URL = "http://web/user/register.php"
+
+class User:
+    USERNAME ='Giovani'
+    EMAIL    = 'Pascal.Lacasde@jojo.com' 
+    PASSWORD = 'Oh noooo'
