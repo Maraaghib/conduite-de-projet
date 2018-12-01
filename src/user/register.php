@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div id="grid-container" class="section scrollspy">
                 <form class="col s12" method="post">
                     <div class="input-field col s12">
-                        <label for="email">Nom *</label>
+                        <label for="name">Nom *</label>
                             <input class="validate" type="text" name="name" required />
                     </div>
                     <div class="input-field col s12">
@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="row">
                         <div class="col s12">
-                            <button type="submit" name="newUserStory" class="btn waves-effect waves-light">
+                            <button type="submit" name="createUser" class="btn waves-effect waves-light">
                                 Créer le compte 
                                 <i class="material-icons left" aria-hidden="true">check_circle</i>
                             </button>

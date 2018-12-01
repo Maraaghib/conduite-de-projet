@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = getUser($email);
     if (!$user)
     {
-        header("register.php?email=$email");
+        header("location: register.php?email=$email");
         exit();
     }
     $password = htmlspecialchars($_POST["password"]);
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     {
         $_SESSION['email']= $email;
         $_SESSION['username']= $user["name"];
-        header("../index.php");
+        header("location: /index.php");
         exit();
     }
 }
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="row">
                         <div class="col s12">
-                            <button type="submit" name="newUserStory" class="btn waves-effect waves-light">
+                            <button type="submit" name="connectUser" class="btn waves-effect waves-light">
                                 Connexion
                                 <i class="material-icons left" aria-hidden="true">check_circle</i>
                             </button>
