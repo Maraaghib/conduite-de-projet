@@ -8,7 +8,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = getUser($email);
     if (!$user)
     {
-        header("location: register.php?email=$email");
+        header("register.php?email=$email");
+        exit();
     }
     $password = htmlspecialchars($_POST["password"]);
     if (!password_verify($password, $user["password"]))
@@ -19,7 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     {
         $_SESSION['email']= $email;
         $_SESSION['username']= $user["name"];
-        header("location: ../index.php");
+        header("../index.php");
+        exit();
     }
 }
 ?>

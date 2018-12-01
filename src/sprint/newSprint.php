@@ -8,11 +8,11 @@ $project = new Project;
 $db = Database::getDBConnection();
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 if (!isset($_GET[PROJECT_NAME_ARG])) {
-    header(ERROR_URL);
+    redirect(ERROR_URL);
 } elseif (isset($_GET[PROJECT_NAME_ARG])) {
     $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
     if (!$project->isProjectExist($projectName)) {
-        header(ERROR_URL);
+        redirect(ERROR_URL);
     }
 }
 $projectInfo = $project->getProject($projectName);
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         for ($i = 0; $i < $numberUserStory; $i++) {
             $idUserStory = $listUserStory[$i];
             if (!isUserStoryExist($idUserStory, $projectName)) {
-                header(ERROR_URL);
+                redirect(ERROR_URL);
             }
             $updateBacklog = $db->prepare("UPDATE backlog SET idSprint=:idSprint WHERE id=:idUserStory AND projectName=:projectName");
             $data = [
@@ -52,11 +52,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ];
             $updateBacklog->execute($data);
         }
-        header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-3");
+        redirect("/project/viewProject.php?projectName=$projectName#tab-swipe-3");
     }
 
 } elseif ($_SERVER["REQUEST_METHOD"] != "GET") {
-    header(ERROR_URL);
+    redirect(ERROR_URL);
 }
 ?>
 <!DOCTYPE html>

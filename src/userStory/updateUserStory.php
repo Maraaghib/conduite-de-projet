@@ -14,11 +14,11 @@ $cdpDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && isset($_GET[ID_US_ARG_URI]) && testProjectName($_GET[PROJECT_NAME_ARG]) && !empty($_GET[ID_US_ARG_URI])) {
     $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
     if (!$project->isProjectExist($projectName)) {
-        header(ERROR_URL);
+        redirect(ERROR_URL);
     }
     $id = htmlspecialchars($_GET[ID_US_ARG_URI]);
     if (!is_numeric($id) && !isUserStoryExist($id, $projectName)) {
-        header(ERROR_URL);
+        redirect(ERROR_URL);
     }
     $selectUserStory = "SELECT description, difficulty, priority FROM backlog WHERE projectName=:projectName AND id=:id";
     $toFetch = $cdpDb->prepare($selectUserStory);
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && is
 } else if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
     if (!$project->isProjectExist($projectName)) {
-        header(ERROR_URL);
+        redirect(ERROR_URL);
     }
     $id = htmlspecialchars($_POST[ID_US_ARG_URI]);
     $desc = htmlspecialchars($_POST["descUserStory"]);
@@ -70,9 +70,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && is
     }
     $updateUserStory = $cdpDb->prepare($sql);
     $updateUserStory->execute($data);
-    header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-2");
+    redirect("/project/viewProject.php?projectName=$projectName#tab-swipe-2");
 } else {
-    header(ERROR_URL);
+    redirect(ERROR_URL);
 }
 
 ?>

@@ -30,13 +30,13 @@
 
         if ($instance->isProjectExist($newProjectName)) {
             // $errorMessage = 'Le projet <strong>'.$newProjectName.'</strong> existe déjà pour ce compte !';
-            header(BASE_URL_VIEW_PROJECT.$oldProjectName.'#tab-swipe-6');
+            redirect(BASE_URL_VIEW_PROJECT.$oldProjectName.'#tab-swipe-6');
 ?>
 <?php
         }
         else {
             $instance->updateProjectName($oldProjectName, $newProjectName);
-            header(BASE_URL_VIEW_PROJECT.$newProjectName);
+            redirect(BASE_URL_VIEW_PROJECT.$newProjectName);
         }
     }
 
@@ -45,7 +45,7 @@
         $projectName = $_POST['projectName'];
         $description = $_POST['projectDescription'];
         $instance->updateProjectDescription($projectName, $description);
-        header(BASE_URL_VIEW_PROJECT.$projectName);
+        redirect(BASE_URL_VIEW_PROJECT.$projectName);
     }
 
     /* UPDATE OF THE PROJECT'S SPRINTS DURATION */
@@ -54,7 +54,7 @@
         $sprintDuration = (int) $_POST['sprintDuration'];
         $timeUnitSprint = $_POST['timeUnitSprint'];
         $instance->updateSprintDuration($projectName, $sprintDuration, $timeUnitSprint);
-        header(BASE_URL_VIEW_PROJECT.$projectName);
+        redirect(BASE_URL_VIEW_PROJECT.$projectName);
     }
 
     /* DELETE A PROJECT */
@@ -63,9 +63,9 @@
         $confirmProjectName = $_POST['confirmProjectName'];
         if (strtolower($projectName) === strtolower($confirmProjectName)) {
             $instance->deleteProject($projectName);
-            header('Location: /project/listProjects.php');
+            redirect('/project/listProjects.php');
         } else {
-            header(BASE_URL_VIEW_PROJECT.$projectName.'&error=delete#tab-swipe-6');
+            redirect(BASE_URL_VIEW_PROJECT.$projectName.'&error=delete#tab-swipe-6');
         }
     }
 

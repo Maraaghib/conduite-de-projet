@@ -8,9 +8,8 @@
     define("DAY", 1);
     define("WEEK", 2);
     define("MONTH", 3);
-
-    const BASE_URL_VIEW_PROJECT = 'Location: /project/viewProject.php?projectName=';
-    const ERROR_URL = 'location: /error.php';
+    define("BASE_URL_VIEW_PROJECT",'/project/viewProject.php?projectName=');
+    define("ERROR_URL", '/error.php');
 
     /**
      * Classe Project contenant les inormations d'un projet
@@ -114,8 +113,7 @@
             ];
 
             $query->execute($data);
-            header('Location: /project/listProjects.php');
-            exit();
+            redirect('/project/listProjects.php');
         }
 
         /**

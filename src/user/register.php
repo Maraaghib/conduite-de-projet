@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ];
     $createUser->execute($data);
     header("location: login.php?email=$email");
+    exit();
 }
 
 ?>

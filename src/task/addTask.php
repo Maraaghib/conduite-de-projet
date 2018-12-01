@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
     $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
     $idSprint = htmlspecialchars($_GET[ID_SPRINT_ARG_URI]);
     if (!isSprintExist($projectName, $idSprint) || !$project->isProjectExist($projectName) ) {
-        header(ERROR_URL);
+        redirect(ERROR_URL);
     }
     $task = getNonPlanTask($idSprint);
 
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
     $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
     $idSprint = htmlspecialchars($_GET[ID_SPRINT_ARG_URI]);
     if (!isSprintExist($projectName, $idSprint) || !$project->isProjectExist($projectName)) {
-        header(ERROR_URL);
+        redirect(ERROR_URL);
     }
     $idTask = $_POST["idTask"];
     if (!isIdUniqueTask($idTask, $idSprint, $db, $projectName)) {
@@ -55,10 +55,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
             $sqlDep = "SELECT idAI FROM task WHERE idTask=$idTask AND idSprint=$idSprint";
         }
 
-        header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-3");
+        redirect("/project/viewProject.php?projectName=$projectName#tab-swipe-3");
     }
 } else {
-    header(ERROR_URL);
+    redirect(ERROR_URL);
 }
 ?>
 <!DOCTYPE html>
