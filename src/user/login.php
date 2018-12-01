@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     {
         $_SESSION['email']= $email;
         $_SESSION['username']= $user["name"];
-        header("location: /index.php");
+        header("location: /project/listProjects.php");
         exit();
     }
 }
