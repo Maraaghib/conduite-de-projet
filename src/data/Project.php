@@ -113,9 +113,9 @@
                 'timeUnitSprint'=> $this->getTimeUnitSprint()
             ];
 
-            $result = $query->execute($data);
+            $query->execute($data);
             header('Location: /project/listProjects.php');
-            return $result;
+            exit();
         }
 
         /**

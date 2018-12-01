@@ -1,4 +1,5 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
 require_once('../data/Project.php');
 require_once('task.php');
 define ("ID_SPRINT_ARG_URI", "idSprint");
