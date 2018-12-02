@@ -16,6 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     {
         $incorrectPassword = "Le mot de passe est incorrect";
     }
+    else if (!$user["active"])
+    {
+        header("location: sendActivation.php?email=$email");
+    }
     else
     {
         $_SESSION['email']= $email;
