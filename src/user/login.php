@@ -77,11 +77,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <?php echo $incorrectPassword ?>
                     </div>
                     <div class="row">
-                        <div class="col s12">
+                        <div class="col s6">
                             <button type="submit" name="connectUser" class="btn waves-effect waves-light">
                                 Connexion
-                                <i class="material-icons left" aria-hidden="true">check_circle</i>
+                                <i class="material-icons left" aria-hidden="true">input</i>
                             </button>
+                        </div>
+                        <div class="col s6">
+                            <a class="btn waves-effect waves-light" href="./register.php">Créer un compte
+                                <i class="material-icons left" aria-hidden="true">person_add</i>
+                            </a>
                         </div>
                     </div>
                 </form>
