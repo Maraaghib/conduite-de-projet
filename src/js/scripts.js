@@ -86,10 +86,98 @@ function drop(ev) {
     }
     dropTarget.appendChild(document.getElementById(data));
 
-    document.querySelector('#sprintButtonAction').innerHTML = '<button type="submit" name="updateTaskSprintAndProgress" class="btn waves-effect waves-light yellow accent-4" style="color: black;">Enregistrer les modifications<i class="material-icons left" aria-hidden="true">save</i></button>';
+    var idOldSprintArray = new Array();
+    var idNewSprintArray = new Array();
+    var idTaskArray = new Array();
+    var progressArray = new Array();
+
+    var idOldSprint = document.getElementById(data).getAttribute('data-sprint-id');
+    var idNewSprint = findAncestorByDataType(dropTarget, 'sprint').getAttribute('data-sprint-id');
+    var idTask = document.getElementById(data).getAttribute('data-task-id');
+    var progress = dropTarget.getAttribute('data-column-progress');
+
+    var idOldSprintArrayValue = document.querySelector("#sprintButtonAction form #idOldSprintArray").value;
+    var idNewSprintArrayValue = document.querySelector("#sprintButtonAction form #idNewSprintArray").value;
+    var idTaskArrayValue = document.querySelector("#sprintButtonAction form #idTaskArray").value;
+    var progressArrayValue = document.querySelector("#sprintButtonAction form #progressArray").value;
+
+    if (idOldSprintArrayValue !== "") {
+        idOldSprintArray = idOldSprintArrayValue.split(',');
+    }
+    idOldSprintArray.unshift(idOldSprint);
+
+    if (idNewSprintArrayValue !== "") {
+        idNewSprintArray = idNewSprintArrayValue.split(',');
+    }
+    idNewSprintArray.unshift(idNewSprint);
+
+    if (idTaskArrayValue !== "") {
+        idTaskArray = idTaskArrayValue.split(',');
+    }
+    idTaskArray.unshift(idTask);
+
+    if (progressArrayValue !== "") {
+        progressArray = progressArrayValue.split(',');
+    }
+    progressArray.unshift(progress);
+
+    console.log(idTaskArray);
+    console.log(progressArray);
+    console.log(idOldSprintArray);
+    console.log(idNewSprintArray);
+
+    document.querySelector("#sprintButtonAction form #idOldSprintArray").value = idOldSprintArray.toString();
+    document.querySelector("#sprintButtonAction form #idNewSprintArray").value = idNewSprintArray.toString();
+    document.querySelector("#sprintButtonAction form #idTaskArray").value = idTaskArray.toString();
+    document.querySelector("#sprintButtonAction form #progressArray").value = progressArray.toString();
+
+
+    // removeAllButLast(document.querySelector("#sprintButtonAction form #idTaskArray").value, idTaskArrayValue);
+
+    document.querySelector("#sprintButtonAction #newSprint").style.display = 'none';
+    document.querySelector("#sprintButtonAction form").removeAttribute("style");
+
+    // Removing duplicates in the array. Keep the last task change
+    removeDuplicates();
 }
 
 function findAncestorByDataType (elem, dataType) {
     while ((elem = elem.parentElement) && !(elem.hasAttribute('data-type') && elem.getAttribute('data-type').localeCompare(dataType) == 0));
     return elem;
+}
+
+function removeDuplicates() {
+    var idOldSprintArray = document.querySelector("#sprintButtonAction form #idOldSprintArray").value.split(',');
+    var idNewSprintArray = document.querySelector("#sprintButtonAction form #idNewSprintArray").value.split(',');
+    var idTaskArray = document.querySelector("#sprintButtonAction form #idTaskArray").value.split(',');
+    var progressArray = document.querySelector("#sprintButtonAction form #progressArray").value.split(',');
+
+    for (var i = 0; i < idTaskArray.length; i++) {
+        for (var j = i+1; j < idTaskArray.length; j++) {
+            console.log('i = '+i+' ; j = '+j);
+            if (idTaskArray[i] && idTaskArray[j] && idTaskArray[i].localeCompare(idTaskArray[j]) == 0) { // Old modification of the task
+                console.log("A supprimer: "+progressArray[j]);
+                idOldSprintArray[j] = '';
+                idNewSprintArray[j] = '';
+                idTaskArray[j] = '';
+                progressArray[j] = '';
+            }
+        }
+    }
+
+    i = idTaskArray.length;
+    while (i--) {
+        if (idTaskArray[i] === '') {
+            idTaskArray.splice(i, 1);
+            idOldSprintArray.splice(i, 1);
+            idNewSprintArray.splice(i, 1);
+            idTaskArray.splice(i, 1);
+            progressArray.splice(i, 1);
+        }
+    }
+
+    document.querySelector("#sprintButtonAction form #idOldSprintArray").value = idOldSprintArray.toString();
+    document.querySelector("#sprintButtonAction form #idNewSprintArray").value = idNewSprintArray.toString();
+    document.querySelector("#sprintButtonAction form #idTaskArray").value = idTaskArray.toString();
+    document.querySelector("#sprintButtonAction form #progressArray").value = progressArray.toString();
 }
