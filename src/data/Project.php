@@ -1,6 +1,7 @@
 <?php
     require_once('Database.php');
 
+    define("AUTHOR_ARG", "author");
     define("PROJECT_NAME_ARG", "projectName");
     define("DESCRIPTION_ARG", "description");
     define("SPRINT_DURATION_ARG", "sprintDuration");
@@ -16,12 +17,14 @@
      */
     class Project {
 
+        private $author;
         private $projectName;
         private $description;
         private $sprintDuration;
         private $dateProject;
 
         public function __construct() {
+            $this->author ="";
             $this->projectName = "";
             $this->description = "";
             $this->sprintDuration = "";
@@ -29,8 +32,9 @@
             $this->dateProject = "";
         }
 
-        public static function newProject($projectName, $description, $sprintDuration, $dateProject, $timeUnitSprint) {
+        public static function newProject($author, $projectName, $description, $sprintDuration, $dateProject, $timeUnitSprint) {
             $instance = new self();
+            $instance->setAuthor($author);
             $instance->setProjectName($projectName);
             $instance->setDescription($description);
             $instance->setSprintDuration($sprintDuration);
@@ -41,6 +45,9 @@
         }
 
         public function hydrate($data) {
+            if(isset($data[AUTHOR_ARG])) {
+                $this->author = $data[AUTHOR_ARG];
+            }
             if(isset($data[PROJECT_NAME_ARG])) {
                 $this->projectName = $data[PROJECT_NAME_ARG];
             }
@@ -97,6 +104,7 @@
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $query = $db->prepare("INSERT INTO project SET
+                author          = :author,
                 projectName     = :projectName,
                 description     = :description,
                 sprintDuration  = :sprintDuration,
@@ -105,6 +113,7 @@
             ");
 
             $data = [
+                'author'        => $this->getAuthor(),
                 'projectName'   => $this->getProjectName(),
                 'description'   => $this->getDescription(),
                 'sprintDuration'=> $this->getSprintDuration(),
@@ -149,8 +158,8 @@
             $db = Database::getDBConnection();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $query = $db->prepare("UPDATE project SET 
-                sprintDuration = :sprintDuration, 
+            $query = $db->prepare("UPDATE project SET
+                sprintDuration = :sprintDuration,
                 timeUnitSprint = :timeUnitSprint
                 WHERE projectName = :projectName
             ");
@@ -192,6 +201,14 @@
         }
 
         /*************** Getters et setters ******************/
+        public function setAuthor($author){
+            $this->author = $author;
+        }
+
+        public function getAuthor(){
+            return $this->author;
+        }
+
         public function setProjectName($projectName){
             $this->projectName = $projectName;
         }
