@@ -30,7 +30,7 @@
 | T31b | Sur la page de visualisation d'un projet, sous l'onglet ``PARAMETRES``, nous implémentons une section nommé ``SUPPRESSION`` dans laquelle il n'y a qu'un seul bouton ``SUPPRIMER CE PROJET``. Lorsque l'on clique sur ce dernier, un popup (modal) est ouvert avec deux champs de texte obligatoires: l'un pour confirmer le nom du projet à supprimer et l'autre  (de type ``password``) pour confirmer le mot de passe de l'utilisateur courant. En-dessous de ces deux champs, il y a deux boutons: l'un de type ``submit`` (appelé ``SUPPRIMER``) qui, reste désactivé tant que le nom saisi dans le premier champ est différent du nom du projet, permet de valider la suppression et l'autre de type ``reset`` (appelé ``ANNULER``) permet de réinitialiser tous les champs du formulaire, de fermer le popup et par conséquent, d'annuler la suppression du projet. | #5 | T0, T31a | 1/2 jh | Done | Serigne |
 | T31c | Ecriture d'un scénario de test pour la suppression d'un projet | #5 |  | 1/2 jh | To do | Serigne |
 | T31d | Exécution du test de suppression d'un projet et ajout des résultats dans l'historique des tests | #5 | T31b, T31c | 1/2 jh | To do | Serigne |
-| T32a | Tâche de Conception | #6 | TXX | XX jh | To do | Non défini |
+| T32a | Création d'un fichier ``collaborators.php`` dans le répertoire ``src/project`` pour implémenter l'ajout et l'affichage des collaborateurs dans un projet. | #6 | T6b, T28b | 1/2 jh | To do | Serigne |
 | T32b | Tâche d'Implémentation | #6 | TXX | XX jh | To do | Non défini |
 | T32c | Tâche de Scénario de Test | #6 | TXX | XX jh | To do | Non défini |
 | T32d | Tâche d'Exécution de Test | #6 | TXX | XX jh | To do | Non défini |
