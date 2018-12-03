@@ -71,6 +71,18 @@
             redirect(BASE_URL_VIEW_PROJECT.$projectName.'&error=delete#tab-swipe-6');
         }
     }
+    elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['updateTaskSprintAndProgress'])) {
+        $projectName = $_POST['projectName'];
+        $idOldSprintArray = explode(',', $_POST['idOldSprintArray']);
+        $idNewSprintArray = explode(',', $_POST['idNewSprintArray']);
+        $idTaskArray = explode(',', $_POST['idTaskArray']);
+        $progressArray = explode(',', $_POST['progressArray']);
+
+        for ($i=0; $i < count($idTaskArray); $i++) {
+            updateTaskSprintAndProgress(intval($idOldSprintArray[$i]), $idTaskArray[$i], intval($idNewSprintArray[$i]), $progressArray[$i]);
+        }
+        redirect(BASE_URL_VIEW_PROJECT.$projectName.'#tab-swipe-3');
+    }
 
 ?>
 

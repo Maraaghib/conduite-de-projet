@@ -31,6 +31,6 @@ require_once("../date.php")
         <input type="hidden" id="idNewSprintArray" name="idNewSprintArray" value="">
         <input type="hidden" id="idTaskArray" name="idTaskArray" value="">
         <input type="hidden" id="progressArray" name="progressArray" value="">
-        <button type="button" name="updateTaskSprintAndProgress" onclick="removeDuplicates()" class="btn waves-effect waves-light yellow accent-4" style="color: black;">Enregistrer les modifications<i class="material-icons left" aria-hidden="true">save</i></button>'
+        <button type="submit" name="updateTaskSprintAndProgress" class="btn waves-effect waves-light yellow accent-4" style="color: black;">Enregistrer les modifications<i class="material-icons left" aria-hidden="true">save</i></button>'
     </form>
 </div>

@@ -342,4 +342,21 @@
         return $userStories;
     }
 
+    /**
+    * Permet de mettre à jour la progression et le sprint d'une tâche
+    */
+    function updateTaskSprintAndProgress($idOldSprint, $idTask, $idNewSprint, $progress) {
+        $db = Database::getDBConnection();
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $query = $db->prepare("UPDATE task SET idSprint=:idNewSprint, progress=:progress WHERE idSprint=:idOldSprint AND idTask=:idTask");
+        $data = [
+            "idNewSprint" => $idNewSprint,
+            "progress" => $progress,
+            "idOldSprint" => $idOldSprint,
+            "idTask" => $idTask
+        ];
+        $query->execute($data);
+    }
+
 ?>
