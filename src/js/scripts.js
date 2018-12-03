@@ -166,19 +166,12 @@ function removeDuplicates() {
         }
     }
 
-    i = idTaskArray.length;
-    while (i--) {
-        if (idTaskArray[i] === '') {
-            idTaskArray.splice(i, 1);
-            idOldSprintArray.splice(i, 1);
-            idNewSprintArray.splice(i, 1);
-            idTaskArray.splice(i, 1);
-            progressArray.splice(i, 1);
-        }
-    }
+    document.querySelector("#sprintButtonAction form #idOldSprintArray").value = idOldSprintArray.filter(checkEmptyValues).toString();
+    document.querySelector("#sprintButtonAction form #idNewSprintArray").value = idNewSprintArray.filter(checkEmptyValues).toString();
+    document.querySelector("#sprintButtonAction form #idTaskArray").value = idTaskArray.filter(checkEmptyValues).toString();
+    document.querySelector("#sprintButtonAction form #progressArray").value = progressArray.filter(checkEmptyValues).toString();
+}
 
-    document.querySelector("#sprintButtonAction form #idOldSprintArray").value = idOldSprintArray.toString();
-    document.querySelector("#sprintButtonAction form #idNewSprintArray").value = idNewSprintArray.toString();
-    document.querySelector("#sprintButtonAction form #idTaskArray").value = idTaskArray.toString();
-    document.querySelector("#sprintButtonAction form #progressArray").value = progressArray.toString();
+function checkEmptyValues(val) {
+    return val !== '';
 }
