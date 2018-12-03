@@ -134,7 +134,7 @@
                                 <li class="tab col s2"><a href="#tab-swipe-2">Backlog</a></li>
                                 <li class="tab col s2"><a href="#tab-swipe-3">Sprints</a></li>
                                 <li class="tab col s2"><a href="#tab-swipe-4">Burndown chart</a></li>
-                                <li class="tab col s2"><a href="#tab-swipe-5">Contributeurs</a></li>
+                                <li class="tab col s2"><a href="#tab-swipe-5">Collaborateurs</a></li>
                                 <li class="tab col s2"><a href="#tab-swipe-6">Paramètres</a></li>
                             </ul>
                             <div id="tab-swipe-1" class="col s12 transp-blue">
@@ -202,7 +202,7 @@
                             <div id="tab-swipe-5" class="col s12 transp-cyan">
                                 <div class="row" style="margin: 10px;">
                                     <div class="s12">
-                                        <h4>Contributeurs</h4>
+                                        <h4>Collaborateurs</h4>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                         </p>
