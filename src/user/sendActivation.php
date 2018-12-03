@@ -11,12 +11,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["email"])) {
     }
 } else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"])) {
     $email = $_POST["email"];
-    getUser($email);
+    $user = getUser($email);
     if ($user["active"]) {
         require_once("accountAlreadyActivate");
         exit();
     }
-    sendConfirmMail($email, $user["key"]);
+    sendConfirmMail($email, $user["keyMail"]);
     $mailSend = "Email envoyé à l'adresse $email";
 }
 ?>

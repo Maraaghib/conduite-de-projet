@@ -25,7 +25,7 @@ conduite de projet.
         
 Pour activer votre compte, veuillez cliquer sur le lien ci dessous:
         
-http://localhost:8100/user/activation.php?email=".urlencode($email)."&key=".urlencode($key)."
+http://$_SERVER[HTTP_HOST]/user/activation.php?email=".urlencode($email)."&key=".urlencode($key)."
  
 ---------------
 Ceci est un mail automatique, Merci de ne pas y répondre.";
