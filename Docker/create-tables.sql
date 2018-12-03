@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 03 Décembre 2018 à 13:46
+-- Généré le :  Lun 03 Décembre 2018 à 23:28
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -34,6 +34,18 @@ CREATE TABLE IF NOT EXISTS `backlog` (
   `difficulty` int(11) NOT NULL,
   `idSprint` int(11) DEFAULT NULL,
   `idAI` int(11) NOT NULL COMMENT 'Id. Auto-Increment pour lier US aux Tâches'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `collaboration`
+--
+
+CREATE TABLE IF NOT EXISTS `collaboration` (
+  `projectID` int(11) NOT NULL,
+  `userEmail` varchar(50) NOT NULL,
+  `dateAdded` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -130,6 +142,13 @@ ALTER TABLE `backlog`
   ADD KEY `FK_Sprint_Backlog` (`idSprint`);
 
 --
+-- Index pour la table `collaboration`
+--
+ALTER TABLE `collaboration`
+  ADD PRIMARY KEY (`projectID`,`userEmail`),
+  ADD KEY `FK_Collaboration_User` (`userEmail`);
+
+--
 -- Index pour la table `dependence`
 --
 ALTER TABLE `dependence`
@@ -209,6 +228,13 @@ ALTER TABLE `task`
 ALTER TABLE `backlog`
   ADD CONSTRAINT `FK_Project_Backlog` FOREIGN KEY (`projectID`) REFERENCES `project` (`idAI`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_Sprint_Backlog` FOREIGN KEY (`idSprint`) REFERENCES `sprint` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `collaboration`
+--
+ALTER TABLE `collaboration`
+  ADD CONSTRAINT `FK_Collaboration_Project` FOREIGN KEY (`projectID`) REFERENCES `project` (`idAI`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Collaboration_User` FOREIGN KEY (`userEmail`) REFERENCES `user` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `dependence`
