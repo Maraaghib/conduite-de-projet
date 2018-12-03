@@ -2,6 +2,7 @@
     require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
     require_once('../data/Project.php');
     require_once('../userStory/userStory.php');
+    include_once('../user/user.php');
 
     $instance = new Project;
     $errorMessage = '';
@@ -134,7 +135,11 @@
                                         <div class="col s12">
                                             <div class="chip">
                                                 <img src="/img/avatar.png" alt="Propriétaire du projet" title="Propriétaire du projet">
-                                                Hamza SEYE
+                                                <?php
+                                                    $email = $project['author'];
+                                                    $author = getUser($email);
+                                                    echo $author['name'];
+                                                ?>
                                             </div>
                                         </div>
                                         <div class="col s12">

@@ -2,6 +2,7 @@
     require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
     require_once('../data/Project.php');
     require_once('../date.php');
+    include_once('../user/user.php');
     $project = new Project;
     if (isset($_SESSION['email'])) {
         $user = $_SESSION['email'];
@@ -81,7 +82,13 @@
                                                     <div class="card-action">
                                                         <div class="row" style="margin-bottom: 0px;">
                                                             <div class="col s6">
-                                                                <span>Hamza SEYE</span>
+                                                                <span>
+                                                                    <?php
+                                                                        $email = $project['author'];
+                                                                        $author = getUser($email);
+                                                                        echo $author['name'];
+                                                                    ?>
+                                                                </span>
                                                             </div>
                                                             <div class="col s6">
                                                                 <span><?php echo convertDate($project['dateProject']); ?></span>
