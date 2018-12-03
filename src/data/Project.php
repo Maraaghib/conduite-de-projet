@@ -81,12 +81,15 @@
         /**
          * Permet de récupérer tous les projets (d'un user)
          */
-        public function listProjects(/*idUser*/) {
+        public function listProjects($user) {
             $db = Database::getDBConnection();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             /* WHERE author = :author = ?? */
-            $stmt = $db->prepare("SELECT * FROM project ORDER BY idAI ASC", array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-            $stmt->execute();
+            $stmt = $db->prepare("SELECT * FROM project WHERE author=:author ORDER BY idAI ASC", array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+            $data = [
+                'author' => $user
+            ];
+            $stmt->execute($data);
             // $query->execute(['author' => $author]);
             // $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $projects = [];

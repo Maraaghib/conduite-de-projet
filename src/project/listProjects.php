@@ -3,7 +3,10 @@
     require_once('../data/Project.php');
     require_once('../date.php');
     $project = new Project;
-    $projects = $project->listProjects();
+    if (isset($_SESSION['email'])) {
+        $user = $_SESSION['email'];
+        $projects = $project->listProjects($user);
+    }
 ?>
 
 <!DOCTYPE html>

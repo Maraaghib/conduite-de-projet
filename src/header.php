@@ -1,7 +1,7 @@
 <?php
     require_once($_SERVER['DOCUMENT_ROOT'].'/data/Project.php');
     $instance = new Project;
-    $projects = $instance->listProjects();
+    $projects = $instance->listProjects($_SESSION['email']);
 ?>
 
 <header>
