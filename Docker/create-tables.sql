@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 22 Novembre 2018 à 00:35
+-- Généré le :  Lun 03 Décembre 2018 à 13:46
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `backlog` (
-  `projectName` varchar(50) NOT NULL,
+  `projectID` int(11) NOT NULL,
   `id` int(11) NOT NULL,
   `description` text NOT NULL,
   `priority` int(11) DEFAULT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `linkedus` (
 --
 
 CREATE TABLE IF NOT EXISTS `project` (
-  `author` varchar(50),/* Temporary set to null since there isn't a way to add an user*/
+  `author` varchar(50) DEFAULT NULL,
   `idAI` int(11) NOT NULL,
   `projectName` varchar(50) NOT NULL,
   `description` text,
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `project` (
 
 CREATE TABLE IF NOT EXISTS `sprint` (
   `id` int(11) NOT NULL,
-  `projectName` varchar(50) NOT NULL,
+  `projectID` int(11) NOT NULL,
   `startDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `name` varchar(50) NOT NULL,
   `password` varchar(60) NOT NULL,
   `keyMail` varchar(32) NOT NULL,
-  `active` int(1) NOT NULL DEFAULT 0
+  `active` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Index pour la table `backlog`
 --
 ALTER TABLE `backlog`
-  ADD PRIMARY KEY (`projectName`,`id`),
+  ADD PRIMARY KEY (`projectID`,`id`),
   ADD UNIQUE KEY `idAI` (`idAI`),
   ADD KEY `FK_Sprint_Backlog` (`idSprint`);
 
@@ -151,14 +151,15 @@ ALTER TABLE `linkedus`
 --
 ALTER TABLE `project`
   ADD PRIMARY KEY (`projectName`),
-  ADD UNIQUE KEY `idAI` (`idAI`);
+  ADD UNIQUE KEY `idAI` (`idAI`),
+  ADD KEY `FK_User_Project` (`author`);
 
 --
 -- Index pour la table `sprint`
 --
 ALTER TABLE `sprint`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `projectName` (`projectName`);
+  ADD KEY `projectName` (`projectID`);
 
 --
 -- Index pour la table `task`
@@ -206,14 +207,8 @@ ALTER TABLE `task`
 -- Contraintes pour la table `backlog`
 --
 ALTER TABLE `backlog`
-  ADD CONSTRAINT `FK_Project_Backlog` FOREIGN KEY (`projectName`) REFERENCES `project` (`projectName`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Project_Backlog` FOREIGN KEY (`projectID`) REFERENCES `project` (`idAI`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_Sprint_Backlog` FOREIGN KEY (`idSprint`) REFERENCES `sprint` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `project`
---
-ALTER TABLE `project`
-  ADD CONSTRAINT `FK_User_Project` FOREIGN KEY (`author`) REFERENCES `user` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `dependence`
@@ -230,10 +225,16 @@ ALTER TABLE `linkedus`
   ADD CONSTRAINT `FK_LinkedUS_Task` FOREIGN KEY (`idTask`) REFERENCES `task` (`idAI`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Contraintes pour la table `project`
+--
+ALTER TABLE `project`
+  ADD CONSTRAINT `FK_User_Project` FOREIGN KEY (`author`) REFERENCES `user` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Contraintes pour la table `sprint`
 --
 ALTER TABLE `sprint`
-  ADD CONSTRAINT `FK_Project_Project_Sprint` FOREIGN KEY (`projectName`) REFERENCES `project` (`projectName`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_Sprint_Project` FOREIGN KEY (`projectID`) REFERENCES `project` (`idAI`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `task`

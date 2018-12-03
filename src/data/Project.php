@@ -79,6 +79,24 @@
         }
 
         /**
+         * Permet de récupérer l'id auto-increment d'un projet
+         */
+        public function getProjectID($author, $projectName) {
+            $db = Database::getDBConnection();
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            /* WHERE author = :author = ?? */
+            $stmt = $db->prepare("SELECT idAI FROM project WHERE author=:author AND projectName=:projectName");
+            $data = [
+                'author'      => $author,
+                'projectName' => $projectName
+            ];
+            $stmt->execute($data);
+
+            $projectID = $stmt->fetch()['idAI'];
+            return intval($projectID);
+        }
+
+        /**
          * Permet de récupérer tous les projets (d'un user)
          */
         public function listProjects($user) {

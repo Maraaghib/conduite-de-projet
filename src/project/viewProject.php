@@ -13,8 +13,10 @@
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG])) {
         $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
         $project = $instance->getProject($projectName);
-        $backlog = getBackLog($projectName);
-        $listSprints = getListSprints($projectName);
+        $author = $_SESSION['email'];
+        $projectID = $instance->getProjectID($author, $projectName);
+        $backlog = getBackLog($projectID);
+        $listSprints = getListSprints($projectID);
         $sprintDuration = $project['sprintDuration'];
 
         if (isset($_GET["error"])) {

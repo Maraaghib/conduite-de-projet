@@ -11,11 +11,11 @@
         return is_int($idSprint) && $idSprint !== "";
     }
 
-    function isIdUniqueTask($id, $idSprint, $db, $projectName)
+    function isIdUniqueTask($id, $idSprint, $db, $projectID)
     {
-        $idTaskSprint = $db->prepare("SELECT idTask FROM sprint INNER JOIN task ON sprint.id=task.idSprint WHERE projectName=:projectName AND idSprint=:idSprint");
+        $idTaskSprint = $db->prepare("SELECT idTask FROM sprint INNER JOIN task ON sprint.id=task.idSprint WHERE projectID=:projectID AND idSprint=:idSprint");
         $data = [
-            'projectName' => $projectName,
+            'projectID' => $projectID,
             'idSprint' => $idSprint
         ];
         $idTaskSprint->execute($data);
@@ -29,14 +29,14 @@
         return true;
     }
 
-    function isSprintExist ($projectName, $idSprint)
+    function isSprintExist ($projectID, $idSprint)
     {
         $db = Database::getDBConnection();
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $req = $db->prepare("SELECT count(*) FROM sprint WHERE id=:id AND projectName=:projectName");
+        $req = $db->prepare("SELECT count(*) FROM sprint WHERE id=:id AND projectID=:projectID");
         $data = [
             "id" => $idSprint,
-            "projectName" => $projectName
+            "projectID" => $projectID
 
         ];
         $req->execute($data);

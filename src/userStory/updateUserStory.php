@@ -13,17 +13,19 @@ $cdpDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && isset($_GET[ID_US_ARG_URI]) && testProjectName($_GET[PROJECT_NAME_ARG]) && !empty($_GET[ID_US_ARG_URI])) {
     $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
+    $author = $_SESSION['email'];
+    $projectID = $project->getProjectID($author, $projectName);
     if (!$project->isProjectExist($projectName)) {
         redirect(ERROR_URL);
     }
     $id = htmlspecialchars($_GET[ID_US_ARG_URI]);
-    if (!is_numeric($id) && !isUserStoryExist($id, $projectName)) {
+    if (!is_numeric($id) && !isUserStoryExist($id, $projectID)) {
         redirect(ERROR_URL);
     }
-    $selectUserStory = "SELECT description, difficulty, priority FROM backlog WHERE projectName=:projectName AND id=:id";
+    $selectUserStory = "SELECT description, difficulty, priority FROM backlog WHERE projectID=:projectID AND id=:id";
     $toFetch = $cdpDb->prepare($selectUserStory);
     $data = [
-        "projectName" => $projectName,
+        "projectID" => $projectID,
         "id" => $id
     ];
     $toFetch->execute($data);
@@ -34,6 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && is
 
 } else if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
+    $author = $_SESSION['email'];
+    $projectID = $project->getProjectID($author, $projectName);
     if (!$project->isProjectExist($projectName)) {
         redirect(ERROR_URL);
     }
@@ -43,25 +47,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && is
     $prio = $_POST["prioUserStory"];
     if ($prio == null) {
         $sql = "UPDATE backlog SET
-            projectName = :projectName,
+            projectID = :projectID,
             id = :id,
             description = :description,
             difficulty = :difficulty";
         $data = [
-            'projectName' => $projectName,
+            'projectID' => $projectID,
             'id' => $id,
             'description' => $desc,
             'difficulty' => $diff
         ];
     } else {
         $sql = "UPDATE backlog SET
-            projectName = :projectName,
+            projectID = :projectID,
             id = :id,
             description = :description,
             priority = :priority,
             difficulty = :difficulty";
         $data = [
-            'projectName' => $projectName,
+            'projectID' => $projectID,
             'id' => $id,
             'description' => $desc,
             'priority' => $prio,

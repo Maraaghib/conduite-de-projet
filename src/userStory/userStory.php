@@ -6,11 +6,11 @@
         return is_string($projectName) && $projectName !== "";
     }
 
-    function isIdUnique($id, $db, $projectName)
+    function isIdUnique($id, $db, $projectID)
     {
-        $idUsProject = $db->prepare("SELECT id FROM backlog WHERE projectName=:projectName");
+        $idUsProject = $db->prepare("SELECT id FROM backlog WHERE projectID=:projectID");
         $data = [
-            "projectName" => $projectName
+            "projectID" => $projectID
         ];
         $idUsProject->execute($data);
         while ($dbId = $idUsProject->fetch()["id"]) {
@@ -23,13 +23,13 @@
         return true;
     }
 
-    function isUserStoryExist ($id, $projectName)
+    function isUserStoryExist ($id, $projectID)
     {
         $db = Database::getDBConnection();
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $req = $db->prepare("SELECT count(*) FROM backlog WHERE projectName=:projectName AND id=:id");
+        $req = $db->prepare("SELECT count(*) FROM backlog WHERE projectID=:projectID AND id=:id");
         $data = [
-            "projectName" => $projectName,
+            "projectID" => $projectID,
             "id" => $id
         ];
         $req->execute($data);
@@ -37,24 +37,24 @@
         return $test !=0;
     }
 
-    function getBackLog($projectName) {
+    function getBackLog($projectID) {
         $db = Database::getDBConnection();
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $backlog = $db->prepare("SELECT * FROM backlog WHERE projectName=:projectName   ORDER BY id");
+        $backlog = $db->prepare("SELECT * FROM backlog WHERE projectID=:projectID   ORDER BY id");
         $data = [
-            "projectName" => $projectName
+            "projectID" => $projectID
         ];
         $backlog->execute($data);
 
         return $backlog->fetchAll();
     }
 
-    function getListSprints($projectName) {
+    function getListSprints($projectID) {
         $db = Database::getDBConnection();
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $listSprints = $db->prepare("SELECT * FROM sprint WHERE projectName=:projectName ORDER BY startDate");
+        $listSprints = $db->prepare("SELECT * FROM sprint WHERE projectID=:projectID ORDER BY startDate");
         $data = [
-            "projectName" => $projectName
+            "projectID" => $projectID
         ];
         $listSprints->execute($data);
 
