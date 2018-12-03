@@ -18,9 +18,11 @@ install:
   - pip3 install -r requirements.txt
 
 script:
-  - sleep 10
+  - sleep 15
   - curl localhost:8100
-  - cd tests; ./test.sh; cd ..
+  - cd tests
+  - ./test.sh
+  - cd ..
   - sonar-scanner
 
 after_script:

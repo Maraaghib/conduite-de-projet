@@ -66,12 +66,13 @@ CREATE TABLE IF NOT EXISTS `linkedus` (
 --
 
 CREATE TABLE IF NOT EXISTS `project` (
-  `author` varchar(50) NOT NULL,
+  `author` varchar(50),/* Temporary set to null since there isn't a way to add an user*/
   `idAI` int(11) NOT NULL,
   `projectName` varchar(50) NOT NULL,
   `description` text,
   `sprintDuration` int(11) NOT NULL,
-  `dateProject` varchar(30) NOT NULL
+  `dateProject` varchar(30) NOT NULL,
+  `timeUnitSprint` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -111,8 +112,8 @@ CREATE TABLE IF NOT EXISTS `task` (
 CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `key` varchar(32) NOT NULL,
+  `password` varchar(60) NOT NULL,
+  `keyMail` varchar(32) NOT NULL,
   `active` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

@@ -1,8 +1,15 @@
 <?php
     require_once('Database.php');
 
-    const BASE_URL_VIEW_PROJECT = 'Location: /project/viewProject.php?projectName=';
-    const ERROR_URL = 'location: /error.php';
+    define("PROJECT_NAME_ARG", "projectName");
+    define("DESCRIPTION_ARG", "description");
+    define("SPRINT_DURATION_ARG", "sprintDuration");
+    define("DATE_PROJECT_ARG", "dateProject");
+    define("DAY", 1);
+    define("WEEK", 2);
+    define("MONTH", 3);
+    define("BASE_URL_VIEW_PROJECT",'/project/viewProject.php?projectName=');
+    define("ERROR_URL", '/error.php');
 
     /**
      * Classe Project contenant les inormations d'un projet
@@ -18,31 +25,33 @@
             $this->projectName = "";
             $this->description = "";
             $this->sprintDuration = "";
+            $this->timeUnitSprint = "";
             $this->dateProject = "";
         }
 
-        public static function newProject($projectName, $description, $sprintDuration, $dateProject) {
+        public static function newProject($projectName, $description, $sprintDuration, $dateProject, $timeUnitSprint) {
             $instance = new self();
             $instance->setProjectName($projectName);
             $instance->setDescription($description);
             $instance->setSprintDuration($sprintDuration);
             $instance->setDateProject($dateProject);
+            $instance->setTimeUnitSprint($timeUnitSprint);
 
             return $instance;
         }
 
         public function hydrate($data) {
-            if(isset($data['projectName'])) {
-                $this->projectName = $data['projectName'];
+            if(isset($data[PROJECT_NAME_ARG])) {
+                $this->projectName = $data[PROJECT_NAME_ARG];
             }
-            if(isset($data['description'])) {
-                $this->description = $data['description'];
+            if(isset($data[DESCRIPTION_NAME_ARG])) {
+                $this->description = $data[DESCRIPTION_NAME_ARG];
             }
-            if(isset($data['sprintDuration'])) {
-                $this->sprintDuration = $data['sprintDuration'];
+            if(isset($data[SPRINT_DURATION_ARG])) {
+                $this->sprintDuration = $data[SPRINT_DURATION_ARG];
             }
-            if(isset($data['dateProject'])) {
-                $this->dateProject = $data['dateProject'];
+            if(isset($data[DATE_PROJECT_ARG])) {
+                $this->dateProject = $data[DATE_PROJECT_ARG];
             }
         }
 
@@ -55,7 +64,7 @@
             /* WHERE author = :author = ?? */
             $stmt = $db->prepare("SELECT * FROM project WHERE projectName=:projectName");
             $data = [
-                "projectName" => $projectName
+                'projectName' => $projectName
             ];
             $stmt->execute($data);
 
@@ -91,19 +100,20 @@
                 projectName     = :projectName,
                 description     = :description,
                 sprintDuration  = :sprintDuration,
-                dateProject     = :dateProject
+                dateProject     = :dateProject,
+                timeUnitSprint  = :timeUnitSprint
             ");
 
             $data = [
                 'projectName'   => $this->getProjectName(),
                 'description'   => $this->getDescription(),
                 'sprintDuration'=> $this->getSprintDuration(),
-                'dateProject'   => $this->getDateProject()
+                'dateProject'   => $this->getDateProject(),
+                'timeUnitSprint'=> $this->getTimeUnitSprint()
             ];
 
-            $result = $query->execute($data);
-            header('Location: /project/listProjects.php');
-            return $result;
+            $query->execute($data);
+            redirect('/project/listProjects.php');
         }
 
         /**
@@ -135,12 +145,21 @@
         /**
         * Permet de mettre à jour la durée des sprints d'un projet
         */
-        public function updateSprintDuration($projectName, $sprintDuration) {
+        public function updateSprintDuration($projectName, $sprintDuration, $timeUnitSprint) {
             $db = Database::getDBConnection();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $query = $db->prepare("UPDATE project SET sprintDuration = \"$sprintDuration\" WHERE projectName = \"$projectName\"");
-            return $query->execute();
+            $query = $db->prepare("UPDATE project SET 
+                sprintDuration = :sprintDuration, 
+                timeUnitSprint = :timeUnitSprint
+                WHERE projectName = :projectName
+            ");
+            $data = [
+                "sprintDuration" => $sprintDuration,
+                "timeUnitSprint" => $timeUnitSprint,
+                "projectName"    => $projectName
+            ];
+            return $query->execute($data);
         }
 
         /**
@@ -204,6 +223,14 @@
         public function getDateProject(){
             return $this->dateProject;
         }
+
+        public function setTimeUnitSprint($timeUnit){
+            $this->timeUnitSprint = $timeUnit;
+        }
+
+        public function getTimeUnitSprint(){
+            return $this->timeUnitSprint;
+        }
     }
 
     /**
@@ -224,6 +251,21 @@
             $tasks[] = $result;
         }
         return $tasks;
+    }
+
+    /**
+     * Permet de récupérer l'unité de temps d'un sprint en chaine de charactère
+     * (exemple: "semaine", "jour" ou "mois")
+     */
+    function timeUnitSprintToStr($timeUnitSprint){
+        $strTimeUnit = "jours";
+        if ($timeUnitSprint == WEEK){
+            $strTimeUnit = "semaines";
+        }
+        if ($timeUnitSprint == MONTH){
+            $strTimeUnit = "mois";
+        }
+        return $strTimeUnit;
     }
 
     /**

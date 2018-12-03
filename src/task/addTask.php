@@ -1,25 +1,27 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
 require_once('../data/Project.php');
 require_once('task.php');
+define ("ID_SPRINT_ARG_URI", "idSprint");
 $project = new Project;
 
 $db = Database::getDBConnection();
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testProjectName($_GET["projectName"]) && isset($_GET["idSprint"])) {
-    $projectName = htmlspecialchars($_GET["projectName"]);
-    $idSprint = htmlspecialchars($_GET["idSprint"]);
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && testProjectName($_GET[PROJECT_NAME_ARG]) && isset($_GET[ID_SPRINT_ARG_URI])) {
+    $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
+    $idSprint = htmlspecialchars($_GET[ID_SPRINT_ARG_URI]);
     if (!isSprintExist($projectName, $idSprint) || !$project->isProjectExist($projectName) ) {
-        header(ERROR_URL);
+        redirect(ERROR_URL);
     }
     $task = getNonPlanTask($idSprint);
 
 
-} else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET["projectName"]) && testProjectName($_GET["projectName"]) && isset($_GET["idSprint"])) {
-    $projectName = htmlspecialchars($_GET["projectName"]);
-    $idSprint = htmlspecialchars($_GET["idSprint"]);
+} else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET[PROJECT_NAME_ARG]) && testProjectName($_GET[PROJECT_NAME_ARG]) && isset($_GET[ID_SPRINT_ARG_URI])) {
+    $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
+    $idSprint = htmlspecialchars($_GET[ID_SPRINT_ARG_URI]);
     if (!isSprintExist($projectName, $idSprint) || !$project->isProjectExist($projectName)) {
-        header(ERROR_URL);
+        redirect(ERROR_URL);
     }
     $idTask = $_POST["idTask"];
     if (!isIdUniqueTask($idTask, $idSprint, $db, $projectName)) {
@@ -53,10 +55,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
             $sqlDep = "SELECT idAI FROM task WHERE idTask=$idTask AND idSprint=$idSprint";
         }
 
-        header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-3");
+        redirect("/project/viewProject.php?projectName=$projectName#tab-swipe-3");
     }
 } else {
-    header(ERROR_URL);
+    redirect(ERROR_URL);
 }
 ?>
 <!DOCTYPE html>
@@ -83,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
             <div class="row">
                 <div class="col s12 m8 offset-m2">
                     <div id="grid-container" class="section scrollspy">
-                        <form class="col s12" method="post" action="addTask.php?projectName=<?php echo $_GET["projectName"] ?>&idSprint=<?php echo $_GET["idSprint"] ?>">
+                        <form class="col s12" method="post" action="addTask.php?projectName=<?php echo $_GET[PROJECT_NAME_ARG] ?>&idSprint=<?php echo $_GET[ID_SPRINT_ARG_URI] ?>">
                             <h5 style="text-align: center;">Créer une nouvelle tâche </h5>
                             <div class="row">
                                 <p>

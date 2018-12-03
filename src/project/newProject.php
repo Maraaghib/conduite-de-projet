@@ -1,24 +1,13 @@
 <?php
+    require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
     require_once('../data/Project.php');
-    $week = 2;
-    $month = 3;
-    $nbDayInAWeek = 7;
-    $nbDayInAMonth = 30;
     $project = new Project;
     $errorMessage = '';
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createProject'])) {
         $projectName = $_POST['projectName'];
         $description = $_POST['projectDescription'];
         $sprintDuration = (int) $_POST['sprintDuration'];
-        $timeUnit = (int) $_POST['timeUnit'];
-        if ($timeUnit == $week)
-        {
-            $sprintDuration *= $nbDayInAWeek;
-        }
-        if ($timeUnit == $month)
-        {
-            $sprintDuration *= $nbDayInAMonth;
-        }
+        $timeUnit = $_POST['timeUnit'];
         $dateProject = date('Y-m-d');
 
         if ($project->isProjectExist($projectName)) {
@@ -39,7 +28,7 @@
 <?php
         }
         else {
-            $project = Project::newProject($projectName, $description, $sprintDuration, $dateProject); // Crée une nouvelle instance de Project avec des paramètres
+            $project = Project::newProject($projectName, $description, $sprintDuration, $dateProject, $timeUnit); // Crée une nouvelle instance de Project avec des paramètres
 
             $project->createProject();
         }

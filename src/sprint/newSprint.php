@@ -1,4 +1,5 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
 require_once('../data/Project.php');
 require_once('../userStory/userStory.php');
 require_once('../date.php');
@@ -6,12 +7,12 @@ require_once('../date.php');
 $project = new Project;
 $db = Database::getDBConnection();
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-if (!isset($_GET["projectName"])) {
-    header(ERROR_URL);
-} elseif (isset($_GET["projectName"])) {
-    $projectName = htmlspecialchars($_GET["projectName"]);
+if (!isset($_GET[PROJECT_NAME_ARG])) {
+    redirect(ERROR_URL);
+} elseif (isset($_GET[PROJECT_NAME_ARG])) {
+    $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
     if (!$project->isProjectExist($projectName)) {
-        header(ERROR_URL);
+        redirect(ERROR_URL);
     }
 }
 $projectInfo = $project->getProject($projectName);
@@ -41,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         for ($i = 0; $i < $numberUserStory; $i++) {
             $idUserStory = $listUserStory[$i];
             if (!isUserStoryExist($idUserStory, $projectName)) {
-                header(ERROR_URL);
+                redirect(ERROR_URL);
             }
             $updateBacklog = $db->prepare("UPDATE backlog SET idSprint=:idSprint WHERE id=:idUserStory AND projectName=:projectName");
             $data = [
@@ -51,11 +52,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ];
             $updateBacklog->execute($data);
         }
-        header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-3");
+        redirect("/project/viewProject.php?projectName=$projectName#tab-swipe-3");
     }
 
 } elseif ($_SERVER["REQUEST_METHOD"] != "GET") {
-    header(ERROR_URL);
+    redirect(ERROR_URL);
 }
 ?>
 <!DOCTYPE html>
@@ -82,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="row">
                 <div class="col s12 m8 offset-m2">
                     <div id="grid-container" class="section scrollspy">
-                        <form class="col s12" method="post" action="newSprint.php?projectName=<?php echo $_GET["projectName"] ?>">
+                        <form class="col s12" method="post" action="newSprint.php?projectName=<?php echo $_GET[PROJECT_NAME_ARG] ?>">
                             <h5 style="text-align: center;">Créer un nouveau Sprint</h5>
                             <div class="row">
                                 <p>

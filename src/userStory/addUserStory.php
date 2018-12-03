@@ -1,4 +1,5 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
 require_once('../data/Project.php');
 require_once('userStory.php');
 $project = new Project;
@@ -6,15 +7,15 @@ $project = new Project;
 $db = Database::getDBConnection();
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testProjectName($_GET["projectName"])) {
-    $projectName = htmlspecialchars($_GET["projectName"]);
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && testProjectName($_GET[PROJECT_NAME_ARG])) {
+    $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
     if (!$project->isProjectExist($projectName)) {
-        header(ERROR_URL);
+        redirect(ERROR_URL);
     }
-} else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET["projectName"]) && testProjectName($_GET["projectName"])) {
-    $projectName = htmlspecialchars($_GET["projectName"]);
+} else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET[PROJECT_NAME_ARG]) && testProjectName($_GET[PROJECT_NAME_ARG])) {
+    $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
     if (!$project->isProjectExist($projectName)) {
-        header(ERROR_URL);
+        redirect(ERROR_URL);
     }
     $id = $_POST["idUserStory"];
     if (!isIdUnique($id, $db, $projectName)) {
@@ -53,10 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
         }
         $addUserStory = $db->prepare($sql);
         $addUserStory->execute($data);
-        header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-2");
+        redirect("/project/viewProject.php?projectName=$projectName#tab-swipe-2");
     }
 } else {
-    header(ERROR_URL);
+    redirect(ERROR_URL);
 }
 ?>
 <!DOCTYPE html>
@@ -83,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"]) && testP
             <div class="row">
                 <div class="col s12 m8 offset-m2">
                     <div id="grid-container" class="section scrollspy">
-                        <form class="col s12" method="post" action="addUserStory.php?projectName=<?php echo $_GET["projectName"] ?>">
+                        <form class="col s12" method="post" action="addUserStory.php?projectName=<?php echo $_GET[PROJECT_NAME_ARG] ?>">
                             <h5 style="text-align: center;">Créer une nouvelle User Story </h5>
                             <div class="row">
                                 <p>

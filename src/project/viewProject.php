@@ -1,4 +1,5 @@
 <?php
+    require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
     require_once('../data/Project.php');
     require_once('../userStory/userStory.php');
 
@@ -8,8 +9,8 @@
 
     // @TODO Test if the project with this name EXISTS
     /* RETRIEVAL OF PROJECT'S INFOS AND ITS BACKLOG */
-    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET["projectName"])) {
-        $projectName = htmlspecialchars($_GET["projectName"]);
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG])) {
+        $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
         $project = $instance->getProject($projectName);
         $backlog = getBackLog($projectName);
         $listSprints = getListSprints($projectName);
@@ -29,13 +30,13 @@
 
         if ($instance->isProjectExist($newProjectName)) {
             // $errorMessage = 'Le projet <strong>'.$newProjectName.'</strong> existe déjà pour ce compte !';
-            header(BASE_URL_VIEW_PROJECT.$oldProjectName.'#tab-swipe-6');
+            redirect(BASE_URL_VIEW_PROJECT.$oldProjectName.'#tab-swipe-6');
 ?>
 <?php
         }
         else {
             $instance->updateProjectName($oldProjectName, $newProjectName);
-            header(BASE_URL_VIEW_PROJECT.$newProjectName);
+            redirect(BASE_URL_VIEW_PROJECT.$newProjectName);
         }
     }
 
@@ -44,15 +45,16 @@
         $projectName = $_POST['projectName'];
         $description = $_POST['projectDescription'];
         $instance->updateProjectDescription($projectName, $description);
-        header(BASE_URL_VIEW_PROJECT.$projectName);
+        redirect(BASE_URL_VIEW_PROJECT.$projectName);
     }
 
     /* UPDATE OF THE PROJECT'S SPRINTS DURATION */
     elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['updateSprintDuration'])) {
         $projectName = $_POST['projectName'];
         $sprintDuration = (int) $_POST['sprintDuration'];
-        $instance->updateSprintDuration($projectName, $sprintDuration);
-        header(BASE_URL_VIEW_PROJECT.$projectName);
+        $timeUnitSprint = $_POST['timeUnitSprint'];
+        $instance->updateSprintDuration($projectName, $sprintDuration, $timeUnitSprint);
+        redirect(BASE_URL_VIEW_PROJECT.$projectName);
     }
 
     /* DELETE A PROJECT */
@@ -61,9 +63,9 @@
         $confirmProjectName = $_POST['confirmProjectName'];
         if (strtolower($projectName) === strtolower($confirmProjectName)) {
             $instance->deleteProject($projectName);
-            header('Location: /project/listProjects.php');
+            redirect('/project/listProjects.php');
         } else {
-            header(BASE_URL_VIEW_PROJECT.$projectName.'&error=delete#tab-swipe-6');
+            redirect(BASE_URL_VIEW_PROJECT.$projectName.'&error=delete#tab-swipe-6');
         }
     }
 
@@ -158,7 +160,7 @@
                                         <h4>Sprints</h4>
                                         <div class="row">
                                         <p>
-                                            <h4>La durée de chaque sprint pour ce projet est de <?php echo $sprintDuration; ?> jours</h4>
+                                            <h4>La durée de chaque sprint pour ce projet est de <?php echo $sprintDuration; ?> <?php echo timeUnitSprintToStr($project['timeUnitSprint'])?></h4>
                                         </p>
                                             <?php include_once $_SERVER['DOCUMENT_ROOT'].'/sprint/listSprints.php'; ?>
                                         </div>

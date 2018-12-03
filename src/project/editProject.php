@@ -28,7 +28,7 @@
                         <textarea id="projectDescription" name="projectDescription" class="materialize-textarea"><?php echo $project['description']; ?></textarea>
                         <label for="projectDescription">Description</label>
                     </div>
-                    <input type="hidden" name="projectName" value="<?php echo $project['projectName']; ?>">
+                    <input type="hidden" name="projectName" value="<?php echo $project[PROJECT_NAME_ARG]; ?>">
                     <div class="col s12 m4">
                         <button type="submit" name="updateProjectDescription" class="btn waves-effect waves-light">
                             Valider
@@ -46,12 +46,24 @@
                         <label for="sprintDuration">Durée</label>
                         <span class="helper-text" data-error="La durée des sprints est obligatoire et doit être supérieure ou égale à 1" data-success="&#10004;"></span>
                     </div>
-                    <input type="hidden" name="projectName" value="<?php echo $project['projectName']; ?>">
+                    <input type="hidden" name="projectName" value="<?php echo $project[PROJECT_NAME_ARG]; ?>">
                     <div class="input-field col s12 m4">
-                        <select required>
-                            <option value="1">Jours</option>
-                            <option value="2" selected>Semaines</option>
-                            <option value="3">Mois</option>
+                        <select name="timeUnitSprint" required>
+                            <option value="1" 
+                            <?php if ($project['timeUnitSprint'] == DAY)
+                            { 
+                                echo "selected";
+                            }?>>Jours</option>
+                            <option value="2"
+                            <?php if ($project['timeUnitSprint'] == WEEK)
+                            { 
+                                echo "selected";
+                            }?>>Semaines</option>
+                            <option value="3"                            
+                            <?php if ($project['timeUnitSprint'] == MONTH)
+                            { 
+                                echo "selected";
+                            }?>>Mois</option>
                         </select>
                         <label>Unité de temps</label>
                     </div>
