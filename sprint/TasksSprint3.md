@@ -33,7 +33,7 @@
 | T32a | Création d'un fichier ``collaborators.php`` dans le répertoire ``src/project`` pour implémenter l'ajout et l'affichage des collaborateurs dans un projet. | #6 | T6b, T28b | 1/2 jh | To do | Serigne |
 | T32b | Sur la page de visualisation d'un projet, sous l'onglet ``COLLABORATEURS``, nous implémentons une sorte de tableau où, au cas échéant, les collaborateurs du projet seront affichés dans des lignes superposées (les uns au-dessus des autres) avec leurs icônes, leurs prénoms et noms et leurs dates d'ajout dans le projet. Sur chaque ligne est placé un petit bouton pour retirer un collaborateur du projet. En bas de ces lignes, se trouve un petit formulaire composé uniquement d'un ``champ de texte`` et un bouton ``Ajouter collaborateur``. Au fur et à mesure que l'on saisit du texte dans ce champ, une liste d'utilisateurs correspondants à la saisie s'affiche pour suggérer des collaborateurs. | #6 | T32a | XX 2h | To do | Serigne |
 | T32c | Ecriture d'un scénario de test pour l'ajout de collaborateurs dans un projet | #6 |  | 1/2 jh | To do | Serigne |
-| T32d | Tâche d'Exécution de Test | #6 | TXX | XX jh | To do | Non défini |
+| T32d | Exécution du test de l'ajout de collaborateurs ddans un projet et ajout des résultats dans l'historique des tests | #6 | T32b | 1/2 jh | To do | Serigne |
 | T33a | Tâche de Conception | #7 | TXX | XX jh | To do | Non défini |
 | T33b | Tâche d'Implémentation | #7 | TXX | XX jh | To do | Non défini |
 | T33c | Tâche de Scénario de Test | #7 | TXX | XX jh | To do | Non défini |
