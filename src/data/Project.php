@@ -374,4 +374,26 @@
         return $allUsers;
     }
 
+    /**
+    * Permet d'ajouter un collaborateur à un projet
+    */
+    function addCollaborator($projectID, $userEmail) {
+        $db = Database::getDBConnection();
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $query = $db->prepare("INSERT INTO collaboration SET
+            projectID   = :projectID,
+            userEmail   = :userEmail,
+            dateAdded   = :dateAdded
+        ");
+
+        $data = [
+            'projectID' => $projectID,
+            'userEmail' => $userEmail,
+            'dateAdded' => date('Y-m-d')
+        ];
+
+        $query->execute($data);
+    }
+
 ?>
