@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 03 Décembre 2018 à 23:28
+-- Généré le :  Mar 04 Décembre 2018 à 03:33
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `task` (
   `description` text NOT NULL,
   `estimatedTime` decimal(10,3) NOT NULL,
   `progress` varchar(30) NOT NULL DEFAULT 'todo',
-  `affectedTo` int(11) DEFAULT '1' COMMENT 'ça doit être un clé étrangère de la table "user"'
+  `affectedTo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -186,7 +186,8 @@ ALTER TABLE `sprint`
 ALTER TABLE `task`
   ADD PRIMARY KEY (`idSprint`,`idTask`),
   ADD UNIQUE KEY `idAI` (`idAI`),
-  ADD KEY `idSprint` (`idSprint`);
+  ADD KEY `idSprint` (`idSprint`),
+  ADD KEY `affectedTo` (`affectedTo`);
 
 --
 -- Index pour la table `user`
@@ -266,7 +267,8 @@ ALTER TABLE `sprint`
 -- Contraintes pour la table `task`
 --
 ALTER TABLE `task`
-  ADD CONSTRAINT `FK_Task_Sprint` FOREIGN KEY (`idSprint`) REFERENCES `sprint` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_Task_Sprint` FOREIGN KEY (`idSprint`) REFERENCES `sprint` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Task_User` FOREIGN KEY (`affectedTo`) REFERENCES `user` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
