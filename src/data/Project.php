@@ -375,6 +375,24 @@
     }
 
     /**
+     * Permet de récupérer tous les collaborateurs d'un projet
+     */
+    function getCollaborators($projectID) {
+        $db = Database::getDBConnection();
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $db->prepare("SELECT * FROM collaboration WHERE projectID=:projectID ORDER BY dateAdded ASC", array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+        $data = [
+            'projectID' => $projectID
+        ];
+        $stmt->execute($data);
+        $collaborators = [];
+        while ($result = $stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
+            $collaborators[] = $result;
+        }
+        return $collaborators;
+    }
+
+    /**
     * Permet d'ajouter un collaborateur à un projet
     */
     function addCollaborator($projectID, $userEmail) {
