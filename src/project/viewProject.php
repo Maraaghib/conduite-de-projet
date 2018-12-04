@@ -231,18 +231,21 @@
                                             </div>
                                         </div>
                                         <div class="divider"></div>
+                                        <?php $allUsers = getAllUsers(); ?>
                                         <div class="section">
                                             <div class="col s12">
-                                                <div class="row">
-                                                    <div class="input-field col s8" style="display: table-cell; padding: 0px; margin-top: 0px; margin-bottom: 30px;">
-                                                        <i class="material-icons prefix">group_add</i>
-                                                        <input type="text" id="autocomplete-input" class="autocomplete" name="" value="">
-                                                        <label for="autocomplete-input">E-mail</label>
+                                                <form action="index.html" method="post">
+                                                    <div class="row">
+                                                        <div class="input-field col s8" style="display: table-cell; padding: 0px; margin-top: 0px; margin-bottom: 30px;">
+                                                            <i class="material-icons prefix">group_add</i>
+                                                            <input type="text" id="autocomplete-input" class="autocomplete" name="" value="">
+                                                            <label for="autocomplete-input">E-mail</label>
+                                                        </div>
+                                                        <span style="display: table-cell;">
+                                                            <button type="submit" class="btn waves-effect waves-light" name="button">Ajouter collaborateur</button>
+                                                        </span>
                                                     </div>
-                                                    <span style="display: table-cell;">
-                                                        <button class="btn waves-effect waves-light" type="button" name="button">Ajouter collaborateur</button>
-                                                    </span>
-                                                </div>
+                                                </form>
                                             </div>
                                         </div>
                                         <script type="text/javascript">
@@ -250,9 +253,11 @@
                                                 var elem = document.querySelector('.autocomplete');
                                                 var instance = M.Autocomplete.init(elem);
                                                 instance.updateData({
-                                                    "Serigne": '/img/avatar.png',
-                                                    "Amsatou": '/img/avatar.png',
-                                                    "Hamza": '/img/avatar.png'
+                                                    <?php foreach ($allUsers as $user) {
+                                                    ?>
+                                                        "<?php echo $user['email'] ?>": "/img/avatar.png",
+                                                    <?php
+                                                    }?>
                                                 });
                                             });
                                         </script>
