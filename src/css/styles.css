@@ -231,6 +231,30 @@ ul.sidenav.sidenav-fixed ul.collapsible li div.collapsible-body li a {
     border-radius: 7px;
     font-weight: bold;
  }
+
+#tab-swipe-5 .chip {
+    height: 67px;
+    border-radius: 30px;
+}
+
+#tab-swipe-5 .chip i.modal-trigger {
+    cursor: pointer;
+    float: right;
+    line-height: 0;
+    font-size: 25px;
+    padding-left: 8px;
+}
+
+#tab-swipe-5 .chip strong.collab-name {
+    display: block;
+    font-weight: bold;
+}
+
+#tab-swipe-5 .chip img.collab-img {
+    height:67px;
+    width: 67px;
+}
+
   /* END: STYLES FOR POST-IT */
 
 @media only screen and (max-width: 992px) {
