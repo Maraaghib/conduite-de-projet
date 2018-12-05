@@ -1,11 +1,6 @@
 <?php
     require_once('../data/Database.php');
 
-    function testProjectName($projectName)
-    {
-        return is_string($projectName) && $projectName !== "";
-    }
-
     function testIdSPrint($idSprint)
     {
         return is_int($idSprint) && $idSprint !== "";

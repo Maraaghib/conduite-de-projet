@@ -1,5 +1,6 @@
 <?php
 require_once('../data/Project.php');
+require_once('../userStory/userStory.php');
 require_once('task.php');
 define ("ID_SPRINT_ARG_URI", "idSprint");
 $project = new Project;
@@ -14,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
         header(ERROR_URL);
     }
     $task = getNonPlanTask($idSprint);
+    $backlog = getBacklog($projectName);
 
 
 } else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET[PROJECT_NAME_ARG]) && testProjectName($_GET[PROJECT_NAME_ARG]) && isset($_GET[ID_SPRINT_ARG_URI])) {
@@ -50,8 +52,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
         $addTask->execute($data);
 
 
-        if($_POST["listDepTasks[]"]!=null){
-            $sqlDep = "SELECT idAI FROM task WHERE idTask=$idTask AND idSprint=$idSprint";
+        $sqlDep = $db->prepare("SELECT idAI FROM task WHERE idTask=\"$idTask\" AND idSprint=$idSprint");
+        $sqlDep->execute();
+        $idAIDep=$sqlDep->fetchColumn();
+
+
+        if($_POST["listDepTasks"]!=null){
+            $sqlInsertDepPart = "INSERT INTO dependence SET
+                            id = :id,
+                            idTask = :idTask,
+                            idSprint = :idSprint";
+            $insertDepExec = $db->prepare($sqlInsertDepPart);
+           foreach ($_POST["listDepTasks"] as $depTask) {
+             $dataInsertDep = [
+                              'id' => $idAIDep,
+                              'idTask' => $depTask,
+                              'idSprint' => $idSprint
+             ];
+             $insertDepExec->execute($dataInsertDep);
+           }
+        }
+
+        if($_POST["listLinkedUS"]!=null){
+            $backlog = getBacklog($projectName);
+
+            $sqlInsertLinkedUS = "INSERT INTO linkedus SET
+                                  idTask = :idTask,
+                                  idUS = :idUS";
+            $insertLinkedUSExec = $db->prepare($sqlInsertLinkedUS);
+
+           foreach ($_POST["listLinkedUS"] as $linkedUS) {
+             foreach ($backlog as list($pn, $id, $desc, $prio, $diff)) {
+               if($id==$linkedUS){
+                 $sqlLinkedUS = $db->prepare("SELECT idAI FROM backlog WHERE projectName=\"$projectName\" AND id=$linkedUS");
+                 $sqlLinkedUS->execute();
+                 $idAILinkedUS=$sqlLinkedUS->fetchColumn();
+                 $dataInsertDep = [
+                                  'idTask' => $idAIDep,
+                                  'idUS' => $idAILinkedUS
+                 ];
+                 $insertLinkedUSExec->execute($dataInsertDep);
+
+               }
+             }
+           }
         }
 
         header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-3");
@@ -85,6 +129,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
                 <div class="col s12 m8 offset-m2">
                     <div id="grid-container" class="section scrollspy">
                         <form class="col s12" method="post" action="addTask.php?projectName=<?php echo $_GET[PROJECT_NAME_ARG] ?>&idSprint=<?php echo $_GET[ID_SPRINT_ARG_URI] ?>">
+                            <input type="hidden" name="progressTask" value="todo">
+                            <input type="hidden" name="affectedToTask" value=0>
                             <h5 style="text-align: center;">Créer une nouvelle tâche </h5>
                             <div class="row">
                                 <p>
@@ -144,6 +190,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
                                     </select>
                                     <label for="listDepTasks[]">Liste de dépendances </label>
                                     <span class="helper-text" data-error="Vous pouvez choisir un ou des tâches de dépendances" data-success="Saisie correcte"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <select class="mdb-select md-form" name="listLinkedUS[]" multiple>
+                                        <?php
+                                        foreach ($backlog as list($pn, $id, $desc, $prio, $diff)) {
+                                        ?>
+                                        <option value="<?php echo $id ?>"><?php echo $id ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <label for="listLinkedUS[]">US liés </label>
+                                    <span class="helper-text" data-error="Vous pouvez choisir un ou des US" data-success="Saisie correcte"></span>
                                 </div>
                             </div>
                             <div class="row">
