@@ -1,4 +1,5 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
 require_once('../data/Project.php');
 require_once('userStory.php');
 $project = new Project;
@@ -9,15 +10,17 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && testProjectName($_GET[PROJECT_NAME_ARG])) {
     $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
     if (!$project->isProjectExist($projectName)) {
-        header(ERROR_URL);
+        redirect(ERROR_URL);
     }
 } else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET[PROJECT_NAME_ARG]) && testProjectName($_GET[PROJECT_NAME_ARG])) {
     $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
     if (!$project->isProjectExist($projectName)) {
-        header(ERROR_URL);
+        redirect(ERROR_URL);
     }
+    $author = $_SESSION['email'];
+    $projectID = $project->getProjectID($author, $projectName);
     $id = $_POST["idUserStory"];
-    if (!isIdUnique($id, $db, $projectName)) {
+    if (!isIdUnique($id, $db, $projectID)) {
         $idNotUnique = "L'id " . $id . " existe déjà";
     } else {
         $id = $_POST["idUserStory"];
@@ -26,25 +29,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
         $diff = $_POST["diffUserStory"];
         if ($prio == null) {
             $sql = "INSERT INTO backlog SET
-                projectName = :projectName,
+                projectID = :projectID,
                 id = :id,
                 description = :description,
                 difficulty = :difficulty";
             $data = [
-                'projectName' => $projectName,
+                'projectID' => $projectID,
                 'id' => $id,
                 'description' => $desc,
                 'difficulty' => $diff
             ];
         } else {
             $sql = "INSERT INTO backlog SET
-                projectName = :projectName,
+                projectID = :projectID,
                 id = :id,
                 description = :description,
                 priority = :priority,
                 difficulty = :difficulty";
             $data = [
-                'projectName' => $projectName,
+                'projectID' => $projectID,
                 'id' => $id,
                 'description' => $desc,
                 'priority' => $prio,
@@ -53,10 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
         }
         $addUserStory = $db->prepare($sql);
         $addUserStory->execute($data);
-        header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-2");
+        redirect("/project/viewProject.php?projectName=$projectName#tab-swipe-2");
     }
 } else {
-    header(ERROR_URL);
+    redirect(ERROR_URL);
 }
 ?>
 <!DOCTYPE html>

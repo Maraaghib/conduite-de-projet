@@ -1,6 +1,7 @@
 <?php
     require_once('Database.php');
 
+    define("AUTHOR_ARG", "author");
     define("PROJECT_NAME_ARG", "projectName");
     define("DESCRIPTION_ARG", "description");
     define("SPRINT_DURATION_ARG", "sprintDuration");
@@ -8,21 +9,22 @@
     define("DAY", 1);
     define("WEEK", 2);
     define("MONTH", 3);
-
-    const BASE_URL_VIEW_PROJECT = 'Location: /project/viewProject.php?projectName=';
-    const ERROR_URL = 'location: /error.php';
+    define("BASE_URL_VIEW_PROJECT",'/project/viewProject.php?projectName=');
+    define("ERROR_URL", '/error.php');
 
     /**
      * Classe Project contenant les inormations d'un projet
      */
     class Project {
 
+        private $author;
         private $projectName;
         private $description;
         private $sprintDuration;
         private $dateProject;
 
         public function __construct() {
+            $this->author ="";
             $this->projectName = "";
             $this->description = "";
             $this->sprintDuration = "";
@@ -30,8 +32,9 @@
             $this->dateProject = "";
         }
 
-        public static function newProject($projectName, $description, $sprintDuration, $dateProject, $timeUnitSprint) {
+        public static function newProject($author, $projectName, $description, $sprintDuration, $dateProject, $timeUnitSprint) {
             $instance = new self();
+            $instance->setAuthor($author);
             $instance->setProjectName($projectName);
             $instance->setDescription($description);
             $instance->setSprintDuration($sprintDuration);
@@ -42,6 +45,9 @@
         }
 
         public function hydrate($data) {
+            if(isset($data[AUTHOR_ARG])) {
+                $this->author = $data[AUTHOR_ARG];
+            }
             if(isset($data[PROJECT_NAME_ARG])) {
                 $this->projectName = $data[PROJECT_NAME_ARG];
             }
@@ -73,14 +79,35 @@
         }
 
         /**
-         * Permet de récupérer tous les projets (d'un user)
+         * Permet de récupérer l'id auto-increment d'un projet
          */
-        public function listProjects(/*idUser*/) {
+        public function getProjectID($author, $projectName) {
             $db = Database::getDBConnection();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             /* WHERE author = :author = ?? */
-            $stmt = $db->prepare("SELECT * FROM project ORDER BY idAI ASC", array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-            $stmt->execute();
+            $stmt = $db->prepare("SELECT idAI FROM project WHERE author=:author AND projectName=:projectName");
+            $data = [
+                'author'      => $author,
+                'projectName' => $projectName
+            ];
+            $stmt->execute($data);
+
+            $projectID = $stmt->fetch()['idAI'];
+            return intval($projectID);
+        }
+
+        /**
+         * Permet de récupérer tous les projets (d'un user)
+         */
+        public function listProjects($user) {
+            $db = Database::getDBConnection();
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            /* WHERE author = :author = ?? */
+            $stmt = $db->prepare("SELECT * FROM project WHERE author=:author ORDER BY idAI ASC", array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+            $data = [
+                'author' => $user
+            ];
+            $stmt->execute($data);
             // $query->execute(['author' => $author]);
             // $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $projects = [];
@@ -98,6 +125,7 @@
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $query = $db->prepare("INSERT INTO project SET
+                author          = :author,
                 projectName     = :projectName,
                 description     = :description,
                 sprintDuration  = :sprintDuration,
@@ -106,6 +134,7 @@
             ");
 
             $data = [
+                'author'        => $this->getAuthor(),
                 'projectName'   => $this->getProjectName(),
                 'description'   => $this->getDescription(),
                 'sprintDuration'=> $this->getSprintDuration(),
@@ -113,9 +142,8 @@
                 'timeUnitSprint'=> $this->getTimeUnitSprint()
             ];
 
-            $result = $query->execute($data);
-            header('Location: /project/listProjects.php');
-            return $result;
+            $query->execute($data);
+            redirect('/project/listProjects.php');
         }
 
         /**
@@ -151,8 +179,8 @@
             $db = Database::getDBConnection();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $query = $db->prepare("UPDATE project SET 
-                sprintDuration = :sprintDuration, 
+            $query = $db->prepare("UPDATE project SET
+                sprintDuration = :sprintDuration,
                 timeUnitSprint = :timeUnitSprint
                 WHERE projectName = :projectName
             ");
@@ -194,6 +222,14 @@
         }
 
         /*************** Getters et setters ******************/
+        public function setAuthor($author){
+            $this->author = $author;
+        }
+
+        public function getAuthor(){
+            return $this->author;
+        }
+
         public function setProjectName($projectName){
             $this->projectName = $projectName;
         }
@@ -304,6 +340,78 @@
             $userStories[] = $result;
         }
         return $userStories;
+    }
+
+    /**
+    * Permet de mettre à jour la progression et le sprint d'une tâche
+    */
+    function updateTaskSprintAndProgress($idOldSprint, $idTask, $idNewSprint, $progress) {
+        $db = Database::getDBConnection();
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $query = $db->prepare("UPDATE task SET idSprint=:idNewSprint, progress=:progress WHERE idSprint=:idOldSprint AND idTask=:idTask");
+        $data = [
+            "idNewSprint" => $idNewSprint,
+            "progress" => $progress,
+            "idOldSprint" => $idOldSprint,
+            "idTask" => $idTask
+        ];
+        $query->execute($data);
+    }
+
+    /**
+     * Permet de récupérer tous les utilisateurs de l'application
+     */
+    function getAllUsers() {
+        $db = Database::getDBConnection();
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $db->prepare("SELECT * FROM user ORDER BY name ASC", array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+        $stmt->execute();
+        $allUsers = [];
+        while ($result = $stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
+            $allUsers[] = $result;
+        }
+        return $allUsers;
+    }
+
+    /**
+     * Permet de récupérer tous les collaborateurs d'un projet
+     */
+    function getCollaborators($projectID) {
+        $db = Database::getDBConnection();
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $db->prepare("SELECT * FROM collaboration WHERE projectID=:projectID ORDER BY dateAdded ASC", array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+        $data = [
+            'projectID' => $projectID
+        ];
+        $stmt->execute($data);
+        $collaborators = [];
+        while ($result = $stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
+            $collaborators[] = $result;
+        }
+        return $collaborators;
+    }
+
+    /**
+    * Permet d'ajouter un collaborateur à un projet
+    */
+    function addCollaborator($projectID, $userEmail) {
+        $db = Database::getDBConnection();
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $query = $db->prepare("INSERT INTO collaboration SET
+            projectID   = :projectID,
+            userEmail   = :userEmail,
+            dateAdded   = :dateAdded
+        ");
+
+        $data = [
+            'projectID' => $projectID,
+            'userEmail' => $userEmail,
+            'dateAdded' => date('Y-m-d')
+        ];
+
+        $query->execute($data);
     }
 
 ?>

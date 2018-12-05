@@ -1,7 +1,7 @@
 <?php
     require_once($_SERVER['DOCUMENT_ROOT'].'/data/Project.php');
     $instance = new Project;
-    $projects = $instance->listProjects();
+    $projects = $instance->listProjects($_SESSION['email']);
 ?>
 
 <header>
@@ -28,8 +28,8 @@
                     <img src="/img/backgound.jpg" alt="SCRUM">
                 </div>
                 <a href="#user"><img class="circle" src="/img/avatar.png" alt="avatar"></a>
-                <a href="#name"><span class="white-text name">Hamza SEYE</span></a>
-                <a href="#email"><span class="white-text email">hamza.seye@gmail.com</span></a>
+                <a href="#name"><span class="white-text name"><?php echo $_SESSION['username']; ?></span></a>
+                <a href="#email"><span class="white-text email"><?php echo $_SESSION['email']; ?></span></a>
             </div>
         </li>
         <li <?php echo $activeMenu1; ?>>

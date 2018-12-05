@@ -1,4 +1,5 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
 require_once('../data/Project.php');
 require_once('../userStory/userStory.php');
 require_once('../date.php');
@@ -7,27 +8,29 @@ $project = new Project;
 $db = Database::getDBConnection();
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 if (!isset($_GET[PROJECT_NAME_ARG])) {
-    header(ERROR_URL);
+    redirect(ERROR_URL);
 } elseif (isset($_GET[PROJECT_NAME_ARG])) {
     $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
     if (!$project->isProjectExist($projectName)) {
-        header(ERROR_URL);
+        redirect(ERROR_URL);
     }
 }
 $projectInfo = $project->getProject($projectName);
-$backlog = getBacklog($projectName);
+$author = $_SESSION['email'];
+$projectID = $project->getProjectID($author, $projectName);
+$backlog = getBacklog($projectID);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sqlDate  = convertDate(htmlspecialchars($_POST["startDate"]));
     if (isPastDate($sqlDate)) {
         $invalidDate = "Vous ne pouvez pas choisir une date passée";
-    } elseif (!isValidDate($sqlDate, $projectName, $projectInfo)) {
+    } elseif (!isValidDate($sqlDate, $projectID, $projectInfo)) {
         $invalidDate = "La date chevauche celle d'un autre sprint";
     } else {
         $newSprint = $db->prepare(
-            "INSERT INTO sprint SET projectName=:projectName, startDate=:startDate"
+            "INSERT INTO sprint SET projectID=:projectID, startDate=:startDate"
         );
         $data = [
-            "projectName" => $projectName,
+            "projectID" => $projectID,
             "startDate" => $sqlDate
         ];
         $newSprint->execute($data);
@@ -40,22 +43,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $numberUserStory = count($listUserStory);
         for ($i = 0; $i < $numberUserStory; $i++) {
             $idUserStory = $listUserStory[$i];
-            if (!isUserStoryExist($idUserStory, $projectName)) {
-                header(ERROR_URL);
+            if (!isUserStoryExist($idUserStory, $projectID)) {
+                redirect(ERROR_URL);
             }
-            $updateBacklog = $db->prepare("UPDATE backlog SET idSprint=:idSprint WHERE id=:idUserStory AND projectName=:projectName");
+            $updateBacklog = $db->prepare("UPDATE backlog SET idSprint=:idSprint WHERE id=:idUserStory AND projectID=:projectID");
             $data = [
                 "idSprint" => $idSprint,
                 "idUserStory" => $idUserStory,
-                "projectName" => $projectName
+                "projectID" => $projectID
             ];
             $updateBacklog->execute($data);
         }
-        header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-3");
+        redirect("/project/viewProject.php?projectName=$projectName#tab-swipe-3");
     }
 
 } elseif ($_SERVER["REQUEST_METHOD"] != "GET") {
-    header(ERROR_URL);
+    redirect(ERROR_URL);
 }
 ?>
 <!DOCTYPE html>

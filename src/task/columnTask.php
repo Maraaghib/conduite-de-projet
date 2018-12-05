@@ -2,7 +2,7 @@
 define ("ID_TASK_ARG", "idTask");
 foreach ($tasks as $task) {
         ?>
-        <div class="col s12" style="padding: 20px;">
+        <div id="task-<?php echo $count++; ?>-sprint-<?php echo $id; ?>" data-type="task" data-sprint-id="<?php echo $id; ?>" data-task-id="<?php echo $task['idTask']; ?>" class="col s12" style="padding: 20px; cursor: move;" draggable="true" ondragstart="drag(event)" title="Vous pouvez la glisser et la déposer dans une autre colonne">
             <div class="quote-container card">
                 <i class="pin" aria-hidden="true"></i>
                 <blockquote class="card-content note yellow">
@@ -60,4 +60,4 @@ foreach ($tasks as $task) {
                 </blockquote>
             </div>
         </div>
-        <?php } ?>
+<?php } ?>

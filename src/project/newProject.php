@@ -1,8 +1,10 @@
 <?php
+    require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
     require_once('../data/Project.php');
     $project = new Project;
     $errorMessage = '';
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createProject'])) {
+        $author = $_POST['author'];
         $projectName = $_POST['projectName'];
         $description = $_POST['projectDescription'];
         $sprintDuration = (int) $_POST['sprintDuration'];
@@ -27,7 +29,7 @@
 <?php
         }
         else {
-            $project = Project::newProject($projectName, $description, $sprintDuration, $dateProject, $timeUnit); // Crée une nouvelle instance de Project avec des paramètres
+            $project = Project::newProject($author, $projectName, $description, $sprintDuration, $dateProject, $timeUnit); // Crée une nouvelle instance de Project avec des paramètres
 
             $project->createProject();
         }
@@ -104,6 +106,7 @@
                                                     <label>Unité de temps</label>
                                                     <span class="helper-text" data-error="Vous devez choisir une unité" data-success="Saisie correcte"></span>
                                                 </div>
+                                                <input type="hidden" name="author" value="<?php echo $_SESSION['email']; ?>">
                                             </div>
                                             <div class="row">
                                                 <div class="col s6">

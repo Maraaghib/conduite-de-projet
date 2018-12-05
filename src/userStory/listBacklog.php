@@ -29,7 +29,7 @@
                 </div>
                 <div class="modal-footer">
                     <form action="/userStory/removeUserStory.php" method="post">
-                        <input type="hidden" name="projectName" value="<?php echo htmlspecialchars($pn)?>">
+                        <input type="hidden" name="projectName" value="<?php echo $project['projectName']; ?>">
                         <input type="hidden" name="idUserStory" value=<?php echo $id?>>
                         <button name="confirmDelete" type="submit" class="modal-close waves-effect waves-red btn-flat">Supprimer<i class="material-icons left" aria-hidden="true">check_circle</i></button>
                         <button type="button" class="modal-close waves-effect waves-green btn-flat">Annuler<i class="material-icons left" aria-hidden="true">cancel</i></button>

@@ -1,4 +1,5 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
 require_once('../data/Project.php');
 require_once('../userStory/userStory.php');
 require_once('task.php');
@@ -10,9 +11,11 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && testProjectName($_GET[PROJECT_NAME_ARG]) && isset($_GET[ID_SPRINT_ARG_URI])) {
     $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
+    $author = $_SESSION['email'];
+    $projectID = $project->getProjectID($author, $projectName);
     $idSprint = htmlspecialchars($_GET[ID_SPRINT_ARG_URI]);
-    if (!isSprintExist($projectName, $idSprint) || !$project->isProjectExist($projectName) ) {
-        header(ERROR_URL);
+    if (!isSprintExist($projectID, $idSprint) || !$project->isProjectExist($projectName) ) {
+        redirect(ERROR_URL);
     }
     $task = getNonPlanTask($idSprint);
     $backlog = getBacklog($projectName);
@@ -20,12 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
 
 } else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET[PROJECT_NAME_ARG]) && testProjectName($_GET[PROJECT_NAME_ARG]) && isset($_GET[ID_SPRINT_ARG_URI])) {
     $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
+    $author = $_SESSION['email'];
+    $projectID = $project->getProjectID($author, $projectName);
     $idSprint = htmlspecialchars($_GET[ID_SPRINT_ARG_URI]);
-    if (!isSprintExist($projectName, $idSprint) || !$project->isProjectExist($projectName)) {
-        header(ERROR_URL);
+    if (!isSprintExist($projectID, $idSprint) || !$project->isProjectExist($projectName)) {
+        redirect(ERROR_URL);
     }
     $idTask = $_POST["idTask"];
-    if (!isIdUniqueTask($idTask, $idSprint, $db, $projectName)) {
+    if (!isIdUniqueTask($idTask, $idSprint, $db, $projectID)) {
         $idNotUnique = "L'id " . $idTask . " existe déjà";
     } else {
         $idAI = $_POST["idAI"];
@@ -98,10 +103,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
            }
         }
 
-        header("location: /project/viewProject.php?projectName=$projectName#tab-swipe-3");
+        redirect("/project/viewProject.php?projectName=$projectName#tab-swipe-3");
     }
 } else {
-    header(ERROR_URL);
+    redirect(ERROR_URL);
 }
 ?>
 <!DOCTYPE html>

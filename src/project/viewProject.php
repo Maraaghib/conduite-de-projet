@@ -1,6 +1,8 @@
 <?php
+    require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
     require_once('../data/Project.php');
     require_once('../userStory/userStory.php');
+    include_once('../user/user.php');
 
     $instance = new Project;
     $errorMessage = '';
@@ -11,8 +13,10 @@
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG])) {
         $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
         $project = $instance->getProject($projectName);
-        $backlog = getBackLog($projectName);
-        $listSprints = getListSprints($projectName);
+        $author = $_SESSION['email'];
+        $projectID = $instance->getProjectID($author, $projectName);
+        $backlog = getBackLog($projectID);
+        $listSprints = getListSprints($projectID);
         $sprintDuration = $project['sprintDuration'];
 
         if (isset($_GET["error"])) {
@@ -29,13 +33,13 @@
 
         if ($instance->isProjectExist($newProjectName)) {
             // $errorMessage = 'Le projet <strong>'.$newProjectName.'</strong> existe déjà pour ce compte !';
-            header(BASE_URL_VIEW_PROJECT.$oldProjectName.'#tab-swipe-6');
+            redirect(BASE_URL_VIEW_PROJECT.$oldProjectName.'#tab-swipe-6');
 ?>
 <?php
         }
         else {
             $instance->updateProjectName($oldProjectName, $newProjectName);
-            header(BASE_URL_VIEW_PROJECT.$newProjectName);
+            redirect(BASE_URL_VIEW_PROJECT.$newProjectName);
         }
     }
 
@@ -44,7 +48,7 @@
         $projectName = $_POST['projectName'];
         $description = $_POST['projectDescription'];
         $instance->updateProjectDescription($projectName, $description);
-        header(BASE_URL_VIEW_PROJECT.$projectName);
+        redirect(BASE_URL_VIEW_PROJECT.$projectName);
     }
 
     /* UPDATE OF THE PROJECT'S SPRINTS DURATION */
@@ -53,7 +57,7 @@
         $sprintDuration = (int) $_POST['sprintDuration'];
         $timeUnitSprint = $_POST['timeUnitSprint'];
         $instance->updateSprintDuration($projectName, $sprintDuration, $timeUnitSprint);
-        header(BASE_URL_VIEW_PROJECT.$projectName);
+        redirect(BASE_URL_VIEW_PROJECT.$projectName);
     }
 
     /* DELETE A PROJECT */
@@ -62,10 +66,31 @@
         $confirmProjectName = $_POST['confirmProjectName'];
         if (strtolower($projectName) === strtolower($confirmProjectName)) {
             $instance->deleteProject($projectName);
-            header('Location: /project/listProjects.php');
+            redirect('/project/listProjects.php');
         } else {
-            header(BASE_URL_VIEW_PROJECT.$projectName.'&error=delete#tab-swipe-6');
+            redirect(BASE_URL_VIEW_PROJECT.$projectName.'&error=delete#tab-swipe-6');
         }
+    }
+    elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['updateTaskSprintAndProgress'])) {
+        $projectName = $_POST['projectName'];
+        $idOldSprintArray = explode(',', $_POST['idOldSprintArray']);
+        $idNewSprintArray = explode(',', $_POST['idNewSprintArray']);
+        $idTaskArray = explode(',', $_POST['idTaskArray']);
+        $progressArray = explode(',', $_POST['progressArray']);
+
+        for ($i=0; $i < count($idTaskArray); $i++) {
+            updateTaskSprintAndProgress(intval($idOldSprintArray[$i]), $idTaskArray[$i], intval($idNewSprintArray[$i]), $progressArray[$i]);
+        }
+        redirect(BASE_URL_VIEW_PROJECT.$projectName.'#tab-swipe-3');
+    }
+    elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['addCollaborator'])) {
+        $projectID = $_POST['projectID'];
+        $projectName = $_POST['projectName'];
+        $collabEmail = $_POST['collabEmail'];
+
+        addCollaborator($projectID, $collabEmail);
+
+        redirect(BASE_URL_VIEW_PROJECT.$projectName.'#tab-swipe-5');
     }
 
 ?>
@@ -118,7 +143,7 @@
                                 <li class="tab col s2"><a href="#tab-swipe-2">Backlog</a></li>
                                 <li class="tab col s2"><a href="#tab-swipe-3">Sprints</a></li>
                                 <li class="tab col s2"><a href="#tab-swipe-4">Burndown chart</a></li>
-                                <li class="tab col s2"><a href="#tab-swipe-5">Contributeurs</a></li>
+                                <li class="tab col s2"><a href="#tab-swipe-5">Collaborateurs</a></li>
                                 <li class="tab col s2"><a href="#tab-swipe-6">Paramètres</a></li>
                             </ul>
                             <div id="tab-swipe-1" class="col s12 transp-blue">
@@ -133,7 +158,11 @@
                                         <div class="col s12">
                                             <div class="chip">
                                                 <img src="/img/avatar.png" alt="Propriétaire du projet" title="Propriétaire du projet">
-                                                Hamza SEYE
+                                                <?php
+                                                    $email = $project['author'];
+                                                    $author = getUser($email);
+                                                    echo $author['name'];
+                                                ?>
                                             </div>
                                         </div>
                                         <div class="col s12">
@@ -180,15 +209,10 @@
                                 </div>
                             </div>
                             <div id="tab-swipe-5" class="col s12 transp-cyan">
-                                <div class="row" style="margin: 10px;">
-                                    <div class="s12">
-                                        <h4>Contributeurs</h4>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                        </p>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt umtest labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                        </p>
+                                <div class="container">
+                                    <div class="row" style="margin: 10px;">
+                                        <h4>Collaborateurs</h4>
+                                        <?php include_once $_SERVER['DOCUMENT_ROOT'].'/project/collaborators.php'; ?>
                                     </div>
                                 </div>
                             </div>

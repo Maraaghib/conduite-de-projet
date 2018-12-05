@@ -5,14 +5,23 @@ class Url:
     config.read('conf.ini')
     SELENIUM_HUB = config['HTTP']['SELENIUM_HUB']
 
-    HOME_PAGE_URL = "http://web/"
-    ERROR_URL =  "http://web/error.php"
+    BASE_URL_HEADLESS = "http://web"
+    BASE_URL = "http://localhost:8100"
+    ERROR_URL =  "/error.php"
     # User story url
-    ADD_USER_STORY_URL = "http://web/userStory/addUserStory.php?projectName=projectTest"
-    MISSING_URI = "http://web/userStory/addUserStory.php"
-    INCORRECT_ARG_URI = "http://web/userStory/addUserStory.php?projectName=FalseProject"
-    USER_STORY_TAB_URL = "http://web/project/viewProject.php?projectName=projectTest#tab-swipe-2"
+    ADD_USER_STORY_URL = "/userStory/addUserStory.php?projectName=projectTest"
+    MISSING_URI = "/userStory/addUserStory.php"
+    INCORRECT_ARG_URI = "/userStory/addUserStory.php?projectName=FalseProject"
+    USER_STORY_TAB_URL = "/project/viewProject.php?projectName=projectTest#tab-swipe-2"
     # Project url
-    NEW_PROJECT_URL   = "http://web/project/newProject.php"
-    LIST_PROJECTS_URL = "http://web/project/listProjects.php"
-    VIEW_PROJECT_URL = "http://web/project/viewProject.php?projectName=projectTest"
+    NEW_PROJECT_URL   = "/project/newProject.php"
+    LIST_PROJECTS_URL = "/project/listProjects.php"
+    VIEW_PROJECT_URL = "/project/viewProject.php?projectName=projectTest"
+    # Connection url
+    LOGIN_URL = "/user/login.php"
+    REGISTER_URL = "/user/register.php"
+
+class User:
+    USERNAME ='Giovani'
+    EMAIL    = 'Pascal.Lacasde@jojo.com' 
+    PASSWORD = 'Oh noooo'

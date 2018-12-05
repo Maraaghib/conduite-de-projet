@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 22 Novembre 2018 à 00:35
+-- Généré le :  Mar 04 Décembre 2018 à 03:33
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -27,13 +27,25 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `backlog` (
-  `projectName` varchar(50) NOT NULL,
+  `projectID` int(11) NOT NULL,
   `id` int(11) NOT NULL,
   `description` text NOT NULL,
   `priority` int(11) DEFAULT NULL,
   `difficulty` int(11) NOT NULL,
   `idSprint` int(11) DEFAULT NULL,
   `idAI` int(11) NOT NULL COMMENT 'Id. Auto-Increment pour lier US aux Tâches'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `collaboration`
+--
+
+CREATE TABLE IF NOT EXISTS `collaboration` (
+  `projectID` int(11) NOT NULL,
+  `userEmail` varchar(50) NOT NULL,
+  `dateAdded` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -66,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `linkedus` (
 --
 
 CREATE TABLE IF NOT EXISTS `project` (
-  `author` varchar(50),/* Temporary set to null since there isn't a way to add an user*/
+  `author` varchar(50) DEFAULT NULL,
   `idAI` int(11) NOT NULL,
   `projectName` varchar(50) NOT NULL,
   `description` text,
@@ -83,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `project` (
 
 CREATE TABLE IF NOT EXISTS `sprint` (
   `id` int(11) NOT NULL,
-  `projectName` varchar(50) NOT NULL,
+  `projectID` int(11) NOT NULL,
   `startDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -100,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `task` (
   `description` text NOT NULL,
   `estimatedTime` decimal(10,3) NOT NULL,
   `progress` varchar(30) NOT NULL DEFAULT 'todo',
-  `affectedTo` int(11) DEFAULT '1' COMMENT 'ça doit être un clé étrangère de la table "user"'
+  `affectedTo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -112,9 +124,9 @@ CREATE TABLE IF NOT EXISTS `task` (
 CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `key` varchar(32) NOT NULL,
-  `active` int(1) NOT NULL DEFAULT 0
+  `password` varchar(60) NOT NULL,
+  `keyMail` varchar(32) NOT NULL,
+  `active` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -125,9 +137,16 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Index pour la table `backlog`
 --
 ALTER TABLE `backlog`
-  ADD PRIMARY KEY (`projectName`,`id`),
+  ADD PRIMARY KEY (`projectID`,`id`),
   ADD UNIQUE KEY `idAI` (`idAI`),
   ADD KEY `FK_Sprint_Backlog` (`idSprint`);
+
+--
+-- Index pour la table `collaboration`
+--
+ALTER TABLE `collaboration`
+  ADD PRIMARY KEY (`projectID`,`userEmail`),
+  ADD KEY `FK_Collaboration_User` (`userEmail`);
 
 --
 -- Index pour la table `dependence`
@@ -151,14 +170,15 @@ ALTER TABLE `linkedus`
 --
 ALTER TABLE `project`
   ADD PRIMARY KEY (`projectName`),
-  ADD UNIQUE KEY `idAI` (`idAI`);
+  ADD UNIQUE KEY `idAI` (`idAI`),
+  ADD KEY `FK_User_Project` (`author`);
 
 --
 -- Index pour la table `sprint`
 --
 ALTER TABLE `sprint`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `projectName` (`projectName`);
+  ADD KEY `projectName` (`projectID`);
 
 --
 -- Index pour la table `task`
@@ -166,7 +186,8 @@ ALTER TABLE `sprint`
 ALTER TABLE `task`
   ADD PRIMARY KEY (`idSprint`,`idTask`),
   ADD UNIQUE KEY `idAI` (`idAI`),
-  ADD KEY `idSprint` (`idSprint`);
+  ADD KEY `idSprint` (`idSprint`),
+  ADD KEY `affectedTo` (`affectedTo`);
 
 --
 -- Index pour la table `user`
@@ -206,14 +227,15 @@ ALTER TABLE `task`
 -- Contraintes pour la table `backlog`
 --
 ALTER TABLE `backlog`
-  ADD CONSTRAINT `FK_Project_Backlog` FOREIGN KEY (`projectName`) REFERENCES `project` (`projectName`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Project_Backlog` FOREIGN KEY (`projectID`) REFERENCES `project` (`idAI`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_Sprint_Backlog` FOREIGN KEY (`idSprint`) REFERENCES `sprint` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `project`
+-- Contraintes pour la table `collaboration`
 --
-ALTER TABLE `project`
-  ADD CONSTRAINT `FK_User_Project` FOREIGN KEY (`author`) REFERENCES `user` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `collaboration`
+  ADD CONSTRAINT `FK_Collaboration_Project` FOREIGN KEY (`projectID`) REFERENCES `project` (`idAI`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Collaboration_User` FOREIGN KEY (`userEmail`) REFERENCES `user` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `dependence`
@@ -230,16 +252,23 @@ ALTER TABLE `linkedus`
   ADD CONSTRAINT `FK_LinkedUS_Task` FOREIGN KEY (`idTask`) REFERENCES `task` (`idAI`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Contraintes pour la table `project`
+--
+ALTER TABLE `project`
+  ADD CONSTRAINT `FK_User_Project` FOREIGN KEY (`author`) REFERENCES `user` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Contraintes pour la table `sprint`
 --
 ALTER TABLE `sprint`
-  ADD CONSTRAINT `FK_Project_Project_Sprint` FOREIGN KEY (`projectName`) REFERENCES `project` (`projectName`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_Sprint_Project` FOREIGN KEY (`projectID`) REFERENCES `project` (`idAI`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `task`
 --
 ALTER TABLE `task`
-  ADD CONSTRAINT `FK_Task_Sprint` FOREIGN KEY (`idSprint`) REFERENCES `sprint` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_Task_Sprint` FOREIGN KEY (`idSprint`) REFERENCES `sprint` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Task_User` FOREIGN KEY (`affectedTo`) REFERENCES `user` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
