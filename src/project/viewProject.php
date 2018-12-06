@@ -71,6 +71,8 @@
             redirect(BASE_URL_VIEW_PROJECT.$projectName.'&error=delete#tab-swipe-6');
         }
     }
+
+    /* UPDATE THE PROGRESS AND SPRINT OF A TASK */
     elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['updateTaskSprintAndProgress'])) {
         $projectName = $_POST['projectName'];
         $idOldSprintArray = explode(',', $_POST['idOldSprintArray']);
@@ -83,9 +85,11 @@
         }
         redirect(BASE_URL_VIEW_PROJECT.$projectName.'#tab-swipe-3');
     }
+
+    /* ADD A COLLABORATOR IN A PROJECT */
     elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['addCollaborator'])) {
         $projectID = $_POST['projectID'];
-        $projectName = $_POST['projectName'];
+        $projectName = $_POST['projectName']; // Used only for redirection
         $collabEmail = $_POST['collabEmail'];
 
         addCollaborator($projectID, $collabEmail);
