@@ -3,6 +3,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
 require_once('../data/Project.php');
 require_once('../userStory/userStory.php');
 require_once('task.php');
+require_once('../user/user.php');
 define ("ID_SPRINT_ARG_URI", "idSprint");
 $project = new Project;
 
@@ -18,7 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
         redirect(ERROR_URL);
     }
     $task = getNonPlanTask($idSprint);
-    $backlog = getBacklog($projectName);
+    $backlog = getBacklog($projectID);
+    $collaborators= getCollaborators($projectID);
 
 
 } else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET[PROJECT_NAME_ARG]) && testProjectName($_GET[PROJECT_NAME_ARG]) && isset($_GET[ID_SPRINT_ARG_URI])) {
@@ -32,6 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
     $idTask = $_POST["idTask"];
     if (!isIdUniqueTask($idTask, $idSprint, $db, $projectID)) {
         $idNotUnique = "L'id " . $idTask . " existe déjà";
+        $task = getNonPlanTask($idSprint);
+        $backlog = getBacklog($projectID);
+        $collaborators= getCollaborators($projectID);
     } else {
         $idAI = $_POST["idAI"];
         $desc = htmlspecialchars($_POST["descTask"]);
@@ -56,7 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
         $addTask = $db->prepare($sql);
         $addTask->execute($data);
 
-
         $sqlDep = $db->prepare("SELECT idAI FROM task WHERE idTask=\"$idTask\" AND idSprint=$idSprint");
         $sqlDep->execute();
         $idAIDep=$sqlDep->fetchColumn();
@@ -79,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
         }
 
         if($_POST["listLinkedUS"]!=null){
-            $backlog = getBacklog($projectName);
+            $backlog = getBacklog($projectID);
 
             $sqlInsertLinkedUS = "INSERT INTO linkedus SET
                                   idTask = :idTask,
@@ -87,9 +91,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
             $insertLinkedUSExec = $db->prepare($sqlInsertLinkedUS);
 
            foreach ($_POST["listLinkedUS"] as $linkedUS) {
-             foreach ($backlog as list($pn, $id, $desc, $prio, $diff)) {
+             foreach ($backlog as list($pi, $id, $desc, $prio, $diff, $idSp, $idai)) {
                if($id==$linkedUS){
-                 $sqlLinkedUS = $db->prepare("SELECT idAI FROM backlog WHERE projectName=\"$projectName\" AND id=$linkedUS");
+                 $sqlLinkedUS = $db->prepare("SELECT idAI FROM backlog WHERE projectID=\"$pi\" AND id=$linkedUS");
                  $sqlLinkedUS->execute();
                  $idAILinkedUS=$sqlLinkedUS->fetchColumn();
                  $dataInsertDep = [
@@ -97,7 +101,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
                                   'idUS' => $idAILinkedUS
                  ];
                  $insertLinkedUSExec->execute($dataInsertDep);
-
                }
              }
            }
@@ -135,7 +138,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
                     <div id="grid-container" class="section scrollspy">
                         <form class="col s12" method="post" action="addTask.php?projectName=<?php echo $_GET[PROJECT_NAME_ARG] ?>&idSprint=<?php echo $_GET[ID_SPRINT_ARG_URI] ?>">
                             <input type="hidden" name="progressTask" value="todo">
-                            <input type="hidden" name="affectedToTask" value=0>
                             <h5 style="text-align: center;">Créer une nouvelle tâche </h5>
                             <div class="row">
                                 <p>
@@ -174,13 +176,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
                                 <label for="progressTaskView">Progrès *</label>
                                 </div>
                             </div>
-
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <label for="affectedToTask">Utilisateur affectée</label>
-                                    <input type="hidden" name="affectedToTask" value="0"></input>
-                                </div>
-                            </div>
                             -->
                             <div class="row">
                                 <div class="input-field col s12">
@@ -210,6 +205,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
                                     </select>
                                     <label for="listLinkedUS[]">US liés </label>
                                     <span class="helper-text" data-error="Vous pouvez choisir un ou des US" data-success="Saisie correcte"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <select class="mdb-select md-form" name="affectedToTask">
+                                      <option value="<?php echo $author ?>"><?php echo $_SESSION['name'] ?></option>
+                                        <?php
+                                        foreach ($collaborators as $collaborator) {
+                                        $user = getUser($collaborator['userEmail']);
+                                        ?>
+                                        <option value="<?php echo $user['email'] ?>"><?php echo $user['name'] ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <label for="affectedToTask">Affectée à *</label>
+                                    <span class="helper-text" data-error="Vous devez choisir vous ou un collaborateur" data-success="Saisie correcte"></span>
                                 </div>
                             </div>
                             <div class="row">
