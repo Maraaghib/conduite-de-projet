@@ -255,6 +255,11 @@ ul.sidenav.sidenav-fixed ul.collapsible li div.collapsible-body li a {
     width: 67px;
 }
 
+#tab-swipe-5 .divider {
+    background-color: #807d7d;
+    margin-bottom: 25px;
+}
+
   /* END: STYLES FOR POST-IT */
 
 @media only screen and (max-width: 992px) {
