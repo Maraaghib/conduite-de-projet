@@ -16,7 +16,7 @@
             echo "<tr> <td id='id$id'>#$id</td> <td>$desc</td> <td>$diff</td> <td>$prio</td> <td>$sprint</td>";
         ?>
             <td>
-                <a href="/userStory/updateUserStory.php?projectName=<?php echo $project['projectName']; ?>&idUserStory=<?php echo $id; ?>" class="btn-floating waves-effect waves-light modal-trigger amber accent-4"><i class="material-icons" aria-hidden="true">edit</i></a>
+                <a id="updateUserStory-<?php echo $id ?>" href="/userStory/updateUserStory.php?projectName=<?php echo $project['projectName']; ?>&idUserStory=<?php echo $id; ?>" class="btn-floating waves-effect waves-light modal-trigger amber accent-4"><i class="material-icons" aria-hidden="true">edit</i></a>
             </td>
             <td>
             <!-- Modal Trigger -->
