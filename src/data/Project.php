@@ -414,4 +414,21 @@
         $query->execute($data);
     }
 
+    /**
+    * Permet de retirer un collaborateur d'un projet
+    */
+    function removeCollaborator($projectID, $userEmail) {
+        $db = Database::getDBConnection();
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $query = $db->prepare("DELETE FROM collaboration WHERE projectID = :projectID AND userEmail = :userEmail");
+
+        $data = [
+            'projectID' => $projectID,
+            'userEmail' => $userEmail
+        ];
+
+        $query->execute($data);
+    }
+
 ?>

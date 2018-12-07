@@ -86,13 +86,18 @@
         redirect(BASE_URL_VIEW_PROJECT.$projectName.'#tab-swipe-3');
     }
 
-    /* ADD A COLLABORATOR IN A PROJECT */
-    elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['addCollaborator'])) {
+    /* ADD/REMOVE A COLLABORATOR IN/FROM A PROJECT */
+    elseif ($_SERVER["REQUEST_METHOD"] == "POST" && (isset($_POST['addCollaborator']) || isset($_POST['removeCollaborator']))) {
         $projectID = $_POST['projectID'];
         $projectName = $_POST['projectName']; // Used only for redirection
         $collabEmail = $_POST['collabEmail'];
 
-        addCollaborator($projectID, $collabEmail);
+        if (isset($_POST['addCollaborator'])) {
+            addCollaborator($projectID, $collabEmail);
+        }
+        if (isset($_POST['removeCollaborator'])) {
+            removeCollaborator($projectID, $collabEmail);
+        }
 
         redirect(BASE_URL_VIEW_PROJECT.$projectName.'#tab-swipe-5');
     }
