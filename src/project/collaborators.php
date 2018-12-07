@@ -16,7 +16,7 @@
                 <img class="collab-img" src="/img/avatar.png" alt="Propriétaire du projet" title="Propriétaire du projet">
                 <strong class="collab-name"><?php echo $user['name']; ?></strong>
                 Ajouté(e) le: <?php echo $collaborator['dateAdded']; ?>
-                <i data-target="remove-collab-modal-<?php echo $i; ?>" class="modal-trigger material-icons" title="Retirer">close</i>
+                <i data-target="remove-collab-modal-<?php echo $i; ?>" class="modal-trigger material-icons" title="Retirer" aria-hidden="true">close</i>
                 <!-- Modal Structure -->
                 <div id="remove-collab-modal-<?php echo $i++; ?>" class="modal">
                     <div class="modal-content">
@@ -64,7 +64,7 @@
         <form action="" method="post">
             <div class="row">
                 <div class="input-field col s8" style="display: table-cell; padding: 0px; margin-top: 0px; margin-bottom: 30px;">
-                    <i class="material-icons prefix">group_add</i>
+                    <i class="material-icons prefix" aria-hidden="true">group_add</i>
                     <input type="text" id="autocomplete-input" class="autocomplete" name="collabName" oninput="verifyCollabName()">
                     <label for="autocomplete-input">E-mail</label>
                     <input type="hidden" id="collabEmail" name="collabEmail" value="">
