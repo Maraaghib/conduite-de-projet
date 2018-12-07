@@ -84,7 +84,6 @@
         public function getProjectID($author, $projectName) {
             $db = Database::getDBConnection();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            /* WHERE author = :author = ?? */
             $stmt = $db->prepare("SELECT idAI FROM project WHERE author=:author AND projectName=:projectName");
             $data = [
                 'author'      => $author,
@@ -108,8 +107,6 @@
                 'author' => $user
             ];
             $stmt->execute($data);
-            // $query->execute(['author' => $author]);
-            // $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $projects = [];
             while ($result = $stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
                 $projects[] = $result;
@@ -277,7 +274,6 @@
     function getTasksBySprintAndProgress($idSprint, $progress) {
         $db = Database::getDBConnection();
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        /* WHERE author = :author = ?? */
         $stmt = $db->prepare("SELECT * FROM task WHERE idSprint=:idSprint AND progress=:progress ORDER BY idTask ASC", array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
         $data = [
             'idSprint' => $idSprint,

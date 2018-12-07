@@ -39,10 +39,10 @@ class TestLogin(unittest.TestCase):
         current_page_url = self.firefox_driver.current_url
         self.assertEqual(current_page_url, base_url + Url.LIST_PROJECTS_URL)
 
-    def checkAccessPage(self, url, expectedUrl):
+    def checkAccessPage(self, url, expected_url):
         self.firefox_driver.get(url)
         current_page_url = self.firefox_driver.current_url
-        self.assertEqual(current_page_url, expectedUrl)
+        self.assertEqual(current_page_url, expected_url)
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:

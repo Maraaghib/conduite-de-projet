@@ -4,15 +4,15 @@ $(document).ready(function () {
     $('input#projectName').characterCounter();
     $('select').formSelect();
     // tabs
-    var elem = $('.tabs')
+    var tabs = $('.tabs')
     var options = {
         swipeable: false
     }
-    M.Tabs.init(elem, options);
+    M.Tabs.init(tabs, options);
     $('.modal').modal();
     $('.collapsible').collapsible();
     var elem = document.querySelector('.collapsible.expandable');
-    var instance = M.Collapsible.init(elem, {
+    M.Collapsible.init(elem, {
         accordion: false
     });
 
