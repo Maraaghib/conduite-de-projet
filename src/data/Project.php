@@ -34,12 +34,12 @@
 
         public static function newProject($author, $projectName, $description, $sprintDuration, $dateProject, $timeUnitSprint) {
             $instance = new self();
-            $instance->setAuthor($author);
-            $instance->setProjectName($projectName);
-            $instance->setDescription($description);
-            $instance->setSprintDuration($sprintDuration);
-            $instance->setDateProject($dateProject);
-            $instance->setTimeUnitSprint($timeUnitSprint);
+            $instance->author = $author;
+            $instance->projectName = $projectName;
+            $instance->description = $description;
+            $instance->sprintDuration = $sprintDuration;
+            $instance->dateProject = $dateProject;
+            $instance->timeUnitSprint = $timeUnitSprint;
 
             return $instance;
         }
@@ -131,12 +131,12 @@
             ");
 
             $data = [
-                'author'        => $this->getAuthor(),
-                'projectName'   => $this->getProjectName(),
-                'description'   => $this->getDescription(),
-                'sprintDuration'=> $this->getSprintDuration(),
-                'dateProject'   => $this->getDateProject(),
-                'timeUnitSprint'=> $this->getTimeUnitSprint()
+                'author'        => $this->author,
+                'projectName'   => $this->projectName,
+                'description'   => $this->description,
+                'sprintDuration'=> $this->sprintDuration,
+                'dateProject'   => $this->dateProject,
+                'timeUnitSprint'=> $this->timeUnitSprint
             ];
 
             $query->execute($data);
@@ -216,55 +216,6 @@
             ];
             $query->execute($data);
             return $query->fetch()["numProjectName"];
-        }
-
-        /*************** Getters et setters ******************/
-        public function setAuthor($author){
-            $this->author = $author;
-        }
-
-        public function getAuthor(){
-            return $this->author;
-        }
-
-        public function setProjectName($projectName){
-            $this->projectName = $projectName;
-        }
-
-        public function getProjectName(){
-            return $this->projectName;
-        }
-
-        public function setDescription($description){
-            $this->description = $description;
-        }
-
-        public function getDescription(){
-            return $this->description;
-        }
-
-        public function setSprintDuration($sprintDuration){
-            $this->sprintDuration = $sprintDuration;
-        }
-
-        public function getSprintDuration(){
-            return $this->sprintDuration;
-        }
-
-        public function setDateProject($dateProject){
-            $this->dateProject = $dateProject;
-        }
-
-        public function getDateProject(){
-            return $this->dateProject;
-        }
-
-        public function setTimeUnitSprint($timeUnit){
-            $this->timeUnitSprint = $timeUnit;
-        }
-
-        public function getTimeUnitSprint(){
-            return $this->timeUnitSprint;
         }
     }
 
