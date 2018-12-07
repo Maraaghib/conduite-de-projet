@@ -1,11 +1,11 @@
 | Id  | Description | US lié | Dépendances | Temps estimé | Avancement | Affectée à |
 | --- | ----------- | ------ | ----------- | ------------ | ---------- | ---------- |
 | T4b | Exécution du test d'ajout d'un user story  et ajout des résultats dans l'historique des tests| #9 | T4a, T2b | 1/2 jh | Doing | Guillaume |
-| T17a | Ecriture d'un scénario de test pour la modification d'user story | #12 | | 1/2 jh | To do | Amelozara |
-| T17b | Exécution du test de modification d'un user story et ajout des résultats dans l'historique des tests | #12 | T16b, T17a | 1/2 jh | To do | Amelozara |
+| T17a | Ecriture d'un scénario de test pour la modification d'user story | #12 | | 1/2 jh | Done | Amelozara |
+| T17b | Exécution du test de modification d'un user story et ajout des résultats dans l'historique des tests | #12 | T16b, T17a | 1/2 jh | Done | Amelozara |
 | T18b | Exécution du test de création de sprint et ajout des résultats dans l'historique des tests | #13 | T12b, T18a | 1/2 jh | To do | Guillaume |
-| T19a | Ecriture d'un scénario de test pour l'ajout de tâches dans un sprint | #15| | 1/2 jh | To do | Amelozara |
-| T19b | Exécution du test d'ajout de tâches dans un sprint et ajout des résultats dans l'historique des tests | #15 | T19a, T24b | 1/2 jh | To do | Amelozara |
+| T19a | Ecriture d'un scénario de test pour l'ajout de tâches dans un sprint | #15| | 1/2 jh | Done | Amelozara |
+| T19b | Exécution du test d'ajout de tâches dans un sprint et ajout des résultats dans l'historique des tests | #15 | T19a, T24b | 1/2 jh | Doing | Amelozara |
 | T21b | Exécution du test de listage des sprints et ajout des résultats dans l'historique des tests | #19 | T15b, T21a | 1/2 jh | To do | Guillaume |
 | T22a | Ecriture d'un scénario de test pour la visualisation d'un projet | #20 | | 1/2 jh | To do | Serigne | 
 | T22b | Exécution du test de visualisation d'un projet et ajout des résultats dans l'historique des tests | #20 | T10b, T22a | 1/2 jh | To do | Serigne |
