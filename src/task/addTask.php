@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
+redirectIfNotConnected();
 require_once('../data/Project.php');
 require_once('../userStory/userStory.php');
 require_once('task.php');
@@ -165,19 +166,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
                                     <span class="helper-text" data-error="Durée incorrecte, veuillez rentrer une valeur positive" data-success="Saisie correcte"></span>
                                 </div>
                             </div>
-                            <!--
-                            <div class="row">
-                                <div class="input-field col s6">
-                                <input type="hidden" name="progressTask" value="todo"></input>
-                                <select class="mdb-select md-form" name="progressTaskView" disabled>
-                                    <option value="todo">to do</option>
-                                    <option value="doing">doing</option>
-                                    <option value="done">done</option>
-                                </select>
-                                <label for="progressTaskView">Progrès *</label>
-                                </div>
-                            </div>
-                            -->
                             <div class="row">
                                 <div class="input-field col s12">
                                     <select class="mdb-select md-form" name="listDepTasks[]" multiple>

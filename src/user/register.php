@@ -1,33 +1,38 @@
 <?php
 require_once('../data/Database.php');
 require_once('user.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
+
+redirectIfConnected();
 
 $db = Database::getDBConnection();
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = htmlspecialchars($_POST["name"]);
     $email = htmlspecialchars($_POST["email"]);
-    $password = htmlspecialchars($_POST["password"]);
-    $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-    $key = md5(microtime(TRUE)*100000);
-    $createUser = $db->prepare("INSERT INTO user SET 
-        name=:name,
-        email=:email,
-        password=:password,
-        active=0,
-        keyMail=:key
-    ");
-    $data = [
-        'name' => $username,
-        'email' => $email,
-        'password' => $hashedPassword,
-        'key' => $key
-    ];
-    $createUser->execute($data);
-    sendConfirmMail($email, $key);
-    header("location: login.php?email=$email");
-    exit();
+    if (getUser($email))
+    {
+        $mailAlreadyUsed = "Un compte est déjà associé a cet email";
+    }
+    else
+    {
+        $username = htmlspecialchars($_POST["name"]);
+        $password = htmlspecialchars($_POST["password"]);
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        $createUser = $db->prepare("INSERT INTO user SET 
+            name=:name,
+            email=:email,
+            password=:password
+        ");
+        $data = [
+            'name' => $username,
+            'email' => $email,
+            'password' => $hashedPassword
+        ];
+        $createUser->execute($data);
+        header("location: login.php?email=$email");
+        exit();
+    }
 }
 
 ?>
@@ -73,6 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="email">Email *</label>
                             <input class="validate" type="email" name="email" value="<?php echo $_GET["email"] ?>" required />
                             <span class="helper-text" data-error="Entrez une addresse mail valide" data-success="Saisie correcte"></span>
+                            <?php echo $mailAlreadyUsed ?>
                     </div>
                     <div class="input-field col s12">
                         <label for="password">Mot de passe *</label>
@@ -80,11 +86,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <?php echo $incorrectPassword ?>
                     </div>
                     <div class="row">
-                        <div class="col s12">
+                        <div class="col s6">
                             <button type="submit" name="createUser" class="btn waves-effect waves-light">
                                 Créer le compte 
                                 <i class="material-icons left" aria-hidden="true">check_circle</i>
                             </button>
+                        </div>
+                        <div class="col s6">
+                            <a class="btn waves-effect waves-light" href="./login.php">Se connecter
+                                <i class="material-icons left" aria-hidden="true">person</i>
+                            </a>
                         </div>
                     </div>
                 </form>

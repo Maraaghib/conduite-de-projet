@@ -34,12 +34,12 @@
 
         public static function newProject($author, $projectName, $description, $sprintDuration, $dateProject, $timeUnitSprint) {
             $instance = new self();
-            $instance->setAuthor($author);
-            $instance->setProjectName($projectName);
-            $instance->setDescription($description);
-            $instance->setSprintDuration($sprintDuration);
-            $instance->setDateProject($dateProject);
-            $instance->setTimeUnitSprint($timeUnitSprint);
+            $instance->author = $author;
+            $instance->projectName = $projectName;
+            $instance->description = $description;
+            $instance->sprintDuration = $sprintDuration;
+            $instance->dateProject = $dateProject;
+            $instance->timeUnitSprint = $timeUnitSprint;
 
             return $instance;
         }
@@ -84,7 +84,6 @@
         public function getProjectID($author, $projectName) {
             $db = Database::getDBConnection();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            /* WHERE author = :author = ?? */
             $stmt = $db->prepare("SELECT idAI FROM project WHERE author=:author AND projectName=:projectName");
             $data = [
                 'author'      => $author,
@@ -108,8 +107,6 @@
                 'author' => $user
             ];
             $stmt->execute($data);
-            // $query->execute(['author' => $author]);
-            // $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $projects = [];
             while ($result = $stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
                 $projects[] = $result;
@@ -134,12 +131,12 @@
             ");
 
             $data = [
-                'author'        => $this->getAuthor(),
-                'projectName'   => $this->getProjectName(),
-                'description'   => $this->getDescription(),
-                'sprintDuration'=> $this->getSprintDuration(),
-                'dateProject'   => $this->getDateProject(),
-                'timeUnitSprint'=> $this->getTimeUnitSprint()
+                'author'        => $this->author,
+                'projectName'   => $this->projectName,
+                'description'   => $this->description,
+                'sprintDuration'=> $this->sprintDuration,
+                'dateProject'   => $this->dateProject,
+                'timeUnitSprint'=> $this->timeUnitSprint
             ];
 
             $query->execute($data);
@@ -220,75 +217,6 @@
             $query->execute($data);
             return $query->fetch()["numProjectName"];
         }
-
-        /*************** Getters et setters ******************/
-        public function setAuthor($author){
-            $this->author = $author;
-        }
-
-        public function getAuthor(){
-            return $this->author;
-        }
-
-        public function setProjectName($projectName){
-            $this->projectName = $projectName;
-        }
-
-        public function getProjectName(){
-            return $this->projectName;
-        }
-
-        public function setDescription($description){
-            $this->description = $description;
-        }
-
-        public function getDescription(){
-            return $this->description;
-        }
-
-        public function setSprintDuration($sprintDuration){
-            $this->sprintDuration = $sprintDuration;
-        }
-
-        public function getSprintDuration(){
-            return $this->sprintDuration;
-        }
-
-        public function setDateProject($dateProject){
-            $this->dateProject = $dateProject;
-        }
-
-        public function getDateProject(){
-            return $this->dateProject;
-        }
-
-        public function setTimeUnitSprint($timeUnit){
-            $this->timeUnitSprint = $timeUnit;
-        }
-
-        public function getTimeUnitSprint(){
-            return $this->timeUnitSprint;
-        }
-    }
-
-    /**
-     * Permet de récupérer toutes les tâches d'un sprint
-     */
-    function getTasksBySprintAndProgress($idSprint, $progress) {
-        $db = Database::getDBConnection();
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        /* WHERE author = :author = ?? */
-        $stmt = $db->prepare("SELECT * FROM task WHERE idSprint=:idSprint AND progress=:progress ORDER BY idTask ASC", array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-        $data = [
-            'idSprint' => $idSprint,
-            'progress' => $progress
-        ];
-        $stmt->execute($data);
-        $tasks = [];
-        while ($result = $stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
-            $tasks[] = $result;
-        }
-        return $tasks;
     }
 
     /**
@@ -307,42 +235,6 @@
     }
 
     /**
-     * Permet de récupérer toutes les dépendances d'une tâche grâce à son ID auto-increment
-     */
-    function getDependenceByID($idTask) {
-        $db = Database::getDBConnection();
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $db->prepare("SELECT * FROM dependence WHERE id=:id ORDER BY idTask ASC", array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-        $data = [
-            'id' => $idTask
-        ];
-        $stmt->execute($data);
-        $tasks = [];
-        while ($result = $stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
-            $tasks[] = $result;
-        }
-        return $tasks;
-    }
-
-    /**
-     * Permet de récupérer tous les user stories liés à une tâche grâce à son ID auto-increment
-     */
-    function getLinkedUSByID($idTask) {
-        $db = Database::getDBConnection();
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $db->prepare("SELECT * FROM linkedus WHERE idTask=:idTask ORDER BY idUS ASC", array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-        $data = [
-            'idTask' => $idTask
-        ];
-        $stmt->execute($data);
-        $userStories = [];
-        while ($result = $stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
-            $userStories[] = $result;
-        }
-        return $userStories;
-    }
-
-    /**
     * Permet de mettre à jour la progression et le sprint d'une tâche
     */
     function updateTaskSprintAndProgress($idOldSprint, $idTask, $idNewSprint, $progress) {
@@ -357,21 +249,6 @@
             "idTask" => $idTask
         ];
         $query->execute($data);
-    }
-
-    /**
-     * Permet de récupérer tous les utilisateurs de l'application
-     */
-    function getAllUsers() {
-        $db = Database::getDBConnection();
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $db->prepare("SELECT * FROM user ORDER BY name ASC", array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-        $stmt->execute();
-        $allUsers = [];
-        while ($result = $stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
-            $allUsers[] = $result;
-        }
-        return $allUsers;
     }
 
     /**
@@ -409,6 +286,23 @@
             'projectID' => $projectID,
             'userEmail' => $userEmail,
             'dateAdded' => date('Y-m-d')
+        ];
+
+        $query->execute($data);
+    }
+
+    /**
+    * Permet de retirer un collaborateur d'un projet
+    */
+    function removeCollaborator($projectID, $userEmail) {
+        $db = Database::getDBConnection();
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $query = $db->prepare("DELETE FROM collaboration WHERE projectID = :projectID AND userEmail = :userEmail");
+
+        $data = [
+            'projectID' => $projectID,
+            'userEmail' => $userEmail
         ];
 
         $query->execute($data);

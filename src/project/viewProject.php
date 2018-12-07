@@ -1,5 +1,6 @@
 <?php
     require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
+    redirectIfNotConnected();
     require_once('../data/Project.php');
     require_once('../userStory/userStory.php');
     include_once('../user/user.php');
@@ -8,7 +9,6 @@
     $errorMessage = '';
     $deleteProjectMessage = "<strong style=\"color: #c37a0d\"><i class=\"material-icons left\">warning</i> La supression est définitive ! Une fois que vous supprimez un projet, vous ne pouvez plus revenir en arrière. S'il vous plaît soyez certain.</strong>";
 
-    // @TODO Test if the project with this name EXISTS
     /* RETRIEVAL OF PROJECT'S INFOS AND ITS BACKLOG */
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG])) {
         $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
@@ -19,10 +19,8 @@
         $listSprints = getListSprints($projectID);
         $sprintDuration = $project['sprintDuration'];
 
-        if (isset($_GET["error"])) {
-            if ($_GET["error"] === "delete") {
-                $deleteProjectMessage = "<strong style=\"color: red\"><i class=\"material-icons left\">warning</i>Le nom de projet que vous avez saisi est incorrect ! Veuillez réessayer avec le bon nom de ce projet.</strong>";
-            }
+        if (isset($_GET["error"]) && $_GET["error"] === "delete") {
+            $deleteProjectMessage = "<strong style=\"color: red\"><i class=\"material-icons left\">warning</i>Le nom de projet que vous avez saisi est incorrect ! Veuillez réessayer avec le bon nom de ce projet.</strong>";
         }
     }
 
@@ -32,7 +30,6 @@
         $newProjectName = $_POST['newProjectName'];
 
         if ($instance->isProjectExist($newProjectName)) {
-            // $errorMessage = 'Le projet <strong>'.$newProjectName.'</strong> existe déjà pour ce compte !';
             redirect(BASE_URL_VIEW_PROJECT.$oldProjectName.'#tab-swipe-6');
 ?>
 <?php
@@ -71,6 +68,8 @@
             redirect(BASE_URL_VIEW_PROJECT.$projectName.'&error=delete#tab-swipe-6');
         }
     }
+
+    /* UPDATE THE PROGRESS AND SPRINT OF A TASK */
     elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['updateTaskSprintAndProgress'])) {
         $projectName = $_POST['projectName'];
         $idOldSprintArray = explode(',', $_POST['idOldSprintArray']);
@@ -83,12 +82,19 @@
         }
         redirect(BASE_URL_VIEW_PROJECT.$projectName.'#tab-swipe-3');
     }
-    elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['addCollaborator'])) {
+
+    /* ADD/REMOVE A COLLABORATOR IN/FROM A PROJECT */
+    elseif ($_SERVER["REQUEST_METHOD"] == "POST" && (isset($_POST['addCollaborator']) || isset($_POST['removeCollaborator']))) {
         $projectID = $_POST['projectID'];
-        $projectName = $_POST['projectName'];
+        $projectName = $_POST['projectName']; // Used only for redirection
         $collabEmail = $_POST['collabEmail'];
 
-        addCollaborator($projectID, $collabEmail);
+        if (isset($_POST['addCollaborator'])) {
+            addCollaborator($projectID, $collabEmail);
+        }
+        if (isset($_POST['removeCollaborator'])) {
+            removeCollaborator($projectID, $collabEmail);
+        }
 
         redirect(BASE_URL_VIEW_PROJECT.$projectName.'#tab-swipe-5');
     }

@@ -1,10 +1,12 @@
 import unittest
 import sys
+import time
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from constants import Url
+from constants import Url, SLEEP_TIME
 from login import login
 
+sleep_time = 0
 base_url = Url.BASE_URL_HEADLESS
 
 class TestNewProject(unittest.TestCase):
@@ -27,7 +29,9 @@ class TestNewProject(unittest.TestCase):
         self.firefox_driver.get(base_url)
         current_page_url = self.firefox_driver.current_url
         new_project_link = self.firefox_driver.find_element_by_id("newProject")
+        time.sleep(sleep_time)
         new_project_link.click()
+        time.sleep(sleep_time)
         current_page_url = self.firefox_driver.current_url
         self.assertEqual(current_page_url, base_url + Url.NEW_PROJECT_URL)
         # Testing the creation of a project
@@ -39,7 +43,9 @@ class TestNewProject(unittest.TestCase):
         sprint_duration_field = self.firefox_driver.find_element_by_id("sprintDuration")
         sprint_duration_field.send_keys("2")
         create_project_button  = self.firefox_driver.find_element_by_name("createProject")
+        time.sleep(sleep_time)
         create_project_button .click()
+        time.sleep(sleep_time)
         current_page_url = self.firefox_driver.current_url
         # Test if I'm redirected in the listProject.php page
         self.assertEqual(current_page_url, base_url + Url.LIST_PROJECTS_URL)
@@ -48,6 +54,7 @@ class TestNewProject(unittest.TestCase):
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
+        sleep_time = SLEEP_TIME
         base_url = Url.BASE_URL
         sys.argv.pop()
     unittest.main()

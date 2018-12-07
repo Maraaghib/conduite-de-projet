@@ -1,20 +1,18 @@
-python3 -m coverage erase
-if !(python3 -m coverage run testRegister.py); then
+if !(python3 testRegister.py); then
     exit 1
 fi
-if !(python3 -m coverage run testLogin.py); then
+if !(python3 testLogin.py); then
     exit 1
 fi
-if !(python3 -m coverage run -a testNewProject.py); then
+if !(python3 testNewProject.py); then
     exit 1
 fi
-if !(python3 -m coverage run -a testAddUserStory.py); then
+if !(python3 testAddUserStory.py); then
     exit 1
 fi
-if !(python3 -m coverage run -a testUpdateUserStory.py); then
+if !(python3 testUpdateUserStory.py); then
     exit 1
 fi
-if !(python3 -m coverage run -a testRemoveUserStory.py); then
+if !(python3 testRemoveUserStory.py); then
     exit 1
 fi
-python3 -m coverage xml -i

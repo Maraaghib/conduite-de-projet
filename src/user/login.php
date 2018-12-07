@@ -1,7 +1,9 @@
 <?php
-session_start();
 require_once('../data/Database.php');
 require_once('user.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
+
+redirectIfConnected();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = htmlspecialchars($_POST["email"]);
@@ -15,10 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!password_verify($password, $user["password"]))
     {
         $incorrectPassword = "Le mot de passe est incorrect";
-    }
-    else if (!$user["active"])
-    {
-        header("location: sendActivation.php?email=$email");
     }
     else
     {

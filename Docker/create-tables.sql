@@ -124,9 +124,7 @@ CREATE TABLE IF NOT EXISTS `task` (
 CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `password` varchar(60) NOT NULL,
-  `keyMail` varchar(32) NOT NULL,
-  `active` int(1) NOT NULL DEFAULT '0'
+  `password` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

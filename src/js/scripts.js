@@ -4,15 +4,15 @@ $(document).ready(function () {
     $('input#projectName').characterCounter();
     $('select').formSelect();
     // tabs
-    var elem = $('.tabs')
+    var tabs = $('.tabs')
     var options = {
         swipeable: false
     }
-    M.Tabs.init(elem, options);
+    M.Tabs.init(tabs, options);
     $('.modal').modal();
     $('.collapsible').collapsible();
     var elem = document.querySelector('.collapsible.expandable');
-    var instance = M.Collapsible.init(elem, {
+    M.Collapsible.init(elem, {
         accordion: false
     });
 
@@ -121,11 +121,6 @@ function drop(ev) {
         progressArray = progressArrayValue.split(',');
     }
     progressArray.unshift(progress);
-
-    console.log(idTaskArray);
-    console.log(progressArray);
-    console.log(idOldSprintArray);
-    console.log(idNewSprintArray);
 
     document.querySelector("#sprintButtonAction form #idOldSprintArray").value = idOldSprintArray.toString();
     document.querySelector("#sprintButtonAction form #idNewSprintArray").value = idNewSprintArray.toString();

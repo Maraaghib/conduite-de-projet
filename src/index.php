@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
+redirectIfNotConnected();
 ?>
 <!DOCTYPE html>
 <html lang="fr">

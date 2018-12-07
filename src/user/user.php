@@ -1,6 +1,5 @@
 <?php
     require_once('../data/Database.php');
-    require_once('vendor/autoload.php');
 
     function getUser($email) {
         $db = Database::getDBConnection();
@@ -18,26 +17,18 @@
         return $inputPassword == $dbPassword;
     }
 
-    function sendConfirmMail($email, $key){
-        $subject = "Activer votre compte";
-        $message = "Bienvenue sur le gestionnaire de projets réalisé pour l'UE
-conduite de projet.
-        
-Pour activer votre compte, veuillez cliquer sur le lien ci dessous:
-        
-http://$_SERVER[HTTP_HOST]/user/activation.php?email=".urlencode($email)."&key=".urlencode($key)."
- 
----------------
-Ceci est un mail automatique, Merci de ne pas y répondre.";
-
-        $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
-        ->setUsername('cdp2018gestionnairedeprojets@gmail.com')
-        ->setPassword('Cdp2018GL');
-        $mailer = new Swift_Mailer($transport);
-        $mail = (new Swift_Message($subject))
-        ->setFrom(['cdp2018gestionnairedeprojets@gmail.com' => 'Gestionnaire de projets'])
-        ->setTo([$email])
-        ->setBody($message);
-        $mailer->send($mail);
+    /**
+     * Permet de récupérer tous les utilisateurs de l'application
+     */
+    function getAllUsers() {
+        $db = Database::getDBConnection();
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $db->prepare("SELECT * FROM user ORDER BY name ASC", array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+        $stmt->execute();
+        $allUsers = [];
+        while ($result = $stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
+            $allUsers[] = $result;
+        }
+        return $allUsers;
     }
 ?>
