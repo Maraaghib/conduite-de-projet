@@ -40,20 +40,39 @@
 </div>
 <div class="divider"></div>
 <?php $allUsers = getAllUsers(); ?>
+<script type="text/javascript">
+    var collabs = {
+        <?php foreach ($allUsers as $user) {
+        ?>
+            "<?php echo $user['email'].'" : "'.$user['name'] ?>",
+        <?php
+        }?>
+    };
+
+    function verifyCollabName() {
+        let collabName = document.querySelector('#autocomplete-input').value;
+        let collabEmail = document.querySelector('#collabEmail').value;
+        let addCollabBtn = document.querySelector('#addCollaborator');
+        console.log(collabs[collabEmail]);
+        if (collabEmail && collabEmail.localeCompare(collabName) !== 0) {
+            addCollabBtn.disabled = true;
+        }
+    }
+</script>
 <div class="section">
     <div class="col s12">
         <form action="" method="post">
             <div class="row">
                 <div class="input-field col s8" style="display: table-cell; padding: 0px; margin-top: 0px; margin-bottom: 30px;">
                     <i class="material-icons prefix">group_add</i>
-                    <input type="text" id="autocomplete-input" class="autocomplete" name="collabName">
+                    <input type="text" id="autocomplete-input" class="autocomplete" name="collabName" oninput="verifyCollabName()">
                     <label for="autocomplete-input">E-mail</label>
                     <input type="hidden" id="collabEmail" name="collabEmail" value="">
                     <input type="hidden" name="projectID" value="<?php echo $projectID; ?>">
                     <input type="hidden" name="projectName" value="<?php echo $projectName; ?>">
                 </div>
                 <span style="display: table-cell;">
-                    <button type="submit" class="btn waves-effect waves-light" name="addCollaborator">Ajouter collaborateur</button>
+                    <button type="submit" class="btn waves-effect waves-light" id="addCollaborator" name="addCollaborator" disabled>Ajouter collaborateur</button>
                 </span>
             </div>
         </form>
@@ -73,8 +92,12 @@
             onAutocomplete: (email) => {
                 document.querySelector('#autocomplete-input').value = email.split(' - ')[0];
                 document.querySelector('#collabEmail').value = email.split(' - ')[1];
+
+                document.querySelector('#addCollaborator').disabled = false;
             }
         }
         var instance = M.Autocomplete.init(elem, options);
+
+        // document.querySelector('#autocomplete-input').addEventListener("oninput")
     });
 </script>
