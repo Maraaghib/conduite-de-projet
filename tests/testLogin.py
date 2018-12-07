@@ -33,8 +33,11 @@ class TestLogin(unittest.TestCase):
         current_page_url = self.firefox_driver.current_url
         self.assertEqual(current_page_url, base_url + Url.LIST_PROJECTS_URL)
 
-        # Logout
-        self.firefox_driver.get(base_url + Url.LOGOUT_URL)
+        # Test logout
+        self.logoutUser()
+        current_page_url = self.firefox_driver.current_url
+        self.assertEqual(current_page_url, base_url + Url.LOGIN_URL)
+
         # Test login with incorrect password
         self.loginUser(User.EMAIL, "fake password")
         current_page_url = self.firefox_driver.current_url
@@ -63,6 +66,12 @@ class TestLogin(unittest.TestCase):
         time.sleep(sleep_time)
         button_connect.click()
         time.sleep(sleep_time)
+
+    def logoutUser(self):
+        deconnectButton = self.firefox_driver.find_element_by_link_text("Se déconnecter")
+        deconnectButton.click()
+        time.sleep(2)
+
 
     def checkAccessPage(self, url, expected_url):
         self.firefox_driver.get(url)
