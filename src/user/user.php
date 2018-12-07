@@ -1,6 +1,5 @@
 <?php
     require_once('../data/Database.php');
-    require_once('vendor/autoload.php');
 
     function getUser($email) {
         $db = Database::getDBConnection();
