@@ -124,9 +124,7 @@ CREATE TABLE IF NOT EXISTS `task` (
 CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `password` varchar(60) NOT NULL,
-  `keyMail` varchar(32) NOT NULL,
-  `active` int(1) NOT NULL DEFAULT '0'
+  `password` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -273,10 +271,3 @@ ALTER TABLE `task`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-INSERT INTO `user`
-SET name="root",
-    email="root@root.com",
-    password="$2y$10$5gHqQ28C2XGg5NDbLFP2sO8UPXKU9uV1RiMEIenqPTdCSd.X9hiya",
-    active=1,
-    keyMail="keyMail"

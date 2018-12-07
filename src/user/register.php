@@ -10,21 +10,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = htmlspecialchars($_POST["email"]);
     $password = htmlspecialchars($_POST["password"]);
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-    $key = md5(microtime(TRUE)*100000);
     $createUser = $db->prepare("INSERT INTO user SET 
         name=:name,
         email=:email,
-        password=:password,
-        active=0,
-        keyMail=:key
+        password=:password
     ");
     $data = [
         'name' => $username,
         'email' => $email,
-        'password' => $hashedPassword,
-        'key' => $key
+        'password' => $hashedPassword
     ];
-    sendConfirmMail($email, $key);
     $createUser->execute($data);
     header("location: login.php?email=$email");
     exit();
