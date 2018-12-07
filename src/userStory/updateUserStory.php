@@ -47,26 +47,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && is
     $prio = $_POST["prioUserStory"];
     if ($prio == null) {
         $sql = "UPDATE backlog SET
-            projectID = :projectID,
-            id = :id,
             description = :description,
-            difficulty = :difficulty";
+            difficulty = :difficulty
+            WHERE projectID = $projectID AND id = $id";
         $data = [
-            'projectID' => $projectID,
-            'id' => $id,
             'description' => $desc,
             'difficulty' => $diff
         ];
     } else {
         $sql = "UPDATE backlog SET
-            projectID = :projectID,
-            id = :id,
             description = :description,
             priority = :priority,
-            difficulty = :difficulty";
+            difficulty = :difficulty
+            WHERE projectID = $projectID AND id = $id";
         $data = [
-            'projectID' => $projectID,
-            'id' => $id,
             'description' => $desc,
             'priority' => $prio,
             'difficulty' => $diff
