@@ -19,6 +19,7 @@ class Url:
     VIEW_PROJECT_URL = "/project/viewProject.php?projectName=projectTest"
     # Connection url
     LOGIN_URL = "/user/login.php"
+    LOGOUT_URL = "/user/logout.php"
     REGISTER_URL = "/user/register.php"
 
 class User:
