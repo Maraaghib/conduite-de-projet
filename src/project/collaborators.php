@@ -39,7 +39,7 @@
     </div>
 </div>
 <div class="divider"></div>
-<?php $allUsers = getAllUsers(); ?>
+<?php $allUsers = getAllUsers($author); ?>
 <script type="text/javascript">
     var collabs = {
         <?php foreach ($allUsers as $user) {
