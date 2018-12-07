@@ -1,9 +1,11 @@
 import unittest
 import sys
+import time
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from constants import Url, User
+from constants import Url, User, SLEEP_TIME
 
+sleep_time = 0
 base_url = Url.BASE_URL_HEADLESS
 
 class TestLogin(unittest.TestCase):
@@ -31,7 +33,9 @@ class TestLogin(unittest.TestCase):
         password_field = self.firefox_driver.find_element_by_name("password")
         password_field.send_keys(User.PASSWORD)
         button_connect = self.firefox_driver.find_element_by_name("connectUser")
+        time.sleep(sleep_time)
         button_connect.click()
+        time.sleep(sleep_time)
         current_page_url = self.firefox_driver.current_url
         self.assertEqual(current_page_url, base_url + Url.LIST_PROJECTS_URL)
 
@@ -42,6 +46,7 @@ class TestLogin(unittest.TestCase):
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
+        sleep_time = SLEEP_TIME
         base_url = Url.BASE_URL
         sys.argv.pop()
     unittest.main()

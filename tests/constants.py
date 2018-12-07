@@ -22,6 +22,8 @@ class Url:
     REGISTER_URL = "/user/register.php"
 
 class User:
-    USERNAME ='Giovani'
-    EMAIL    = 'Pascal.Lacasde@jojo.com' 
-    PASSWORD = 'Oh noooo'
+    USERNAME ='root'
+    EMAIL    = 'root@root.com' 
+    PASSWORD = 'root'
+
+SLEEP_TIME = 2

@@ -1,10 +1,12 @@
 import unittest
 import sys
+import time
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from constants import Url
+from constants import Url, SLEEP_TIME
 from login import login
 
+sleep_time = 0
 base_url = Url.BASE_URL_HEADLESS
 
 class TestAddUserStory(unittest.TestCase):
@@ -24,6 +26,7 @@ class TestAddUserStory(unittest.TestCase):
     def testAddUserStory(self):
         # Test button "Ajouter une user story"
         self.firefox_driver.get(base_url + Url.USER_STORY_TAB_URL)
+        time.sleep(sleep_time)
         self.firefox_driver.find_element_by_id("addUserStory").click()
         page_url = self.firefox_driver.current_url
         self.assertEqual(page_url, base_url + Url.ADD_USER_STORY_URL)
@@ -69,21 +72,26 @@ class TestAddUserStory(unittest.TestCase):
         prio_user_story_field = self.firefox_driver.find_element_by_name("prioUserStory")
         prio_user_story_field.send_keys(prio)
         submit_button = self.firefox_driver.find_element_by_name("newUserStory")
+        time.sleep(sleep_time)
         submit_button.click()
+        time.sleep(sleep_time)
 
 
     def testMissingUri(self):
         self.firefox_driver.get(base_url + Url.MISSING_URI)
         page_url = self.firefox_driver.current_url
+        time.sleep(sleep_time)
         self.assertEqual(page_url, base_url + Url.ERROR_URL)
 
     def testIncorrectUri(self):
         self.firefox_driver.get(base_url + Url.INCORRECT_ARG_URI)
         page_url = self.firefox_driver.current_url
+        time.sleep(sleep_time)
         self.assertEqual(page_url, base_url + Url.ERROR_URL)
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
+        sleep_time = 0
         base_url = Url.BASE_URL
         sys.argv.pop()
     unittest.main()
