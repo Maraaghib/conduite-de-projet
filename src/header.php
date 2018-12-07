@@ -30,6 +30,7 @@
                 <a href="#user"><img class="circle" src="/img/avatar.png" alt="avatar"></a>
                 <a href="#name"><span class="white-text name"><?php echo $_SESSION['username']; ?></span></a>
                 <a href="#email"><span class="white-text email"><?php echo $_SESSION['email']; ?></span></a>
+                <a href="/user/logout.php"><span class="white-text email">Se déconnecter</span></a>
             </div>
         </li>
         <li <?php echo $activeMenu1; ?>>
