@@ -35,7 +35,7 @@
 | T32c | Ecriture d'un scénario de test pour l'ajout de collaborateurs dans un projet | #6 |  | 1/2 jh | To do | Serigne |
 | T32d | Exécution du test de l'ajout de collaborateurs dans un projet et ajout des résultats dans l'historique des tests | #6 | T32b | 1/2 jh | To do | Serigne |
 | T33a | Sur la liste des collaborateurs, lorque l'on appuie sur le bouton de fome croix (x) à côté d'un collaborateur, un popup (modal) est ouvert pour demander une confirmation de retrait de d'un collaborateur avec deux bouton: l'un de type submit (appelé RETIRER) qui permet de valider la suppression et l'autre de type button (appelé ANNULER) de fermer le popup et par conséquent, d'annuler la retrait du collaborateur du projet. | #7 | T32a | 1 jh | Doing | Serigne |
-| T33b | Ecriture d'un scénario de test pour le retrait d'un collaborateur d'un projet | #7 | T33a | 1/2 jh | To do | Serigne |
+| T33b | Ecriture d'un scénario de test pour le retrait d'un collaborateur d'un projet | #7 |  | 1/2 jh | To do | Serigne |
 | T33c | Tâche d'Exécution de Test | #7 | TXX | XX jh | To do | Non défini |
 | T34a | Tâche de Conception | #14 | TXX | XX jh | To do | Non défini |
 | T34b | Tâche d'Implémentation | #14 | TXX | XX jh | To do | Non défini |
