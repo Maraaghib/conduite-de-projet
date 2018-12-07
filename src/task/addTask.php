@@ -162,7 +162,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
                             <div class="row">
                                 <div class="input-field col s6">
                                     <label for="estimatedTimeTask">Temps estimé *</label>
-                                    <input class="validate" type="number" name="estimatedTimeTask" step=0.01 required />
+                                    <input class="validate" type="number" name="estimatedTimeTask" step=0.01 min=0 required/>
+                                    <span class="helper-text" data-error="Durée incorrecte, veuillez rentrer une valeur positive" data-success="Saisie correcte"></span>
                                 </div>
                             </div>
                             <div class="row">
@@ -197,8 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <select class="mdb-select md-form" name="affectedToTask">
-                                      <option value="<?php echo $author ?>"><?php echo $_SESSION['name'] ?></option>
+                                    <select class="mdb-select md-form" name="affectedToTask" required>
                                         <?php
                                         foreach ($collaborators as $collaborator) {
                                         $user = getUser($collaborator['userEmail']);
@@ -209,7 +209,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
                                         ?>
                                     </select>
                                     <label for="affectedToTask">Affectée à *</label>
-                                    <span class="helper-text" data-error="Vous devez choisir vous ou un collaborateur" data-success="Saisie correcte"></span>
+                                    <span class="helper-text" data-error="Vous devez choisir vous ou un collaborateur" data-success="Utilisateur correcte"></span>
                                 </div>
                             </div>
                             <div class="row">

@@ -16,7 +16,7 @@ require_once("../date.php")
                 <?php include $_SERVER['DOCUMENT_ROOT'].'/task/listTasks.php'; ?>
             </div>
             <div class="center-align" style="margin-top: 35px;">
-                <a href="/task/addTask.php?projectName=<?php echo $projectName ?>&idSprint=<?php echo $id ?>" class="btn waves-effect waves-light"><i class="material-icons left" aria-hidden="true">note_add</i>Ajouter une tâche</a>
+                <a id="addTask" href="/task/addTask.php?projectName=<?php echo $projectName ?>&idSprint=<?php echo $id ?>" class="btn waves-effect waves-light"><i class="material-icons left" aria-hidden="true">note_add</i>Ajouter une tâche</a>
             </div>
         </div>
     </li>

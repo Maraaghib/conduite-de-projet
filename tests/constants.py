@@ -13,6 +13,11 @@ class Url:
     MISSING_URI = "/userStory/addUserStory.php"
     INCORRECT_ARG_URI = "/userStory/addUserStory.php?projectName=FalseProject"
     USER_STORY_TAB_URL = "/project/viewProject.php?projectName=projectTest#tab-swipe-2"
+    UPDATE_USER_STORY_URL = "/userStory/updateUserStory.php?projectName=projectTest&idUserStory=1"
+    # Task Url
+    ADD_TASK_URL = "/task/addTask.php?projectName=projectTest&idSprint=1"
+    TASK_TAB_URL = "/project/viewProject.php?projectName=projectTest#tab-swipe-3"
+
     # Project url
     NEW_PROJECT_URL   = "/project/newProject.php"
     LIST_PROJECTS_URL = "/project/listProjects.php"
@@ -24,7 +29,7 @@ class Url:
 
 class User:
     USERNAME ='root'
-    EMAIL    = 'root@root.com' 
+    EMAIL    = 'root@root.com'
     PASSWORD = 'root'
 
 SLEEP_TIME = 2

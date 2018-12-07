@@ -124,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && is
                             <div class="row">
                                 <div class="input-field col s6">
                                     <label for="diffUserStory">Difficulté *</label>
-                                    <input class="validate" type="number" name="diffUserStory" min=1 required value="<?php echo $gdiff; ?>"/>
+                                    <input class="validate" type="number" name="diffUserStory" min=1 required value="<?php echo $gdiff; ?>" required/>
                                     <span class="helper-text" data-error="Entrez un nombre" data-success="right"></span>
                                 </div>
                                 <div class="input-field col s6">
