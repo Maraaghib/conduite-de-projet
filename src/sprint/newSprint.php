@@ -17,7 +17,7 @@ if (!isset($_GET[PROJECT_NAME_ARG])) {
     }
 }
 $projectInfo = $project->getProject($projectName);
-$author = $_SESSION['email'];
+$author = $projectInfo['author'];
 $projectID = $project->getProjectID($author, $projectName);
 $backlog = getBacklog($projectID);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -12,7 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $id = htmlspecialchars($_POST['idUserStory']);
     $projectName = htmlspecialchars($_POST['projectName']);
-    $author = $_SESSION['email'];
+    $projectInfo = $project->getProject($projectName);
+    $author = $projectInfo['author'];
     $projectID = $project->getProjectID($author, $projectName);
     $removeUserStory = $cdpDb->prepare("DELETE FROM backlog WHERE id=:id AND projectID=:projectID");
     $data = [

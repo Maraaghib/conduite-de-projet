@@ -102,13 +102,20 @@
             $db = Database::getDBConnection();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             /* WHERE author = :author = ?? */
-            $stmt = $db->prepare("SELECT * FROM project WHERE author=:author ORDER BY idAI ASC", array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+            $stmt1 = $db->prepare("SELECT * FROM project WHERE author=:user ORDER BY idAI ASC", array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+            $stmt2 = $db->prepare("SELECT * FROM project WHERE idAI=(SELECT projectID FROM collaboration WHERE userEmail=:user)", array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+
             $data = [
-                'author' => $user
+                'user' => $user
             ];
-            $stmt->execute($data);
+            $stmt1->execute($data);
+            $stmt2->execute($data);
+
             $projects = [];
-            while ($result = $stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
+            while ($result = $stmt1->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
+                $projects[] = $result;
+            }
+            while ($result = $stmt2->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
                 $projects[] = $result;
             }
             return $projects;

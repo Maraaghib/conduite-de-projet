@@ -16,7 +16,9 @@
                 <img class="collab-img" src="/img/avatar.png" alt="Propriétaire du projet" title="Propriétaire du projet">
                 <strong class="collab-name"><?php echo $user['name']; ?></strong>
                 Ajouté(e) le: <?php echo $collaborator['dateAdded']; ?>
+                <?php if (strcmp($project['author'], $_SESSION['email']) === 0) { ?>
                 <i data-target="remove-collab-modal-<?php echo $i; ?>" class="modal-trigger material-icons" title="Retirer" aria-hidden="true">close</i>
+                <?php } ?>
                 <!-- Modal Structure -->
                 <div id="remove-collab-modal-<?php echo $i++; ?>" class="modal">
                     <div class="modal-content">
@@ -38,8 +40,12 @@
         <?php } ?>
     </div>
 </div>
+<?php
+    $allUsers = getAllUsers($author);
+    if (strcmp($project['author'], $_SESSION['email']) === 0) {
+?>
 <div class="divider"></div>
-<?php $allUsers = getAllUsers(); ?>
+
 <script type="text/javascript">
     var collabs = {
         <?php foreach ($allUsers as $user) {
@@ -78,6 +84,7 @@
         </form>
     </div>
 </div>
+<?php } ?>
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
         var elem = document.querySelector('.autocomplete');

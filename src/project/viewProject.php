@@ -13,7 +13,7 @@
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG])) {
         $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
         $project = $instance->getProject($projectName);
-        $author = $_SESSION['email'];
+        $author = $project['author'];
         $projectID = $instance->getProjectID($author, $projectName);
         $backlog = getBackLog($projectID);
         $listSprints = getListSprints($projectID);
@@ -225,8 +225,16 @@
                             <div id="tab-swipe-6" class="col s12 transp-orange">
                                 <div class="container">
                                     <h4>Paramètres</h4>
-                                    <?php include_once $_SERVER['DOCUMENT_ROOT'].'/project/editProject.php'; ?>
-                                    <?php include_once $_SERVER['DOCUMENT_ROOT'].'/project/deleteProject.php'; ?>
+                                    <?php
+                                        if (strcmp($project['author'], $_SESSION['email']) !== 0) {
+                                            echo "<h5 style='color: red'>Vous n'avez pas le droit d'accès car vous n'êtes pas le propriétaire de ce projet !</h5>";
+                                        }
+                                        else {
+                                            include_once $_SERVER['DOCUMENT_ROOT'].'/project/editProject.php';
+                                            include_once $_SERVER['DOCUMENT_ROOT'].'/project/deleteProject.php';
+                                        }
+                                    ?>
+                                </div>
                                 </div>
                             </div>
                         </div>
