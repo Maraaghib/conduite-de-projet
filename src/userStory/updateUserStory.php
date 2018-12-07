@@ -14,7 +14,8 @@ $cdpDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && isset($_GET[ID_US_ARG_URI]) && testProjectName($_GET[PROJECT_NAME_ARG]) && !empty($_GET[ID_US_ARG_URI])) {
     $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
-    $author = $_SESSION['email'];
+    $projectInfo = $project->getProject($projectName);
+    $author = $projectInfo['author'];
     $projectID = $project->getProjectID($author, $projectName);
     if (!$project->isProjectExist($projectName)) {
         redirect(ERROR_URL);
@@ -37,7 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && is
 
 } else if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
-    $author = $_SESSION['email'];
+    $projectInfo = $project->getProject($projectName);
+    $author = $projectInfo['author'];
     $projectID = $project->getProjectID($author, $projectName);
     if (!$project->isProjectExist($projectName)) {
         redirect(ERROR_URL);

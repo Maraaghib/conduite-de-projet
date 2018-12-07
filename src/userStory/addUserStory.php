@@ -18,7 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
     if (!$project->isProjectExist($projectName)) {
         redirect(ERROR_URL);
     }
-    $author = $_SESSION['email'];
+    $projectInfo = $project->getProject($projectName);
+    $author = $projectInfo['author'];
     $projectID = $project->getProjectID($author, $projectName);
     $id = $_POST["idUserStory"];
     if (!isIdUnique($id, $db, $projectID)) {

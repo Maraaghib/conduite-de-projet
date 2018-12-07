@@ -13,7 +13,8 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && testProjectName($_GET[PROJECT_NAME_ARG]) && isset($_GET[ID_SPRINT_ARG_URI])) {
     $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
-    $author = $_SESSION['email'];
+    $projectInfo = $project->getProject($projectName);
+    $author = $projectInfo['author'];
     $projectID = $project->getProjectID($author, $projectName);
     $idSprint = htmlspecialchars($_GET[ID_SPRINT_ARG_URI]);
     if (!isSprintExist($projectID, $idSprint) || !$project->isProjectExist($projectName) ) {
@@ -26,7 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
 
 } else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET[PROJECT_NAME_ARG]) && testProjectName($_GET[PROJECT_NAME_ARG]) && isset($_GET[ID_SPRINT_ARG_URI])) {
     $projectName = htmlspecialchars($_GET[PROJECT_NAME_ARG]);
-    $author = $_SESSION['email'];
+    $projectInfo = $project->getProject($projectName);
+    $author = $projectInfo['author'];
     $projectID = $project->getProjectID($author, $projectName);
     $idSprint = htmlspecialchars($_GET[ID_SPRINT_ARG_URI]);
     if (!isSprintExist($projectID, $idSprint) || !$project->isProjectExist($projectName)) {
