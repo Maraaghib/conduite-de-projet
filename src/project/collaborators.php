@@ -26,8 +26,9 @@
                     <div class="modal-footer">
                         <form action="" method="post">
                             <input type="hidden" name="projectID" value="<?php echo $projectID; ?>">
-                            <input type="hidden" name="userEmail" value="<?php echo $collaborator['userEmail']; ?>">
-                            <button name="confirmRemoveCollab" type="submit" class="modal-close waves-effect waves-red btn-flat">Retirer<i class="material-icons left" aria-hidden="true">check_circle</i></button>
+                            <input type="hidden" name="collabEmail" value="<?php echo $collaborator['userEmail']; ?>">
+                            <input type="hidden" name="projectName" value="<?php echo $projectName; ?>">
+                            <button name="removeCollaborator" type="submit" class="modal-close waves-effect waves-red btn-flat">Retirer<i class="material-icons left" aria-hidden="true">check_circle</i></button>
                             <button type="button" class="modal-close waves-effect waves-green btn-flat">Annuler<i class="material-icons left" aria-hidden="true">cancel</i></button>
                         </form>
                     </div>
@@ -45,8 +46,9 @@
             <div class="row">
                 <div class="input-field col s8" style="display: table-cell; padding: 0px; margin-top: 0px; margin-bottom: 30px;">
                     <i class="material-icons prefix">group_add</i>
-                    <input type="email" id="autocomplete-input" class="autocomplete" name="collabEmail">
+                    <input type="text" id="autocomplete-input" class="autocomplete" name="collabName">
                     <label for="autocomplete-input">E-mail</label>
+                    <input type="hidden" id="collabEmail" name="collabEmail" value="">
                     <input type="hidden" name="projectID" value="<?php echo $projectID; ?>">
                     <input type="hidden" name="projectName" value="<?php echo $projectName; ?>">
                 </div>
@@ -60,13 +62,19 @@
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
         var elem = document.querySelector('.autocomplete');
-        var instance = M.Autocomplete.init(elem);
-        instance.updateData({
-            <?php foreach ($allUsers as $user) {
-            ?>
-                "<?php echo $user['email'] ?>": "/img/avatar.png",
-            <?php
-            }?>
-        });
+        var options = {
+            data: {
+                <?php foreach ($allUsers as $user) {
+                ?>
+                    "<?php echo $user['name'].' - '.$user['email'] ?>": "/img/avatar.png",
+                <?php
+                }?>
+            },
+            onAutocomplete: (email) => {
+                document.querySelector('#autocomplete-input').value = email.split(' - ')[0];
+                document.querySelector('#collabEmail').value = email.split(' - ')[1];
+            }
+        }
+        var instance = M.Autocomplete.init(elem, options);
     });
 </script>
