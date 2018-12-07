@@ -24,8 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'password' => $hashedPassword,
         'key' => $key
     ];
-    $createUser->execute($data);
     sendConfirmMail($email, $key);
+    $createUser->execute($data);
     header("location: login.php?email=$email");
     exit();
 }
