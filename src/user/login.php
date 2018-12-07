@@ -1,7 +1,9 @@
 <?php
-session_start();
 require_once('../data/Database.php');
 require_once('user.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
+
+redirectIfConnected();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = htmlspecialchars($_POST["email"]);

@@ -1,5 +1,6 @@
 <?php
     require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
+    redirectIfNotConnected();
     require_once('../data/Project.php');
     require_once('../date.php');
     include_once('../user/user.php');

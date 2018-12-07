@@ -1,5 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
+
+redirectIfNotConnected();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once('../data/Project.php');
     require_once('userStory.php');

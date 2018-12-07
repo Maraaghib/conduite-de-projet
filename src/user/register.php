@@ -1,6 +1,9 @@
 <?php
 require_once('../data/Database.php');
 require_once('user.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/session.php');
+
+redirectIfConnected();
 
 $db = Database::getDBConnection();
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
