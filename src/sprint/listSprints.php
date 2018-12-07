@@ -4,7 +4,6 @@ require_once("../date.php")
 <ul class="collapsible expandable">
     <?php
     $i = 1;
-    print_r($projectID);
     foreach ($listSprints as list($id, $projectID, $startDate)) {
         $startDateFr  = convertDate($startDate);
         $endDate = date_create($startDate)->add(date_interval_create_from_date_string("$sprintDuration days"));
