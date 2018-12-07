@@ -35,7 +35,7 @@ class TestListTasks(unittest.TestCase):
         current_page_url = self.firefox_driver.current_url
         self.assertEqual(current_page_url, base_url + Url.VIEW_PROJECT_URL)
 
-        sprint_tab = self.firefox_driver.find_element_by_link_text(Sprints)
+        sprint_tab = self.firefox_driver.find_element_by_link_text("Sprints")
         sprint_tab.click()
 
 

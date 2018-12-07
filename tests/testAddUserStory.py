@@ -91,7 +91,7 @@ class TestAddUserStory(unittest.TestCase):
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        sleep_time = 0
+        sleep_time = SLEEP_TIME
         base_url = Url.BASE_URL
         sys.argv.pop()
     unittest.main()
