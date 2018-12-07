@@ -122,11 +122,6 @@ function drop(ev) {
     }
     progressArray.unshift(progress);
 
-    console.log(idTaskArray);
-    console.log(progressArray);
-    console.log(idOldSprintArray);
-    console.log(idNewSprintArray);
-
     document.querySelector("#sprintButtonAction form #idOldSprintArray").value = idOldSprintArray.toString();
     document.querySelector("#sprintButtonAction form #idNewSprintArray").value = idNewSprintArray.toString();
     document.querySelector("#sprintButtonAction form #idTaskArray").value = idTaskArray.toString();
