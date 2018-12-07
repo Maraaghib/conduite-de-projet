@@ -201,6 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
                             <div class="row">
                                 <div class="input-field col s12">
                                     <select class="mdb-select md-form" name="affectedToTask" required>
+                                        <option value=""></option>
                                         <?php
                                         foreach ($collaborators as $collaborator) {
                                         $user = getUser($collaborator['userEmail']);
@@ -208,7 +209,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET[PROJECT_NAME_ARG]) && te
                                         <option value="<?php echo $user['email'] ?>"><?php echo $user['name'] ?></option>
                                         <?php
                                         }
+                                        $author = getUser($projectInfo['author']);
                                         ?>
+                                        <option value="<?php echo $author['email'] ?>"><?php echo $author['name'] ?></option>
                                     </select>
                                     <label for="affectedToTask">Affectée à *</label>
                                     <span class="helper-text" data-error="Vous devez choisir vous ou un collaborateur" data-success="Utilisateur correcte"></span>
