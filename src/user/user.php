@@ -30,7 +30,7 @@ http://$_SERVER[HTTP_HOST]/user/activation.php?email=".urlencode($email)."&key="
 ---------------
 Ceci est un mail automatique, Merci de ne pas y répondre.";
 
-        $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
+        $transport = (new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
         ->setUsername('cdp2018gestionnairedeprojets@gmail.com')
         ->setPassword('Cdp2018GL');
         $mailer = new Swift_Mailer($transport);
