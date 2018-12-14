@@ -59,17 +59,17 @@ class TestUpdateUserStory(unittest.TestCase):
         time.sleep(sleep_time)
 
 
-    def testMissingUri(self):
-        self.firefox_driver.get(base_url + Url.MISSING_URI)
-        page_url = self.firefox_driver.current_url
-        time.sleep(sleep_time)
-        self.assertEqual(page_url, base_url + Url.ERROR_URL)
+    # def testMissingUri(self):
+    #     self.firefox_driver.get(base_url + Url.MISSING_URI)
+    #     page_url = self.firefox_driver.current_url
+    #     time.sleep(sleep_time)
+    #     self.assertEqual(page_url, base_url + Url.ERROR_URL)
 
-    def testIncorrectUri(self):
-        self.firefox_driver.get(base_url + Url.INCORRECT_ARG_URI)
-        page_url = self.firefox_driver.current_url
-        time.sleep(sleep_time)
-        self.assertEqual(page_url, base_url + Url.ERROR_URL)
+    # def testIncorrectUri(self):
+    #     self.firefox_driver.get(base_url + Url.INCORRECT_ARG_URI)
+    #     page_url = self.firefox_driver.current_url
+    #     time.sleep(sleep_time)
+    #     self.assertEqual(page_url, base_url + Url.ERROR_URL)
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:

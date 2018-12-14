@@ -23,10 +23,9 @@ class TestRegister(unittest.TestCase):
         self.firefox_driver.quit()
     
     def testRegister(self):
-        # Test accessing register.php while connected
+        # Test accessing register.php while not connected
         self.firefox_driver.get(base_url + Url.REGISTER_URL)
         current_page_url = self.firefox_driver.current_url
-        time.sleep(sleep_time)
         self.assertEqual(current_page_url, base_url + Url.REGISTER_URL)
 
         # Test a correct registering
@@ -40,10 +39,10 @@ class TestRegister(unittest.TestCase):
         password_field.send_keys(User.PASSWORD)
         button_connect = self.firefox_driver.find_element_by_name("connectUser")
         button_connect.click()
+        time.sleep(sleep_time)
         # Test accessing register.php while connected
         self.firefox_driver.get(base_url + Url.REGISTER_URL)
         current_page_url = self.firefox_driver.current_url
-        time.sleep(sleep_time)
         self.assertEqual(current_page_url, base_url + Url.LIST_PROJECTS_URL)
 
         # Test registering with the same email
@@ -51,7 +50,6 @@ class TestRegister(unittest.TestCase):
         self.firefox_driver.get(base_url + Url.REGISTER_URL)
         self.registerUser(User.USERNAME, User.EMAIL, User.PASSWORD)
         current_page_url = self.firefox_driver.current_url
-        time.sleep(sleep_time)
         self.assertEqual(current_page_url, base_url + Url.REGISTER_URL)
     
     def registerUser(self, name, email, password):

@@ -58,7 +58,7 @@
                                         if (empty($projects)) {
                                         ?>
                                             <h1>Aucun projet pour l'instant !</h1>
-                                            <a href="/project/newProject.php" class="btn waves-effect waves-light"><i class="material-icons left" aria-hidden="true">add</i>Créer un nouveau Projet</a>
+                                            <a name="newProject" href="/project/newProject.php" class="btn waves-effect waves-light"><i class="material-icons left" aria-hidden="true">add</i>Créer un nouveau Projet</a>
                                         <?php
                                         }
                                         else {

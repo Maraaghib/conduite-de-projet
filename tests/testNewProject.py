@@ -26,12 +26,10 @@ class TestNewProject(unittest.TestCase):
     def testNewProject(self):
         project_name = "projectTest"
         # Open the page for creating a new project
-        self.firefox_driver.get(base_url)
-        current_page_url = self.firefox_driver.current_url
+        # self.firefox_driver.get(base_url)
         new_project_link = self.firefox_driver.find_element_by_id("newProject")
         time.sleep(sleep_time)
         new_project_link.click()
-        time.sleep(sleep_time)
         current_page_url = self.firefox_driver.current_url
         self.assertEqual(current_page_url, base_url + Url.NEW_PROJECT_URL)
         # Testing the creation of a project

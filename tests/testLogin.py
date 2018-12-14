@@ -70,7 +70,7 @@ class TestLogin(unittest.TestCase):
     def logoutUser(self):
         deconnectButton = self.firefox_driver.find_element_by_link_text("Se déconnecter")
         deconnectButton.click()
-        time.sleep(2)
+        time.sleep(sleep_time)
 
 
     def checkAccessPage(self, url, expected_url):
